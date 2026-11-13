@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Seite nicht gefunden – Visuals by Preecie</title>
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#07060a">
+<link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32.png">
+<style>
+  @font-face { font-family: "Archivo"; src: url("/fonts/archivo-italic-caps.woff2") format("woff2"); font-weight: 900; font-stretch: 62%; font-style: italic; font-display: swap; }
+  @font-face { font-family: "Inter Tight"; src: url("/fonts/inter-tight-sub.woff2") format("woff2"); font-weight: 400 600; font-display: swap; }
+  @font-face { font-family: "Geist Mono"; src: url("/fonts/geist-mono-400.woff2") format("woff2"); font-weight: 400; font-display: swap; }
+  :root { color-scheme: dark; }
+  * { box-sizing: border-box; }
+  html, body { height: 100%; }
+  body { margin: 0; background: radial-gradient(ellipse 70% 50% at 90% 0%, rgba(150,22,62,.34), transparent 70%), #07060a; color: #d6cfd4;
+    font-family: "Inter Tight", system-ui, sans-serif; display: flex; align-items: center;
+    padding-left: max(20px, env(safe-area-inset-left, 0px)); padding-right: max(20px, env(safe-area-inset-right, 0px)); }
+  main { max-width: 1320px; width: 100%; margin: 0 auto; padding-block: 48px; }
+  p.m { margin: 0 0 20px; font-family: "Geist Mono", monospace; font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: #a0969f; }
+  h1 { margin: 0; font-family: "Archivo", "Arial Narrow", sans-serif; font-weight: 900; font-style: italic; font-stretch: 62%; text-transform: uppercase;
+    color: #f1edf0; font-size: min(calc((100vw - 40px) / 6.6), 200px); line-height: .84; letter-spacing: -.01em; word-spacing: .05em; }
+  a { display: inline-flex; align-items: center; min-height: 44px; margin-top: 32px; font-family: "Geist Mono", monospace; font-size: 13px; letter-spacing: .14em;
+    text-transform: uppercase; color: #f1edf0; text-decoration: none; border-bottom: 1px solid #e9a3b6; }
+  .logo { display: inline-flex; margin: 0 0 40px; border: 0; min-height: 44px; }
+  .logo img { width: 50px; height: auto; display: block; }
+  .legal { display: flex; flex-wrap: wrap; gap: 4px 24px; margin-top: 48px; }
+  .legal a { margin: 0; border: 0; font-size: 12px; letter-spacing: .08em; color: #8c838b; }
+  .legal a:hover { color: #f1edf0; }
+  a:focus-visible { outline: 2px solid #e9a3b6; outline-offset: 4px; }
+</style>
+<script>
+  /* Seite startet immer oben – auch in Vorschau-Umgebungen, die eine alte Scroll-Position übernehmen. */
+  (function () {
+    var nav = (performance.getEntriesByType && performance.getEntriesByType('navigation')[0]) || {};
+    if (nav.type !== 'navigate' || location.hash || /:~:/.test(nav.name || '')) return;
+    var root = document.documentElement, touched = false, end = performance.now() + 1500;
+    root.style.scrollBehavior = 'auto';
+    ['wheel', 'touchstart', 'keydown', 'mousedown', 'pointerdown'].forEach(function (ev) {
+      addEventListener(ev, function () { touched = true; }, { passive: true, once: true, capture: true }); });
+    function top() { if (!touched && performance.now() < end && (window.scrollY || window.scrollX)) window.scrollTo(0, 0); }
+    addEventListener('scroll', top, { passive: true }); addEventListener('DOMContentLoaded', top); addEventListener('load', top); top();
+    setTimeout(function () { removeEventListener('scroll', top); root.style.scrollBehavior = ''; }, 1500);
+  })();
+</script>
+</head>
+<body>
+<main>
+  <a class="logo" href="/"><img src="/img/vbp-logo-sm.png" alt="Visuals by Preecie – Startseite" width="96" height="53"></a>
+  <p class="m">Fehler 404</p>
+  <h1>Hier läuft<br>gerade nichts.</h1>
+  <a href="/">Zurück zur Startseite</a>
+  <nav class="legal" aria-label="Rechtliches"><a href="/impressum.html">Impressum</a><a href="/datenschutz.html">Datenschutz</a></nav>
+</main>
+</body>
+</html>

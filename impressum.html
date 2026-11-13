@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Impressum – Visuals by Preecie</title>
+<meta name="description" content="Impressum (Anbieterkennzeichnung) von Visuals by Preecie.">
+<meta name="robots" content="noindex, follow">
+<meta name="theme-color" content="#07060a">
+<link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32.png">
+<link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+<link rel="stylesheet" href="legal.css">
+<!--
+  VOR DEM LIVEGANG AUSFÜLLEN – alle rosa markierten Platzhalter (class="ph") ersetzen:
+  1. Vor- und Nachname (bei Einzelunternehmen ohne Zusatz wie "Inhaber")
+  2. Ladungsfähige Anschrift (Straße, Nr., PLZ, Ort) – kein Postfach. Alternative ohne Privatadresse: ladungsfähige Geschäfts-/Büroservice-Adresse.
+  3. Telefonnummer mit Vorwahl (zweiter schneller Kontaktweg neben E-Mail)
+  4. E-Mail-Adresse
+  5. Umsatzsteuer: USt-IdNr. NUR angeben, wenn vorhanden; Wirtschafts-Identifikationsnummer (W-IdNr.) angeben, sobald vom BZSt zugeteilt.
+     Steuernummer oder Steuer-ID gehören NICHT ins Impressum. Trifft beides nicht zu: den ganzen Abschnitt "Umsatzsteuer" löschen.
+  Hinweis: Der frühere Link zur EU-Streitschlichtungsplattform (OS-Plattform) ist bewusst nicht enthalten – die Plattform ist seit 20.07.2025 abgeschaltet.
+-->
+<script>
+  /* Frischer Aufruf = oben starten, auch in Vorschau-Umgebungen, die eine alte Scroll-Position übernehmen.
+     Zurück/Vor behält die Position, Sprünge zu Abschnitten (#…) bleiben erhalten, eigenes Scrollen wird nie überschrieben. */
+  (function () {
+    var nav = (performance.getEntriesByType && performance.getEntriesByType('navigation')[0]) || {};
+    if (nav.type !== 'navigate' || location.hash || /:~:/.test(nav.name || '')) return;
+    var root = document.documentElement, touched = false, end = performance.now() + 1500;
+    root.style.scrollBehavior = 'auto';
+    ['wheel', 'touchstart', 'keydown', 'mousedown', 'pointerdown'].forEach(function (ev) {
+      addEventListener(ev, function () { touched = true; }, { passive: true, once: true, capture: true }); });
+    function top() { if (!touched && performance.now() < end && (window.scrollY || window.scrollX)) window.scrollTo(0, 0); }
+    addEventListener('scroll', top, { passive: true }); addEventListener('DOMContentLoaded', top); addEventListener('load', top); top();
+    setTimeout(function () { removeEventListener('scroll', top); root.style.scrollBehavior = ''; }, 1500);
+  })();
+</script>
+</head>
+<body>
+<header class="bar">
+  <div class="bar-in">
+    <a href="index.html" class="brand"><img src="img/vbp-logo-sm.png" alt="Visuals by Preecie – Startseite" width="96" height="53"></a>
+    <a href="index.html" class="back"><svg class="arr" viewBox="0 0 16 16" aria-hidden="true"><path d="M13 8H3M7 4L3 8l4 4" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/></svg>Zur Startseite</a>
+  </div>
+</header>
+
+<main>
+  <p class="eyebrow">Anbieterkennzeichnung</p>
+  <h1>Impressum</h1>
+  <p class="lede">Angaben zum Anbieter dieser Website gemäß §&nbsp;5 des Digitale-Dienste-Gesetzes (DDG).</p>
+
+  <section aria-labelledby="anbieter">
+    <h2 id="anbieter">Anbieter</h2>
+    <div class="card">
+      <p><strong>Fabian Pinkawa</strong><br>
+      <span class="ph">[Straße Hausnummer]</span><br>
+      <span class="ph">[PLZ Ort]</span><br>
+      Deutschland</p>
+    </div>
+  </section>
+
+  <section aria-labelledby="kontakt">
+    <h2 id="kontakt">Kontakt</h2>
+    <div class="card">
+      <dl class="facts">
+        <dt>Telefon</dt><dd><a href="tel:+49000000000"><span class="ph">[+49 … Telefonnummer]</span></a></dd>
+        <dt>E-Mail</dt><dd><a href="mailto:kontakt@example.de"><span class="ph">[E-Mail-Adresse]</span></a></dd>
+        <dt>Instagram</dt><dd><a href="https://www.instagram.com/visualsbypreecie/" rel="noopener" target="_blank">@visualsbypreecie<span class="sr-only"> (öffnet neuen Tab)</span></a></dd>
+      </dl>
+    </div>
+  </section>
+
+  <section aria-labelledby="ust">
+    <h2 id="ust">Umsatzsteuer</h2>
+    <div class="card">
+      <dl class="facts">
+        <dt>USt-IdNr.</dt><dd><span class="ph">[DE… – nur falls vorhanden]</span></dd>
+        <dt>W-IdNr.</dt><dd><span class="ph">[DE…-00001 – sobald zugeteilt]</span></dd>
+      </dl>
+    </div>
+  </section>
+
+  <section aria-labelledby="mstv">
+    <h2 id="mstv">Verantwortlich für den Inhalt</h2>
+    <p>Verantwortlich für den Inhalt nach §&nbsp;18 Abs.&nbsp;2 Medienstaatsvertrag (MStV): Fabian Pinkawa, Anschrift wie oben.</p>
+  </section>
+
+  <section aria-labelledby="streit">
+    <h2 id="streit">Verbraucherstreitbeilegung</h2>
+    <p>Ich bin weder bereit noch verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.</p>
+  </section>
+
+  <section aria-labelledby="rechte">
+    <h2 id="rechte">Urheberrecht &amp; Bildrechte</h2>
+    <p>Die auf dieser Website gezeigten Gestaltungen (Flyer, Grafiken, Motion Design, Branding) wurden von Visuals by Preecie entworfen und sind urheberrechtlich geschützt. Vervielfältigung, Bearbeitung und Verbreitung außerhalb der Grenzen des Urheberrechts sind nur mit schriftlicher Zustimmung erlaubt.</p>
+    <p>Fotos, Namen, Logos und Marken von Clubs, Veranstaltern und Künstlern, die auf den Arbeiten zu sehen sind, gehören den jeweiligen Rechteinhabern. Sie werden hier ausschließlich als Referenz für die gestaltete Arbeit gezeigt. Solltest du als Rechteinhaber mit einer Darstellung nicht einverstanden sein, genügt eine kurze Nachricht. Die betreffende Arbeit wird dann umgehend entfernt.</p>
+  </section>
+
+  <section aria-labelledby="links">
+    <h2 id="links">Links zu anderen Websites</h2>
+    <p>Diese Website verlinkt auf externe Angebote wie Instagram. Für deren Inhalte sind ausschließlich die jeweiligen Anbieter verantwortlich. Zum Zeitpunkt der Verlinkung waren keine Rechtsverstöße erkennbar. Werden Rechtsverletzungen bekannt, entferne ich den betreffenden Link umgehend.</p>
+  </section>
+
+  <p class="stand">Stand: November 2026</p>
+</main>
+
+<footer class="foot">
+  <span>© 2026 Visuals by Preecie</span>
+  <nav aria-label="Rechtliches und Social">
+    <a href="https://www.instagram.com/visualsbypreecie/" target="_blank" rel="noopener">Instagram<span class="sr-only"> (öffnet neuen Tab)</span></a>
+    <a href="impressum.html" aria-current="page">Impressum</a>
+    <a href="datenschutz.html">Datenschutz</a>
+  </nav>
+</footer>
+</body>
+</html>

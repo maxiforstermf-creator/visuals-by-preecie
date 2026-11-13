@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Datenschutz – Visuals by Preecie</title>
+<meta name="description" content="Datenschutzerklärung von Visuals by Preecie: welche Daten beim Besuch der Website und bei einer Anfrage verarbeitet werden.">
+<meta name="robots" content="noindex, follow">
+<meta name="theme-color" content="#07060a">
+<link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32.png">
+<link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+<link rel="stylesheet" href="legal.css">
+<!--
+  VOR DEM LIVEGANG AUSFÜLLEN – alle rosa markierten Platzhalter (class="ph") ersetzen:
+  1. Anschrift + E-Mail (identisch mit Impressum). Name ist eingetragen, Aufsichtsbehörde BayLDA passt (Sitz Bayern).
+  2. WhatsApp-/E-Mail-Kontakt: Wird einer davon auf der Startseite freigeschaltet, hier den passenden Abschnitt prüfen bzw. freischalten.
+  Hosting: GitHub Pages (GitHub, Inc., USA). Übermittlung in die USA über das EU-US Data Privacy Framework (Art. 45 DSGVO).
+  Die Website selbst setzt keine Cookies, nutzt kein Tracking, lädt keine Inhalte von Drittanbietern und speichert nichts auf dem Gerät.
+  Wird später etwas davon ergänzt (z. B. Google Analytics, eingebettete YouTube-/Instagram-Inhalte, Kontaktformular, Google Maps),
+  muss diese Erklärung vorher erweitert werden.
+-->
+<script>
+  /* Frischer Aufruf = oben starten, auch in Vorschau-Umgebungen, die eine alte Scroll-Position übernehmen.
+     Zurück/Vor behält die Position, Sprünge zu Abschnitten (#…) bleiben erhalten, eigenes Scrollen wird nie überschrieben. */
+  (function () {
+    var nav = (performance.getEntriesByType && performance.getEntriesByType('navigation')[0]) || {};
+    if (nav.type !== 'navigate' || location.hash || /:~:/.test(nav.name || '')) return;
+    var root = document.documentElement, touched = false, end = performance.now() + 1500;
+    root.style.scrollBehavior = 'auto';
+    ['wheel', 'touchstart', 'keydown', 'mousedown', 'pointerdown'].forEach(function (ev) {
+      addEventListener(ev, function () { touched = true; }, { passive: true, once: true, capture: true }); });
+    function top() { if (!touched && performance.now() < end && (window.scrollY || window.scrollX)) window.scrollTo(0, 0); }
+    addEventListener('scroll', top, { passive: true }); addEventListener('DOMContentLoaded', top); addEventListener('load', top); top();
+    setTimeout(function () { removeEventListener('scroll', top); root.style.scrollBehavior = ''; }, 1500);
+  })();
+</script>
+</head>
+<body>
+<header class="bar">
+  <div class="bar-in">
+    <a href="index.html" class="brand"><img src="img/vbp-logo-sm.png" alt="Visuals by Preecie – Startseite" width="96" height="53"></a>
+    <a href="index.html" class="back"><svg class="arr" viewBox="0 0 16 16" aria-hidden="true"><path d="M13 8H3M7 4L3 8l4 4" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/></svg>Zur Startseite</a>
+  </div>
+</header>
+
+<main>
+  <p class="eyebrow">Datenschutzerklärung</p>
+  <h1>Daten&shy;schutz</h1>
+  <p class="lede">Hier steht in klarer Sprache, welche personenbezogenen Daten beim Besuch dieser Website und bei einer Anfrage verarbeitet werden, warum das geschieht und welche Rechte du hast.</p>
+
+  <nav class="toc" aria-label="Inhalt">
+    <p>Inhalt</p>
+    <ol>
+      <li><a href="#verantwortlich">Verantwortlicher</a></li>
+      <li><a href="#ueberblick">Auf einen Blick</a></li>
+      <li><a href="#hosting">Hosting über GitHub Pages</a></li>
+      <li><a href="#cookies">Cookies, Tracking &amp; Schriften</a></li>
+      <li><a href="#kontakt">Kontakt per E-Mail &amp; Telefon</a></li>
+      <li><a href="#instagram">Kontakt &amp; Links zu Instagram</a></li>
+      <!-- <li><a href="#whatsapp">Kontakt per WhatsApp</a></li>  ← zusammen mit dem WhatsApp-Abschnitt unten freischalten -->
+      <li><a href="#speicherdauer">Speicherdauer</a></li>
+      <li><a href="#rechte">Deine Rechte</a></li>
+      <li><a href="#beschwerde">Beschwerderecht</a></li>
+      <li><a href="#sonstiges">Sonstiges</a></li>
+    </ol>
+  </nav>
+
+  <section id="verantwortlich" aria-labelledby="h-verantwortlich">
+    <h2 id="h-verantwortlich">1. Verantwortlicher</h2>
+    <p>Verantwortlich für die Datenverarbeitung auf dieser Website im Sinne der Datenschutz-Grundverordnung (DSGVO):</p>
+    <div class="card">
+      <p><strong>Fabian Pinkawa</strong><br>
+      <span class="ph">[Straße Hausnummer]</span>, <span class="ph">[PLZ Ort]</span>, Deutschland<br>
+      E-Mail: <a href="mailto:kontakt@example.de"><span class="ph">[E-Mail-Adresse]</span></a></p>
+    </div>
+    <p>Ein Datenschutzbeauftragter ist gesetzlich nicht vorgeschrieben und daher nicht benannt.</p>
+  </section>
+
+  <section id="ueberblick" aria-labelledby="h-ueberblick">
+    <h2 id="h-ueberblick">2. Auf einen Blick</h2>
+    <div class="summary">
+      <ul>
+        <li>Keine Cookies und kein Tracking</li>
+        <li>Keine Werbe- oder Analysedienste</li>
+        <li>Keine eingebundenen Inhalte von Drittanbietern: Schriften, Bilder und Videos werden direkt vom Hoster dieser Website ausgeliefert</li>
+        <li>Kein Kontaktformular und kein Kundenkonto</li>
+        <li>Daten fallen nur technisch beim Aufruf an (Server-Logfiles) und wenn du selbst Kontakt aufnimmst</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="hosting" aria-labelledby="h-hosting">
+    <h2 id="h-hosting">3. Hosting über GitHub Pages</h2>
+    <p>Diese Website wird über den Dienst GitHub Pages bereitgestellt. Anbieter ist:</p>
+    <div class="card"><p>GitHub, Inc.<br>88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, USA</p></div>
+    <p>Damit die Website in deinem Browser angezeigt werden kann, verarbeitet GitHub beim Aufruf automatisch technische Daten, die dein Browser übermittelt:</p>
+    <ul class="list">
+      <li>IP-Adresse des anfragenden Geräts</li>
+      <li>Datum und Uhrzeit des Zugriffs</li>
+      <li>aufgerufene Seite bzw. Datei und übertragene Datenmenge</li>
+      <li>Website, von der aus der Zugriff erfolgt (Referrer)</li>
+      <li>verwendeter Browser und Betriebssystem</li>
+    </ul>
+    <p>Nach eigenen Angaben speichert GitHub die IP-Adresse aller Besucher von GitHub-Pages-Seiten aus Sicherheitsgründen, unabhängig davon, ob sie bei GitHub angemeldet sind. Ich selbst habe keinen Zugriff auf diese Daten, werte sie nicht aus und führe sie nicht mit anderen Daten zusammen.</p>
+    <p>Rechtsgrundlage ist Art.&nbsp;6 Abs.&nbsp;1 lit.&nbsp;f&nbsp;DSGVO. Mein berechtigtes Interesse liegt in einer zuverlässigen, sicheren und schnellen Bereitstellung der Website. GitHub nennt für diese Daten keine feste Speicherfrist. Sie werden laut GitHub so lange gespeichert, wie es für die genannten Sicherheitszwecke und gesetzliche Pflichten erforderlich ist. Details findest du in der <a href="https://docs.github.com/de/site-policy/privacy-policies/github-general-privacy-statement" rel="noopener" target="_blank">Datenschutzerklärung von GitHub<span class="sr-only"> (öffnet neuen Tab)</span></a>.</p>
+    <h3>Übermittlung in die USA</h3>
+    <p>GitHub verarbeitet die Daten auch in den USA. Für die USA besteht ein Angemessenheitsbeschluss der EU-Kommission für Unternehmen, die nach dem EU-US Data Privacy Framework zertifiziert sind (Art.&nbsp;45&nbsp;DSGVO). GitHub, Inc. ist nach diesem Rahmenwerk zertifiziert.</p>
+    <h3>Verschlüsselung</h3>
+    <p>Die Website wird ausschließlich verschlüsselt über HTTPS (TLS) ausgeliefert. Erkennbar ist das am Schloss-Symbol und an „https://“ in der Adresszeile des Browsers.</p>
+  </section>
+
+  <section id="cookies" aria-labelledby="h-cookies">
+    <h2 id="h-cookies">4. Cookies, Tracking &amp; Schriften</h2>
+    <p>Diese Website setzt keine Cookies und speichert auch sonst keine Informationen auf deinem Gerät oder liest solche aus (§&nbsp;25&nbsp;TDDDG). Es werden keine Analyse-, Tracking- oder Werbedienste eingesetzt. Deshalb gibt es auch kein Cookie-Banner.</p>
+    <p>Die verwendeten Schriftarten, alle Bilder und Videos werden direkt vom Hoster dieser Website geladen (siehe Abschnitt 3). Beim Aufruf wird keine Verbindung zu Google Fonts, Instagram oder anderen Drittanbietern aufgebaut.</p>
+    <p>Im Bereich „Kontakt“ kannst du eine Nachricht für deine Anfrage vorbereiten. Was du dort eingibst oder auswählst, wird nur in deinem Browser verarbeitet, nicht gespeichert und nicht an mich oder Dritte gesendet. Erst wenn du „Kopieren &amp; in die DM“ antippst, wird der Text in die Zwischenablage deines Geräts kopiert und Instagram geöffnet. Ob und was du dort abschickst, entscheidest du selbst (siehe Abschnitt 6).</p>
+  </section>
+
+  <section id="kontakt" aria-labelledby="h-kontakt">
+    <h2 id="h-kontakt">5. Kontakt per E-Mail &amp; Telefon</h2>
+    <p>Wenn du mich per E-Mail oder Telefon kontaktierst, verarbeite ich die Angaben, die du mitteilst (z.&nbsp;B. Name, Kontaktdaten, Event-Details, Datum und Location), um deine Anfrage zu beantworten und gegebenenfalls einen Auftrag umzusetzen.</p>
+    <p>Rechtsgrundlage ist Art.&nbsp;6 Abs.&nbsp;1 lit.&nbsp;b&nbsp;DSGVO, wenn die Anfrage mit einem Vertrag oder dessen Anbahnung zusammenhängt. In allen anderen Fällen ist es Art.&nbsp;6 Abs.&nbsp;1 lit.&nbsp;f&nbsp;DSGVO. Das berechtigte Interesse liegt in der Beantwortung deiner Anfrage.</p>
+  </section>
+
+  <section id="instagram" aria-labelledby="h-instagram">
+    <h2 id="h-instagram">6. Kontakt &amp; Links zu Instagram</h2>
+    <p>Auf dieser Website befinden sich einfache Links zu meinem Instagram-Profil und zur Direktnachricht (DM). Es handelt sich um normale Links, keine eingebetteten Inhalte oder Plugins. Beim bloßen Besuch dieser Website werden daher keine Daten an Instagram übertragen. Erst wenn du einen der Links anklickst, wirst du zu Instagram weitergeleitet.</p>
+    <p>Instagram wird betrieben von der Meta Platforms Ireland Limited, Merrion Road, Dublin 4, D04 X2K5, Irland. Wenn du mir dort schreibst, verarbeitet Meta deine Daten in eigener Verantwortung nach seinen Datenschutzbestimmungen. Auch eine Übermittlung in die USA ist möglich. Meta ist nach dem EU-US Data Privacy Framework zertifiziert.</p>
+    <p>Den Inhalt deiner Nachricht nutze ich nur, um deine Anfrage zu beantworten. Rechtsgrundlage ist Art.&nbsp;6 Abs.&nbsp;1 lit.&nbsp;b bzw. lit.&nbsp;f&nbsp;DSGVO, wie in Abschnitt 5 beschrieben. Wenn du Instagram nicht nutzen möchtest, kannst du mich jederzeit per E-Mail erreichen (Adresse siehe <a href="impressum.html">Impressum</a>).</p>
+  </section>
+
+  <!-- WHATSAPP: erst freischalten, wenn WhatsApp auf der Startseite als Kontaktweg aktiv ist.
+       Dann diesen Abschnitt einkommentieren, den TOC-Eintrag oben ebenso und die Nummern 7–10 der folgenden Abschnitte um eins erhöhen.
+  <section id="whatsapp" aria-labelledby="h-whatsapp">
+    <h2 id="h-whatsapp">7. Kontakt per WhatsApp</h2>
+    <p>Du kannst mich auch über WhatsApp kontaktieren. Anbieter ist die WhatsApp Ireland Limited, Merrion Road, Dublin 4, D04 X2K5, Irland. Wenn du mir über WhatsApp schreibst, verarbeitet WhatsApp deine Telefonnummer, deinen Profilnamen sowie Metadaten (z.&nbsp;B. Zeitpunkt der Nachricht). Die Inhalte sind Ende-zu-Ende-verschlüsselt. Eine Übermittlung von Metadaten in die USA ist möglich. Sie stützt sich auf das EU-US Data Privacy Framework, nach dem die Muttergesellschaft zertifiziert ist.</p>
+    <p>Den Inhalt deiner Nachricht nutze ich nur zur Bearbeitung deiner Anfrage. Rechtsgrundlage ist Art.&nbsp;6 Abs.&nbsp;1 lit.&nbsp;b bzw. lit.&nbsp;f&nbsp;DSGVO. Die Kontaktaufnahme über WhatsApp ist freiwillig; alternativ erreichst du mich per E-Mail oder Telefon.</p>
+  </section>
+  -->
+
+  <section id="speicherdauer" aria-labelledby="h-speicherdauer">
+    <h2 id="h-speicherdauer">7. Speicherdauer</h2>
+    <p>Anfragen lösche ich, sobald sie erledigt sind und sich aus ihnen kein Auftrag ergibt. Kommt ein Auftrag zustande, speichere ich die dafür nötigen Daten, solange gesetzliche Aufbewahrungspflichten bestehen, insbesondere nach Steuer- und Handelsrecht (in der Regel 6 Jahre für Geschäftsbriefe, 8 Jahre für Rechnungen und Buchungsbelege, 10 Jahre für Bücher und Jahresabschlüsse). Danach werden die Daten gelöscht.</p>
+  </section>
+
+  <section id="rechte" aria-labelledby="h-rechte">
+    <h2 id="h-rechte">8. Deine Rechte</h2>
+    <p>Du hast im Rahmen der gesetzlichen Vorgaben jederzeit das Recht auf:</p>
+    <ul class="list">
+      <li><strong>Auskunft</strong> über die zu dir gespeicherten Daten (Art.&nbsp;15&nbsp;DSGVO)</li>
+      <li><strong>Berichtigung</strong> unrichtiger Daten (Art.&nbsp;16&nbsp;DSGVO)</li>
+      <li><strong>Löschung</strong> deiner Daten (Art.&nbsp;17&nbsp;DSGVO)</li>
+      <li><strong>Einschränkung</strong> der Verarbeitung (Art.&nbsp;18&nbsp;DSGVO)</li>
+      <li><strong>Datenübertragbarkeit</strong> (Art.&nbsp;20&nbsp;DSGVO)</li>
+      <li><strong>Widerruf</strong> einer erteilten Einwilligung mit Wirkung für die Zukunft (Art.&nbsp;7 Abs.&nbsp;3&nbsp;DSGVO)</li>
+    </ul>
+    <div class="summary" style="border-left-color: var(--violet)">
+      <p style="margin:0"><strong>Widerspruchsrecht (Art.&nbsp;21&nbsp;DSGVO):</strong> Soweit eine Verarbeitung auf Art.&nbsp;6 Abs.&nbsp;1 lit.&nbsp;f&nbsp;DSGVO beruht, kannst du aus Gründen, die sich aus deiner besonderen Situation ergeben, jederzeit widersprechen. Ich verarbeite die Daten dann nicht mehr, es sei denn, es liegen zwingende schutzwürdige Gründe vor oder die Verarbeitung dient der Geltendmachung, Ausübung oder Verteidigung von Rechtsansprüchen.</p>
+    </div>
+    <p>Eine kurze Nachricht an <a href="mailto:kontakt@example.de"><span class="ph">[E-Mail-Adresse]</span></a> genügt.</p>
+  </section>
+
+  <section id="beschwerde" aria-labelledby="h-beschwerde">
+    <h2 id="h-beschwerde">9. Beschwerderecht</h2>
+    <p>Du hast das Recht, dich bei einer Datenschutz-Aufsichtsbehörde zu beschweren (Art.&nbsp;77&nbsp;DSGVO). Für mich zuständig ist:</p>
+    <div class="card">
+      <p><strong>Bayerisches Landesamt für Datenschutzaufsicht (BayLDA)</strong><br>
+      Promenade 18, 91522 Ansbach<br>
+      <a href="https://www.lda.bayern.de" rel="noopener" target="_blank">www.lda.bayern.de<span class="sr-only"> (öffnet neuen Tab)</span></a></p>
+    </div>
+  </section>
+
+  <section id="sonstiges" aria-labelledby="h-sonstiges">
+    <h2 id="h-sonstiges">10. Sonstiges</h2>
+    <p>Du bist nicht verpflichtet, mir personenbezogene Daten bereitzustellen. Ohne Kontaktdaten kann ich eine Anfrage allerdings nicht beantworten. Eine automatisierte Entscheidungsfindung einschließlich Profiling (Art.&nbsp;22&nbsp;DSGVO) findet nicht statt.</p>
+    <p>Ich passe diese Datenschutzerklärung an, wenn sich die Website oder die rechtlichen Vorgaben ändern. Es gilt die jeweils hier veröffentlichte Fassung.</p>
+  </section>
+
+  <p class="stand">Stand: November 2026</p>
+</main>
+
+<footer class="foot">
+  <span>© 2026 Visuals by Preecie</span>
+  <nav aria-label="Rechtliches und Social">
+    <a href="https://www.instagram.com/visualsbypreecie/" target="_blank" rel="noopener">Instagram<span class="sr-only"> (öffnet neuen Tab)</span></a>
+    <a href="impressum.html">Impressum</a>
+    <a href="datenschutz.html" aria-current="page">Datenschutz</a>
+  </nav>
+</footer>
+</body>
+</html>

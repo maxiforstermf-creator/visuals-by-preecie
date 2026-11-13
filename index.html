@@ -1,0 +1,1575 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Visuals by Preecie – Flyer, Motion Design &amp; Branding für Clubs und Events</title>
+<meta name="description" content="Event-Flyer, Motion Design, DJ Graphics und Branding für Clubs, DJs und Veranstalter in ganz Deutschland. Von einem Designer, der selbst auflegt. Anfrage per Instagram-DM.">
+<link rel="canonical" href="https://www.visualsbypreecie.de/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="de_DE">
+<meta property="og:site_name" content="Visuals by Preecie">
+<meta property="og:title" content="Visuals by Preecie">
+<meta property="og:description" content="Flyer, Motion Design, DJ Graphics &amp; Branding für Clubs und Events. Fast Service – schreib mir einfach auf Instagram.">
+<meta property="og:url" content="https://www.visualsbypreecie.de/">
+<meta property="og:image" content="https://www.visualsbypreecie.de/img/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#07060a">
+<link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32.png">
+<link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+<link rel="preload" href="fonts/archivo-italic-caps.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/archivo-sub.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="img/sync.avif" as="image" type="image/avif" fetchpriority="high">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"ProfessionalService","name":"Visuals by Preecie",
+ "url":"https://www.visualsbypreecie.de/","image":"https://www.visualsbypreecie.de/img/og.jpg",
+ "description":"Flyer, Motion Design, DJ Graphics und Branding für Clubs, DJs und Events.",
+ "areaServed":{"@type":"Country","name":"Deutschland"},
+ "sameAs":["https://www.instagram.com/visualsbypreecie/"],
+ "founder":{"@type":"Person","name":"Preecie","jobTitle":"Grafikdesigner"}}
+</script>
+<script>
+  /* Effekte nur mit JS. Bilder sind nach spätestens 2,5 s sichtbar, auch wenn etwas hängt. */
+  document.documentElement.classList.add('js');
+  document.addEventListener('load', function (e) { if (e.target.tagName === 'IMG') e.target.classList.add('is-loaded'); }, true);
+  setTimeout(function () { document.documentElement.classList.add('safe'); }, 2500);
+</script>
+<style>
+  /* Schriften lokal, auf die genutzten Zeichen und Stärken zugeschnitten (schnell + DSGVO-konform) */
+  @font-face { font-family: "Archivo"; src: url("fonts/archivo-sub.woff2") format("woff2"); font-weight: 400 800; font-stretch: 62% 75%; font-style: normal; font-display: swap; }
+  @font-face { font-family: "Archivo"; src: url("fonts/archivo-italic-caps.woff2") format("woff2"); font-weight: 900; font-stretch: 62%; font-style: italic; font-display: swap; }
+  @font-face { font-family: "Inter Tight"; src: url("fonts/inter-tight-sub.woff2") format("woff2"); font-weight: 400 600; font-style: normal; font-display: swap; }
+  @font-face { font-family: "Geist Mono"; src: url("fonts/geist-mono-400.woff2") format("woff2"); font-weight: 400; font-style: normal; font-display: swap; }
+  /* Ersatzschrift in gleicher Breite, damit beim Laden nichts springt */
+  @font-face { font-family: "Archivo Fb"; src: local("Arial Bold"), local("Arial-BoldMT"), local("Roboto Bold"), local("Helvetica Bold"); font-style: normal; size-adjust: 71%; }
+  @font-face { font-family: "Archivo Fb"; src: local("Arial Bold Italic"), local("Arial-BoldItalicMT"), local("Roboto Bold Italic"), local("Helvetica Bold Oblique"); font-style: italic; size-adjust: 71%; }
+
+  /* Konzept: Galerie bei Nacht. 12er-Raster, Haarlinien statt Karten.
+     Archivo Condensed (Logo-DNA) für alles Große, Inter Tight für Text, Geist Mono für Index und Daten. */
+  :root {
+    color-scheme: dark;
+    --bg: #07060a;
+    --text: #f1edf0;
+    --body: #d6cfd4;
+    --muted: #a0969f;
+    --faint: #8c838b;
+    --dusk: #8a7584;
+    --line: rgba(241,237,240,0.10);
+    --line-strong: rgba(241,237,240,0.22);
+    --accent: #e9a3b6;
+    --violet: #b98ad6;
+    --display: "Archivo", "Archivo Fb", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
+    --sans: "Inter Tight", system-ui, -apple-system, "Segoe UI", sans-serif;
+    --mono: "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace;
+    --gap: 24px;
+    --gutter-l: max(32px, env(safe-area-inset-left, 0px));
+    --gutter-r: max(32px, env(safe-area-inset-right, 0px));
+    --sec: clamp(112px, 12vw, 176px);
+    --col: calc((100% - 11 * var(--gap)) / 12);
+    --ease: cubic-bezier(.2,.7,.2,1);
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 88px; scrollbar-gutter: stable; -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: transparent; scrollbar-color: #3a2a33 var(--bg); scrollbar-width: thin; }
+  ::-webkit-scrollbar { width: 10px; } ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: #3a2a33; border-radius: 10px; border: 2px solid var(--bg); }
+  ::selection { background: var(--accent); color: var(--bg); }
+  body { margin: 0; background: var(--bg); color: var(--body); font-family: var(--sans); font-weight: 400; font-size: 16px; line-height: 1.6;
+    letter-spacing: -.003em; -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; }
+  a { color: var(--text); text-decoration: none; }
+  a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; border-radius: 2px; }
+  img { display: block; max-width: 100%; }
+  picture { display: contents; }
+  .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+  .skip { position: absolute; left: 16px; top: -100px; z-index: 60; padding: 12px 16px; background: var(--text); color: var(--bg); font-family: var(--mono); font-size: 12px; }
+  .skip:focus { top: 12px; }
+  .wrap { padding-left: var(--gutter-l); padding-right: var(--gutter-r); }
+  .container { max-width: 1320px; margin: 0 auto; }
+  .grid12 { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--gap); }
+  .mono { font-family: var(--mono); font-size: 11px; letter-spacing: .08em; text-transform: uppercase; font-variant-numeric: tabular-nums; color: var(--faint); }
+
+  /* Pfeil: ein einziges SVG-Motiv, je nach Richtung gedreht */
+  .arr { flex: none; width: 14px; height: 14px; transition: transform .3s var(--ease), color .25s; }
+  .arr.down { transform: rotate(90deg); } .arr.ne { transform: rotate(-45deg); } .arr.up { transform: rotate(-90deg); }
+
+  /* ---------- Hintergrund: Nebel, feine Sterne, Filmkorn ---------- */
+  .space { position: fixed; inset: 0; z-index: -1; pointer-events: none; background:
+      radial-gradient(ellipse 70% 50% at 90% 0%, rgba(150,22,62,.34), transparent 70%),
+      radial-gradient(ellipse 55% 45% at 0% 60%, rgba(86,22,120,.22), transparent 70%),
+      radial-gradient(ellipse 60% 45% at 100% 100%, rgba(140,20,58,.22), transparent 70%),
+      var(--bg); }
+  .space::before, .space::after { content: ""; position: absolute; inset: 0; }
+  .space::before { opacity: .35; background-size: 520px 380px; background-image:
+      radial-gradient(1px 1px at 37px 51px, #fff, transparent),
+      radial-gradient(1px 1px at 183px 129px, rgba(255,255,255,.7), transparent),
+      radial-gradient(1.4px 1.4px at 311px 247px, #fff, transparent),
+      radial-gradient(1px 1px at 449px 73px, rgba(255,220,230,.7), transparent),
+      radial-gradient(1px 1px at 97px 331px, rgba(255,255,255,.5), transparent); }
+  .space::after { opacity: .25; background-size: 830px 610px; background-position: 210px 140px; background-image:
+      radial-gradient(1px 1px at 61px 97px, #fff, transparent),
+      radial-gradient(1.2px 1.2px at 419px 463px, rgba(255,200,215,.9), transparent),
+      radial-gradient(1px 1px at 701px 211px, #fff, transparent); }
+  .grain { position: fixed; inset: 0; z-index: 40; pointer-events: none; opacity: .055;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 1 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+
+  /* ---------- Header ---------- */
+  .site-header { position: sticky; top: 0; z-index: 20; padding-top: max(14px, env(safe-area-inset-top, 0px)); padding-bottom: 14px;
+    background: rgba(7,6,10,.78); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-bottom: 1px solid var(--line);
+    transition: background .35s, border-color .35s; }
+  .site-header.at-top { background: transparent; border-bottom-color: transparent; backdrop-filter: none; -webkit-backdrop-filter: none; }
+  .site-header { border-bottom-color: transparent; }
+  .site-header::after { content: ""; position: absolute; left: 0; right: 0; top: 100%; height: 28px; pointer-events: none;
+    background: linear-gradient(to bottom, rgba(7,6,10,.78), rgba(7,6,10,0)); opacity: 1; transition: opacity .35s ease; }
+  .site-header.at-top::after { opacity: 0; }
+  .site-header .container { display: flex; justify-content: space-between; align-items: center; gap: 24px; }
+  .brand { display: inline-flex; align-items: center; min-height: 44px; }
+  .brand img { width: 50px; height: auto; }
+  .nav { display: flex; align-items: center; gap: 32px; }
+  .nav a { position: relative; display: inline-flex; align-items: center; gap: 6px; min-height: 44px; font-family: var(--mono); font-size: 12px;
+    letter-spacing: .1em; text-transform: uppercase; color: var(--muted); transition: color .2s; }
+  .nav a::after { content: ""; position: absolute; left: 0; right: 0; bottom: 10px; height: 1px; background: currentColor;
+    transform: scaleX(0); transform-origin: left; transition: transform .35s var(--ease); }
+  .nav a[aria-current]::after { transform: scaleX(1); }
+  .nav a[aria-current] { color: var(--text); }
+  /* Anfrage: Verlaufs-Button in den Nebelfarben, mit Instagram-Symbol – führt direkt in die DM */
+  .nav .nav-cta { gap: 9px; min-height: 42px; padding: 0 18px 0 15px; border-radius: 999px;
+    font-family: var(--sans); font-size: 14px; font-weight: 600; letter-spacing: -.005em; text-transform: none; color: #140b12;
+    background: linear-gradient(95deg, #efb3c4 0%, #c49ae0 100%); box-shadow: 0 6px 18px -8px rgba(214,140,190,.38), inset 0 1px 0 rgba(255,255,255,.35);
+    transition: transform .3s var(--ease), box-shadow .3s ease, filter .3s ease; }
+  .nav .nav-cta::after { display: none; }
+  .nav .nav-cta svg { width: 16px; height: 16px; flex: none; }
+  .nav .nav-cta:active { transform: scale(.97); }
+
+  /* ---------- Hero: die Arbeit zuerst ----------
+     Erster Bildschirm = nur der neueste Flyer, groß und mittig wie in einer Galerie.
+     Dahinter ein weicher Schein aus den Farben des Flyers selbst, der sehr langsam atmet. */
+  main { overflow-x: clip; }
+  @supports not (overflow: clip) { main { overflow-x: hidden; } }
+  .intro { position: relative; overflow: clip; display: flex; flex-direction: column;
+    margin-top: calc(-1 * var(--hh, 72px)); padding-top: var(--hh, 72px); min-height: 100vh; min-height: 100svh; }
+  .ambient { position: absolute; inset: -8% -8% 0; z-index: 0; pointer-events: none; }
+  .ambient img { width: 100%; height: 100%; object-fit: cover; opacity: .68; transform: scale(1.1); will-change: transform; }
+  .ambient::after { content: ""; position: absolute; inset: 0;
+    background: radial-gradient(ellipse 60% 55% at 50% 45%, rgba(7,6,10,0) 0%, rgba(7,6,10,.55) 60%, var(--bg) 100%),
+                linear-gradient(to bottom, rgba(7,6,10,.2) 0%, rgba(7,6,10,0) 30%, rgba(7,6,10,0) 70%, var(--bg) 100%); }
+  .hero-stage { position: relative; z-index: 1; flex: 1; display: flex; align-items: center; justify-content: center; padding-block: 28px 84px; }
+  .intro-flyer { margin: 0; width: min(560px, 100%, calc((100svh - var(--hh, 72px) - 180px) * .806)); min-width: 0; }
+  /* Kurze Handys: Flyer bleibt groß, der Scroll-Hinweis entfällt (statt am Text zu kleben) */
+  @media (max-width: 640px) and (max-height: 700px), (min-width: 641px) and (max-height: 640px) { .intro .scroll-cue { display: none; } }
+  .intro-flyer .flyer { box-shadow: 0 60px 120px -40px rgba(0,0,0,.95), 0 0 0 1px rgba(255,255,255,.04); }
+  .hero-cap { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px 20px; margin-top: 18px; }
+  .hero-cap .t, .hero-cap .meta { font: inherit; letter-spacing: inherit; text-transform: inherit; }
+  .hero-cap .hero-what { color: var(--muted); }
+  .hero-cap .t { color: var(--text); }
+  .latest { display: inline-flex; align-items: center; gap: 10px; color: var(--text); }
+  .latest-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); flex: none; }
+  .scroll-cue { position: absolute; z-index: 1; left: 50%; bottom: max(18px, env(safe-area-inset-bottom, 0px)); transform: translateX(-50%);
+    display: flex; flex-direction: column; align-items: center; gap: 10px; min-height: 44px; color: var(--faint); }
+  .scroll-cue i { display: block; width: 1px; height: 28px; background: linear-gradient(to bottom, var(--faint), transparent); transform-origin: top; }
+  @media (prefers-reduced-motion: no-preference) {
+    @keyframes rise { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+    @keyframes breathe { 0% { transform: scale(1.08) translate3d(0,0,0); } 50% { transform: scale(1.22) translate3d(-2%, 2%, 0); } 100% { transform: scale(1.12) translate3d(2%, -1%, 0); } }
+    @keyframes cue { 0% { transform: scaleY(0); opacity: 1; } 60% { transform: scaleY(1); opacity: 1; } 100% { transform: scaleY(1); opacity: 0; } }
+    @keyframes latest-pulse { 0% { box-shadow: 0 0 0 0 rgba(233,163,182,.55); } 70% { box-shadow: 0 0 0 9px rgba(233,163,182,0); } 100% { box-shadow: 0 0 0 0 rgba(233,163,182,0); } }
+    .intro-flyer { animation: rise 1.2s var(--ease) both; }
+    .hero-cap { animation: rise 1.2s var(--ease) .2s both; }
+    .ambient img { animation: breathe 24s ease-in-out infinite alternate; }
+    .scroll-cue i { animation: cue 2.4s var(--ease) infinite; }
+    .latest-dot { animation: latest-pulse 2.4s ease-out infinite; }
+    .intro.is-idle .ambient img, .intro.is-idle .scroll-cue i, .intro.is-idle .latest-dot { animation-play-state: paused; }
+  }
+
+  /* ---------- Statement unter dem Hero ---------- */
+  .statement .container { padding-block: var(--sec) 0; align-items: end; row-gap: 40px; }
+  .statement h1 { grid-column: 1 / 9; margin: 0; font-family: var(--display); color: var(--text); text-transform: uppercase; font-stretch: 62%; font-weight: 900; font-style: italic;
+    font-size: clamp(72px, 9.6vw, 152px); line-height: .84; letter-spacing: -.01em; word-spacing: .05em; }
+  .statement h1 em { font-style: italic; color: var(--dusk); }
+  .statement-side { grid-column: 9 / 13; padding-bottom: 8px; }
+  .intro-sub { margin: 0; max-width: 22em; font-size: 18px; line-height: 1.5; letter-spacing: -.005em; color: var(--muted); text-wrap: balance; }
+  .intro-actions { margin-top: 32px; display: flex; flex-wrap: wrap; gap: 12px; }
+
+  @media (max-width: 960px) {
+    .statement h1, .statement-side { grid-column: 1 / 13; }
+    .statement h1 { font-size: 15vw; }
+  }
+  @media (max-width: 640px) {
+    .hero-stage { padding-block: 16px 76px; }
+    .intro-flyer { width: min(100%, calc((100svh - var(--hh, 72px) - 160px) * .806)); }
+    .statement h1 { font-size: min(calc((100vw - 40px) / 4.4), 104px); }
+    .intro-sub { font-size: 16px; }
+    .intro-actions { margin-top: 24px; flex-direction: column; }
+  }
+  @media (max-height: 500px) {
+    .intro { min-height: 0; }
+    .intro-flyer { width: min(320px, 100%); }
+    .scroll-cue { display: none; }
+  }
+
+  /* Text-Link als Call-to-Action */
+  .link-cta { display: inline-flex; align-items: center; gap: 10px; min-height: 44px; font-family: var(--mono); font-size: 13px; letter-spacing: .14em;
+    text-transform: uppercase; color: var(--text); }
+  .link-cta span { padding-bottom: 4px; border-bottom: 1px solid var(--accent); transition: border-color .25s; }
+  .link-cta.quiet { color: var(--muted); }
+  .link-cta.quiet span { border-bottom-color: var(--line-strong); }
+
+  /* ---------- Sektionsköpfe ---------- */
+  .sec-head { padding-top: 34px; border-top: 1px solid var(--line); margin-bottom: 96px; align-items: baseline; }
+  .sec-head h2 { grid-column: 1 / 13; margin: 0; font-family: var(--display); font-weight: 800; color: var(--text); text-transform: uppercase; font-stretch: 62%;
+    font-size: clamp(56px, 7vw, 116px); line-height: .88; letter-spacing: -.005em; word-spacing: .1em; }
+
+  /* ---------- Flyer ---------- */
+  .flyer { position: relative; display: block; width: 100%; aspect-ratio: 671 / 832; overflow: hidden; background: var(--ph, #150b12);
+    box-shadow: 0 50px 90px -40px rgba(0,0,0,.95); }
+  .flyer img { width: 100%; height: 100%; object-fit: cover; transform: scale(1.015); transition: transform 1.4s var(--ease); }
+  .flyer.sm { box-shadow: 0 30px 60px -30px rgba(0,0,0,.9); }
+  button.flyer { padding: 0; margin: 0; border: 0; font: inherit; color: inherit; cursor: zoom-in; appearance: none; -webkit-appearance: none;
+    transition: transform .25s var(--ease); }
+  button.flyer:active { transform: scale(.985); }
+  .cap { position: relative; z-index: 1; display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: baseline; gap: 6px 14px; margin-top: 18px; padding-top: 14px; border-top: 1px solid var(--line); }
+  .cap .t { font-family: var(--display); font-weight: 800; color: var(--text); text-transform: uppercase; font-stretch: 62%;
+    font-size: 26px; line-height: 1; letter-spacing: .015em; word-spacing: .1em; }
+  .cap.sm .t { font-size: 21px; font-weight: 700; }
+  .cap .meta { text-align: right; }
+
+  .works .container { padding-block: 40px 40px; }
+  .featured { row-gap: 128px; }
+  .featured figure { margin: 0; min-width: 0; }
+  .featured figure:nth-child(odd) { grid-column: 1 / 7; }
+  .featured figure:nth-child(even) { grid-column: 8 / 13; margin-top: 24%; }
+  .more-head { margin: var(--sec) 0 56px; padding-top: 18px; border-top: 1px solid var(--line); display: flex; justify-content: space-between; align-items: baseline; gap: 10px 16px; }
+  .more-head h3 { margin: 0; font-family: var(--display); font-weight: 800; font-stretch: 62%; text-transform: uppercase; font-size: 34px; line-height: 1;
+    word-spacing: .1em; color: var(--text); }
+  .more { row-gap: 64px; }
+  .more-hint { display: none; }
+  .more figure { margin: 0; min-width: 0; grid-column: span 4; }
+
+  /* ---------- Portfolio-Kategorien ---------- */
+  #werke .sec-head { margin-bottom: 40px; }
+  #werke .sec-head h2 { text-align: center; }
+  .cat-bar { display: flex; align-items: center; justify-content: center; gap: 28px; margin: 0 0 88px; }
+  .cat-tabs { position: relative; display: flex; gap: 6px 34px; min-width: 0; max-width: 100%; overflow-x: auto; scrollbar-width: none; -webkit-overflow-scrolling: touch; overscroll-behavior-x: contain; }
+  .cat-tabs::-webkit-scrollbar { display: none; }
+  .cat-tabs.fade-r { -webkit-mask-image: linear-gradient(90deg, #000 calc(100% - 32px), transparent); mask-image: linear-gradient(90deg, #000 calc(100% - 32px), transparent); }
+  .cat-tabs.fade-l { -webkit-mask-image: linear-gradient(90deg, transparent, #000 32px); mask-image: linear-gradient(90deg, transparent, #000 32px); }
+  .cat-tabs.fade-l.fade-r { -webkit-mask-image: linear-gradient(90deg, transparent, #000 32px, #000 calc(100% - 32px), transparent); mask-image: linear-gradient(90deg, transparent, #000 32px, #000 calc(100% - 32px), transparent); }
+  .cat-tab { position: relative; flex: none; padding: 6px 0 10px; border: 0; background: none; cursor: pointer; white-space: nowrap;
+    font-family: var(--display); font-weight: 800; font-stretch: 62%; text-transform: uppercase; font-size: 34px; line-height: 1; word-spacing: .1em;
+    color: var(--faint); transition: color .25s var(--ease); -webkit-tap-highlight-color: transparent; }
+  .cat-tab[aria-selected="true"] { color: var(--text); }
+  .cat-tab::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 2px; border-radius: 2px; background: linear-gradient(90deg, var(--accent), var(--violet));
+    transform: scaleX(0); transform-origin: left; transition: transform .35s var(--ease); }
+  .cat-tab[aria-selected="true"]::after { transform: scaleX(1); }
+  .cat-tab:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; border-radius: 2px; }
+  /* zentriert, auch wenn die Leiste am Handy zum Wischen überläuft */
+  .cat-tab:first-child { margin-left: auto; } .cat-tab:last-child { margin-right: auto; }
+  .cat-arrow { width: 44px; height: 44px; }
+  .cat-arrow svg { width: 18px; height: 18px; }
+  @media (max-width: 960px) { .cat-tab { font-size: 28px; } .cat-tabs { gap: 6px 26px; } }
+  .cat-bar[hidden], .cat-panel[hidden] { display: none !important; }
+  .cat-panel.enter { animation: catIn .38s var(--ease) both; }
+  @keyframes catIn { from { opacity: 0; transform: translateX(calc(var(--cdir, 1) * 28px)); } to { opacity: 1; transform: none; } }
+  .cat-soon { min-height: clamp(320px, 46vh, 520px); display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; gap: 18px;
+    padding: 56px 0; }
+  .cat-soon .mono { font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--accent); }
+  .cat-soon p { margin: 0; max-width: 30em; font-size: 18px; line-height: 1.55; color: var(--muted); }
+  .cat-soon .link-cta { margin-top: 6px; }
+
+  /* ---------- About me ---------- */
+  .block .container { padding-block: var(--sec) 0; }
+  #ueber .sec-head { margin-bottom: 56px; }
+  #ueber .sec-head h2 { text-align: center; }
+  .about-lead { grid-column: 1 / 13; justify-self: center; margin: 0; max-width: 30em; text-align: center; font-size: clamp(18px, 1.6vw, 22px); line-height: 1.55;
+    letter-spacing: -.01em; color: var(--muted); text-wrap: balance; }
+  .about-lead strong { color: var(--text); font-weight: 500; }
+  .about-punch { grid-column: 1 / 13; justify-self: center; margin: 44px 0 0; max-width: 13.5em; text-align: center; font-family: var(--display); font-stretch: 62%;
+    font-weight: 900; font-style: italic; text-transform: uppercase; font-size: clamp(44px, 6.6vw, 104px); line-height: .94; letter-spacing: -.01em; color: var(--text); text-wrap: balance; }
+  .about-punch em { font-style: italic; color: var(--dusk); }
+  /* About: Foto + Text */
+  .about-a { grid-column: 1 / 13; display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 0 var(--gap); align-items: center; }
+  .about-photo { grid-column: 1 / 6; position: relative; margin: 0; aspect-ratio: 4 / 5; overflow: hidden; border-radius: 3px; background: #0d0b10; }
+  .about-photo img { width: 100%; height: 100%; object-fit: cover; display: block; filter: grayscale(1) contrast(1.15) brightness(.9); }
+  .about-photo::after { content: ""; position: absolute; inset: 0; pointer-events: none;
+    background: linear-gradient(160deg, rgba(233,163,182,.85), rgba(185,138,214,.7) 45%, rgba(40,20,60,.9)); mix-blend-mode: color; }
+  .about-photo::before { content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none; background: linear-gradient(180deg, transparent 55%, rgba(7,6,10,.75)); }
+  .about-photo figcaption { position: absolute; left: 18px; bottom: 16px; z-index: 2; font-family: var(--mono); font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--text); }
+  .about-a-text { grid-column: 7 / 13; }
+  .about-a .about-lead { text-align: left; justify-self: start; max-width: 26em; }
+  .about-a .about-punch { text-align: left; justify-self: start; max-width: 11em; margin-top: 36px; font-size: clamp(40px, 4.6vw, 76px); }
+  @media (max-width: 960px) {
+    .about-photo { grid-column: 1 / 13; width: min(100%, 420px); justify-self: center; }
+    .about-a-text { grid-column: 1 / 13; margin-top: 40px; }
+    .about-a .about-lead, .about-a .about-punch { text-align: center; justify-self: center; }
+    .about-a .about-lead { margin-inline: auto; }
+    .about-a .about-punch { margin-inline: auto; font-size: clamp(40px, 12.5vw, 72px); }
+  }
+  /* Kunden als Logo-Wand: gleich große Felder, Haarlinien, alles einfarbig weiß */
+  .clients { grid-column: 1 / 13; margin: 140px 0 0; text-align: center; }
+  .clients-head { display: flex; justify-content: center; margin-bottom: 36px; }
+  .clients h3 { margin: 0; }
+  .logo-wall { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); margin: 0; padding: 0; list-style: none;
+    border-top: 1px solid var(--line); border-left: 1px solid var(--line); }
+  .logo-wall li { position: relative; display: flex; align-items: center; justify-content: center; min-width: 0; height: 168px; padding: 20px;
+    border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); transition: background .3s; }
+  .logo-wall .lg { width: auto; height: calc(64px * var(--h, 1)); max-width: 78%; object-fit: contain; opacity: .9; transition: opacity .3s, transform .45s var(--ease); }
+  .logo-wall .wm { font-family: var(--display); font-weight: 800; font-stretch: 62%; text-transform: uppercase; font-size: clamp(26px, 2.4vw, 36px); line-height: .95;
+    letter-spacing: .01em; color: var(--text); opacity: .9; text-wrap: balance; transition: opacity .3s, transform .45s var(--ease); }
+  .clients-foot { display: block; margin-top: 28px; }
+
+  /* ---------- Kontakt ---------- */
+  .contact-head { margin-bottom: 64px; }
+  .contact-head .contact-title { grid-column: 1 / 13; font-weight: 900; font-style: italic; font-size: clamp(60px, 9vw, 150px); line-height: .86; letter-spacing: -.01em; word-spacing: .05em; }
+  .contact-title em { display: block; font-style: italic; color: var(--accent);
+    background: linear-gradient(95deg, var(--accent) 0%, var(--violet) 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+  .contact-body { row-gap: 40px; }
+  .contact-note { grid-column: 1 / 8; margin: 0; max-width: 34em; color: var(--body); }
+  .contact-note strong { color: var(--text); font-weight: 600; }
+  .dm-template { grid-column: 9 / 13; margin: 0; }
+  .dm-template pre { margin: 12px 0 14px; padding: 14px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
+    font-family: var(--mono); font-size: 12px; line-height: 1.75; color: var(--muted); white-space: pre-wrap; }
+  .contact-rows { grid-column: 1 / 13; margin-top: 24px; border-bottom: 1px solid var(--line); }
+  .contact-row { display: grid; grid-template-columns: 180px minmax(0, 1fr) auto; column-gap: var(--gap); align-items: baseline; padding: 28px 0;
+    border-top: 1px solid var(--line); color: var(--text); transition: color .25s; }
+  .contact-row .val { min-width: 0; overflow-wrap: anywhere; font-family: var(--display); font-weight: 700; font-stretch: 66%; text-transform: none;
+    font-size: clamp(32px, 4.2vw, 60px); line-height: 1.05; letter-spacing: .005em; }
+  .contact-row .arr { align-self: center; width: 28px; height: 28px; color: var(--faint); }
+  .copy { min-height: 44px; padding: 0 2px; border: 0; border-bottom: 1px solid var(--line-strong); background: none; color: var(--muted); cursor: pointer;
+    font-family: var(--mono); font-size: 11px; letter-spacing: .1em; text-transform: uppercase; transition: color .2s, border-color .2s; }
+  .copy.done { color: var(--accent); border-color: var(--accent); }
+
+  /* ---------- Anfrage-Baukasten ---------- */
+  .brief { grid-column: 1 / 13; display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 4fr); gap: 48px 72px; align-items: start;
+    padding-top: 36px; border-top: 1px solid var(--line); }
+  .brief-q { margin: 0 0 40px; padding: 0; border: 0; min-width: 0; }
+  .brief-q:last-child { margin-bottom: 0; }
+  .brief-q legend { padding: 0; margin-bottom: 14px; }
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+  .chip { min-height: 42px; padding: 0 16px; border: 1px solid var(--line-strong); border-radius: 0; background: transparent; color: var(--body); cursor: pointer;
+    font-family: var(--sans); font-size: 15px; letter-spacing: -.005em; transition: background .2s, color .2s, border-color .2s; }
+  .chip[aria-pressed="true"] { background: var(--text); border-color: var(--text); color: var(--bg); }
+  /* Farbfeld */
+  .pk-tip { margin: -4px 0 14px; font-size: 14px; color: var(--muted); }
+  .picker { max-width: 560px; }
+  .pk-area { position: relative; display: flex; height: 190px; border: 1px solid var(--line-strong); cursor: crosshair; touch-action: none;
+    -webkit-user-select: none; user-select: none; }
+  .pk-area:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+  .pk-hue { flex: 1; background:
+      linear-gradient(to bottom, #fff 0%, rgba(255,255,255,0) 50%, rgba(0,0,0,0) 50%, #000 100%),
+      linear-gradient(to right, #f00 0%, #ff0 16.67%, #0f0 33.33%, #0ff 50%, #00f 66.67%, #f0f 83.33%, #f00 100%); }
+  .pk-gray { width: 34px; border-left: 2px solid var(--bg); background: linear-gradient(to bottom, #fff, #000); }
+  .pk-dot { position: absolute; left: 0; top: 0; width: 22px; height: 22px; margin: -11px 0 0 -11px; border: 2px solid #fff; border-radius: 50%; pointer-events: none;
+    box-shadow: 0 0 0 1px rgba(0,0,0,.45), 0 4px 12px rgba(0,0,0,.5); transition: transform .2s var(--ease); }
+  .pk-area.is-drag .pk-dot { transform: scale(1.5); }
+  .pk-bar { display: flex; justify-content: space-between; align-items: center; gap: 10px 16px; flex-wrap: wrap; margin-top: 12px; }
+  .pk-now { display: inline-flex; align-items: center; gap: 10px; min-width: 0; color: var(--text); font-size: 15px; }
+  .pk-sw { width: 22px; height: 22px; flex: none; box-shadow: inset 0 0 0 1px rgba(241,237,240,.2); }
+  .pk-hex { font-family: var(--mono); font-size: 12px; letter-spacing: .06em; color: var(--muted); }
+  .pk-add { min-height: 42px; display: inline-flex; align-items: center; gap: 8px; padding: 0 16px 0 12px; border: 1px solid var(--text); border-radius: 0;
+    background: var(--text); color: var(--bg); cursor: pointer; font-family: var(--sans); font-size: 15px; font-weight: 500; transition: opacity .2s, background .2s; }
+  .pk-add svg { width: 14px; height: 14px; }
+  .pk-add:disabled { background: transparent; color: var(--muted); border-color: var(--line-strong); cursor: default; }
+  .pk-add:disabled svg { display: none; }
+  .pk-list { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+  .pk-list:empty { display: none; }
+  .pk-chip { display: inline-flex; align-items: center; gap: 8px; min-height: 40px; padding-left: 6px; border: 1px solid var(--line-strong); font-size: 14px; color: var(--text); }
+  .pk-chip i { width: 26px; height: 26px; flex: none; box-shadow: inset 0 0 0 1px rgba(241,237,240,.2); }
+  .pk-x { width: 36px; height: 38px; padding: 0; display: inline-flex; align-items: center; justify-content: center; border: 0; background: transparent; color: var(--muted); cursor: pointer; }
+  .pk-x svg { width: 12px; height: 12px; }
+  .brief-fields { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px 24px; }
+  .brief-fields legend { float: left; width: 100%; grid-column: 1 / -1; }
+  .brief-fields label { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+  .brief-fields input { width: 100%; min-height: 44px; padding: 8px 0; border: 0; border-bottom: 1px solid var(--line-strong); border-radius: 0; background: transparent;
+    color: var(--text); font-family: var(--sans); font-size: 16px; transition: border-color .2s; }
+  .brief-fields input::placeholder { color: var(--faint); opacity: .7; }
+  .brief-fields input:focus { outline: none; border-bottom-color: var(--accent); }
+  .brief-out { position: sticky; top: calc(var(--hh, 72px) + 24px); }
+  .brief-out h3 { margin: 0; }
+  .brief-out pre { margin: 12px 0 18px; padding: 16px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); min-height: 12em;
+    font-family: var(--mono); font-size: 12px; line-height: 1.75; color: var(--body); white-space: pre-wrap; overflow-wrap: anywhere; }
+  .brief-send { display: flex; align-items: center; justify-content: center; gap: 10px; min-height: 52px; padding: 0 20px; border-radius: 999px;
+    font-size: 15px; font-weight: 600; letter-spacing: -.005em; color: #140b12;
+    background: linear-gradient(95deg, #efb3c4 0%, #c49ae0 100%); box-shadow: 0 10px 26px -12px rgba(214,140,190,.5), inset 0 1px 0 rgba(255,255,255,.35);
+    transition: transform .3s var(--ease), box-shadow .3s ease, filter .3s ease; }
+  .brief-send .ig { width: 17px; height: 17px; flex: none; }
+  .brief-send:active { transform: scale(.98); }
+  .brief-hint { margin: 12px 0 0; min-height: 1.6em; text-align: center; transition: color .3s; }
+  .brief-hint.done { color: var(--accent); }
+  @media (hover: hover) {
+    .chip:hover { border-color: var(--text); color: var(--text); }
+    .chip[aria-pressed="true"]:hover { color: var(--bg); }
+    .pk-x:hover { color: var(--text); }
+    .pk-add:not(:disabled):hover { opacity: .88; }
+    .brief-send:hover { transform: translateY(-1px); filter: brightness(1.04); box-shadow: 0 14px 30px -12px rgba(214,140,190,.65), inset 0 1px 0 rgba(255,255,255,.4); }
+  }
+  @media (max-width: 960px) {
+    .brief { grid-template-columns: minmax(0, 1fr); }
+    .brief-out { position: static; }
+  }
+  @media (max-width: 640px) {
+    .brief { padding-top: 28px; gap: 36px; }
+    .brief-q { margin-bottom: 32px; }
+    .chip { padding: 0 14px; font-size: 14px; }
+    .pk-area { height: 170px; }
+    .pk-gray { width: 30px; }
+    .brief-fields { grid-template-columns: minmax(0, 1fr); gap: 14px; }
+  }
+
+  html:has(dialog[open]) { overscroll-behavior: none; }
+
+  /* ---------- Footer ---------- */
+  .site-footer { overflow-x: clip; padding-bottom: max(28px, env(safe-area-inset-bottom, 0px)); }
+  .site-footer .container { padding-top: var(--sec); container-type: inline-size; }
+  .footer-line { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 4px 24px; padding-top: 14px; border-top: 1px solid var(--line); }
+  .footer-line nav { display: flex; flex-wrap: wrap; gap: 4px 24px; }
+  .footer-line a { display: inline-flex; align-items: center; gap: 6px; min-height: 44px; color: var(--faint); transition: color .2s; }
+  .footer-line > span { line-height: 44px; }
+  .sig { display: inline-flex; align-items: center; gap: 14px; }
+  .footer-line .sig-logo { min-height: 44px; display: inline-flex; align-items: center; }
+  .sig-logo img { width: 34px; height: auto; opacity: .7; transition: opacity .25s; }
+  @media (hover: hover) { .sig-logo:hover img { opacity: 1; } }
+
+  /* ---------- Hover nur mit echter Maus (kein Kleben am Handy) ---------- */
+  @media (hover: hover) {
+    .nav a:hover { color: var(--text); }
+    .nav a:hover::after { transform: scaleX(1); }
+    .link-cta:hover span { border-bottom-color: var(--text); }
+    .link-cta:hover .arr { transform: translateX(4px); }
+    .link-cta:hover .arr.down { transform: rotate(90deg) translateX(4px); }
+    .contact-row:hover .arr.ne { transform: rotate(-45deg) translateX(4px); }
+    .nav .nav-cta:hover { transform: translateY(-1px); box-shadow: 0 10px 26px -8px rgba(214,140,190,.55), inset 0 1px 0 rgba(255,255,255,.4); filter: brightness(1.04); }
+    figure:hover .flyer img { transform: scale(1.045); }
+    .contact-row:hover { color: #fff; }
+    .contact-row:hover .arr { color: var(--accent); }
+    .copy:hover { color: var(--text); border-color: var(--text); }
+    .footer-line a:hover { color: var(--text); }
+  }
+  @media (hover: none) {
+    button.flyer::after { content: ""; position: absolute; right: 10px; bottom: 10px; width: 30px; height: 30px; border-radius: 50%; opacity: .9;
+      background: rgba(7,6,10,.6) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23f1edf0' stroke-width='1.6' stroke-linecap='round'%3E%3Cpath d='M15 4h5v5M9 20H4v-5M20 4l-6 6M4 20l6-6'/%3E%3C/svg%3E") center / 14px no-repeat; }
+    .contact-row:active, .link-cta:active { opacity: .75; }
+  }
+  @media (pointer: coarse) { .grain { display: none; } }
+
+  /* ---------- Einblenden (nur mit JS + ohne „weniger Bewegung“, endet immer sichtbar) ---------- */
+  @media (prefers-reduced-motion: no-preference) {
+    .reveal { transition: opacity .6s var(--ease), transform .6s var(--ease); }
+    .js.io .reveal:not(.in) { opacity: 0; transform: translateY(14px); }
+  }
+
+  /* ---------- Desktop-Feinheiten (nur echte Maus) ---------- */
+  .peek, .cursor-tag { display: none; }
+  @media (hover: hover) and (pointer: fine) and (min-width: 961px) {
+    /* Club-Name überfahren = passender Flyer schwebt am Cursor */
+    .peek { display: block; position: fixed; left: 0; top: 0; z-index: 25; width: 200px; aspect-ratio: 671 / 832; pointer-events: none; opacity: 0;
+      transform: translate3d(var(--px, 0px), var(--py, 0px), 0) translate(var(--pdx, -50%), calc(-100% + 18px)) rotate(-3deg) scale(.92);
+      transition: opacity .25s ease, transform .35s var(--ease); box-shadow: 0 40px 80px -30px rgba(0,0,0,.9); }
+    .peek img { width: 100%; height: 100%; object-fit: cover; }
+    .peek.on { opacity: 1; transform: translate3d(var(--px, 0px), var(--py, 0px), 0) translate(var(--pdx, -50%), calc(-100% + 18px)) rotate(-3deg) scale(1); }
+    .peek.below, .peek.below.on { transform: translate3d(var(--px, 0px), var(--py, 0px), 0) translate(var(--pdx, -50%), 12px) rotate(3deg) scale(1); }
+    .peek.below:not(.on) { transform: translate3d(var(--px, 0px), var(--py, 0px), 0) translate(var(--pdx, -50%), 12px) rotate(3deg) scale(.92); }
+    .clients li[data-flyer] { cursor: default; }
+    .logo-wall li:hover { background: rgba(241,237,240,.03); }
+    .logo-wall:has(li[data-flyer]:hover) :is(.lg, .wm) { opacity: .35; }
+    .logo-wall li[data-flyer]:hover :is(.lg, .wm) { opacity: 1; transform: scale(1.05); }
+    /* Flyer überfahren = Sucher aus vier Eckwinkeln (wie ein Auswahlrahmen), der beim Überfahren „scharfstellt“ */
+    .cursor-tag { display: block; position: fixed; left: 0; top: 0; z-index: 26; pointer-events: none; width: 0; height: 0;
+      opacity: 0; transform: translate3d(var(--mx, 0px), var(--my, 0px), 0); transition: opacity .2s ease; }
+    .cursor-tag .vf { position: absolute; left: -15px; top: -15px; width: 30px; height: 30px;
+      background-image: linear-gradient(#f1edf0, #f1edf0), linear-gradient(#f1edf0, #f1edf0), linear-gradient(#f1edf0, #f1edf0), linear-gradient(#f1edf0, #f1edf0),
+        linear-gradient(#f1edf0, #f1edf0), linear-gradient(#f1edf0, #f1edf0), linear-gradient(#f1edf0, #f1edf0), linear-gradient(#f1edf0, #f1edf0),
+        radial-gradient(circle, #f1edf0 0 1.5px, transparent 2px);
+      background-position: 0 0, 0 0, 100% 0, 100% 0, 0 100%, 0 100%, 100% 100%, 100% 100%, 50% 50%;
+      background-size: 7px 1px, 1px 7px, 7px 1px, 1px 7px, 7px 1px, 1px 7px, 7px 1px, 1px 7px, 3px 3px;
+      background-repeat: no-repeat; filter: drop-shadow(0 0 6px rgba(0,0,0,.6));
+      transform: scale(1.7) rotate(45deg); transition: transform .45s var(--ease); }
+    .cursor-tag .lb { position: absolute; left: 0; top: 22px; transform: translateX(-50%); white-space: nowrap;
+      font-family: var(--mono); font-size: 9px; letter-spacing: .22em; text-transform: uppercase; color: var(--text);
+      text-shadow: 0 1px 10px rgba(0,0,0,.9), 0 0 2px rgba(0,0,0,.8); opacity: 0; transition: opacity .25s ease .1s; }
+    .cursor-tag.on { opacity: 1; }
+    .cursor-tag.on .vf { transform: none; }
+    .cursor-tag.on .lb { opacity: 1; }
+    .has-tag button.flyer { cursor: none; }
+  }
+  @media (prefers-reduced-motion: reduce) { .peek, .cursor-tag { transition: opacity .15s linear; } }
+
+  /* ---------- Großansicht ---------- */
+  .viewer { position: fixed; inset: 0; z-index: 50; width: 100vw; height: 100vh; height: 100dvh; max-width: none; max-height: none; margin: 0; padding: 0; border: 0;
+    background: rgba(5,4,7,.96); color: var(--text); overscroll-behavior: contain; }
+  .viewer::backdrop { background: rgba(5,4,7,.96); }
+  .viewer[open] { display: flex; flex-direction: column; }
+  @media (prefers-reduced-motion: no-preference) {
+    .viewer[open] { animation: fade .22s ease; }
+    .viewer.closing { animation: fade .18s ease reverse forwards; }
+  }
+  @keyframes fade { from { opacity: 0; } to { opacity: 1; } }
+  .viewer-top { display: flex; justify-content: space-between; align-items: center; gap: 16px;
+    padding: max(14px, env(safe-area-inset-top, 0px)) var(--gutter-r) 14px var(--gutter-l); }
+  .viewer-stage { position: relative; flex: 1; min-height: 0; display: flex; align-items: center; justify-content: center; gap: 24px;
+    padding: 0 var(--gutter-r) 0 var(--gutter-l); touch-action: pan-y pinch-zoom; }
+  .viewer-stage img { max-width: min(calc(100% - 144px), 680px); max-height: 100%; width: auto; height: auto; object-fit: contain; user-select: none; -webkit-user-drag: none;
+    box-shadow: 0 60px 120px -40px rgba(0,0,0,.9); will-change: transform; }
+  @media (prefers-reduced-motion: no-preference) { .viewer-stage img { transition: opacity .25s ease, transform .3s var(--ease); } }
+  .viewer-stage img.is-swapping { opacity: 0; }
+  .viewer-cap { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: baseline; gap: 6px 16px; width: 100%; max-width: 680px; margin: 0 auto;
+    padding: 18px var(--gutter-r) max(22px, env(safe-area-inset-bottom, 0px)) var(--gutter-l); }
+  .viewer-cap .t { font-family: var(--display); font-weight: 800; font-stretch: 62%; text-transform: uppercase; font-size: 28px; line-height: 1; word-spacing: .1em; }
+  .viewer-cap .t:empty { display: none; }
+  /* Anfrage in der Großansicht: ruhige Zeile mit Haarlinie statt Button */
+  .viewer-cta { grid-column: 1 / -1; display: flex; justify-content: space-between; align-items: center; gap: 8px 20px; flex-wrap: wrap;
+    margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--line); }
+  .viewer-cta .q { font-size: 14px; color: var(--muted); transition: color .3s; }
+  .viewer-cta .q.done { color: var(--accent); }
+  .viewer-cta a { display: inline-flex; align-items: center; gap: 10px; min-height: 40px; font-size: 14px; font-weight: 500; letter-spacing: -.005em; color: var(--text); }
+  .viewer-cta .ig { width: 16px; height: 16px; flex: none; color: var(--accent); }
+  .viewer-cta .lbl { padding-bottom: 2px; background: linear-gradient(95deg, var(--accent), var(--violet)) 0 100% / 100% 1px no-repeat; transition: background-size .45s var(--ease); }
+  @media (hover: hover) {
+    .viewer-cta a .lbl { background-size: 0% 1px; }
+    .viewer-cta a:hover .lbl { background-size: 100% 1px; }
+    .viewer-cta a:hover .arr.ne { transform: rotate(-45deg) translateX(3px); }
+  }
+  .icon-btn { flex: none; display: inline-flex; align-items: center; justify-content: center; width: 48px; height: 48px; border-radius: 50%;
+    border: 1px solid var(--line-strong); background: rgba(7,6,10,.6); color: var(--text); cursor: pointer;
+    transition: border-color .2s, background .2s, transform .15s var(--ease); }
+  .icon-btn:active { transform: scale(.94); }
+  .icon-btn svg { width: 20px; height: 20px; }
+  .icon-btn:focus-visible { border-radius: 50%; }
+  @media (hover: hover) { .icon-btn:hover { border-color: var(--text); background: rgba(255,255,255,.06); } }
+
+  /* ---------- Tablet ---------- */
+  @media (max-width: 960px) {
+    .cap { grid-template-columns: minmax(0, 1fr); }
+    .featured figure:nth-child(odd) { grid-column: 1 / 7; }
+    .featured figure:nth-child(even) { grid-column: 7 / 13; margin-top: 22%; }
+    .cap .meta { text-align: left; }
+    .more figure { grid-column: span 6; }
+    .more figure:last-child:nth-child(odd) { grid-column: 4 / 10; }
+    .about-punch { font-size: clamp(40px, 12.5vw, 72px); margin-top: 36px; }
+    .contact-note, .dm-template { grid-column: 1 / 13; }
+  }
+  /* ---------- Handy ---------- */
+  @media (max-width: 640px) {
+    :root { --gap: 12px; --gutter-l: max(20px, env(safe-area-inset-left, 0px)); --gutter-r: max(20px, env(safe-area-inset-right, 0px)); }
+    .mono { font-size: 12px; }
+    .site-header { backdrop-filter: none; -webkit-backdrop-filter: none; background: #07060a; }
+    .site-header.at-top { background: transparent; }
+    .site-header::after { background: linear-gradient(to bottom, #07060a, rgba(7,6,10,0)); }
+    .nav .hide-sm { display: none; }
+    .sec-head { margin-bottom: 56px; }
+    .sec-head h2, .contact-head .contact-title { grid-column: 1 / 13; }
+    .sec-head h2 { font-size: clamp(56px, 17vw, 80px); }
+    .featured { display: flex; flex-direction: column; gap: 88px; }
+    .featured figure:nth-child(even) { margin-top: 0; }
+    .more-head { flex-direction: column; align-items: flex-start; }
+    .more { display: flex; gap: 14px; overflow-x: auto; scroll-snap-type: x mandatory; overscroll-behavior-x: contain; scrollbar-width: none;
+      margin-inline: calc(-1 * var(--gutter-l)) calc(-1 * var(--gutter-r)); padding-inline: var(--gutter-l) var(--gutter-r); scroll-padding-inline: var(--gutter-l); }
+    .more::-webkit-scrollbar { display: none; }
+    .more figure, .more figure:last-child:nth-child(odd) { flex: 0 0 78%; scroll-snap-align: start; }
+    .more-hint { display: inline; }
+    .clients { margin-top: 88px; }
+    .clients-head { margin-bottom: 24px; }
+    .logo-wall { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .logo-wall li { height: 116px; padding: 14px; }
+    .logo-wall .lg { height: calc(42px * var(--h, 1)); }
+    .logo-wall .wm { font-size: 22px; }
+    .clients-foot { margin-top: 20px; padding-inline: 8px; }
+    .contact-head { margin-bottom: 40px; }
+    .contact-note, .dm-template, .contact-rows { grid-column: 1 / 13; }
+    .contact-row { grid-template-columns: minmax(0, 1fr) auto; row-gap: 6px; padding: 22px 0; }
+    .contact-row .mono { grid-column: 1 / -1; }
+    .contact-row .arr { width: 22px; height: 22px; }
+    .footer-line nav a.ig { display: none; }
+    .viewer-stage { padding-bottom: 76px; }
+    .viewer-stage img { max-width: 100%; }
+    .viewer-stage .nav-btn { position: absolute; bottom: 12px; width: 48px; height: 48px; }
+    #v-prev { right: calc(var(--gutter-r) + 58px); } #v-next { right: var(--gutter-r); }
+    .viewer-cap { padding-top: 6px; }
+    .viewer-cap .t { font-size: 24px; }
+    #v-count { font-size: 13px; }
+  }
+  /* ---------- Wenig Höhe: Handy quer / starker Zoom ---------- */
+  @media (max-height: 500px) {
+    .site-header { position: relative; }
+    html { scroll-padding-top: 16px; }
+    .viewer-top { position: absolute; inset: 0 0 auto; z-index: 2; padding-top: 10px; }
+    .viewer-cap { position: absolute; left: 0; bottom: 0; width: auto; max-width: calc(50% - 130px); grid-template-columns: minmax(0, 1fr); padding: 10px var(--gutter-l); }
+    .viewer-cap .t { font-size: 18px; }
+    .viewer-cta { display: none; }
+    .viewer-stage { padding-block: 8px; }
+    .viewer-stage .nav-btn { position: static; }
+    .viewer-stage img { max-width: min(calc(100% - 144px), 680px); max-height: calc(100dvh - 16px); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .site-header, .nav a::after, .arr, .flyer img, button.flyer, .contact-row { transition: none; }
+  }
+
+  /* ===== Hero „Druckbogen“: Flyer als Druckvorlage mit Schnittmarken, Maßen, Passer und Farbbalken ===== */
+  .hC { --cm: rgba(241,237,240,.55); }
+  .hC .intro-flyer { width: min(500px, 100%, calc((100svh - var(--hh, 72px) - 200px) * .806)); }
+  .hC .pC-sheet { position: relative; }
+  /* Bildunterschrift unterhalb der Schnittmarken (die ragen 34 px unter den Flyer) */
+  .hC .hero-cap { margin-top: 44px; }
+  .hC .intro-flyer { width: min(500px, 100%, calc((100svh - var(--hh, 72px) - 226px) * .806)); }
+  .hC .pC-sheet > .flyer { box-shadow: 0 60px 120px -40px rgba(0,0,0,.95); }
+  .hC .crop { position: absolute; width: 0; height: 0; z-index: 2; }
+  .hC .crop::before, .hC .crop::after { content: ""; position: absolute; background: var(--cm); }
+  .hC .crop::before { width: 24px; height: 1px; } .hC .crop::after { width: 1px; height: 24px; }
+  .hC .tl { top: 0; left: 0; }     .hC .tl::before { right: 10px; top: 0; }     .hC .tl::after { bottom: 10px; left: 0; }
+  .hC .tr { top: 0; right: 0; }    .hC .tr::before { left: 10px; top: 0; }      .hC .tr::after { bottom: 10px; right: 0; }
+  .hC .bl { bottom: 0; left: 0; }  .hC .bl::before { right: 10px; bottom: 0; }  .hC .bl::after { top: 10px; left: 0; }
+  .hC .br { bottom: 0; right: 0; } .hC .br::before { left: 10px; bottom: 0; }   .hC .br::after { top: 10px; right: 0; }
+  .hC .dim { position: absolute; color: var(--faint); }
+  .hC .dim::before { content: ""; position: absolute; border: 1px solid rgba(241,237,240,.28); }
+  /* Maßzahlen: beide mit genau demselben Abstand (--gap) zur Maßlinie */
+  .hC .dim { --gap: 14px; }
+  .hC .dim b { position: absolute; font-weight: 400; white-space: nowrap; line-height: 1; }
+  .hC .dim-w { left: 0; right: 0; top: -46px; height: 9px; }
+  .hC .dim-w::before { inset: 0; border-top: 0; }
+  .hC .dim-w b { left: 50%; bottom: var(--gap); transform: translateX(-50%); }
+  .hC .dim-h { top: 0; bottom: 0; right: -46px; width: 9px; }
+  .hC .dim-h::before { inset: 0; border-left: 0; }
+  .hC .dim-h b { top: 50%; left: calc(100% + var(--gap)); transform: translateY(-50%); writing-mode: vertical-rl; }
+  .hC .reg { position: absolute; left: -54px; top: 50%; width: 22px; height: 22px; margin-top: -11px; fill: none; stroke: var(--cm); stroke-width: 1; }
+  .hC .swatch { position: absolute; left: -50px; bottom: 0; display: flex; flex-direction: column; gap: 3px; }
+  .hC .swatch i { display: block; width: 12px; height: 12px; box-shadow: inset 0 0 0 1px rgba(241,237,240,.14); }
+  .hC .pC-spec { position: absolute; z-index: 1; top: 50%; transform: translateY(-50%); margin: 0; display: flex; flex-direction: column; gap: 22px; max-width: 220px; }
+  .hC .pC-spec div { padding-top: 10px; border-top: 1px solid var(--line); }
+  .hC .pC-spec dt { color: var(--faint); margin-bottom: 4px; }
+  .hC .pC-spec dd { margin: 0; color: var(--text); line-height: 1.6; }
+  .hC .pC-left { left: var(--gutter-l); } .hC .pC-right { right: var(--gutter-r); text-align: right; }
+  /* Fadenkreuz wie im Layoutprogramm */
+  .hC .pC-guides { position: absolute; inset: 0; z-index: 3; pointer-events: none; opacity: 0; transition: opacity .3s ease; }
+  .hC.guides-on .pC-guides { opacity: 1; }
+  .hC .pC-guides i { position: absolute; background: rgba(233,163,182,.32); }
+  .hC .gx { left: 0; right: 0; top: 0; height: 1px; transform: translateY(var(--gy, 0px)); }
+  .hC .gy { top: 0; bottom: 0; left: 0; width: 1px; transform: translateX(var(--gx, 0px)); }
+  .hC .pC-read { position: absolute; left: 0; top: 0; color: var(--accent); font-size: 10px; letter-spacing: .14em; white-space: nowrap;
+    text-shadow: 0 1px 8px rgba(0,0,0,.85); transform: translate(calc(var(--gx, 0px) + 22px), calc(var(--gy, 0px) - 24px)); }
+  @media (prefers-reduced-motion: no-preference) {
+    @keyframes pc-draw { from { opacity: 0; } to { opacity: 1; } }
+    .hC .crop, .hC .dim, .hC .reg, .hC .swatch { animation: pc-draw .8s ease .7s both; }
+    .hC .pC-spec { animation: pc-draw 1s ease .9s both; }
+  }
+  @media (max-width: 1180px) { .hC .pC-spec { display: none; } }
+  @media (max-width: 640px) {
+    .hC .intro-flyer { width: min(76vw, calc((100svh - var(--hh, 72px) - 200px) * .806)); }
+    .hC .reg { display: none; }
+    /* Höhenmaß rückt nah an den Flyer, Farbbalken wandert nach links – so passt beides neben den Flyer */
+    .hC .dim { --gap: 9px; }
+    .hC .dim b { font-size: 9px; }
+    .hC .dim-h { right: -12px; width: 7px; }
+    .hC .dim-w { height: 7px; }
+    .hC .swatch { left: -20px; } .hC .swatch i { width: 9px; height: 9px; }
+    .hC .dim-w { top: -34px; }
+  }
+
+  @media (max-width: 640px) {
+    .cat-bar { margin-bottom: 48px; }
+    .cat-tabs { gap: 6px 20px; }
+    .cat-tab { font-size: 20px; padding: 8px 0 12px; }
+    .cat-long { display: none; }
+    .cat-arrow { display: none; }
+    .cat-soon { min-height: 280px; padding: 40px 0; }
+
+    .cat-soon p { font-size: 16px; }
+  }
+  @media (prefers-reduced-motion: reduce) { .cat-panel.enter { animation: none; } .cat-tab::after { transition: none; } }
+  /* Ticket-CTA: Eintrittskarte mit Abriss – passend zu Club & Event */
+  .ticket { --n: 9px; position: relative; display: inline-flex; align-items: stretch; height: 84px; color: #140b12; filter: drop-shadow(0 14px 22px rgba(214,140,190,.28));
+    transition: transform .45s var(--ease); }
+  .ticket .tk-main, .ticket .tk-stub { background: linear-gradient(95deg, #efb3c4 0%, #c49ae0 100%); background-size: 160% 100%; }
+  .ticket .tk-main { display: flex; flex-direction: column; justify-content: center; gap: 6px; padding: 0 30px 0 26px; border-radius: 10px 0 0 10px; background-position: 0 0;
+    -webkit-mask: radial-gradient(circle var(--n) at 100% 0, #0000 98%, #000) top/100% 51% no-repeat, radial-gradient(circle var(--n) at 100% 100%, #0000 98%, #000) bottom/100% 51% no-repeat;
+            mask: radial-gradient(circle var(--n) at 100% 0, #0000 98%, #000) top/100% 51% no-repeat, radial-gradient(circle var(--n) at 100% 100%, #0000 98%, #000) bottom/100% 51% no-repeat; }
+  .ticket .tk-main small { font-size: 10px; letter-spacing: .2em; color: rgba(20,11,18,.6); }
+  .ticket .tk-main b { font-family: var(--display); font-weight: 900; font-style: italic; font-stretch: 62%; text-transform: uppercase; font-size: 30px; line-height: .9; letter-spacing: .005em; word-spacing: .06em; }
+  .ticket .tk-stub { position: relative; display: flex; align-items: center; justify-content: center; width: 76px; border-radius: 0 10px 10px 0; background-position: 100% 0;
+    border-left: 2px dashed rgba(20,11,18,.28); transition: transform .45s var(--ease);
+    -webkit-mask: radial-gradient(circle var(--n) at 0 0, #0000 98%, #000) top/100% 51% no-repeat, radial-gradient(circle var(--n) at 0 100%, #0000 98%, #000) bottom/100% 51% no-repeat;
+            mask: radial-gradient(circle var(--n) at 0 0, #0000 98%, #000) top/100% 51% no-repeat, radial-gradient(circle var(--n) at 0 100%, #0000 98%, #000) bottom/100% 51% no-repeat; }
+  .ticket .tk-stub svg { width: 24px; height: 24px; transition: transform .45s var(--ease); }
+  .ticket:active { transform: scale(.98); }
+  .ticket:focus-visible { outline: 2px solid var(--accent); outline-offset: 6px; border-radius: 12px; }
+  @media (prefers-reduced-motion: reduce) { .ticket, .ticket .tk-stub, .ticket .tk-stub svg { transition: none; } }
+  @media (hover: hover) {
+    .ticket:hover { transform: rotate(-1.5deg) translateY(-2px); }
+    .ticket:hover .tk-stub { transform: translateX(6px) rotate(4deg); }
+    .ticket:hover .tk-stub svg { transform: translateX(3px); }
+  }
+  @media (max-width: 640px) { .ticket { width: 100%; height: 80px; } .ticket .tk-main { flex: 1; } .ticket .tk-main b { font-size: 28px; } }
+
+  /* ===== LED-Laufschrift ===== */
+  .led { position: relative; margin: var(--sec) 0 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); overflow: hidden;
+    background: radial-gradient(rgba(233,163,182,.07) 1px, transparent 1.4px) 0 0 / 5px 5px, rgba(7,6,10,.6); }
+  .led::before, .led::after { content: ""; position: absolute; top: 0; bottom: 0; width: 12%; z-index: 1; pointer-events: none; }
+  .led::before { left: 0; background: linear-gradient(90deg, var(--bg), transparent); } .led::after { right: 0; background: linear-gradient(-90deg, var(--bg), transparent); }
+  .led-track { display: flex; width: max-content; animation: led 38s linear infinite; }
+  .led-run { display: flex; align-items: center; flex: none; }
+  .led-run span { padding: 18px 26px; font-family: var(--mono); font-size: 15px; letter-spacing: .34em; text-transform: uppercase; color: #f4c7d4; white-space: nowrap;
+    text-shadow: 0 0 4px rgba(233,163,182,.9), 0 0 14px rgba(233,163,182,.55), 0 0 30px rgba(185,138,214,.4); }
+  .led .sep { flex: none; display: inline-block; width: 6px; height: 6px; transform: rotate(45deg); background: linear-gradient(135deg, var(--accent), var(--violet)); }
+  .led .sep { box-shadow: 0 0 10px rgba(233,163,182,.8); }
+  @keyframes led { to { transform: translateX(-50%); } }
+  @media (max-width: 640px) { .led-run span { font-size: 12px; padding: 14px 18px; } .led-track { animation-duration: 28s; } }
+  @media (prefers-reduced-motion: reduce) { .led-track { animation: none; } }
+
+  /* ===== Druck-Details beim Überfahren (nur Desktop) ===== */
+  .pd { display: none; }
+  @media (hover: hover) and (pointer: fine) and (min-width: 961px) {
+    .pd { display: block; position: absolute; inset: 0; z-index: 2; pointer-events: none; opacity: 0; transition: opacity .3s ease; }
+    figure:hover .pd { opacity: 1; }
+    .pd i { position: absolute; width: 18px; height: 18px; border: 0 solid rgba(255,255,255,.85); }
+    .pd .c1 { top: 10px; left: 10px; border-top-width: 1px; border-left-width: 1px; } .pd .c2 { top: 10px; right: 10px; border-top-width: 1px; border-right-width: 1px; }
+    .pd .c3 { bottom: 10px; left: 10px; border-bottom-width: 1px; border-left-width: 1px; } .pd .c4 { bottom: 10px; right: 10px; border-bottom-width: 1px; border-right-width: 1px; }
+    .pd-info { position: absolute; left: 16px; right: 16px; bottom: 16px; display: flex; justify-content: space-between; align-items: flex-end; gap: 12px; padding: 10px 12px;
+      background: rgba(7,6,10,.72); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); transform: translateY(8px); transition: transform .4s var(--ease); }
+    figure:hover .pd-info { transform: none; }
+    .pd-sw { display: flex; gap: 4px; } .pd-sw b { width: 16px; height: 16px; box-shadow: inset 0 0 0 1px rgba(255,255,255,.15); }
+    .pd-meta { font-family: var(--mono); font-size: 10px; letter-spacing: .12em; text-transform: uppercase; color: var(--text); text-align: right; line-height: 1.5; }
+    .pd-meta span { display: block; color: var(--faint); }
+  }
+
+
+  /* Automatisch befüllte Kategorien (Motion, DJ Graphics, Branding) */
+  .cat-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 64px var(--gap); }
+  .cat-grid figure { margin: 0; min-width: 0; }
+  .clip-box { position: relative; aspect-ratio: 4 / 5; overflow: hidden; background: #150b12; box-shadow: 0 30px 60px -30px rgba(0,0,0,.9); }
+  .clip { display: block; width: 100%; height: 100%; object-fit: cover; }
+  @media (max-width: 960px) { .cat-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 48px var(--gap); } }
+  @media (max-width: 640px) { .cat-grid { gap: 32px var(--gap); } .cat-grid .cap .t { font-size: 18px; } }
+  .more[hidden], .more-head[hidden] { display: none !important; }
+</style>
+</head>
+<body>
+<a class="skip" href="#werke">Zum Portfolio springen</a>
+<div class="space" aria-hidden="true"></div>
+<div class="grain" aria-hidden="true"></div>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-arr" viewBox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+</svg>
+
+<header class="site-header wrap at-top">
+  <div class="container">
+    <a href="#top" class="brand"><img src="img/vbp-logo-sm.png" alt="Visuals by Preecie – nach oben" width="96" height="53"></a>
+    <nav class="nav" aria-label="Hauptnavigation">
+      <a href="#werke" class="hide-sm">Portfolio</a>
+      <a href="#ueber" class="hide-sm" lang="en">About me</a>
+      <a href="https://ig.me/m/visualsbypreecie" class="nav-cta" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".9" fill="currentColor"/></svg><span>DM für Anfrage</span><span class="sr-only"> über Instagram (öffnet neuen Tab)</span></a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+  <section class="intro hC" aria-label="Neueste Arbeit">
+    <div class="ambient" aria-hidden="true"><img src="img/sync-glow.webp" alt="" width="480" height="600" decoding="async"></div>
+    <div class="pC-guides" aria-hidden="true"><i class="gx"></i><i class="gy"></i><span class="pC-read mono"></span></div>
+    <dl class="pC-spec pC-left mono">
+      <div><dt>Kunde</dt><dd>SYNC</dd></div>
+      <div><dt>Location</dt><dd>794 Studio, München</dd></div>
+      <div><dt>Format</dt><dd>4:5 · Feed + Story</dd></div>
+    </dl>
+    <dl class="pC-spec pC-right mono">
+      <div><dt>Design</dt><dd>Preecie</dd></div>
+      <div><dt>Leistungen</dt><dd>Flyer · Motion<br>DJ Graphics · Branding</dd></div>
+      <div><dt>Region</dt><dd>Deutschlandweit</dd></div>
+    </dl>
+    <div class="hero-stage wrap">
+      <figure class="intro-flyer">
+        <div class="pC-sheet">
+          <span class="crop tl" aria-hidden="true"></span><span class="crop tr" aria-hidden="true"></span>
+          <span class="crop bl" aria-hidden="true"></span><span class="crop br" aria-hidden="true"></span>
+          <span class="dim dim-w mono" aria-hidden="true"><b>1080 px</b></span>
+          <span class="dim dim-h mono" aria-hidden="true"><b>1350 px</b></span>
+          <svg class="reg" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="6.5"/><path d="M12 1v22M1 12h22"/></svg>
+          <!-- Farbpalette = die Hauptfarben des Hero-Flyers (bei neuem Flyer neu bestimmen) -->
+          <span class="swatch" aria-hidden="true"><i style="background:#e0ccdb"></i><i style="background:#e360b3"></i><i style="background:#925079"></i><i style="background:#851657"></i><i style="background:#520831"></i></span>
+          <button type="button" class="flyer" style="--ph:#4b263d" aria-haspopup="dialog"><picture><source srcset="img/sync.avif" type="image/avif"><img src="img/sync.webp" alt="Flyer SYNC Face 2 Face, 794 Studio München" width="671" height="833" fetchpriority="high" decoding="async"></picture><span class="sr-only"> – groß ansehen</span></button>
+        </div>
+        <figcaption class="hero-cap mono">
+          <span class="latest"><i class="latest-dot" aria-hidden="true"></i><span lang="en">Latest Work</span></span>
+          <span class="hero-what"><span class="t">SYNC Face 2 Face</span><span class="sep" aria-hidden="true"> · </span><span class="meta">794 Studio</span></span>
+        </figcaption>
+      </figure>
+    </div>
+    <a class="scroll-cue mono" href="#start"><span>Scroll</span><i aria-hidden="true"></i></a>
+  </section>
+
+  <section id="start" class="statement wrap" aria-label="Einleitung">
+    <div class="container grid12">
+      <h1 class="reveal">Visuals <em>by</em><br>Preecie</h1>
+      <div class="statement-side reveal">
+        <p class="intro-sub">Flyer, Motion Design, DJ Graphics &amp; Branding für Clubs, DJs und Events in ganz Deutschland. Gemacht für den Moment, in dem jemand aufhört zu scrollen.</p>
+        <div class="intro-actions">
+          <a class="ticket" href="#kontakt">
+            <span class="tk-main"><small class="mono">Admit one · Anfrage</small><b>Projekt anfragen</b></span>
+            <span class="tk-stub" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12h13M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LED-Laufschrift -->
+  <div class="led" aria-hidden="true"><div class="led-track"><div class="led-run"><span>Flyer</span><i class="sep" aria-hidden="true"></i><span>Motion Design</span><i class="sep" aria-hidden="true"></i><span>DJ Graphics</span><i class="sep" aria-hidden="true"></i><span>Branding</span><i class="sep" aria-hidden="true"></i><span>Clubs</span><i class="sep" aria-hidden="true"></i><span>Events</span><i class="sep" aria-hidden="true"></i><span>Deutschlandweit</span><i class="sep" aria-hidden="true"></i></div><div class="led-run"><span>Flyer</span><i class="sep" aria-hidden="true"></i><span>Motion Design</span><i class="sep" aria-hidden="true"></i><span>DJ Graphics</span><i class="sep" aria-hidden="true"></i><span>Branding</span><i class="sep" aria-hidden="true"></i><span>Clubs</span><i class="sep" aria-hidden="true"></i><span>Events</span><i class="sep" aria-hidden="true"></i><span>Deutschlandweit</span><i class="sep" aria-hidden="true"></i></div></div></div>
+
+  <section id="werke" class="works wrap" aria-labelledby="h-werke">
+    <div class="container">
+      <header class="sec-head grid12"><h2 id="h-werke">Portfolio</h2></header>
+
+      <div class="cat-bar" hidden>
+        <button type="button" class="icon-btn cat-arrow" data-step="-1" aria-label="Vorherige Kategorie"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
+        <div class="cat-tabs" role="tablist" aria-label="Portfolio-Kategorien">
+          <button type="button" class="cat-tab" role="tab" id="tab-flyer" aria-controls="p-flyer" aria-selected="true">Flyer</button>
+          <button type="button" class="cat-tab" role="tab" id="tab-motion" aria-controls="p-motion" aria-selected="false" tabindex="-1" lang="en">Motion<span class="cat-long"> Design</span></button>
+          <button type="button" class="cat-tab" role="tab" id="tab-dj" aria-controls="p-dj" aria-selected="false" tabindex="-1" lang="en">DJ Graphics</button>
+          <button type="button" class="cat-tab" role="tab" id="tab-branding" aria-controls="p-branding" aria-selected="false" tabindex="-1">Branding</button>
+        </div>
+        <button type="button" class="icon-btn cat-arrow" data-step="1" aria-label="Nächste Kategorie"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
+      </div>
+
+      <div class="cat-panel" id="p-flyer" role="tabpanel" aria-labelledby="tab-flyer">
+        <div class="featured grid12">
+          <figure>
+            <button type="button" class="flyer" style="--ph:#431c15" aria-haspopup="dialog"><picture><source srcset="img/black-friday-savage.avif" type="image/avif"><img src="img/black-friday-savage.webp" alt="Flyer Black Friday, Savage" width="671" height="831" fetchpriority="low" decoding="async"></picture><span class="sr-only"> – groß ansehen</span></button>
+            <figcaption class="cap"><span class="t">Black Friday</span><span class="meta mono">Savage</span></figcaption>
+          </figure>
+          <figure>
+            <button type="button" class="flyer" style="--ph:#453709" aria-haspopup="dialog"><picture><source srcset="img/doubledown.avif" type="image/avif"><img src="img/doubledown.webp" alt="Flyer Doubledown 2 Years Anniversary, Barfly Augsburg" width="671" height="833" fetchpriority="low" decoding="async"></picture><span class="sr-only"> – groß ansehen</span></button>
+            <figcaption class="cap"><span class="t">Doubledown</span><span class="meta mono">Barfly</span></figcaption>
+          </figure>
+          <figure>
+            <button type="button" class="flyer" style="--ph:#1b120c" aria-haspopup="dialog"><picture><source srcset="img/the-boiler.avif" type="image/avif"><img src="img/the-boiler.webp" alt="Flyer The Boiler, Destination Gaswerk Augsburg, presented by Collective Flow" width="671" height="830" fetchpriority="low" decoding="async"></picture><span class="sr-only"> – groß ansehen</span></button>
+            <figcaption class="cap"><span class="t">The Boiler</span><span class="meta mono">Collective Flow</span></figcaption>
+          </figure>
+          <figure>
+            <button type="button" class="flyer" style="--ph:#330a0a" aria-haspopup="dialog"><picture><source srcset="img/fourty.avif" type="image/avif"><img src="img/fourty.webp" alt="Flyer Fourty Club Show, Filmcasino Dinner Club" width="671" height="832" fetchpriority="low" decoding="async"></picture><span class="sr-only"> – groß ansehen</span></button>
+            <figcaption class="cap"><span class="t">Fourty</span><span class="meta mono">Filmcasino</span></figcaption>
+          </figure>
+        </div>
+
+        <div class="more-head"><h3>Mehr aus dem Archiv</h3><span class="mono">Serie für 333 Club München<span class="more-hint"> · wischen</span></span></div>
+        <div class="more grid12">
+          <figure><button type="button" class="flyer sm" style="--ph:#606312" aria-haspopup="dialog"><picture><source srcset="img/jersey-night.avif" type="image/avif"><img src="img/jersey-night.webp" alt="Flyer Jersey Night, 333 Club München" width="672" height="831" fetchpriority="low" decoding="async"></picture><span class="sr-only"> – groß ansehen</span></button><figcaption class="cap sm"><span class="t">Jersey Night</span><span class="meta mono">333 Club</span></figcaption></figure>
+          <figure><button type="button" class="flyer sm" style="--ph:#5e0101" aria-haspopup="dialog"><picture><source srcset="img/mccartney.avif" type="image/avif"><img src="img/mccartney.webp" alt="Flyer Hip-Hop &amp; More mit McCartney, 333 Club München" width="671" height="832" fetchpriority="low" decoding="async"></picture><span class="sr-only"> – groß ansehen</span></button><figcaption class="cap sm"><span class="t">McCartney</span><span class="meta mono">333 Club</span></figcaption></figure>
+          <figure><button type="button" class="flyer sm" style="--ph:#2c0b0a" aria-haspopup="dialog"><picture><source srcset="img/friends-of-333.avif" type="image/avif"><img src="img/friends-of-333.webp" alt="Flyer Friends of 333, 333 Club München" width="672" height="832" fetchpriority="low" decoding="async"></picture><span class="sr-only"> – groß ansehen</span></button><figcaption class="cap sm"><span class="t">Friends of 333</span><span class="meta mono">333 Club</span></figcaption></figure>
+          <!-- Weiteren Flyer ergänzen: Bild als .webp UND .avif in /img, am Ende einfügen:
+          <figure><button type="button" class="flyer sm" style="--ph:#222" aria-haspopup="dialog"><picture><source srcset="img/DATEI.avif" type="image/avif"><img src="img/DATEI.webp" alt="Flyer NAME, LOCATION" width="671" height="832" fetchpriority="low" decoding="async"></picture><span class="sr-only"> – groß ansehen</span></button><figcaption class="cap sm"><span class="t">NAME</span><span class="meta mono">LOCATION</span></figcaption></figure>
+          -->
+        </div>
+      </div>
+
+      <div class="cat-panel" id="p-motion" role="tabpanel" aria-labelledby="tab-motion" hidden>
+        <!-- Motion Design: Arbeiten hier einfügen (Bilder wie bei Flyer als <figure> mit button.flyer; Videos als <video muted loop playsinline>) und den Platzhalter .cat-soon löschen -->
+        <div class="cat-soon">
+          <span class="mono">In Arbeit</span>
+          <p>Motion-Arbeiten wie animierte Flyer, Visuals und Reels kommen hier bald dazu. Bis dahin findest du aktuelle Clips auf Instagram.</p>
+          <a class="link-cta" href="https://www.instagram.com/visualsbypreecie/" target="_blank" rel="noopener"><span>Auf Instagram ansehen</span><svg class="arr ne" aria-hidden="true"><use href="#i-arr"/></svg><span class="sr-only"> (öffnet neuen Tab)</span></a>
+        </div>
+      </div>
+
+      <div class="cat-panel" id="p-dj" role="tabpanel" aria-labelledby="tab-dj" hidden>
+        <!-- DJ Graphics: Arbeiten hier einfügen (Bilder wie bei Flyer als <figure> mit button.flyer; Videos als <video muted loop playsinline>) und den Platzhalter .cat-soon löschen -->
+        <div class="cat-soon">
+          <span class="mono">In Arbeit</span>
+          <p>DJ Graphics wie Mix-Cover, Line-up-Grafiken und Social Assets kommen hier bald dazu. Bis dahin findest du Beispiele auf Instagram.</p>
+          <a class="link-cta" href="https://www.instagram.com/visualsbypreecie/" target="_blank" rel="noopener"><span>Auf Instagram ansehen</span><svg class="arr ne" aria-hidden="true"><use href="#i-arr"/></svg><span class="sr-only"> (öffnet neuen Tab)</span></a>
+        </div>
+      </div>
+
+      <div class="cat-panel" id="p-branding" role="tabpanel" aria-labelledby="tab-branding" hidden>
+        <!-- Branding: Arbeiten hier einfügen (Bilder wie bei Flyer als <figure> mit button.flyer; Videos als <video muted loop playsinline>) und den Platzhalter .cat-soon löschen -->
+        <div class="cat-soon">
+          <span class="mono">In Arbeit</span>
+          <p>Branding-Projekte für Events und Artists kommen hier bald dazu. Bis dahin findest du Beispiele auf Instagram.</p>
+          <a class="link-cta" href="https://www.instagram.com/visualsbypreecie/" target="_blank" rel="noopener"><span>Auf Instagram ansehen</span><svg class="arr ne" aria-hidden="true"><use href="#i-arr"/></svg><span class="sr-only"> (öffnet neuen Tab)</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <section id="ueber" class="block wrap" aria-labelledby="h-ueber">
+    <div class="container">
+      <header class="sec-head grid12"><h2 id="h-ueber" lang="en">About me</h2></header>
+      <div class="grid12">
+        <div class="about-a reveal">
+          <figure class="about-photo"><img src="img/fabian.webp" alt="Fabian alias Preecie" width="800" height="1000" fetchpriority="low" decoding="async"><figcaption>Fabian · Preecie</figcaption></figure>
+          <div class="about-a-text">
+            <p class="about-lead"><strong>Ich bin Preecie – Designer und selbst DJ.</strong> Ich gestalte Flyer, Motion Design, DJ Graphics und Branding für Clubs, Veranstalter und Artists. Weil ich selbst hinter dem Pult stehe, weiß ich, was ein Visual leisten muss:</p>
+            <p class="about-punch">Im Feed auffallen. <em>Um drei Uhr nachts an der Tür immer noch gut aussehen.</em></p>
+          </div>
+        </div>
+        <div class="clients reveal">
+          <div class="clients-head"><h3 class="mono">Gearbeitet mit</h3></div>
+          <!-- Logos: weiß auf transparent in img/logos/ (aktuell aus den Flyern freigestellt – durch Originaldateien ersetzen).
+               Kunde ohne Logo-Datei = Name als Schriftzug (.wm). Logo nachreichen: <span class="wm"> durch <img class="lg" …> ersetzen. -->
+          <ul class="logo-wall"><li data-flyer="img/jersey-night.webp"><span class="wm">333 Club</span></li><li data-flyer="img/sync.webp"><span class="wm">794 Studio</span></li><li data-flyer="img/black-friday-savage.webp"><img class="lg" src="img/logos/savage.webp" alt="Savage" width="364" height="240" style="--h:1.15" loading="lazy" decoding="async"></li><li data-flyer="img/fourty.webp"><img class="lg" src="img/logos/filmcasino.webp" alt="Filmcasino" width="640" height="169" style="--h:0.8" loading="lazy" decoding="async"></li><li data-flyer="img/doubledown.webp"><img class="lg" src="img/logos/barfly.webp" alt="Barfly" width="437" height="240" style="--h:1.05" loading="lazy" decoding="async"></li><li data-flyer="img/the-boiler.webp"><img class="lg" src="img/logos/collectiveflow.webp" alt="Collective Flow" width="403" height="177" style="--h:0.95" loading="lazy" decoding="async"></li><li data-flyer="img/the-boiler.webp"><span class="wm">Destination Gaswerk</span></li><li><span class="wm">Voyage</span></li></ul>
+          <span class="clients-foot mono" aria-hidden="true">Clubs · Veranstalter · Artists</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <section id="kontakt" class="block wrap" aria-labelledby="h-kontakt">
+    <div class="container">
+      <header class="sec-head grid12 contact-head"><h2 id="h-kontakt" class="contact-title">Nächstes Event? <em>Ich bin dabei.</em></h2></header>
+      <div class="grid12 contact-body">
+        <p class="contact-note reveal"><strong>Fast Service.</strong> Klick dir unten zusammen, was du brauchst. Daraus wird eine fertige Nachricht, und ich weiß sofort, was Sache ist. Logos und Line-up schickst du einfach in der DM hinterher.</p>
+
+        <!-- Anfrage-Baukasten: alles bleibt im Browser, nichts wird gesendet oder gespeichert. Ergebnis = Text für die Instagram-DM. -->
+        <div class="brief reveal" id="brief">
+          <div class="brief-opts">
+            <fieldset class="brief-q">
+              <legend class="mono">Was brauchst du?</legend>
+              <div class="chips" data-key="was">
+                <button type="button" class="chip" aria-pressed="false">Flyer</button><button type="button" class="chip" aria-pressed="false">Motion Design</button><button type="button" class="chip" aria-pressed="false" lang="en">DJ Graphics</button><button type="button" class="chip" aria-pressed="false">Branding</button>
+              </div>
+            </fieldset>
+            <fieldset class="brief-q">
+              <legend class="mono">Welcher Vibe?</legend>
+              <div class="chips" data-key="vibe">
+                <button type="button" class="chip" aria-pressed="false">Clean</button><button type="button" class="chip" aria-pressed="false">Dark</button><button type="button" class="chip" aria-pressed="false">Neon</button><button type="button" class="chip" aria-pressed="false">Chrome</button><button type="button" class="chip" aria-pressed="false">Y2K</button><button type="button" class="chip" aria-pressed="false">Retro</button><button type="button" class="chip" aria-pressed="false">Grunge</button><button type="button" class="chip" aria-pressed="false">Luxus</button><button type="button" class="chip" aria-pressed="false">Bunt</button><button type="button" class="chip" aria-pressed="false">Überrasch mich</button>
+              </div>
+            </fieldset>
+            <fieldset class="brief-q">
+              <legend class="mono">Welche Farben?</legend>
+              <p class="pk-tip">Mit Finger oder Maus übers Feld ziehen, dann übernehmen.</p>
+              <div class="picker">
+                <div class="pk-area" id="pk-area" tabindex="0" role="slider" aria-label="Farbfeld – mit den Pfeiltasten Farbe wählen, Enter übernimmt" aria-valuetext="">
+                  <span class="pk-hue" aria-hidden="true"></span><span class="pk-gray" aria-hidden="true"></span>
+                  <span class="pk-dot" aria-hidden="true"></span>
+                </div>
+                <div class="pk-bar">
+                  <span class="pk-now"><i class="pk-sw" aria-hidden="true"></i><span class="pk-name"></span><span class="pk-hex"></span></span>
+                  <button type="button" class="pk-add"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 3v10M3 8h10" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round"/></svg><span>Farbe übernehmen</span></button>
+                </div>
+                <div class="pk-list" aria-live="polite"></div>
+              </div>
+            </fieldset>
+            <fieldset class="brief-q brief-fields">
+              <legend class="mono">Eckdaten</legend>
+              <label><span class="mono">Event</span><input type="text" data-key="event" maxlength="80" autocomplete="off" placeholder="Name der Party"></label>
+              <label><span class="mono">Datum &amp; Location</span><input type="text" data-key="wann" maxlength="80" autocomplete="off" placeholder="21.11., 794 Studio"></label>
+              <label><span class="mono">Bis wann</span><input type="text" data-key="deadline" maxlength="60" autocomplete="off" placeholder="z. B. nächsten Freitag"></label>
+            </fieldset>
+          </div>
+          <div class="brief-out">
+            <h3 class="mono">Deine Nachricht</h3>
+<pre id="dm-vorlage">Wagwan Preecie! Ich hab ein Event und brauch die passenden Visuals.
+Was:
+Vibe:
+Farben:
+Event:
+Datum &amp; Location:
+Bis wann:</pre>
+            <a class="brief-send" href="https://ig.me/m/visualsbypreecie" target="_blank" rel="noopener"><svg class="ig" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".9" fill="currentColor"/></svg><span>Kopieren &amp; in die DM</span><span class="sr-only"> (öffnet Instagram in neuem Tab)</span></a>
+            <p class="brief-hint mono" id="brief-hint" aria-live="polite"></p>
+          </div>
+        </div>
+        <div class="contact-rows reveal">
+          <a class="contact-row" href="https://ig.me/m/visualsbypreecie" target="_blank" rel="noopener"><span class="mono">Instagram</span><span class="val">@visualsbypreecie</span><svg class="arr ne" aria-hidden="true"><use href="#i-arr"/></svg><span class="sr-only"> – Direktnachricht schreiben (öffnet neuen Tab)</span></a>
+          <!-- WhatsApp freischalten: Kommentarzeichen entfernen, Nummer zweimal eintragen (im Link ohne + und Leerzeichen, z. B. 491701234567)
+          <a class="contact-row" href="https://wa.me/NUMMER?text=Hi%20Preecie%2C%20Anfrage%20%C3%BCber%20deine%20Website.%0AEvent%3A%20%0ADatum%20%26%20Location%3A%20%0AWas%20ich%20brauche%3A%20%0ABis%20wann%3A%20" target="_blank" rel="noopener"><span class="mono">WhatsApp</span><span class="val">+49 170 1234567</span><svg class="arr ne" aria-hidden="true"><use href="#i-arr"/></svg><span class="sr-only"> (öffnet neuen Tab)</span></a>
+          -->
+          <!-- E-Mail freischalten: Kommentarzeichen entfernen, Adresse zweimal eintragen
+          <a class="contact-row" href="mailto:ADRESSE?subject=Anfrage%20Visuals%20by%20Preecie&amp;body=Hi%20Preecie%2C%0AEvent%3A%20%0ADatum%20%26%20Location%3A%20%0AWas%20ich%20brauche%3A%20%0ABis%20wann%3A%20"><span class="mono">E-Mail</span><span class="val">ADRESSE</span><svg class="arr ne" aria-hidden="true"><use href="#i-arr"/></svg></a>
+          -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer wrap">
+  <div class="container">
+    <div class="footer-line mono">
+      <span class="sig"><a class="sig-logo" href="#top" aria-label="Visuals by Preecie – nach oben"><img src="img/vbp-logo-sm.png" alt="" width="96" height="53" loading="lazy" decoding="async"></a><span>© <span id="year">2026</span> Visuals by Preecie</span></span>
+      <nav aria-label="Rechtliches und Social">
+        <a class="ig" href="https://www.instagram.com/visualsbypreecie/" target="_blank" rel="noopener">Instagram<span class="sr-only"> (öffnet neuen Tab)</span></a>
+        <a href="impressum.html">Impressum</a>
+        <a href="datenschutz.html">Datenschutz</a>
+        <a href="#top">Nach oben<svg class="arr up" aria-hidden="true"><use href="#i-arr"/></svg></a>
+      </nav>
+    </div>
+  </div>
+</footer>
+
+<div class="peek" aria-hidden="true"><img alt="" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="></div>
+<div class="cursor-tag" aria-hidden="true"><i class="vf"></i><span class="lb">Ansehen</span></div>
+
+<dialog class="viewer" id="viewer" aria-label="Flyer-Großansicht">
+  <div class="viewer-top">
+    <span id="v-count" class="mono" aria-hidden="true"></span>
+    <button type="button" class="icon-btn" id="v-close" aria-label="Schließen">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+  </div>
+  <div class="viewer-stage" id="v-stage">
+    <button type="button" class="icon-btn nav-btn" id="v-prev" aria-label="Vorheriger Flyer">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>
+    </button>
+    <img id="v-img" alt="" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
+    <button type="button" class="icon-btn nav-btn" id="v-next" aria-label="Nächster Flyer">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg>
+    </button>
+  </div>
+  <div class="viewer-cap">
+    <span class="t" id="v-title"></span><span class="mono" id="v-meta"></span>
+    <div class="viewer-cta">
+      <span class="q" id="v-q">Gefällt dir der Stil?</span>
+      <a id="v-cta" href="https://ig.me/m/visualsbypreecie" target="_blank" rel="noopener"><svg class="ig" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".9" fill="currentColor"/></svg><span class="lbl">Schreib mir</span><svg class="arr ne" aria-hidden="true"><use href="#i-arr"/></svg><span class="sr-only"> auf Instagram (öffnet neuen Tab)</span></a>
+    </div>
+  </div>
+  <p id="v-live" class="sr-only" aria-live="polite" aria-atomic="true"></p>
+</dialog>
+
+<script>
+  /* Inhalte automatisch aus content.json (wird vom n8n-Workflow gepflegt).
+     Fehlt die Datei oder ist sie fehlerhaft, bleibt einfach der fest eingebaute Stand stehen. */
+  window.__vbpReady = (function () {
+    if (!window.fetch || !window.Promise) return Promise.resolve();
+    var late = false;
+    var timeout = new Promise(function (r) { setTimeout(function () { late = true; r(); }, 2500); });
+    var load = fetch('content.json', { cache: 'no-cache' })
+      .then(function (r) { if (!r.ok) throw new Error('kein content.json'); return r.json(); })
+      .then(function (c) { if (!late) apply(c); })
+      .catch(function () {});
+    return Promise.race([load, timeout]);
+
+    function el(tag, cls, text) { var e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
+    function str(v, max) { return typeof v === 'string' ? v.trim().slice(0, max || 120) : ''; }
+    function okSrc(s) { return typeof s === 'string' && /^(auto\/|img\/|media\/)[\w\-./]+$/.test(s) && s.indexOf('..') < 0; }
+    function list(a) { return Array.isArray(a) ? a.filter(function (x) { return x && okSrc(x.src); }).slice(0, 60) : []; }
+    function img(it, cls) {
+      var im = el('img', cls); im.src = it.src; im.alt = 'Flyer ' + str(it.title) + (str(it.meta) ? ', ' + str(it.meta) : '');
+      im.width = 1080; im.height = 1350; im.decoding = 'async'; im.setAttribute('fetchpriority', 'low');
+      im.addEventListener('error', function () { im.style.visibility = 'hidden'; });
+      return im;
+    }
+    function figure(it, sm) {
+      var f = el('figure');
+      if (it.type === 'video') {
+        var box = el('div', 'clip-box'); var v = el('video', 'clip');
+        v.muted = true; v.loop = true; v.playsInline = true; v.setAttribute('playsinline', ''); v.preload = 'metadata';
+        if (okSrc(it.poster)) v.poster = it.poster; v.src = it.src; v.setAttribute('aria-label', str(it.title) || 'Motion-Arbeit');
+        box.appendChild(v); f.appendChild(box);
+      } else {
+        var b = el('button', 'flyer' + (sm ? ' sm' : '')); b.type = 'button'; b.setAttribute('aria-haspopup', 'dialog');
+        b.appendChild(img(it)); b.appendChild(el('span', 'sr-only', ' – groß ansehen')); f.appendChild(b);
+      }
+      var cap = el('figcaption', 'cap' + (sm ? ' sm' : ''));
+      cap.appendChild(el('span', 't', str(it.title))); cap.appendChild(el('span', 'meta mono', str(it.meta)));
+      f.appendChild(cap); return f;
+    }
+    function apply(c) {
+      if (!c || typeof c !== 'object') return;
+      var fl = list(c.flyer);
+      if (fl.length) {
+        /* Bisherige, fest eingebaute Flyer hinten anhängen (keine Lücken, bis alle im Ordner liegen) */
+        var seen = {}; fl.forEach(function (x) { seen[str(x.title).toLowerCase()] = 1; });
+        document.querySelectorAll('.intro figure, #p-flyer figure').forEach(function (f) {
+          var im = f.querySelector('img'), t = f.querySelector('.t'), m = f.querySelector('.meta');
+          var title = t ? t.textContent.trim() : ''; if (!im || !title || seen[title.toLowerCase()]) return;
+          seen[title.toLowerCase()] = 1; fl.push({ title: title, meta: m ? m.textContent.trim() : '', src: im.getAttribute('src') });
+        });
+        /* Neuester Flyer = Latest Work (Startbild) */
+        var h = fl[0], hb = document.querySelector('.intro button.flyer');
+        if (hb) {
+          var pic = hb.querySelector('picture'), old = hb.querySelector('img'), ni = img(h);
+          ni.setAttribute('fetchpriority', 'high');
+          if (pic) pic.replaceWith(ni); else if (old) old.replaceWith(ni);
+          var cap = document.querySelector('.hero-cap'); if (cap) { cap.querySelector('.t').textContent = str(h.title); cap.querySelector('.meta').textContent = str(h.meta); }
+          var dd = document.querySelectorAll('.pC-left dd'); if (dd[0]) dd[0].textContent = str(h.title).toUpperCase(); if (dd[1]) dd[1].textContent = str(h.meta);
+          var sw = document.querySelectorAll('.hC .swatch i');
+          if (sw.length && window.__vbpPalette) ni.addEventListener('load', function () { var p = window.__vbpPalette(ni, sw.length); sw.forEach(function (s, k) { if (p[k]) s.style.background = p[k]; }); });
+        }
+        var feat = document.querySelector('#p-flyer .featured'), more = document.querySelector('#p-flyer .more'), mh = document.querySelector('#p-flyer .more-head');
+        if (feat) { feat.textContent = ''; fl.slice(1, 5).forEach(function (it) { feat.appendChild(figure(it)); }); }
+        var rest = fl.slice(5);
+        if (more) { more.textContent = ''; rest.forEach(function (it) { more.appendChild(figure(it, true)); }); more.hidden = !rest.length; }
+        if (mh) { mh.hidden = !rest.length; var s = mh.querySelector('span.mono'); if (s) { s.textContent = ''; var hint = el('span', 'more-hint', 'wischen'); s.appendChild(hint); } }
+      }
+      [['motion', 'p-motion'], ['dj', 'p-dj'], ['branding', 'p-branding']].forEach(function (pair) {
+        var items = pair[0] === 'motion' ? (Array.isArray(c.motion) ? c.motion.filter(function (x) { return x && okSrc(x.src); }).slice(0, 40) : []) : list(c[pair[0]]);
+        var p = document.getElementById(pair[1]); if (!p || !items.length) return;
+        var soon = p.querySelector('.cat-soon'); if (soon) soon.remove();
+        var g = el('div', 'cat-grid'); items.forEach(function (it) { g.appendChild(figure(it)); }); p.appendChild(g);
+      });
+      /* Logos: gleicher Name ersetzt den Schriftzug, neue Namen kommen dazu */
+      var wall = document.querySelector('.logo-wall');
+      if (wall && Array.isArray(c.logos)) c.logos.forEach(function (lg) {
+        if (!lg || !okSrc(lg.src)) return; var name = str(lg.name, 60); if (!name) return;
+        var li = Array.prototype.find.call(wall.children, function (x) { var w = x.querySelector('.wm, .lg'); return w && (w.textContent || w.alt || '').trim().toLowerCase() === name.toLowerCase(); });
+        if (!li) { li = el('li'); wall.appendChild(li); }
+        var im = el('img', 'lg'); im.src = lg.src; im.alt = name; im.decoding = 'async'; im.loading = 'lazy';
+        li.textContent = ''; li.appendChild(im);
+      });
+      /* Videos nur abspielen, wenn sie zu sehen sind */
+      var vids = document.querySelectorAll('video.clip');
+      if (vids.length && 'IntersectionObserver' in window && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        var io = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { var pr = e.target.play(); if (pr && pr.catch) pr.catch(function () {}); } else e.target.pause(); }); }, { threshold: .25 });
+        vids.forEach(function (v) { io.observe(v); });
+      }
+    }
+  })();
+  /* Hauptfarben eines Bildes (für Farbbalken im Startbild) */
+  window.__vbpPalette = function (img, n) {
+    try {
+      var c = document.createElement('canvas'), w = 40, h = 50; c.width = w; c.height = h; var x = c.getContext('2d'); x.drawImage(img, 0, 0, w, h);
+      var d = x.getImageData(0, 0, w, h).data, b = {};
+      for (var k = 0; k < d.length; k += 4) { var key = (d[k] >> 5) + ',' + (d[k + 1] >> 5) + ',' + (d[k + 2] >> 5); (b[key] = b[key] || [0, 0, 0, 0]); b[key][0] += d[k]; b[key][1] += d[k + 1]; b[key][2] += d[k + 2]; b[key][3]++; }
+      var hx = function (v) { return ('0' + v.toString(16)).slice(-2); };
+      return Object.keys(b).map(function (k) { var v = b[k]; return [v[3], Math.round(v[0] / v[3]), Math.round(v[1] / v[3]), Math.round(v[2] / v[3])]; })
+        .sort(function (a, b) { return b[0] - a[0]; })
+        .reduce(function (acc, v) { if (acc.length < (n || 5) && acc.every(function (o) { return Math.abs(o[1] - v[1]) + Math.abs(o[2] - v[2]) + Math.abs(o[3] - v[3]) > 90; })) acc.push(v); return acc; }, [])
+        .sort(function (a, b) { return (b[1] + b[2] + b[3]) - (a[1] + a[2] + a[3]); })
+        .map(function (v) { return '#' + hx(v[1]) + hx(v[2]) + hx(v[3]); });
+    } catch (e) { return []; }
+  };
+</script>
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  /* Frischer Aufruf ohne #Anker = oben starten (Vorschau-Umgebungen übernehmen sonst teils die alte Position).
+     Zurück/Vor im Browser behält die Position wie gewohnt. */
+  (function () {
+    var nav = (performance.getEntriesByType && performance.getEntriesByType('navigation')[0]) || {};
+    if (nav.type !== 'navigate' || location.hash || /:~:/.test(nav.name || '')) return;
+    var root = document.documentElement, touched = false, end = performance.now() + 1500;
+    root.style.scrollBehavior = 'auto';
+    ['wheel', 'touchstart', 'keydown', 'mousedown', 'pointerdown'].forEach(function (ev) {
+      addEventListener(ev, function () { touched = true; }, { passive: true, once: true, capture: true }); });
+    function top() { if (!touched && performance.now() < end && (window.scrollY || window.scrollX)) window.scrollTo(0, 0); }
+    addEventListener('scroll', top, { passive: true }); addEventListener('DOMContentLoaded', top); addEventListener('load', top); top();
+    setTimeout(function () { removeEventListener('scroll', top); root.style.scrollBehavior = ''; }, 1500);
+  })();
+
+
+  /* Fehlendes Bild = ruhige Farbfläche statt kaputtem Symbol */
+  document.querySelectorAll('.flyer img').forEach(function (img) {
+    var hide = function () { img.style.visibility = 'hidden'; };
+    if (img.complete) { if (img.naturalWidth === 0) hide(); else img.classList.add('is-loaded'); }
+    img.addEventListener('error', hide);
+  });
+
+  /* Header: oben transparent, beim Scrollen Glas */
+  (function () {
+    var hdr = document.querySelector('.site-header');
+    var onScroll = function () { hdr.classList.toggle('at-top', window.scrollY < 8); };
+    var setH = function () { document.documentElement.style.setProperty('--hh', hdr.offsetHeight + 'px'); };
+    setH(); window.addEventListener('resize', setH, { passive: true });
+    onScroll(); window.addEventListener('scroll', onScroll, { passive: true });
+  })();
+
+  /* Aktiver Menüpunkt, Einblenden beim Scrollen */
+  (function () {
+    if (!('IntersectionObserver' in window)) return;
+    document.documentElement.classList.add('io');
+    var links = {};
+    document.querySelectorAll('.nav a[href^="#"]').forEach(function (a) { links[a.getAttribute('href').slice(1)] = a; });
+    var nav = new IntersectionObserver(function (es) {
+      es.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        Object.keys(links).forEach(function (k) { links[k].removeAttribute('aria-current'); });
+        if (links[e.target.id]) links[e.target.id].setAttribute('aria-current', 'location');
+      });
+    }, { rootMargin: '-45% 0px -50% 0px' });
+    [document.querySelector('.intro')].concat(['start', 'werke', 'ueber', 'kontakt'].map(function (id) { return document.getElementById(id); }))
+      .forEach(function (el) { if (el) nav.observe(el); });
+
+    var ro = new IntersectionObserver(function (es) {
+      es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); ro.unobserve(e.target); } });
+    }, { rootMargin: '0px 0px 10% 0px' });
+    document.querySelectorAll('.reveal').forEach(function (el) { ro.observe(el); });
+
+  })();
+
+  /* Großansicht */
+  window.__vbpReady.then(function () {
+    var dlg = document.getElementById('viewer');
+    /* Neu geladen bei offener Großansicht: alten History-Eintrag neutralisieren (sonst toter Zurück-Schritt) */
+    if (history.state && history.state.viewer) { try { history.back(); } catch (e) {} }
+    /* Reihenfolge der Großansicht = Galerie. Der Hero-Flyer öffnet dasselbe Bild in der Galerie (keine Doppelung). */
+    var heroBtn = document.querySelector('.intro button.flyer');
+    var buttons = Array.prototype.slice.call(document.querySelectorAll('button.flyer')).filter(function (b) { return b !== heroBtn; });
+    var srcKey = function (b) { var im = b.querySelector('img'); return im ? im.getAttribute('src') : ''; };
+    if (heroBtn && !buttons.some(function (b) { return srcKey(b) === srcKey(heroBtn); })) buttons.unshift(heroBtn);
+    if (!dlg || !buttons.length) return;
+    var vImg = document.getElementById('v-img'), vTitle = document.getElementById('v-title'), vMeta = document.getElementById('v-meta'),
+        vCount = document.getElementById('v-count'), vLive = document.getElementById('v-live'), stage = document.getElementById('v-stage');
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var items = buttons.map(function (b) {
+      var fig = b.closest('figure'), img = b.querySelector('img');
+      var t = fig.querySelector('.t'), m = fig.querySelector('.meta');
+      return { img: img, alt: img.alt, title: t ? t.textContent : '', meta: m ? m.textContent : '' };
+    });
+    var srcOf = function (it) { return it.img.currentSrc || it.img.getAttribute('src'); };
+    /* Blättern nur innerhalb der eigenen Kategorie (Flyer, DJ Graphics, Branding) */
+    var flyerPanel = document.getElementById('p-flyer');
+    var panelOf = function (b) { return (b && b.closest('.cat-panel')) || flyerPanel; };
+    var all = items, allButtons = buttons;
+    function useGroup(btn) {
+      var p = panelOf(btn), idx = [];
+      allButtons.forEach(function (b, k) { if (panelOf(b) === p) idx.push(k); });
+      buttons = idx.map(function (k) { return allButtons[k]; }); items = idx.map(function (k) { return all[k]; });
+      return buttons.indexOf(btn);
+    }
+    var i = 0, opener = null, token = 0;
+
+    function show(n, dir) {
+      i = (n + items.length) % items.length;
+      var it = items[i], my = ++token, pre = new Image(), src = srcOf(it);
+      vImg.classList.add('is-swapping');
+      if (!reduce) vImg.style.transform = dir ? 'translateX(' + (-dir * 40) + 'px)' : '';
+      pre.onload = pre.onerror = function () {
+        if (my !== token) return;
+        vImg.style.transition = 'none';
+        if (!reduce) vImg.style.transform = dir ? 'translateX(' + (dir * 40) + 'px)' : '';
+        vImg.src = src; vImg.alt = it.alt;
+        requestAnimationFrame(function () { requestAnimationFrame(function () {
+          vImg.style.transition = ''; vImg.classList.remove('is-swapping'); vImg.style.transform = '';
+        }); });
+      };
+      pre.src = src;
+      vTitle.textContent = it.title; vMeta.textContent = it.meta;
+      vCount.textContent = '';
+      setTimeout(function () { vLive.textContent = 'Flyer ' + (i + 1) + ' von ' + items.length + ': ' + it.title + ', ' + it.meta; }, 80);
+      [i + 1, i - 1].forEach(function (k) { new Image().src = srcOf(items[(k + items.length) % items.length]); });
+    }
+    var warmed = false;
+    function open(n, openerEl) {
+      if (!warmed) { warmed = true; all.forEach(function (it) { new Image().src = srcOf(it); }); }
+      clearTimeout(tClose); dlg.classList.remove('closing'); closing = false;
+      opener = openerEl || buttons[n]; show(n, 0);
+      if (!dlg.open) { if (typeof dlg.showModal === 'function') dlg.showModal(); else dlg.setAttribute('open', ''); }
+      document.documentElement.style.overflow = 'hidden';
+      try { history.pushState({ viewer: true }, ''); } catch (e) {}
+    }
+    function finish() {
+      if (dlg.open) { if (typeof dlg.close === 'function') dlg.close(); else { dlg.removeAttribute('open'); dlg.dispatchEvent(new Event('close')); } }
+    }
+    var closing = false, tClose = 0;
+    function close(fromPop) {
+      if (!dlg.open || (closing && fromPop !== true)) return;
+      closing = true;
+      /* Zurück-Geste und Schließen teilen sich einen Weg: so verlässt niemand versehentlich die Seite (auch nicht per Doppelklick) */
+      if (fromPop !== true && history.state && history.state.viewer) { history.back(); return; }
+      if (reduce) { finish(); return; }
+      dlg.classList.add('closing');
+      clearTimeout(tClose);
+      tClose = setTimeout(function () { dlg.classList.remove('closing'); finish(); }, 180);
+    }
+    window.addEventListener('popstate', function () { if (dlg.open) close(true); });
+    dlg.addEventListener('cancel', function (e) { e.preventDefault(); close(); });
+    dlg.addEventListener('close', function () {
+      closing = false; clearTimeout(tClose); dlg.classList.remove('closing');
+      document.documentElement.style.overflow = '';
+      dlg.style.backgroundColor = '';
+      if (opener) opener.focus({ preventScroll: true });
+    });
+    allButtons.forEach(function (b) { b.addEventListener('click', function () { var n = useGroup(b); open(Math.max(0, n), b); }); });
+    if (heroBtn && allButtons.indexOf(heroBtn) < 0) heroBtn.addEventListener('click', function () {
+      var twin = null; allButtons.some(function (b) { if (srcKey(b) === srcKey(heroBtn)) { twin = b; return true; } });
+      var n = useGroup(twin || allButtons[0]); open(Math.max(0, n), heroBtn);
+    });
+    /* Anfrage: passender Einstiegstext mit Flyer-Namen landet in der Zwischenablage, der Link öffnet die DM */
+    var cta = document.getElementById('v-cta'), q = document.getElementById('v-q'), qText = q ? q.textContent : '', tQ = 0;
+    if (cta && q) cta.addEventListener('click', function () {
+      var msg = 'Wagwan Preecie! Ich hätte gern was im Stil von „' + (items[i].title || 'deinem Flyer') + '“.\nEvent:\nDatum & Location:\nBis wann:';
+      if (!navigator.clipboard || !navigator.clipboard.writeText) return;
+      navigator.clipboard.writeText(msg).then(function () {
+        q.textContent = 'Kopiert'; q.classList.add('done');
+        clearTimeout(tQ); tQ = setTimeout(function () { q.textContent = qText; q.classList.remove('done'); }, 4000);
+      }, function () {});
+    });
+    document.getElementById('v-close').addEventListener('click', function () { close(); });
+    document.getElementById('v-prev').addEventListener('click', function () { show(i - 1, -1); });
+    document.getElementById('v-next').addEventListener('click', function () { show(i + 1, 1); });
+    stage.addEventListener('click', function (e) { if (e.target === stage) close(); });
+    dlg.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowRight') { e.preventDefault(); show(i + 1, 1); }
+      if (e.key === 'ArrowLeft') { e.preventDefault(); show(i - 1, -1); }
+    });
+    /* Wischen auf der ganzen Fläche: Bild folgt dem Finger, nach unten ziehen schließt */
+    var x0 = null, y0 = null, dx = 0, dy = 0;
+    stage.addEventListener('touchstart', function (e) {
+      if (e.touches.length > 1) { x0 = null; return; }
+      x0 = e.touches[0].clientX; y0 = e.touches[0].clientY; dx = dy = 0; vImg.style.transition = 'none';
+    }, { passive: true });
+    stage.addEventListener('touchmove', function (e) {
+      if (x0 === null) return;
+      dx = e.touches[0].clientX - x0; dy = e.touches[0].clientY - y0;
+      if (Math.abs(dx) > Math.abs(dy)) { vImg.style.transform = 'translateX(' + dx + 'px)'; }
+      else { var d = Math.max(0, dy); vImg.style.transform = 'translateY(' + d + 'px)'; dlg.style.backgroundColor = 'rgba(5,4,7,' + Math.max(.5, .96 - d / 600) + ')'; }
+    }, { passive: true });
+    function resetDrag() { vImg.style.transition = ''; vImg.style.transform = ''; dlg.style.backgroundColor = ''; x0 = null; }
+    stage.addEventListener('touchcancel', resetDrag);
+    stage.addEventListener('touchend', function () {
+      if (x0 === null) return;
+      vImg.style.transition = ''; x0 = null;
+      if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy)) { dlg.style.backgroundColor = ''; show(dx < 0 ? i + 1 : i - 1, dx < 0 ? 1 : -1); }
+      else if (dy > 90) { vImg.style.transform = ''; close(); }
+      else { vImg.style.transform = ''; dlg.style.backgroundColor = ''; }
+    });
+  });
+
+  /* Anfrage-Baukasten: Auswahl → fertige DM-Nachricht. Nichts wird gesendet oder gespeichert. */
+  (function () {
+    var b = document.getElementById('brief'); if (!b) return;
+    var pre = document.getElementById('dm-vorlage'), send = b.querySelector('.brief-send'), hint = document.getElementById('brief-hint'), hintText = hint.textContent;
+    var tHint = 0, chosen = [], MAX = 5;
+    var map = function (sel, fn) { return Array.prototype.map.call(b.querySelectorAll(sel), fn); };
+    var picked = function (key) { return map('.chips[data-key="' + key + '"] .chip[aria-pressed="true"]', function (x) { return x.textContent.trim(); }); };
+    var val = function (key) { var el = b.querySelector('input[data-key="' + key + '"]'); return el ? el.value.trim() : ''; };
+    function text() {
+      return ['Wagwan Preecie! Ich hab ein Event und brauch die passenden Visuals.',
+        'Was: ' + picked('was').join(', '), 'Vibe: ' + picked('vibe').join(', '),
+        'Farben: ' + chosen.map(function (c) { return c.name + ' ' + c.hex; }).join(', '),
+        'Event: ' + val('event'), 'Datum & Location: ' + val('wann'), 'Bis wann: ' + val('deadline')]
+        .map(function (l) { return l.replace(/\s+$/, ''); }).join('\n');
+    }
+    function update() { pre.textContent = text(); }
+    b.querySelectorAll('.chip').forEach(function (c) {
+      c.addEventListener('click', function () { c.setAttribute('aria-pressed', c.getAttribute('aria-pressed') === 'true' ? 'false' : 'true'); update(); });
+    });
+
+    /* Farbfeld: links das Spektrum (Farbton waagrecht, hell → dunkel senkrecht), rechts Weiß → Schwarz */
+    var area = document.getElementById('pk-area'), hueEl = area.querySelector('.pk-hue'), grayEl = area.querySelector('.pk-gray'), dot = area.querySelector('.pk-dot');
+    var sw = b.querySelector('.pk-sw'), nameEl = b.querySelector('.pk-name'), hexEl = b.querySelector('.pk-hex'), addBtn = b.querySelector('.pk-add'),
+        addLbl = addBtn.querySelector('span'), listEl = b.querySelector('.pk-list');
+    var st = { h: 322, l: .62, gray: false }, dragging = false;
+    function hex2(n) { n = Math.round(n * 255).toString(16); return n.length < 2 ? '0' + n : n; }
+    function toHex(h, s, l) {
+      var a = s * Math.min(l, 1 - l), f = function (n) { var k = (n + h / 30) % 12; return l - a * Math.max(-1, Math.min(k - 3, 9 - k, 1)); };
+      return ('#' + hex2(f(0)) + hex2(f(8)) + hex2(f(4))).toUpperCase();
+    }
+    function nameOf(h, l, gray) {
+      if (l > .93) return 'Weiß'; if (l < .07) return 'Schwarz';
+      if (gray) return l > .66 ? 'Hellgrau' : l < .33 ? 'Dunkelgrau' : 'Grau';
+      var n = h < 12 ? 'Rot' : h < 40 ? 'Orange' : h < 66 ? 'Gelb' : h < 160 ? 'Grün' : h < 195 ? 'Türkis' : h < 245 ? 'Blau' : h < 290 ? 'Lila' : h < 340 ? 'Pink' : 'Rot';
+      return l > .74 ? 'Hell' + n.toLowerCase() : l < .3 ? 'Dunkel' + n.toLowerCase() : n;
+    }
+    function current() { return { hex: toHex(st.h, st.gray ? 0 : 1, st.l), name: nameOf(st.h, st.l, st.gray) }; }
+    function render() {
+      var c = current(), hw = hueEl.offsetWidth, gw = grayEl.offsetWidth, ah = area.clientHeight;
+      dot.style.left = (st.gray ? hw + gw / 2 : st.h / 360 * hw) + 'px';
+      dot.style.top = ((1 - st.l) * ah) + 'px';
+      dot.style.background = sw.style.background = c.hex;
+      nameEl.textContent = c.name; hexEl.textContent = c.hex;
+      area.setAttribute('aria-valuetext', c.name + ' ' + c.hex);
+      var full = chosen.length >= MAX;
+      addBtn.disabled = full; addLbl.textContent = full ? 'Max. ' + MAX + ' Farben' : 'Farbe übernehmen';
+    }
+    function pick(e) {
+      var r = area.getBoundingClientRect(), hw = hueEl.getBoundingClientRect().width;
+      var x = Math.min(Math.max(e.clientX - r.left, 0), r.width - 1), y = Math.min(Math.max(e.clientY - r.top, 0), r.height);
+      st.gray = x >= hw; st.l = Math.min(.98, Math.max(.02, 1 - y / r.height));
+      if (!st.gray) st.h = Math.min(359, x / hw * 360);
+      render();
+    }
+    area.addEventListener('pointerdown', function (e) { dragging = true; area.classList.add('is-drag'); try { area.setPointerCapture(e.pointerId); } catch (err) {} pick(e); e.preventDefault(); });
+    area.addEventListener('pointermove', function (e) { if (dragging) pick(e); });
+    var stop = function () { dragging = false; area.classList.remove('is-drag'); };
+    area.addEventListener('pointerup', stop); area.addEventListener('pointercancel', stop);
+    area.addEventListener('keydown', function (e) {
+      var k = e.key;
+      if (k === 'ArrowLeft') { if (st.gray) st.gray = false; else st.h = Math.max(0, st.h - 6); }
+      else if (k === 'ArrowRight') { if (!st.gray && st.h >= 354) st.gray = true; else if (!st.gray) st.h = Math.min(359, st.h + 6); }
+      else if (k === 'ArrowUp') st.l = Math.min(.98, st.l + .04);
+      else if (k === 'ArrowDown') st.l = Math.max(.02, st.l - .04);
+      else if (k === 'Enter' || k === ' ') { addColor(); }
+      else return;
+      e.preventDefault(); render();
+    });
+    function renderList() {
+      listEl.innerHTML = '';
+      chosen.forEach(function (c, n) {
+        var chip = document.createElement('span'); chip.className = 'pk-chip';
+        var i = document.createElement('i'); i.style.background = c.hex; i.setAttribute('aria-hidden', 'true');
+        var t = document.createElement('span'); t.textContent = c.name; var hx = document.createElement('span'); hx.className = 'pk-hex'; hx.textContent = c.hex;
+        var x = document.createElement('button'); x.type = 'button'; x.className = 'pk-x'; x.setAttribute('aria-label', c.name + ' entfernen');
+        x.innerHTML = '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 4l8 8M12 4l-8 8" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>';
+        x.addEventListener('click', function () { chosen.splice(n, 1); renderList(); render(); update(); addBtn.focus(); });
+        chip.appendChild(i); chip.appendChild(t); chip.appendChild(hx); chip.appendChild(x); listEl.appendChild(chip);
+      });
+    }
+    function addColor() {
+      var c = current();
+      if (chosen.length >= MAX || chosen.some(function (o) { return o.hex === c.hex; })) return;
+      chosen.push(c); renderList(); render(); update();
+    }
+    addBtn.addEventListener('click', addColor);
+    window.addEventListener('resize', render, { passive: true });
+    render();
+    b.querySelectorAll('input[data-key]').forEach(function (i) { i.addEventListener('input', update); });
+    send.addEventListener('click', function () {
+      var msg = text();
+      var ok = function () { hint.textContent = 'Kopiert'; hint.classList.add('done');
+        clearTimeout(tHint); tHint = setTimeout(function () { hint.textContent = hintText; hint.classList.remove('done'); }, 3000); };
+      var fail = function () { var r = document.createRange(); r.selectNodeContents(pre); var s = getSelection(); s.removeAllRanges(); s.addRange(r);
+        hint.textContent = 'Text oben markiert – bitte kopieren'; hint.classList.add('done'); };
+      if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(msg).then(ok, fail); else fail();
+    });
+    update();
+  })();
+
+  /* Kopieren mit Rückmeldung */
+  document.querySelectorAll('.copy').forEach(function (btn) {
+    var label = btn.textContent;
+    btn.addEventListener('click', function (e) {
+      e.preventDefault(); e.stopPropagation();
+      var el = document.getElementById(btn.getAttribute('data-copy'));
+      var text = el ? el.textContent.trim() : '';
+      var done = function (msg) { btn.textContent = msg || 'Kopiert'; btn.classList.add('done');
+        setTimeout(function () { btn.textContent = label; btn.classList.remove('done'); }, 2400); };
+      var fallback = function () { var r = document.createRange(); r.selectNodeContents(el); var s = getSelection(); s.removeAllRanges(); s.addRange(r);
+        try { document.execCommand('copy') ? done() : done('Markiert – jetzt kopieren'); } catch (err) { done('Markiert – jetzt kopieren'); } };
+      if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(function () { done(); }, fallback); else fallback();
+    });
+  });
+</script>
+<script>
+  /* Portfolio-Kategorien: Tabs mit Pfeilen (Desktop), Wisch-Leiste (Handy), Pfeiltasten. Ohne JS: nur Flyer sichtbar. */
+  (function () {
+    var bar = document.querySelector('.cat-bar'); if (!bar) return;
+    var tabs = Array.prototype.slice.call(bar.querySelectorAll('[role="tab"]')), list = bar.querySelector('.cat-tabs');
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches, cur = 0;
+    var header = document.querySelector('.site-header');
+    bar.hidden = false;
+    function panel(k) { return document.getElementById(tabs[k].getAttribute('aria-controls')); }
+    function select(n, focus) {
+      n = (n + tabs.length) % tabs.length; if (n === cur) { if (focus) tabs[n].focus(); return; }
+      var dir = n > cur ? 1 : -1, old = panel(cur), next = panel(n);
+      tabs.forEach(function (t, k) { var on = k === n; t.setAttribute('aria-selected', on ? 'true' : 'false'); t.tabIndex = on ? 0 : -1; });
+      old.hidden = true; old.classList.remove('enter');
+      next.hidden = false;
+      if (!reduce) { next.style.setProperty('--cdir', dir); next.classList.remove('enter'); void next.offsetWidth; next.classList.add('enter'); }
+      cur = n;
+      if (focus) tabs[n].focus({ preventScroll: true });
+      /* aktiven Tab in der Wisch-Leiste sichtbar machen */
+      var t = tabs[n], lr = list.getBoundingClientRect(), tr = t.getBoundingClientRect();
+      if (tr.left < lr.left || tr.right > lr.right - 28) list.scrollTo({ left: list.scrollLeft + tr.left - lr.left - (n ? 24 : 0), behavior: reduce ? 'auto' : 'smooth' });
+      /* Leiste nach dem Wechsel im Blick behalten (kürzerer Inhalt) */
+      var hb = header ? Math.max(0, header.getBoundingClientRect().bottom) : 0, br = bar.getBoundingClientRect();
+      if (br.top < hb || br.top > innerHeight * .6) window.scrollTo({ top: scrollY + br.top - hb - 24, behavior: reduce ? 'auto' : 'smooth' });
+    }
+    tabs.forEach(function (t, k) { t.addEventListener('click', function () { select(k); }); });
+    /* Weiche Kanten nur dort, wo noch weitere Kategorien zum Wischen sind */
+    function edges() { var max = list.scrollWidth - list.clientWidth;
+      list.classList.toggle('fade-l', list.scrollLeft > 2); list.classList.toggle('fade-r', list.scrollLeft < max - 2); }
+    list.addEventListener('scroll', edges, { passive: true }); addEventListener('resize', edges); edges();
+    list.addEventListener('keydown', function (e) {
+      var k = { ArrowRight: cur + 1, ArrowLeft: cur - 1, Home: 0, End: tabs.length - 1 }[e.key];
+      if (k === undefined) return; e.preventDefault(); select(k, true);
+    });
+    bar.querySelectorAll('[data-step]').forEach(function (b) { b.addEventListener('click', function () { select(cur + (+b.getAttribute('data-step'))); }); });
+    tabs.forEach(function (t, k) { panel(k).addEventListener('animationend', function () { this.classList.remove('enter'); }); });
+  })();
+</script>
+<script>
+  /* Hero-Hintergrund: sanftes Atmen per CSS; hier nur Pausieren außerhalb des Bildschirms. Ohne JS: statisch, alles sichtbar. */
+  (function () {
+    var intro = document.querySelector('.intro');
+    if (!intro || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    var visible = true;
+    var sync = function () { intro.classList.toggle('is-idle', !visible || document.hidden); };
+    if ('IntersectionObserver' in window) new IntersectionObserver(function (e) { visible = e[0].isIntersecting; sync(); }).observe(intro);
+    document.addEventListener('visibilitychange', sync);
+  })();
+</script>
+<script>
+  /* Desktop: Flyer-Vorschau bei Club-Namen + „Ansehen“-Label am Cursor */
+  window.__vbpReady.then(function () {
+    if (!window.matchMedia('(hover: hover) and (pointer: fine) and (min-width: 961px)').matches) return;
+    var root = document.documentElement, peek = document.querySelector('.peek'), pimg = peek && peek.querySelector('img'), tag = document.querySelector('.cursor-tag');
+    if (!peek || !tag) return;
+    root.classList.add('has-tag');
+    var raf = 0, mx = 0, my = 0, cur = null, header = document.querySelector('.site-header');
+    /* Vorschau über dem Namen – ist oben zu wenig Platz (Header), dann darunter */
+    function place(x, r) {
+      var hb = Math.max(0, header ? header.getBoundingClientRect().bottom : 0), H = 270;
+      var up = r.top - hb - 8, down = innerHeight - r.bottom - 8, below = up < H && down >= up;
+      peek.classList.toggle('below', below);
+      peek.style.setProperty('--px', (r.width < 220 ? r.left + r.width / 2 : Math.min(Math.max(x, r.left + 110), r.right - 110)) + 'px');
+      peek.style.setProperty('--py', (below ? Math.min(r.bottom, innerHeight - H) : Math.max(r.top, hb + H - 18)) + 'px');
+    }
+    window.addEventListener('pointermove', function (e) {
+      mx = e.clientX; my = e.clientY;
+      if (raf) return;
+      raf = requestAnimationFrame(function () { raf = 0; root.style.setProperty('--mx', mx + 'px'); root.style.setProperty('--my', my + 'px');
+        if (cur) place(mx, cur.getBoundingClientRect()); });
+    }, { passive: true });
+    document.querySelectorAll('.clients li[data-flyer]').forEach(function (li) {
+      var src = li.getAttribute('data-flyer');
+      li.addEventListener('pointerenter', function (e) { cur = li; if (pimg.getAttribute('src') !== src) pimg.src = src;
+        place(e.clientX, li.getBoundingClientRect());
+        peek.classList.add('on'); });
+      li.addEventListener('pointerleave', function () { cur = null; peek.classList.remove('on'); });
+    });
+    document.querySelectorAll('button.flyer').forEach(function (b) {
+      b.addEventListener('pointerenter', function () { tag.classList.add('on'); });
+      b.addEventListener('pointerleave', function () { tag.classList.remove('on'); });
+      b.addEventListener('click', function () { tag.classList.remove('on'); });
+    });
+    window.addEventListener('scroll', function () { cur = null; peek.classList.remove('on'); }, { passive: true });
+  });
+</script>
+
+<script>
+  /* Druckbogen: Hilfslinien folgen der Maus, Anzeige in Flyer-Pixeln (1080 × 1350) */
+  (function () {
+    var hero = document.querySelector('.hC');
+    if (!hero || !matchMedia('(hover: hover) and (pointer: fine) and (min-width: 961px)').matches) return;
+    var fl = hero.querySelector('.pC-sheet > .flyer'), read = hero.querySelector('.pC-read'), raf = 0, ex = 0, ey = 0;
+    var pad = function (n) { n = Math.round(n); var s = String(Math.abs(n)); while (s.length < 4) s = '0' + s; return (n < 0 ? '-' : '') + s; };
+    hero.addEventListener('pointermove', function (e) {
+      ex = e.clientX; ey = e.clientY; hero.classList.add('guides-on');
+      if (raf) return;
+      raf = requestAnimationFrame(function () {
+        raf = 0;
+        var h = hero.getBoundingClientRect(), f = fl.getBoundingClientRect();
+        hero.style.setProperty('--gx', (ex - h.left) + 'px'); hero.style.setProperty('--gy', (ey - h.top) + 'px');
+        read.textContent = 'X ' + pad((ex - f.left) / f.width * 1080) + '  Y ' + pad((ey - f.top) / f.height * 1350);
+      });
+    });
+    hero.addEventListener('pointerleave', function () { hero.classList.remove('guides-on'); });
+  })();
+</script>
+<script>
+  /* Druck-Details – Format + Hauptfarben je Flyer (Farben werden einmalig aus dem Bild gelesen) */
+  window.__vbpReady.then(function () {
+    if (!matchMedia('(hover: hover) and (pointer: fine) and (min-width: 961px)').matches) return;
+    function hex(n) { return ('0' + n.toString(16)).slice(-2); }
+    function palette(img) {
+      try {
+        var c = document.createElement('canvas'), w = 40, h = 50; c.width = w; c.height = h; var x = c.getContext('2d'); x.drawImage(img, 0, 0, w, h);
+        var d = x.getImageData(0, 0, w, h).data, b = {};
+        for (var k = 0; k < d.length; k += 4) { var key = (d[k] >> 5) + ',' + (d[k + 1] >> 5) + ',' + (d[k + 2] >> 5); (b[key] = b[key] || [0, 0, 0, 0]); b[key][0] += d[k]; b[key][1] += d[k + 1]; b[key][2] += d[k + 2]; b[key][3]++; }
+        return Object.keys(b).map(function (k) { var v = b[k]; return [v[3], Math.round(v[0] / v[3]), Math.round(v[1] / v[3]), Math.round(v[2] / v[3])]; })
+          .sort(function (a, b) { return b[0] - a[0]; })
+          .reduce(function (acc, v) { /* nur deutlich unterschiedliche Farben */
+            if (acc.length < 4 && acc.every(function (o) { return Math.abs(o[1] - v[1]) + Math.abs(o[2] - v[2]) + Math.abs(o[3] - v[3]) > 120; })) acc.push(v); return acc; }, [])
+          .map(function (v) { return '#' + hex(v[1]) + hex(v[2]) + hex(v[3]); });
+      } catch (e) { return []; }
+    }
+    document.querySelectorAll('#werke figure').forEach(function (fig) {
+      var btn = fig.querySelector('button.flyer'), img = btn && btn.querySelector('img'); if (!img) return;
+      var pd = document.createElement('span'); pd.className = 'pd'; pd.setAttribute('aria-hidden', 'true');
+      pd.innerHTML = '<i class="c1"></i><i class="c2"></i><i class="c3"></i><i class="c4"></i><span class="pd-info"><span class="pd-sw"></span><span class="pd-meta"><span>4:5 · Feed</span>1080 × 1350</span></span>';
+      btn.appendChild(pd);
+      var done = false;
+      fig.addEventListener('pointerenter', function () {
+        if (done) return; done = true;
+        var sw = pd.querySelector('.pd-sw'); palette(img).forEach(function (h) { var s = document.createElement('b'); s.style.background = h; s.title = h; sw.appendChild(s); });
+      });
+    });
+  });
+</script>
+</body>
+</html>
