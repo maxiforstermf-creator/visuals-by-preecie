@@ -1592,18 +1592,33 @@ Bis wann:</pre>
 </script>
 
 <script>
-/* Handy/Tablet: Ticket antippen = kurz abreißen, dann zum Kontakt springen */
+/* Ticket: jedes Antippen/Klicken scrollt sicher zum Kontakt – auch wenn #kontakt schon in der Adresse steht.
+   Handy: vorher kurz abreißen. Scrollen per window.scrollTo + Nachkontrolle (iOS Safari verschluckt sonst teils den Sprung). */
 (function () {
-  var t = document.querySelector('.ticket'); if (!t || matchMedia('(hover: hover)').matches) return;
+  var t = document.querySelector('.ticket'); if (!t) return;
+  var touch = !matchMedia('(hover: hover)').matches;
   var calm = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var root = document.documentElement, tGo = 0, tUntear = 0, tCheck = 0;
+  function targetY(el) {
+    var pad = parseFloat(getComputedStyle(root).scrollPaddingTop) || 0;
+    return Math.max(0, Math.round(el.getBoundingClientRect().top + window.pageYOffset - pad));
+  }
+  function jump(y) { var b = root.style.scrollBehavior; root.style.scrollBehavior = 'auto'; window.scrollTo(0, y); root.style.scrollBehavior = b; }
+  function go() {
+    var el = document.querySelector(t.getAttribute('href')); if (!el) return;
+    if (calm) jump(targetY(el)); else window.scrollTo({ top: targetY(el), behavior: 'smooth' });
+    clearTimeout(tCheck);
+    tCheck = setTimeout(function () { if (Math.abs(window.pageYOffset - targetY(el)) > 40) jump(targetY(el)); }, calm ? 50 : 1100);
+    try { history.replaceState(null, '', t.getAttribute('href')); } catch (err) {}
+  }
   t.addEventListener('click', function (e) {
-    if (calm || t.classList.contains('torn')) return;
-    e.preventDefault(); t.classList.add('torn');
-    setTimeout(function () {
-      var target = document.querySelector(t.getAttribute('href'));
-      if (target) { target.scrollIntoView({ behavior: 'smooth', block: 'start' }); history.replaceState(null, '', t.getAttribute('href')); }
-    }, 420);
-    setTimeout(function () { t.classList.remove('torn'); }, 1600);
+    e.preventDefault();
+    clearTimeout(tGo); clearTimeout(tUntear);
+    if (touch && !calm) {
+      t.classList.add('torn');
+      tGo = setTimeout(go, 380);
+      tUntear = setTimeout(function () { t.classList.remove('torn'); }, 1500);
+    } else go();
   });
 })();
 </script>
