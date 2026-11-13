@@ -690,12 +690,17 @@
     -webkit-mask: radial-gradient(circle var(--n) at 0 0, #0000 98%, #000) top/100% 51% no-repeat, radial-gradient(circle var(--n) at 0 100%, #0000 98%, #000) bottom/100% 51% no-repeat;
             mask: radial-gradient(circle var(--n) at 0 0, #0000 98%, #000) top/100% 51% no-repeat, radial-gradient(circle var(--n) at 0 100%, #0000 98%, #000) bottom/100% 51% no-repeat; }
   .ticket .tk-stub svg { width: 24px; height: 24px; transition: transform .45s var(--ease); }
+  /* Abriss: Kante wird beim Hover gezackt wie echtes zerrissenes Papier (gleiche Punktzahl = weicher Übergang) */
+  .ticket .tk-main { clip-path: polygon(0 0, calc(100% - 0px) 0.00%, calc(100% - 0px) 3.57%, calc(100% - 0px) 7.14%, calc(100% - 0px) 10.71%, calc(100% - 0px) 14.29%, calc(100% - 0px) 17.86%, calc(100% - 0px) 21.43%, calc(100% - 0px) 25.00%, calc(100% - 0px) 28.57%, calc(100% - 0px) 32.14%, calc(100% - 0px) 35.71%, calc(100% - 0px) 39.29%, calc(100% - 0px) 42.86%, calc(100% - 0px) 46.43%, calc(100% - 0px) 50.00%, calc(100% - 0px) 53.57%, calc(100% - 0px) 57.14%, calc(100% - 0px) 60.71%, calc(100% - 0px) 64.29%, calc(100% - 0px) 67.86%, calc(100% - 0px) 71.43%, calc(100% - 0px) 75.00%, calc(100% - 0px) 78.57%, calc(100% - 0px) 82.14%, calc(100% - 0px) 85.71%, calc(100% - 0px) 89.29%, calc(100% - 0px) 92.86%, calc(100% - 0px) 96.43%, calc(100% - 0px) 100.00%, 0 100%); transition: clip-path .35s var(--ease); }
+  .ticket .tk-stub { clip-path: polygon(100% 0, 100% 100%, 0px 100.00%, 0px 96.43%, 0px 92.86%, 0px 89.29%, 0px 85.71%, 0px 82.14%, 0px 78.57%, 0px 75.00%, 0px 71.43%, 0px 67.86%, 0px 64.29%, 0px 60.71%, 0px 57.14%, 0px 53.57%, 0px 50.00%, 0px 46.43%, 0px 42.86%, 0px 39.29%, 0px 35.71%, 0px 32.14%, 0px 28.57%, 0px 25.00%, 0px 21.43%, 0px 17.86%, 0px 14.29%, 0px 10.71%, 0px 7.14%, 0px 3.57%, 0px 0.00%); transition: transform .45s var(--ease), clip-path .35s var(--ease), border-color .2s ease; }
   .ticket:active { transform: scale(.98); }
   .ticket:focus-visible { outline: 2px solid var(--accent); outline-offset: 6px; border-radius: 12px; }
-  @media (prefers-reduced-motion: reduce) { .ticket, .ticket .tk-stub, .ticket .tk-stub svg { transition: none; } }
+  @media (prefers-reduced-motion: reduce) { .ticket, .ticket .tk-main, .ticket .tk-stub, .ticket .tk-stub svg { transition: none; } }
   @media (hover: hover) {
-    .ticket:hover { transform: rotate(-1.5deg) translateY(-2px); }
-    .ticket:hover .tk-stub { transform: translateX(6px) rotate(4deg); }
+    .ticket:hover { transform: translateY(-2px); }
+    .ticket:hover .tk-stub { transform: translate(10px, 3px) rotate(5deg); }
+    .ticket:hover .tk-main { clip-path: polygon(0 0, calc(100% - 0px) 0.00%, calc(100% - 3.0px) 6.25%, calc(100% - 5.7px) 12.50%, calc(100% - 1.6px) 18.75%, calc(100% - 5.9px) 25.00%, calc(100% - 2.1px) 31.25%, calc(100% - 5.3px) 37.50%, calc(100% - 4.2px) 43.75%, calc(100% - 5.0px) 50.00%, calc(100% - 4.3px) 56.25%, calc(100% - 5.1px) 62.50%, calc(100% - 4.2px) 68.75%, calc(100% - 5.8px) 75.00%, calc(100% - 2.6px) 81.25%, calc(100% - 4.3px) 87.50%, calc(100% - 3.9px) 93.75%, calc(100% - 0px) 100.00%, 0 100%); }
+    .ticket:hover .tk-stub { clip-path: polygon(100% 0, 100% 100%, 0px 100.00%, 2.6px 96.43%, 0.6px 92.86%, 3.4px 89.29%, 0.1px 85.71%, 4.9px 82.14%, 0.0px 78.57%, 3.2px 75.00%, 1.5px 71.43%, 5.4px 67.86%, 2.4px 64.29%, 6.9px 60.71%, 0.1px 57.14%, 5.6px 53.57%, 2.0px 50.00%, 2.9px 46.43%, 0.8px 42.86%, 2.9px 39.29%, 2.0px 35.71%, 5.3px 32.14%, 1.3px 28.57%, 3.3px 25.00%, 1.5px 21.43%, 4.8px 17.86%, 1.2px 14.29%, 6.7px 10.71%, 1.4px 7.14%, 4.5px 3.57%, 0px 0.00%); border-left-color: transparent; }
     .ticket:hover .tk-stub svg { transform: translateX(3px); }
   }
   @media (max-width: 640px) { .ticket { width: 100%; height: 80px; } .ticket .tk-main { flex: 1; } .ticket .tk-main b { font-size: 28px; } }
