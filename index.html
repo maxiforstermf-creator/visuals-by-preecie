@@ -290,10 +290,24 @@
   /* About: Foto + Text */
   .about-a { grid-column: 1 / 13; display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 0 var(--gap); align-items: center; }
   .about-photo { grid-column: 1 / 6; position: relative; margin: 0; aspect-ratio: 4 / 5; overflow: hidden; border-radius: 3px; background: #0d0b10; }
-  .about-photo img { width: 100%; height: 100%; object-fit: cover; display: block; filter: grayscale(1) contrast(1.15) brightness(.9); }
+  .about-photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; filter: grayscale(1) contrast(1.15) brightness(.9);
+    opacity: 0; transition: opacity .9s ease, transform 6s linear; transform: scale(1.04); }
+  .about-photo img.on { opacity: 1; transform: scale(1); }
+  /* Slideshow im Story-Stil: Fortschrittsbalken oben, links/rechts antippen = zurück/weiter */
+  .ap-bars { position: absolute; top: 12px; left: 12px; right: 12px; z-index: 3; display: flex; gap: 4px; pointer-events: none; }
+  .ap-bars i { flex: 1; height: 2px; border-radius: 2px; background: rgba(241,237,240,.32); box-shadow: 0 0 0 .5px rgba(7,6,10,.35); overflow: hidden; }
+  .ap-bars i::after { content: ""; display: block; height: 100%; width: 100%; background: var(--text); transform: scaleX(0); transform-origin: left; }
+  .ap-bars i.done::after { transform: scaleX(1); }
+  .ap-bars i.run::after { animation: apRun var(--dur, 4.5s) linear forwards; }
+  .about-photo.paused .ap-bars i.run::after { animation-play-state: paused; }
+  @keyframes apRun { to { transform: scaleX(1); } }
+  .ap-nav { position: absolute; top: 0; bottom: 0; z-index: 3; width: 50%; padding: 0; border: 0; background: none; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+  .ap-nav.prev { left: 0; } .ap-nav.next { right: 0; }
+  .ap-nav:focus-visible { outline: 2px solid var(--accent); outline-offset: -4px; }
+  @media (prefers-reduced-motion: reduce) { .about-photo img { transition: opacity .2s ease; transform: none; } .about-photo img.on { transform: none; } .ap-bars i.run::after { animation: none; transform: scaleX(1); } }
   .about-photo::after { content: ""; position: absolute; inset: 0; pointer-events: none;
     background: linear-gradient(160deg, rgba(233,163,182,.85), rgba(185,138,214,.7) 45%, rgba(40,20,60,.9)); mix-blend-mode: color; }
-  .about-photo::before { content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none; background: linear-gradient(180deg, transparent 55%, rgba(7,6,10,.75)); }
+  .about-photo::before { content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none; background: linear-gradient(180deg, rgba(7,6,10,.5), transparent 16%, transparent 55%, rgba(7,6,10,.75)); }
   .about-photo figcaption { position: absolute; left: 18px; bottom: 16px; z-index: 2; font-family: var(--mono); font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--text); }
   .about-a-text { grid-column: 7 / 13; }
   .about-a .about-lead { text-align: left; justify-self: start; max-width: 26em; }
@@ -916,7 +930,7 @@
       <header class="sec-head grid12"><h2 id="h-ueber" lang="en">About me</h2></header>
       <div class="grid12">
         <div class="about-a reveal">
-          <figure class="about-photo"><img src="img/fabian.webp" alt="Fabian alias Preecie" width="800" height="1000" fetchpriority="low" decoding="async"><figcaption>Fabian · Preecie</figcaption></figure>
+          <figure class="about-photo" aria-roledescription="Slideshow" aria-label="Fotos von Fabian"><img src="img/fabian.webp" alt="Fabian alias Preecie" width="800" height="1000" decoding="async" fetchpriority="low" class="on"><img src="img/fabian-2.webp" alt="" width="576" height="720" decoding="async" loading="lazy"><img src="img/fabian-3.webp" alt="" width="620" height="775" decoding="async" loading="lazy"><img src="img/fabian-4.webp" alt="" width="451" height="563" decoding="async" loading="lazy"><img src="img/fabian-5.webp" alt="" width="284" height="355" decoding="async" loading="lazy"><img src="img/fabian-6.webp" alt="" width="252" height="315" decoding="async" loading="lazy"><img src="img/fabian-7.webp" alt="" width="533" height="666" decoding="async" loading="lazy"><span class="ap-bars" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><button type="button" class="ap-nav prev" aria-label="Vorheriges Foto"></button><button type="button" class="ap-nav next" aria-label="Nächstes Foto"></button><figcaption>Fabian · Preecie</figcaption></figure>
           <div class="about-a-text">
             <p class="about-lead"><strong>Ich bin Preecie – Grafikdesigner.</strong> Ich gestalte Flyer, Motion Design und Branding für Clubs, Events, Gastro und Marken. Egal ob Party, Neueröffnung oder Menükarte: Ein Visual muss sofort wirken.</p>
             <p class="about-punch">Im Feed auffallen. <em>An der Tür, am Tresen, auf dem Plakat.</em></p>
@@ -1620,6 +1634,32 @@ Bis wann:</pre>
       tUntear = setTimeout(function () { t.classList.remove('torn'); }, 1500);
     } else go();
   });
+})();
+</script>
+
+<script>
+/* About: Foto-Slideshow (Story-Stil). Läuft nur, wenn sichtbar; Hover/Fokus pausiert; reduced motion = nur per Tippen. */
+(function () {
+  var fig = document.querySelector('.about-photo'); if (!fig) return;
+  var imgs = [].slice.call(fig.querySelectorAll('img')), bars = [].slice.call(fig.querySelectorAll('.ap-bars i'));
+  if (imgs.length < 2) return;
+  var calm = matchMedia('(prefers-reduced-motion: reduce)').matches, DUR = 4500, i = 0, timer = 0, left = DUR, started = 0, vis = false, hold = false;
+  function paint() {
+    imgs.forEach(function (im, k) { im.classList.toggle('on', k === i); });
+    bars.forEach(function (b, k) { b.classList.remove('run'); b.classList.toggle('done', k < i || (calm && k === i)); });
+    if (!calm) { void bars[i].offsetWidth; bars[i].classList.add('run'); }
+    var nx = imgs[(i + 1) % imgs.length]; if (nx.loading === 'lazy') nx.loading = 'eager';
+  }
+  function show(n) { i = (n + imgs.length) % imgs.length; left = DUR; paint(); schedule(); }
+  function schedule() { clearTimeout(timer); if (calm || !vis || hold) return; started = Date.now(); timer = setTimeout(function () { show(i + 1); }, left); }
+  function pause() { if (hold) return; hold = true; clearTimeout(timer); left = Math.max(300, left - (Date.now() - started)); fig.classList.add('paused'); }
+  function resume() { if (!hold) return; hold = false; fig.classList.remove('paused'); schedule(); }
+  fig.querySelector('.prev').addEventListener('click', function () { show(i - 1); });
+  fig.querySelector('.next').addEventListener('click', function () { show(i + 1); });
+  if (matchMedia('(hover: hover)').matches) { fig.addEventListener('mouseenter', pause); fig.addEventListener('mouseleave', resume); }
+  new IntersectionObserver(function (en) { vis = en[0].isIntersecting; if (vis) schedule(); else clearTimeout(timer); }, { threshold: .3 }).observe(fig);
+  document.addEventListener('visibilitychange', function () { if (document.hidden) clearTimeout(timer); else schedule(); });
+  paint();
 })();
 </script>
 </body>
