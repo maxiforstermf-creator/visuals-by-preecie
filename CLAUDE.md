@@ -1,6 +1,6 @@
 # Visuals by Preecie – Portfolio-Website
 
-Portfolio von Fabian Pinkawa ("Preecie"): Grafikdesigner und DJ, arbeitet deutschlandweit (Kunden bisher v. a. Augsburg/München; auf der Seite bewusst "deutschlandweit", keine Städte). Er macht Club-Flyer, Motion Design, DJ Graphics und Branding. Logos bietet er NICHT mehr an.
+Portfolio von Fabian Pinkawa ("Preecie"): Grafikdesigner, arbeitet deutschlandweit (Kunden bisher v. a. Augsburg/München; auf der Seite bewusst "deutschlandweit", keine Städte). Er macht Club-Flyer, Motion Design, DJ Graphics und Branding. Logos bietet er NICHT mehr an.
 Statische Seite ohne Build-Schritt (HTML/CSS/JS). Hosting: GitHub Pages (dieser Ordner ist das Repo-Root, Branch `main`). Domain bei Hostinger, DNS zeigt auf GitHub.
 
 ## Dateien
@@ -15,6 +15,7 @@ Statische Seite ohne Build-Schritt (HTML/CSS/JS). Hosting: GitHub Pages (dieser 
 `python -m http.server 8765` in diesem Ordner, dann http://localhost:8765/ aufrufen. Alternativ die VS-Code-Erweiterung "Live Server".
 
 ## Feste Vorgaben des Kunden (nicht ändern ohne Rückfrage)
+- Fabian wird NICHT als DJ dargestellt (kein "selbst DJ", kein "hinter dem Pult"). Zielgruppe breit: Clubs, Events, Gastro, Marken.
 - Dunkel, clean, elegant, "Künstler-Look". Nicht verspielt und kein Baukasten-Look.
 - Maximal 3 Schriften: Archivo (Display, kursiv/condensed), Inter Tight (Text), Geist Mono (Labels).
 - Keine Nummerierungen wie 01/02/03.
