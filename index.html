@@ -22,7 +22,7 @@
 <link rel="manifest" href="site.webmanifest">
 <link rel="preload" href="fonts/archivo-italic-caps.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="fonts/archivo-sub.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="img/ye-winter-opening.avif" as="image" type="image/avif" fetchpriority="high">
+<link rel="preload" href="img/ye-tour.avif" as="image" type="image/avif" fetchpriority="high">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"ProfessionalService","name":"Visuals by Preecie",
  "url":"https://www.visualsbypreecie.de/","image":"https://www.visualsbypreecie.de/img/og.jpg",
@@ -242,9 +242,15 @@
   .more-head { margin: var(--sec) 0 56px; padding-top: 18px; border-top: 1px solid var(--line); display: flex; justify-content: space-between; align-items: baseline; gap: 10px 16px; }
   .more-head h3 { margin: 0; font-family: var(--display); font-weight: 800; font-stretch: 62%; text-transform: uppercase; font-size: 34px; line-height: 1;
     word-spacing: .1em; color: var(--text); }
-  /* Archiv als ruhige Spalten (Mauerwerk): Feed- und Story-Formate behalten ihr Seitenverhältnis */
-  .more { columns: 3; column-gap: var(--gap); }
-  .more figure { margin: 0 0 56px; min-width: 0; break-inside: avoid; }
+  /* Archiv als Laufband-Slideshow: läuft langsam hin und her, steht bei Maus/Finger/Fokus still. Formate behalten ihr Seitenverhältnis. */
+  .more { --rh: 440px; display: flex; gap: 22px; overflow-x: auto; overscroll-behavior-x: contain; scrollbar-width: none; padding-bottom: 4px;
+    margin-inline: calc(-1 * var(--gutter-l)) calc(-1 * var(--gutter-r)); padding-inline: var(--gutter-l) var(--gutter-r);
+    -webkit-mask: linear-gradient(90deg, transparent, #000 var(--gutter-l), #000 calc(100% - var(--gutter-r)), transparent);
+            mask: linear-gradient(90deg, transparent, #000 var(--gutter-l), #000 calc(100% - var(--gutter-r)), transparent); }
+  .more::-webkit-scrollbar { display: none; }
+  .more figure { flex: 0 0 auto; width: calc(var(--rh) * .8); margin: 0; min-width: 0; }
+  .more figure.is-story { width: calc(var(--rh) * .5625); }
+  .more-head .mono .more-state { margin-left: 10px; color: var(--faint); }
 
   /* ---------- Portfolio-Kategorien ---------- */
   #werke .sec-head { margin-bottom: 40px; }
@@ -574,8 +580,7 @@
     .featured { display: flex; flex-direction: column; gap: 88px; }
     .featured figure:nth-child(even) { margin-top: 0; }
     .more-head { flex-direction: column; align-items: flex-start; }
-    .more { columns: 2; column-gap: 14px; }
-    .more figure { margin-bottom: 32px; }
+    .more { --rh: 360px; gap: 14px; }
     .clients { margin-top: 88px; }
     .clients-head { margin-bottom: 24px; }
     .logo-wall { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -832,8 +837,8 @@
     <div class="pC-guides" aria-hidden="true"><i class="gx"></i><i class="gy"></i><span class="pC-read mono"></span></div>
     <dl class="pC-spec pC-left mono">
       <div><dt>Kunde</dt><dd>YE Munich</dd></div>
-      <div><dt>Location</dt><dd>Ellmau, Tirol</dd></div>
-      <div><dt>Format</dt><dd>4:5 · Carousel</dd></div>
+      <div><dt>Location</dt><dd>München · Alpen</dd></div>
+      <div><dt>Format</dt><dd>4:5 · Feed + Key Visual</dd></div>
     </dl>
     <dl class="pC-spec pC-right mono">
       <div><dt>Design</dt><dd>Preecie</dd></div>
@@ -841,7 +846,7 @@
       <div><dt>Region</dt><dd>Deutschlandweit</dd></div>
     </dl>
     <div class="hero-stage wrap">
-      <figure class="intro-flyer" data-series="img/ye-winter-opening-2.webp, img/ye-winter-opening-3.webp, img/ye-winter-opening-4.webp">
+      <figure class="intro-flyer">
         <div class="pC-sheet">
           <span class="crop tl" aria-hidden="true"></span><span class="crop tr" aria-hidden="true"></span>
           <span class="crop bl" aria-hidden="true"></span><span class="crop br" aria-hidden="true"></span>
@@ -849,12 +854,12 @@
           <span class="dim dim-h mono" aria-hidden="true"><b>1350 px</b></span>
           <svg class="reg" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="6.5"/><path d="M12 1v22M1 12h22"/></svg>
           <!-- Farbpalette = die Hauptfarben des Hero-Flyers (bei neuem Flyer neu bestimmen) -->
-          <span class="swatch" aria-hidden="true"><i style="background:#f3ede5"></i><i style="background:#a8b2bc"></i><i style="background:#8296a9"></i><i style="background:#687f96"></i><i style="background:#4b5d70"></i></span>
-          <button type="button" class="flyer" style="--ph:#3f454b" aria-haspopup="dialog"><picture><source srcset="img/ye-winter-opening.avif" type="image/avif"><img src="img/ye-winter-opening.webp" alt="Flyer YE Winter Opening, YE Munich" width="1080" height="1350" fetchpriority="high" decoding="async"></picture><span class="sr-only"> – groß ansehen</span></button>
+          <span class="swatch" aria-hidden="true"><i style="background:#ebeced"></i><i style="background:#ccd4dc"></i><i style="background:#a2b7c8"></i><i style="background:#88a2b6"></i><i style="background:#485f6f"></i></span>
+          <button type="button" class="flyer" style="--ph:#4b5156" aria-haspopup="dialog"><picture><source srcset="img/ye-tour.avif" type="image/avif"><img src="img/ye-tour.webp" alt="Flyer YE Tour 26/27, YE Munich" width="1080" height="1350" fetchpriority="high" decoding="async"></picture><span class="sr-only"> – groß ansehen</span></button>
         </div>
         <figcaption class="hero-cap mono">
           <span class="latest"><i class="latest-dot" aria-hidden="true"></i><span lang="en">Latest Work</span></span>
-          <span class="hero-what"><span class="t">Winter Opening</span><span class="sep" aria-hidden="true"> · </span><span class="meta">YE Munich</span></span>
+          <span class="hero-what"><span class="t">YE Tour 26/27</span><span class="sep" aria-hidden="true"> · </span><span class="meta">YE Munich</span></span>
         </figcaption>
       </figure>
     </div>
@@ -904,9 +909,8 @@
           <figure data-sector="Club &amp; Event"><button type="button" class="flyer" style="--ph:#160e09" aria-haspopup="dialog"><picture><source srcset="img/the-boiler.avif" type="image/avif"><img src="img/the-boiler.webp" alt="Flyer The Boiler, Collective Flow" width="1080" height="1350" fetchpriority="low" decoding="async"></picture><span class="sr-only"> – groß ansehen</span></button><figcaption class="cap"><span class="t">The Boiler</span><span class="meta mono">Collective Flow</span></figcaption></figure>
         </div>
 
-        <div class="more-head"><h3>Mehr aus dem Archiv</h3><span class="mono">17 Arbeiten</span></div>
+        <div class="more-head"><h3>Mehr aus dem Archiv</h3><span class="mono">16 Arbeiten</span></div>
         <div class="more">
-          <figure data-sector="Club &amp; Event"><button type="button" class="flyer sm" style="--ph:#4b5156" aria-haspopup="dialog"><picture><source srcset="img/ye-tour.avif" type="image/avif"><img src="img/ye-tour.webp" alt="Flyer YE Tour 26/27, YE Munich" width="1080" height="1350" loading="lazy" decoding="async"></picture><span class="sr-only"> – groß ansehen</span></button><figcaption class="cap sm"><span class="t">YE Tour 26/27</span><span class="meta mono">YE Munich</span></figcaption></figure>
           <figure data-sector="Club &amp; Event"><button type="button" class="flyer sm" style="--ph:#484c4e" aria-haspopup="dialog"><picture><source srcset="img/ye-winter-tour.avif" type="image/avif"><img src="img/ye-winter-tour.webp" alt="Flyer Winter Tour, YE Munich" width="1080" height="1350" loading="lazy" decoding="async"></picture><span class="sr-only"> – groß ansehen</span></button><figcaption class="cap sm"><span class="t">Winter Tour</span><span class="meta mono">YE Munich</span></figcaption></figure>
           <figure data-sector="Club &amp; Event"><button type="button" class="flyer sm" style="--ph:#31150b" aria-haspopup="dialog"><picture><source srcset="img/black-friday-gold.avif" type="image/avif"><img src="img/black-friday-gold.webp" alt="Flyer Black Friday, Savage" width="1080" height="1350" loading="lazy" decoding="async"></picture><span class="sr-only"> – groß ansehen</span></button><figcaption class="cap sm"><span class="t">Black Friday</span><span class="meta mono">Savage</span></figcaption></figure>
           <figure class="is-story" data-sector="Club &amp; Event"><button type="button" class="flyer sm" style="--ph:#59191e; --ar:1080 / 1920" aria-haspopup="dialog"><picture><source srcset="img/collective-flow.avif" type="image/avif"><img src="img/collective-flow.webp" alt="Flyer Collective Flow, Nude" width="1080" height="1920" loading="lazy" decoding="async"></picture><span class="sr-only"> – groß ansehen</span></button><figcaption class="cap sm"><span class="t">Collective Flow</span><span class="meta mono">Nude</span></figcaption></figure>
@@ -1758,6 +1762,39 @@ Bis wann:</pre>
     if (e.isIntersecting) { var pr = e.target.play(); if (pr && pr.catch) pr.catch(function () {}); } else e.target.pause();
   }); }, { threshold: .25 });
   vids.forEach(function (v) { io.observe(v); });
+})();
+</script>
+
+<script>
+/* Archiv-Slideshow: fährt langsam nach rechts bis zum Ende, dann zurück. Pause bei Maus, Berührung, Fokus oder eigenem Scrollen. */
+(function () {
+  var m = document.querySelector('#p-flyer .more'); if (!m) return;
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var SPEED = 38, dir = 1, pos = m.scrollLeft, last = 0, hold = false, vis = false, idleUntil = 0, raf = 0, self = false;
+  function tick(t) {
+    raf = 0; if (!vis || document.hidden) return;
+    var dt = last ? Math.min(.05, (t - last) / 1000) : 0; last = t;
+    var max = m.scrollWidth - m.clientWidth;
+    if (!hold && Date.now() > idleUntil && max > 0 && m.offsetParent) {
+      pos += dir * SPEED * dt;
+      if (pos >= max) { pos = max; dir = -1; idleUntil = Date.now() + 1200; }
+      if (pos <= 0) { pos = 0; dir = 1; idleUntil = Date.now() + 1200; }
+      self = true; m.scrollLeft = pos;
+    } else pos = m.scrollLeft;
+    raf = requestAnimationFrame(tick);
+  }
+  function go() { if (!raf) { last = 0; raf = requestAnimationFrame(tick); } }
+  function pause() { hold = true; }
+  function resume() { hold = false; idleUntil = Date.now() + 600; pos = m.scrollLeft; }
+  m.addEventListener('mouseenter', pause); m.addEventListener('mouseleave', resume);
+  m.addEventListener('focusin', pause); m.addEventListener('focusout', resume);
+  m.addEventListener('touchstart', function () { hold = true; }, { passive: true });
+  m.addEventListener('touchend', function () { hold = false; idleUntil = Date.now() + 2500; pos = m.scrollLeft; }, { passive: true });
+  m.addEventListener('wheel', function () { idleUntil = Date.now() + 2500; pos = m.scrollLeft; }, { passive: true });
+  m.addEventListener('scroll', function () { if (self) { self = false; return; } pos = m.scrollLeft; }, { passive: true });
+  new IntersectionObserver(function (e) { vis = e[0].isIntersecting; if (vis) go(); }, { threshold: .15 }).observe(m);
+  document.addEventListener('visibilitychange', function () { if (!document.hidden) go(); });
+  document.querySelectorAll('.cat-tab, .cat-bar button').forEach(function (b) { b.addEventListener('click', function () { setTimeout(go, 50); }); });
 })();
 </script>
 </body>
