@@ -19,7 +19,7 @@ Statische Seite ohne Build-Schritt (HTML/CSS/JS). Hosting: GitHub Pages (dieser 
 - Dunkel, clean, elegant, "Künstler-Look". Nicht verspielt und kein Baukasten-Look.
 - Maximal 3 Schriften: Archivo (Display, kursiv/condensed), Inter Tight (Text), Geist Mono (Labels).
 - Keine Nummerierungen wie 01/02/03.
-- Hero zeigt zuerst das Werk: aktuellster Flyer (SYNC) mit dem Label "Latest Work". Der Hintergrund bewegt sich nur dezent ("Atmen"), kein Mond und kein Planet.
+- Hero zeigt zuerst das Werk: aktuellster Flyer (YE Winter Opening, Serie mit 4 Motiven) mit dem Label "Latest Work". Der Hintergrund bewegt sich nur dezent ("Atmen"), kein Mond und kein Planet.
 - Überschriften "Portfolio" und "About me" auf Englisch, alle anderen Texte auf Deutsch, Anrede "du".
 - Kein Ablauf-Abschnitt, kein Zahlungssystem. Die Seite zeigt nur Referenzen und Kontaktwege.
 - Header-Button: Instagram-Verlauf "DM für Anfrage" → https://ig.me/m/visualsbypreecie
@@ -39,6 +39,14 @@ Nur Flyer hat bisher Inhalt. Die anderen Kategorien zeigen den Platzhalter `.cat
 - Motion: `<video muted loop playsinline autoplay>` mit Poster
 
 Ohne JS ist nur Flyer sichtbar.
+
+## Formate, Serien, Richtungen
+- Bilder 1080 px breit als `.webp` + `.avif`. Feed 4:5 ist Standard. Story 9:16: im `style` der `button.flyer` `--ar:1080 / 1920` setzen und `class="is-story"` an die `<figure>`.
+- Serie (Hauptflyer + Infoseiten): `<figure data-series="img/a-2.webp, img/a-3.webp">`. Das Skript legt die Seiten als Stapel dahinter, schreibt „Serie · N Motive“ und die Großansicht blättert durch alle Seiten (Balken oben).
+- Richtung: `data-sector="Club &amp; Event"` / `"Gastro"`. Ab zwei Richtungen erscheint unter „Flyer“ die Filterleiste.
+- „Mehr aus dem Archiv“ ist ein Spalten-Layout (3 Spalten Desktop, 2 Handy), Bilder dort `loading="lazy"`.
+- Motion: Videos in `media/` (720 px breit, H.264, ohne Ton, ~3 MB) + Poster `.webp`; spielen nur, wenn sichtbar.
+- Rohdateien kommen aus Fabians Drive-Ordner „Grafiken Olo“ (Normal / Motion).
 
 ## Neuen Flyer hinzufügen
 1. Bild als `.webp` UND `.avif` in `img/` ablegen.

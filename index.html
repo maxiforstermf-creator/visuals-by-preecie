@@ -22,7 +22,7 @@
 <link rel="manifest" href="site.webmanifest">
 <link rel="preload" href="fonts/archivo-italic-caps.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="fonts/archivo-sub.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="img/sync.avif" as="image" type="image/avif" fetchpriority="high">
+<link rel="preload" href="img/ye-winter-opening.avif" as="image" type="image/avif" fetchpriority="high">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"ProfessionalService","name":"Visuals by Preecie",
  "url":"https://www.visualsbypreecie.de/","image":"https://www.visualsbypreecie.de/img/og.jpg",
@@ -221,7 +221,7 @@
     font-size: clamp(56px, 7vw, 116px); line-height: .88; letter-spacing: -.005em; word-spacing: .1em; }
 
   /* ---------- Flyer ---------- */
-  .flyer { position: relative; display: block; width: 100%; aspect-ratio: 671 / 832; overflow: hidden; background: var(--ph, #150b12);
+  .flyer { position: relative; display: block; width: 100%; aspect-ratio: var(--ar, 1080 / 1350); overflow: hidden; background: var(--ph, #150b12);
     box-shadow: 0 50px 90px -40px rgba(0,0,0,.95); }
   .flyer img { width: 100%; height: 100%; object-fit: cover; transform: scale(1.015); transition: transform 1.4s var(--ease); }
   .flyer.sm { box-shadow: 0 30px 60px -30px rgba(0,0,0,.9); }
@@ -242,9 +242,9 @@
   .more-head { margin: var(--sec) 0 56px; padding-top: 18px; border-top: 1px solid var(--line); display: flex; justify-content: space-between; align-items: baseline; gap: 10px 16px; }
   .more-head h3 { margin: 0; font-family: var(--display); font-weight: 800; font-stretch: 62%; text-transform: uppercase; font-size: 34px; line-height: 1;
     word-spacing: .1em; color: var(--text); }
-  .more { row-gap: 64px; }
-  .more-hint { display: none; }
-  .more figure { margin: 0; min-width: 0; grid-column: span 4; }
+  /* Archiv als ruhige Spalten (Mauerwerk): Feed- und Story-Formate behalten ihr Seitenverhältnis */
+  .more { columns: 3; column-gap: var(--gap); }
+  .more figure { margin: 0 0 56px; min-width: 0; break-inside: avoid; }
 
   /* ---------- Portfolio-Kategorien ---------- */
   #werke .sec-head { margin-bottom: 40px; }
@@ -557,8 +557,6 @@
     .featured figure:nth-child(odd) { grid-column: 1 / 7; }
     .featured figure:nth-child(even) { grid-column: 7 / 13; margin-top: 22%; }
     .cap .meta { text-align: left; }
-    .more figure { grid-column: span 6; }
-    .more figure:last-child:nth-child(odd) { grid-column: 4 / 10; }
     .about-punch { font-size: clamp(40px, 12.5vw, 72px); margin-top: 36px; }
     .contact-note, .dm-template { grid-column: 1 / 13; }
   }
@@ -576,11 +574,8 @@
     .featured { display: flex; flex-direction: column; gap: 88px; }
     .featured figure:nth-child(even) { margin-top: 0; }
     .more-head { flex-direction: column; align-items: flex-start; }
-    .more { display: flex; gap: 14px; overflow-x: auto; scroll-snap-type: x mandatory; overscroll-behavior-x: contain; scrollbar-width: none;
-      margin-inline: calc(-1 * var(--gutter-l)) calc(-1 * var(--gutter-r)); padding-inline: var(--gutter-l) var(--gutter-r); scroll-padding-inline: var(--gutter-l); }
-    .more::-webkit-scrollbar { display: none; }
-    .more figure, .more figure:last-child:nth-child(odd) { flex: 0 0 78%; scroll-snap-align: start; }
-    .more-hint { display: inline; }
+    .more { columns: 2; column-gap: 14px; }
+    .more figure { margin-bottom: 32px; }
     .clients { margin-top: 88px; }
     .clients-head { margin-bottom: 24px; }
     .logo-wall { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -711,6 +706,39 @@
     background: radial-gradient(circle, rgba(20,11,18,.38) 1.4px, transparent 1.9px) 0 0 / 4px 8px; background-repeat: no-repeat space; transition: opacity .2s ease; }
   /* Ganze Karte + etwas Rand ist Tippfläche */
   .ticket::after { content: ""; position: absolute; inset: -10px; z-index: 2; }
+  /* Serien (z. B. Hauptflyer + Infoseiten): Die weiteren Seiten liegen als Stapel hinter dem Flyer.
+     Markup: <figure data-series="img/a-2.webp, img/a-3.webp"> – Stapel, Etikett und Großansicht baut das Skript. */
+  .series-stack { position: absolute; z-index: 0; pointer-events: none; }
+  .series-stack img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; border-radius: inherit;
+    box-shadow: 0 18px 40px -18px rgba(0,0,0,.9), 0 0 0 1px rgba(255,255,255,.05); filter: brightness(.62) saturate(.9);
+    transform: translate(calc(var(--k) * 9px), calc(var(--k) * -7px)) rotate(calc(var(--k) * 1.6deg)); transform-origin: 50% 100%;
+    transition: transform .6s var(--ease), filter .6s var(--ease); }
+  [data-series] > button.flyer, [data-series] .pC-sheet > button.flyer { z-index: 1; }
+  .series-tag { display: inline-flex; align-items: center; gap: 8px; color: var(--muted); }
+  .series-tag::before { content: ""; width: 12px; height: 9px; border: 1px solid currentColor; border-radius: 1px; box-shadow: 3px -3px 0 -1px var(--bg), 3px -3px 0 0 currentColor; }
+  @media (hover: hover) {
+    [data-series]:hover .series-stack img { transform: translate(calc(var(--k) * 26px), calc(var(--k) * -12px)) rotate(calc(var(--k) * 4.5deg)); filter: brightness(.8) saturate(1); }
+  }
+  @media (prefers-reduced-motion: reduce) { .series-stack img { transition: none; } }
+  .featured figure.is-story .flyer, .featured figure.is-story .cap { width: 74%; }
+  .hero-cap .series-tag { display: none; }
+  @media (max-width: 640px) {
+    .featured figure.is-story .flyer, .featured figure.is-story .cap { width: 82%; margin-inline: auto; }
+    .hero-cap .series-tag { display: inline-flex; }
+    .series-stack img { transform: translate(calc(var(--k) * 4px), calc(var(--k) * -6px)) rotate(calc(var(--k) * 1deg)); }
+  }
+  /* Großansicht: Seiten einer Serie als feine Balken */
+  .v-bars { display: inline-flex; gap: 4px; width: min(160px, 40vw); }
+  .v-bars i { flex: 1; height: 2px; border-radius: 2px; background: rgba(241,237,240,.25); }
+  .v-bars i.on { background: var(--text); }
+  /* Unterzeile unter Flyer: Richtungen (erscheint erst ab zwei Richtungen) */
+  .sector-bar { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px 22px; margin: 0 0 40px; font-family: var(--mono); font-size: 11px; letter-spacing: .14em; text-transform: uppercase; }
+  .sector-bar button { padding: 8px 0; border: 0; background: none; color: var(--faint); font: inherit; letter-spacing: inherit; text-transform: inherit; cursor: pointer;
+    border-bottom: 1px solid transparent; transition: color .2s ease, border-color .2s ease; }
+  .sector-bar button:hover { color: var(--text); }
+  .sector-bar button[aria-pressed="true"] { color: var(--text); border-bottom-color: var(--accent); }
+  .sector-bar button:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+  #p-flyer figure.sector-off { display: none; }
   /* Abriss: Kante wird beim Hover gezackt wie echtes zerrissenes Papier (gleiche Punktzahl = weicher Übergang) */
   .ticket .tk-main { clip-path: polygon(0 0, calc(100% - 0px) 0.00%, calc(100% - 0px) 3.57%, calc(100% - 0px) 7.14%, calc(100% - 0px) 10.71%, calc(100% - 0px) 14.29%, calc(100% - 0px) 17.86%, calc(100% - 0px) 21.43%, calc(100% - 0px) 25.00%, calc(100% - 0px) 28.57%, calc(100% - 0px) 32.14%, calc(100% - 0px) 35.71%, calc(100% - 0px) 39.29%, calc(100% - 0px) 42.86%, calc(100% - 0px) 46.43%, calc(100% - 0px) 50.00%, calc(100% - 0px) 53.57%, calc(100% - 0px) 57.14%, calc(100% - 0px) 60.71%, calc(100% - 0px) 64.29%, calc(100% - 0px) 67.86%, calc(100% - 0px) 71.43%, calc(100% - 0px) 75.00%, calc(100% - 0px) 78.57%, calc(100% - 0px) 82.14%, calc(100% - 0px) 85.71%, calc(100% - 0px) 89.29%, calc(100% - 0px) 92.86%, calc(100% - 0px) 96.43%, calc(100% - 0px) 100.00%, 0 100%); transition: clip-path .35s var(--ease); }
   .ticket .tk-stub { clip-path: polygon(100% 0, 100% 100%, 0px 100.00%, 0px 96.43%, 0px 92.86%, 0px 89.29%, 0px 85.71%, 0px 82.14%, 0px 78.57%, 0px 75.00%, 0px 71.43%, 0px 67.86%, 0px 64.29%, 0px 60.71%, 0px 57.14%, 0px 53.57%, 0px 50.00%, 0px 46.43%, 0px 42.86%, 0px 39.29%, 0px 35.71%, 0px 32.14%, 0px 28.57%, 0px 25.00%, 0px 21.43%, 0px 17.86%, 0px 14.29%, 0px 10.71%, 0px 7.14%, 0px 3.57%, 0px 0.00%); transition: transform .45s var(--ease), clip-path .35s var(--ease); }
@@ -768,6 +796,8 @@
   /* Automatisch befüllte Kategorien (Motion, DJ Graphics, Branding) */
   .cat-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 64px var(--gap); }
   .cat-grid figure { margin: 0; min-width: 0; }
+  .clip-box.story { aspect-ratio: 9 / 16; }
+  .motion-grid { grid-template-columns: repeat(2, minmax(0, 360px)); justify-content: center; }
   .clip-box { position: relative; aspect-ratio: 4 / 5; overflow: hidden; background: #150b12; box-shadow: 0 30px 60px -30px rgba(0,0,0,.9); }
   .clip { display: block; width: 100%; height: 100%; object-fit: cover; }
   @media (max-width: 960px) { .cat-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 48px var(--gap); } }
@@ -798,12 +828,12 @@
 <main id="top">
 
   <section class="intro hC" aria-label="Neueste Arbeit">
-    <div class="ambient" aria-hidden="true"><img src="img/sync-glow.webp" alt="" width="480" height="600" decoding="async"></div>
+    <div class="ambient" aria-hidden="true"><img src="img/ye-glow.webp" alt="" width="480" height="600" decoding="async"></div>
     <div class="pC-guides" aria-hidden="true"><i class="gx"></i><i class="gy"></i><span class="pC-read mono"></span></div>
     <dl class="pC-spec pC-left mono">
-      <div><dt>Kunde</dt><dd>SYNC</dd></div>
-      <div><dt>Location</dt><dd>794 Studio, München</dd></div>
-      <div><dt>Format</dt><dd>4:5 · Feed + Story</dd></div>
+      <div><dt>Kunde</dt><dd>YE Munich</dd></div>
+      <div><dt>Location</dt><dd>Ellmau, Tirol</dd></div>
+      <div><dt>Format</dt><dd>4:5 · Carousel</dd></div>
     </dl>
     <dl class="pC-spec pC-right mono">
       <div><dt>Design</dt><dd>Preecie</dd></div>
@@ -811,7 +841,7 @@
       <div><dt>Region</dt><dd>Deutschlandweit</dd></div>
     </dl>
     <div class="hero-stage wrap">
-      <figure class="intro-flyer">
+      <figure class="intro-flyer" data-series="img/ye-winter-opening-2.webp, img/ye-winter-opening-3.webp, img/ye-winter-opening-4.webp">
         <div class="pC-sheet">
           <span class="crop tl" aria-hidden="true"></span><span class="crop tr" aria-hidden="true"></span>
           <span class="crop bl" aria-hidden="true"></span><span class="crop br" aria-hidden="true"></span>
@@ -819,12 +849,12 @@
           <span class="dim dim-h mono" aria-hidden="true"><b>1350 px</b></span>
           <svg class="reg" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="6.5"/><path d="M12 1v22M1 12h22"/></svg>
           <!-- Farbpalette = die Hauptfarben des Hero-Flyers (bei neuem Flyer neu bestimmen) -->
-          <span class="swatch" aria-hidden="true"><i style="background:#e0ccdb"></i><i style="background:#e360b3"></i><i style="background:#925079"></i><i style="background:#851657"></i><i style="background:#520831"></i></span>
-          <button type="button" class="flyer" style="--ph:#4b263d" aria-haspopup="dialog"><picture><source srcset="img/sync.avif" type="image/avif"><img src="img/sync.webp" alt="Flyer SYNC Face 2 Face, 794 Studio München" width="671" height="833" fetchpriority="high" decoding="async"></picture><span class="sr-only"> – groß ansehen</span></button>
+          <span class="swatch" aria-hidden="true"><i style="background:#f3ede5"></i><i style="background:#a8b2bc"></i><i style="background:#8296a9"></i><i style="background:#687f96"></i><i style="background:#4b5d70"></i></span>
+          <button type="button" class="flyer" style="--ph:#3f454b" aria-haspopup="dialog"><picture><source srcset="img/ye-winter-opening.avif" type="image/avif"><img src="img/ye-winter-opening.webp" alt="Flyer YE Winter Opening, YE Munich" width="1080" height="1350" fetchpriority="high" decoding="async"></picture><span class="sr-only"> – groß ansehen</span></button>
         </div>
         <figcaption class="hero-cap mono">
           <span class="latest"><i class="latest-dot" aria-hidden="true"></i><span lang="en">Latest Work</span></span>
-          <span class="hero-what"><span class="t">SYNC Face 2 Face</span><span class="sep" aria-hidden="true"> · </span><span class="meta">794 Studio</span></span>
+          <span class="hero-what"><span class="t">Winter Opening</span><span class="sep" aria-hidden="true"> · </span><span class="meta">YE Munich</span></span>
         </figcaption>
       </figure>
     </div>
@@ -866,41 +896,42 @@
 
       <div class="cat-panel" id="p-flyer" role="tabpanel" aria-labelledby="tab-flyer">
         <div class="featured grid12">
-          <figure>
-            <button type="button" class="flyer" style="--ph:#431c15" aria-haspopup="dialog"><picture><source srcset="img/black-friday-savage.avif" type="image/avif"><img src="img/black-friday-savage.webp" alt="Flyer Black Friday, Savage" width="671" height="831" fetchpriority="low" decoding="async"></picture><span class="sr-only"> – groß ansehen</span></button>
-            <figcaption class="cap"><span class="t">Black Friday</span><span class="meta mono">Savage</span></figcaption>
-          </figure>
-          <figure>
-            <button type="button" class="flyer" style="--ph:#453709" aria-haspopup="dialog"><picture><source srcset="img/doubledown.avif" type="image/avif"><img src="img/doubledown.webp" alt="Flyer Doubledown 2 Years Anniversary, Barfly Augsburg" width="671" height="833" fetchpriority="low" decoding="async"></picture><span class="sr-only"> – groß ansehen</span></button>
-            <figcaption class="cap"><span class="t">Doubledown</span><span class="meta mono">Barfly</span></figcaption>
-          </figure>
-          <figure>
-            <button type="button" class="flyer" style="--ph:#1b120c" aria-haspopup="dialog"><picture><source srcset="img/the-boiler.avif" type="image/avif"><img src="img/the-boiler.webp" alt="Flyer The Boiler, Destination Gaswerk Augsburg, presented by Collective Flow" width="671" height="830" fetchpriority="low" decoding="async"></picture><span class="sr-only"> – groß ansehen</span></button>
-            <figcaption class="cap"><span class="t">The Boiler</span><span class="meta mono">Collective Flow</span></figcaption>
-          </figure>
-          <figure>
-            <button type="button" class="flyer" style="--ph:#330a0a" aria-haspopup="dialog"><picture><source srcset="img/fourty.avif" type="image/avif"><img src="img/fourty.webp" alt="Flyer Fourty Club Show, Filmcasino Dinner Club" width="671" height="832" fetchpriority="low" decoding="async"></picture><span class="sr-only"> – groß ansehen</span></button>
-            <figcaption class="cap"><span class="t">Fourty</span><span class="meta mono">Filmcasino</span></figcaption>
-          </figure>
+          <figure data-sector="Club &amp; Event" data-series="img/ye-winter-opening-2.webp, img/ye-winter-opening-3.webp, img/ye-winter-opening-4.webp"><button type="button" class="flyer" style="--ph:#3f454b" aria-haspopup="dialog"><picture><source srcset="img/ye-winter-opening.avif" type="image/avif"><img src="img/ye-winter-opening.webp" alt="Flyer Winter Opening, YE Munich" width="1080" height="1350" fetchpriority="low" decoding="async"></picture><span class="sr-only"> – groß ansehen</span></button><figcaption class="cap"><span class="t">Winter Opening</span><span class="meta mono">YE Munich</span></figcaption></figure>
+          <figure data-sector="Club &amp; Event"><button type="button" class="flyer" style="--ph:#24172d" aria-haspopup="dialog"><picture><source srcset="img/soy-latino.avif" type="image/avif"><img src="img/soy-latino.webp" alt="Flyer Soy Latino, Savage" width="1080" height="1350" fetchpriority="low" decoding="async"></picture><span class="sr-only"> – groß ansehen</span></button><figcaption class="cap"><span class="t">Soy Latino</span><span class="meta mono">Savage</span></figcaption></figure>
+          <figure class="is-story" data-sector="Club &amp; Event"><button type="button" class="flyer" style="--ph:#111726; --ar:1080 / 1920" aria-haspopup="dialog"><picture><source srcset="img/one-more-time.avif" type="image/avif"><img src="img/one-more-time.webp" alt="Flyer One More Time, Destination Gaswerk" width="1080" height="1920" fetchpriority="low" decoding="async"></picture><span class="sr-only"> – groß ansehen</span></button><figcaption class="cap"><span class="t">One More Time</span><span class="meta mono">Destination Gaswerk</span></figcaption></figure>
+          <figure data-sector="Club &amp; Event"><button type="button" class="flyer" style="--ph:#211411" aria-haspopup="dialog"><picture><source srcset="img/timeless-rnb.avif" type="image/avif"><img src="img/timeless-rnb.webp" alt="Flyer Timeless R&amp;B, U3 Lounge" width="1080" height="1350" fetchpriority="low" decoding="async"></picture><span class="sr-only"> – groß ansehen</span></button><figcaption class="cap"><span class="t">Timeless R&amp;B</span><span class="meta mono">U3 Lounge</span></figcaption></figure>
+          <figure class="is-story" data-sector="Club &amp; Event"><button type="button" class="flyer" style="--ph:#190d0b; --ar:1080 / 1920" aria-haspopup="dialog"><picture><source srcset="img/mami-chula.avif" type="image/avif"><img src="img/mami-chula.webp" alt="Flyer Mami Chula, Voyage" width="1080" height="1920" fetchpriority="low" decoding="async"></picture><span class="sr-only"> – groß ansehen</span></button><figcaption class="cap"><span class="t">Mami Chula</span><span class="meta mono">Voyage</span></figcaption></figure>
+          <figure data-sector="Club &amp; Event"><button type="button" class="flyer" style="--ph:#160e09" aria-haspopup="dialog"><picture><source srcset="img/the-boiler.avif" type="image/avif"><img src="img/the-boiler.webp" alt="Flyer The Boiler, Collective Flow" width="1080" height="1350" fetchpriority="low" decoding="async"></picture><span class="sr-only"> – groß ansehen</span></button><figcaption class="cap"><span class="t">The Boiler</span><span class="meta mono">Collective Flow</span></figcaption></figure>
         </div>
 
-        <div class="more-head"><h3>Mehr aus dem Archiv</h3><span class="mono">Serie für 333 Club München<span class="more-hint"> · wischen</span></span></div>
-        <div class="more grid12">
-          <figure><button type="button" class="flyer sm" style="--ph:#606312" aria-haspopup="dialog"><picture><source srcset="img/jersey-night.avif" type="image/avif"><img src="img/jersey-night.webp" alt="Flyer Jersey Night, 333 Club München" width="672" height="831" fetchpriority="low" decoding="async"></picture><span class="sr-only"> – groß ansehen</span></button><figcaption class="cap sm"><span class="t">Jersey Night</span><span class="meta mono">333 Club</span></figcaption></figure>
-          <figure><button type="button" class="flyer sm" style="--ph:#5e0101" aria-haspopup="dialog"><picture><source srcset="img/mccartney.avif" type="image/avif"><img src="img/mccartney.webp" alt="Flyer Hip-Hop &amp; More mit McCartney, 333 Club München" width="671" height="832" fetchpriority="low" decoding="async"></picture><span class="sr-only"> – groß ansehen</span></button><figcaption class="cap sm"><span class="t">McCartney</span><span class="meta mono">333 Club</span></figcaption></figure>
-          <figure><button type="button" class="flyer sm" style="--ph:#2c0b0a" aria-haspopup="dialog"><picture><source srcset="img/friends-of-333.avif" type="image/avif"><img src="img/friends-of-333.webp" alt="Flyer Friends of 333, 333 Club München" width="672" height="832" fetchpriority="low" decoding="async"></picture><span class="sr-only"> – groß ansehen</span></button><figcaption class="cap sm"><span class="t">Friends of 333</span><span class="meta mono">333 Club</span></figcaption></figure>
-          <!-- Weiteren Flyer ergänzen: Bild als .webp UND .avif in /img, am Ende einfügen:
-          <figure><button type="button" class="flyer sm" style="--ph:#222" aria-haspopup="dialog"><picture><source srcset="img/DATEI.avif" type="image/avif"><img src="img/DATEI.webp" alt="Flyer NAME, LOCATION" width="671" height="832" fetchpriority="low" decoding="async"></picture><span class="sr-only"> – groß ansehen</span></button><figcaption class="cap sm"><span class="t">NAME</span><span class="meta mono">LOCATION</span></figcaption></figure>
-          -->
+        <div class="more-head"><h3>Mehr aus dem Archiv</h3><span class="mono">17 Arbeiten</span></div>
+        <div class="more">
+          <figure data-sector="Club &amp; Event"><button type="button" class="flyer sm" style="--ph:#4b5156" aria-haspopup="dialog"><picture><source srcset="img/ye-tour.avif" type="image/avif"><img src="img/ye-tour.webp" alt="Flyer YE Tour 26/27, YE Munich" width="1080" height="1350" loading="lazy" decoding="async"></picture><span class="sr-only"> – groß ansehen</span></button><figcaption class="cap sm"><span class="t">YE Tour 26/27</span><span class="meta mono">YE Munich</span></figcaption></figure>
+          <figure data-sector="Club &amp; Event"><button type="button" class="flyer sm" style="--ph:#484c4e" aria-haspopup="dialog"><picture><source srcset="img/ye-winter-tour.avif" type="image/avif"><img src="img/ye-winter-tour.webp" alt="Flyer Winter Tour, YE Munich" width="1080" height="1350" loading="lazy" decoding="async"></picture><span class="sr-only"> – groß ansehen</span></button><figcaption class="cap sm"><span class="t">Winter Tour</span><span class="meta mono">YE Munich</span></figcaption></figure>
+          <figure data-sector="Club &amp; Event"><button type="button" class="flyer sm" style="--ph:#31150b" aria-haspopup="dialog"><picture><source srcset="img/black-friday-gold.avif" type="image/avif"><img src="img/black-friday-gold.webp" alt="Flyer Black Friday, Savage" width="1080" height="1350" loading="lazy" decoding="async"></picture><span class="sr-only"> – groß ansehen</span></button><figcaption class="cap sm"><span class="t">Black Friday</span><span class="meta mono">Savage</span></figcaption></figure>
+          <figure class="is-story" data-sector="Club &amp; Event"><button type="button" class="flyer sm" style="--ph:#59191e; --ar:1080 / 1920" aria-haspopup="dialog"><picture><source srcset="img/collective-flow.avif" type="image/avif"><img src="img/collective-flow.webp" alt="Flyer Collective Flow, Nude" width="1080" height="1920" loading="lazy" decoding="async"></picture><span class="sr-only"> – groß ansehen</span></button><figcaption class="cap sm"><span class="t">Collective Flow</span><span class="meta mono">Nude</span></figcaption></figure>
+          <figure data-sector="Club &amp; Event"><button type="button" class="flyer sm" style="--ph:#3a1715" aria-haspopup="dialog"><picture><source srcset="img/doubledown-sunset.avif" type="image/avif"><img src="img/doubledown-sunset.webp" alt="Flyer Doubledown × RnB Sunset, U3" width="1080" height="1350" loading="lazy" decoding="async"></picture><span class="sr-only"> – groß ansehen</span></button><figcaption class="cap sm"><span class="t">Doubledown × RnB Sunset</span><span class="meta mono">U3</span></figcaption></figure>
+          <figure data-sector="Club &amp; Event"><button type="button" class="flyer sm" style="--ph:#3e1f32" aria-haspopup="dialog"><picture><source srcset="img/sync.avif" type="image/avif"><img src="img/sync.webp" alt="Flyer SYNC Face 2 Face, 794 Studio" width="1080" height="1350" loading="lazy" decoding="async"></picture><span class="sr-only"> – groß ansehen</span></button><figcaption class="cap sm"><span class="t">SYNC Face 2 Face</span><span class="meta mono">794 Studio</span></figcaption></figure>
+          <figure data-sector="Gastro"><button type="button" class="flyer sm" style="--ph:#1f1615" aria-haspopup="dialog"><picture><source srcset="img/damenhof.avif" type="image/avif"><img src="img/damenhof.webp" alt="Flyer Damenhof, Damenhof" width="1080" height="1350" loading="lazy" decoding="async"></picture><span class="sr-only"> – groß ansehen</span></button><figcaption class="cap sm"><span class="t">Damenhof</span><span class="meta mono">Damenhof</span></figcaption></figure>
+          <figure class="is-story" data-sector="Club &amp; Event"><button type="button" class="flyer sm" style="--ph:#560f12; --ar:1080 / 1920" aria-haspopup="dialog"><picture><source srcset="img/lost-on-friday.avif" type="image/avif"><img src="img/lost-on-friday.webp" alt="Flyer Lost on Friday, Voyage" width="1080" height="1920" loading="lazy" decoding="async"></picture><span class="sr-only"> – groß ansehen</span></button><figcaption class="cap sm"><span class="t">Lost on Friday</span><span class="meta mono">Voyage</span></figcaption></figure>
+          <figure data-sector="Club &amp; Event"><button type="button" class="flyer sm" style="--ph:#2a0708" aria-haspopup="dialog"><picture><source srcset="img/fourty.avif" type="image/avif"><img src="img/fourty.webp" alt="Flyer Fourty, Filmcasino" width="1080" height="1350" loading="lazy" decoding="async"></picture><span class="sr-only"> – groß ansehen</span></button><figcaption class="cap sm"><span class="t">Fourty</span><span class="meta mono">Filmcasino</span></figcaption></figure>
+          <figure data-sector="Gastro"><button type="button" class="flyer sm" style="--ph:#19100c" aria-haspopup="dialog"><picture><source srcset="img/peru-sunday.avif" type="image/avif"><img src="img/peru-sunday.webp" alt="Flyer Peru Sunday, Fusion Kitchen" width="1080" height="1350" loading="lazy" decoding="async"></picture><span class="sr-only"> – groß ansehen</span></button><figcaption class="cap sm"><span class="t">Peru Sunday</span><span class="meta mono">Fusion Kitchen</span></figcaption></figure>
+          <figure class="is-story" data-sector="Club &amp; Event"><button type="button" class="flyer sm" style="--ph:#1b1916; --ar:1080 / 1920" aria-haspopup="dialog"><picture><source srcset="img/shake-sum.avif" type="image/avif"><img src="img/shake-sum.webp" alt="Flyer Shake Sum, Voyage" width="1080" height="1920" loading="lazy" decoding="async"></picture><span class="sr-only"> – groß ansehen</span></button><figcaption class="cap sm"><span class="t">Shake Sum</span><span class="meta mono">Voyage</span></figcaption></figure>
+          <figure data-sector="Club &amp; Event"><button type="button" class="flyer sm" style="--ph:#3a2f02" aria-haspopup="dialog"><picture><source srcset="img/doubledown.avif" type="image/avif"><img src="img/doubledown.webp" alt="Flyer Doubledown, Barfly" width="1080" height="1350" loading="lazy" decoding="async"></picture><span class="sr-only"> – groß ansehen</span></button><figcaption class="cap sm"><span class="t">Doubledown</span><span class="meta mono">Barfly</span></figcaption></figure>
+          <figure class="is-story" data-sector="Club &amp; Event"><button type="button" class="flyer sm" style="--ph:#665d5a; --ar:1080 / 1920" aria-haspopup="dialog"><picture><source srcset="img/who-needs-love.avif" type="image/avif"><img src="img/who-needs-love.webp" alt="Flyer Who Needs Love, Luma" width="1080" height="1920" loading="lazy" decoding="async"></picture><span class="sr-only"> – groß ansehen</span></button><figcaption class="cap sm"><span class="t">Who Needs Love</span><span class="meta mono">Luma</span></figcaption></figure>
+          <figure data-sector="Club &amp; Event"><button type="button" class="flyer sm" style="--ph:#240908" aria-haspopup="dialog"><picture><source srcset="img/friends-of-333.avif" type="image/avif"><img src="img/friends-of-333.webp" alt="Flyer Friends of 333, 333 Club" width="1080" height="1350" loading="lazy" decoding="async"></picture><span class="sr-only"> – groß ansehen</span></button><figcaption class="cap sm"><span class="t">Friends of 333</span><span class="meta mono">333 Club</span></figcaption></figure>
+          <figure data-sector="Club &amp; Event"><button type="button" class="flyer sm" style="--ph:#500000" aria-haspopup="dialog"><picture><source srcset="img/hiphop-and-more.avif" type="image/avif"><img src="img/hiphop-and-more.webp" alt="Flyer Hip-Hop &amp; More, 333 Club" width="1080" height="1350" loading="lazy" decoding="async"></picture><span class="sr-only"> – groß ansehen</span></button><figcaption class="cap sm"><span class="t">Hip-Hop &amp; More</span><span class="meta mono">333 Club</span></figcaption></figure>
+          <figure data-sector="Club &amp; Event"><button type="button" class="flyer sm" style="--ph:#50520d" aria-haspopup="dialog"><picture><source srcset="img/jersey-night.avif" type="image/avif"><img src="img/jersey-night.webp" alt="Flyer Jersey Night, 333 Club" width="1080" height="1350" loading="lazy" decoding="async"></picture><span class="sr-only"> – groß ansehen</span></button><figcaption class="cap sm"><span class="t">Jersey Night</span><span class="meta mono">333 Club</span></figcaption></figure>
+          <figure data-sector="Club &amp; Event"><button type="button" class="flyer sm" style="--ph:#361610" aria-haspopup="dialog"><picture><source srcset="img/black-friday-savage.avif" type="image/avif"><img src="img/black-friday-savage.webp" alt="Flyer Black Friday, Savage" width="1080" height="1350" loading="lazy" decoding="async"></picture><span class="sr-only"> – groß ansehen</span></button><figcaption class="cap sm"><span class="t">Black Friday</span><span class="meta mono">Savage</span></figcaption></figure>
+          <!-- Weiteren Flyer ergänzen: Bild als .webp UND .avif in /img (1080 px breit), <figure> wie oben kopieren. Story-Format: im style "--ar:1080 / 1920" ergänzen. Richtung: data-sector. Serie: data-series. -->
         </div>
       </div>
 
       <div class="cat-panel" id="p-motion" role="tabpanel" aria-labelledby="tab-motion" hidden>
-        <!-- Motion Design: Arbeiten hier einfügen (Bilder wie bei Flyer als <figure> mit button.flyer; Videos als <video muted loop playsinline>) und den Platzhalter .cat-soon löschen -->
-        <div class="cat-soon">
-          <span class="mono">In Arbeit</span>
-          <p>Motion-Arbeiten wie animierte Flyer, Visuals und Reels kommen hier bald dazu. Bis dahin findest du aktuelle Clips auf Instagram.</p>
-          <a class="link-cta" href="https://www.instagram.com/visualsbypreecie/" target="_blank" rel="noopener"><span>Auf Instagram ansehen</span><svg class="arr ne" aria-hidden="true"><use href="#i-arr"/></svg><span class="sr-only"> (öffnet neuen Tab)</span></a>
+        <!-- Motion Design: Videos als <video class="clip" muted loop playsinline preload="metadata" poster=…> in .clip-box; spielen nur, wenn sichtbar. -->
+        <div class="cat-grid motion-grid">
+          <figure><div class="clip-box story"><video class="clip" muted loop playsinline preload="metadata" poster="media/one-more-time-poster.webp" aria-label="Motion-Flyer One More Time, Destination Gaswerk"><source src="media/one-more-time.mp4" type="video/mp4"></video></div><figcaption class="cap"><span class="t">One More Time</span><span class="meta mono">Destination Gaswerk</span></figcaption></figure>
+          <figure><div class="clip-box story"><video class="clip" muted loop playsinline preload="metadata" poster="media/soy-latino-poster.webp" aria-label="Motion-Flyer Soy Latino, Savage"><source src="media/soy-latino.mp4" type="video/mp4"></video></div><figcaption class="cap"><span class="t">Soy Latino</span><span class="meta mono">Savage</span></figcaption></figure>
         </div>
       </div>
 
@@ -940,7 +971,7 @@
           <div class="clients-head"><h3 class="mono">Gearbeitet mit</h3></div>
           <!-- Logos: weiß auf transparent in img/logos/ (aktuell aus den Flyern freigestellt – durch Originaldateien ersetzen).
                Kunde ohne Logo-Datei = Name als Schriftzug (.wm). Logo nachreichen: <span class="wm"> durch <img class="lg" …> ersetzen. -->
-          <ul class="logo-wall"><li data-flyer="img/jersey-night.webp"><span class="wm">333 Club</span></li><li data-flyer="img/sync.webp"><span class="wm">794 Studio</span></li><li data-flyer="img/black-friday-savage.webp"><img class="lg" src="img/logos/savage.webp" alt="Savage" width="364" height="240" style="--h:1.15" loading="lazy" decoding="async"></li><li data-flyer="img/fourty.webp"><img class="lg" src="img/logos/filmcasino.webp" alt="Filmcasino" width="640" height="169" style="--h:0.8" loading="lazy" decoding="async"></li><li data-flyer="img/doubledown.webp"><img class="lg" src="img/logos/barfly.webp" alt="Barfly" width="437" height="240" style="--h:1.05" loading="lazy" decoding="async"></li><li data-flyer="img/the-boiler.webp"><img class="lg" src="img/logos/collectiveflow.webp" alt="Collective Flow" width="403" height="177" style="--h:0.95" loading="lazy" decoding="async"></li><li data-flyer="img/the-boiler.webp"><span class="wm">Destination Gaswerk</span></li><li><span class="wm">Voyage</span></li></ul>
+          <ul class="logo-wall"><li data-flyer="img/ye-winter-opening.webp"><span class="wm">YE Munich</span></li><li data-flyer="img/jersey-night.webp"><span class="wm">333 Club</span></li><li data-flyer="img/soy-latino.webp"><img class="lg" src="img/logos/savage.webp" alt="Savage" width="364" height="240" style="--h:1.15" loading="lazy" decoding="async"></li><li data-flyer="img/sync.webp"><span class="wm">794 Studio</span></li><li data-flyer="img/mami-chula.webp"><span class="wm">Voyage</span></li><li data-flyer="img/fourty.webp"><img class="lg" src="img/logos/filmcasino.webp" alt="Filmcasino" width="640" height="169" style="--h:0.8" loading="lazy" decoding="async"></li><li data-flyer="img/doubledown.webp"><img class="lg" src="img/logos/barfly.webp" alt="Barfly" width="437" height="240" style="--h:1.05" loading="lazy" decoding="async"></li><li data-flyer="img/the-boiler.webp"><img class="lg" src="img/logos/collectiveflow.webp" alt="Collective Flow" width="403" height="177" style="--h:0.95" loading="lazy" decoding="async"></li><li data-flyer="img/one-more-time.webp"><span class="wm">Destination Gaswerk</span></li><li data-flyer="img/timeless-rnb.webp"><span class="wm">U3</span></li><li data-flyer="img/who-needs-love.webp"><span class="wm">Luma</span></li><li data-flyer="img/damenhof.webp"><span class="wm">Damenhof</span></li></ul>
           <span class="clients-foot mono" aria-hidden="true">Clubs · Events · Gastro · Artists</span>
         </div>
       </div>
@@ -1223,6 +1254,51 @@ Bis wann:</pre>
 
   })();
 
+  /* Serien-Stapel + Richtungen-Filter (läuft vor der Großansicht, nach dem Laden von content.json) */
+  window.__vbpReady = window.__vbpReady.then(function () {
+    var calm = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    document.querySelectorAll('[data-series]').forEach(function (fig) {
+      var btn = fig.querySelector('button.flyer'); if (!btn) return;
+      var pages = fig.getAttribute('data-series').split(',').map(function (x) { return x.trim(); })
+        .filter(function (x) { return /^(img|auto|media)\/[\w.\/-]+\.(webp|jpe?g|png|avif)$/i.test(x); });
+      if (!pages.length) return;
+      btn._pages = pages;
+      var host = btn.parentNode; if (getComputedStyle(host).position === 'static') host.style.position = 'relative';
+      var stack = document.createElement('span'); stack.className = 'series-stack'; stack.setAttribute('aria-hidden', 'true');
+      pages.slice(0, 3).reverse().forEach(function (src, r, arr) {
+        var im = document.createElement('img'); im.src = src; im.alt = ''; im.loading = 'lazy'; im.decoding = 'async';
+        im.style.setProperty('--k', arr.length - r); stack.appendChild(im);
+      });
+      host.insertBefore(stack, btn);
+      function place() { stack.style.left = btn.offsetLeft + 'px'; stack.style.top = btn.offsetTop + 'px'; stack.style.width = btn.offsetWidth + 'px'; stack.style.height = btn.offsetHeight + 'px'; stack.style.borderRadius = getComputedStyle(btn).borderRadius; }
+      place(); if (window.ResizeObserver) new ResizeObserver(place).observe(btn); else addEventListener('resize', place);
+      var cap = fig.querySelector('.meta');
+      if (cap && !fig.querySelector('.series-tag')) {
+        var tag = document.createElement('span'); tag.className = 'series-tag mono'; tag.textContent = 'Serie · ' + (pages.length + 1) + ' Motive';
+        (fig.querySelector('.cap') || cap.parentNode).appendChild(tag);
+      }
+      var sr = btn.querySelector('.sr-only'); if (sr) sr.textContent = ' – Serie mit ' + (pages.length + 1) + ' Motiven groß ansehen';
+    });
+    /* Richtungen unter "Flyer": <figure data-sector="Club & Event"> – Leiste erscheint erst ab zwei verschiedenen Richtungen */
+    var panel = document.getElementById('p-flyer'); if (!panel) return;
+    var figs = [].slice.call(panel.querySelectorAll('figure[data-sector]')), names = [];
+    figs.forEach(function (f) { var n = f.getAttribute('data-sector').trim(); if (n && names.indexOf(n) < 0) names.push(n); });
+    if (names.length < 2) return;
+    var bar = document.createElement('div'); bar.className = 'sector-bar'; bar.setAttribute('role', 'group'); bar.setAttribute('aria-label', 'Richtung filtern');
+    ['Alle'].concat(names).forEach(function (n, k) {
+      var b = document.createElement('button'); b.type = 'button'; b.textContent = n; b.setAttribute('aria-pressed', k === 0 ? 'true' : 'false');
+      b.addEventListener('click', function () {
+        bar.querySelectorAll('button').forEach(function (x) { x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); });
+        panel.querySelectorAll('figure').forEach(function (f) {
+          var sec = (f.getAttribute('data-sector') || '').trim();
+          f.classList.toggle('sector-off', k > 0 && sec !== n && !!f.querySelector('button.flyer'));
+        });
+      });
+      bar.appendChild(b);
+    });
+    panel.insertBefore(bar, panel.firstChild);
+  });
+
   /* Großansicht */
   window.__vbpReady.then(function () {
     var dlg = document.getElementById('viewer');
@@ -1237,12 +1313,21 @@ Bis wann:</pre>
     var vImg = document.getElementById('v-img'), vTitle = document.getElementById('v-title'), vMeta = document.getElementById('v-meta'),
         vCount = document.getElementById('v-count'), vLive = document.getElementById('v-live'), stage = document.getElementById('v-stage');
     var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    var items = buttons.map(function (b) {
+    /* Serien: jede weitere Seite wird ein eigener Eintrag direkt hinter dem Hauptflyer */
+    var items = [], expanded = [];
+    buttons.forEach(function (b) {
       var fig = b.closest('figure'), img = b.querySelector('img');
       var t = fig.querySelector('.t'), m = fig.querySelector('.meta');
-      return { img: img, alt: img.alt, title: t ? t.textContent : '', meta: m ? m.textContent : '' };
+      var base = { img: img, alt: img.alt, title: t ? t.textContent : '', meta: m ? m.textContent : '' };
+      var pages = b._pages || [];
+      items.push(pages.length ? Object.assign({ page: 0, pages: pages.length + 1 }, base) : base); expanded.push(b);
+      pages.forEach(function (src, k) {
+        items.push({ src: src, alt: base.alt + ' – Seite ' + (k + 2), title: base.title, meta: base.meta, page: k + 1, pages: pages.length + 1 });
+        expanded.push(b);
+      });
     });
-    var srcOf = function (it) { return it.img.currentSrc || it.img.getAttribute('src'); };
+    buttons = expanded;
+    var srcOf = function (it) { return it.src || it.img.currentSrc || it.img.getAttribute('src'); };
     /* Blättern nur innerhalb der eigenen Kategorie (Flyer, DJ Graphics, Branding) */
     var flyerPanel = document.getElementById('p-flyer');
     var panelOf = function (b) { return (b && b.closest('.cat-panel')) || flyerPanel; };
@@ -1271,7 +1356,8 @@ Bis wann:</pre>
       };
       pre.src = src;
       vTitle.textContent = it.title; vMeta.textContent = it.meta;
-      vCount.textContent = '';
+      if (it.pages) { var bars = '<span class="v-bars">'; for (var q = 0; q < it.pages; q++) bars += '<i' + (q === it.page ? ' class="on"' : '') + '></i>'; vCount.innerHTML = bars + '</span>'; }
+      else vCount.textContent = '';
       setTimeout(function () { vLive.textContent = 'Flyer ' + (i + 1) + ' von ' + items.length + ': ' + it.title + ', ' + it.meta; }, 80);
       [i + 1, i - 1].forEach(function (k) { new Image().src = srcOf(items[(k + items.length) % items.length]); });
     }
@@ -1306,7 +1392,7 @@ Bis wann:</pre>
       dlg.style.backgroundColor = '';
       if (opener) opener.focus({ preventScroll: true });
     });
-    allButtons.forEach(function (b) { b.addEventListener('click', function () { var n = useGroup(b); open(Math.max(0, n), b); }); });
+    allButtons.filter(function (b, k) { return allButtons.indexOf(b) === k; }).forEach(function (b) { b.addEventListener('click', function () { var n = useGroup(b); open(Math.max(0, n), b); }); });
     if (heroBtn && allButtons.indexOf(heroBtn) < 0) heroBtn.addEventListener('click', function () {
       var twin = null; allButtons.some(function (b) { if (srcKey(b) === srcKey(heroBtn)) { twin = b; return true; } });
       var n = useGroup(twin || allButtons[0]); open(Math.max(0, n), heroBtn);
@@ -1660,6 +1746,18 @@ Bis wann:</pre>
   new IntersectionObserver(function (en) { vis = en[0].isIntersecting; if (vis) schedule(); else clearTimeout(timer); }, { threshold: .3 }).observe(fig);
   document.addEventListener('visibilitychange', function () { if (document.hidden) clearTimeout(timer); else schedule(); });
   paint();
+})();
+</script>
+
+<script>
+/* Motion: Videos spielen nur, wenn sie zu sehen sind (spart Akku und Datenvolumen) */
+(function () {
+  var vids = document.querySelectorAll('video.clip'); if (!vids.length) return;
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches || !('IntersectionObserver' in window)) return;
+  var io = new IntersectionObserver(function (es) { es.forEach(function (e) {
+    if (e.isIntersecting) { var pr = e.target.play(); if (pr && pr.catch) pr.catch(function () {}); } else e.target.pause();
+  }); }, { threshold: .25 });
+  vids.forEach(function (v) { io.observe(v); });
 })();
 </script>
 </body>
