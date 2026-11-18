@@ -57,7 +57,7 @@ Ohne JS ist nur Flyer sichtbar.
 2. Eine `<figure>` wie die bestehenden kopieren, entweder in `.featured` (große, versetzte Flyer) oder in `.more` ("Mehr aus dem Archiv").
 
 Die Großansicht erkennt alle `button.flyer` automatisch.
-Wechselt der Hero auf einen neuen Flyer: in `.intro` Bild, Texte, Farbbalken (`.swatch`) und Druckbogen-Angaben (`.pC-spec`) anpassen.
+Wechselt der Hero auf einen neuen Flyer: in `.intro` Bild, Farbschein (`.ambient img`, kleine unscharfe Version des Flyers), Texte, Farbbalken (`.swatch`) und Druckbogen-Angaben (`.pC-spec`) anpassen. Der Farbschein läuft per `mask-image` auf `.ambient` nach unten/seitlich ins Transparente aus und geht so nahtlos in den Seitenhintergrund (`.space`) über – kein Strich am Hero-Ende. Nie wieder auf deckendes `var(--bg)` auslaufen lassen.
 
 ## Automatik (n8n + content.json)
 - Der n8n-Workflow committet neue Dateien nach `auto/` und die `content.json` direkt in dieses Repo (GitHub-API, ein Commit pro Lauf). Vor eigenem Arbeiten also immer erst `git pull`.
