@@ -29,7 +29,7 @@
  "description":"Flyer, Motion Design, DJ Graphics und Branding für Clubs, Events, Gastro und Marken.",
  "areaServed":{"@type":"Country","name":"Deutschland"},
  "sameAs":["https://www.instagram.com/visualsbypreecie/"],
- "founder":{"@type":"Person","name":"Preecie","jobTitle":"Grafikdesigner"}}
+ "founder":{"@type":"Person","name":"Fabian Pinkawa","alternateName":"Preecie","jobTitle":"Grafikdesigner"}}
 </script>
 <script>
   /* Effekte nur mit JS. Bilder sind nach spätestens 2,5 s sichtbar, auch wenn etwas hängt. */
@@ -185,7 +185,7 @@
   /* ---------- Statement unter dem Hero ---------- */
   .statement .container { padding-block: var(--sec) 0; align-items: end; row-gap: 40px; }
   .statement h1 { grid-column: 1 / 9; margin: 0; font-family: var(--display); color: var(--text); text-transform: uppercase; font-stretch: 62%; font-weight: 900; font-style: italic;
-    font-size: clamp(72px, 9.6vw, 152px); line-height: .84; letter-spacing: -.01em; word-spacing: .05em; }
+    font-size: clamp(72px, 9.6vw, 152px); line-height: .84; letter-spacing: -.01em; word-spacing: .12em; }
   .statement h1 em { font-style: italic; color: var(--dusk); }
   .statement-side { grid-column: 9 / 13; padding-bottom: 8px; }
   .intro-sub { margin: 0; max-width: 22em; font-size: 18px; line-height: 1.5; letter-spacing: -.005em; color: var(--muted); text-wrap: balance; }
@@ -250,8 +250,8 @@
   .more.dragging { cursor: grabbing; }
   .more.dragging button.flyer { pointer-events: none; }
   /* Serien direkt auf der Seite durchwischen: Fortschrittsbalken oben, keine Pfeile */
-  .ser-bars { position: absolute; z-index: 2; left: 12px; right: 12px; top: 12px; display: flex; gap: 4px; pointer-events: none; }
-  .ser-bars i { flex: 1; height: 2px; border-radius: 2px; background: rgba(255,255,255,.35); box-shadow: 0 1px 4px rgba(0,0,0,.35); transition: background .3s ease; }
+  .ser-bars { display: flex; gap: 4px; margin-top: 12px; pointer-events: none; }
+  .ser-bars i { flex: 1; height: 2px; border-radius: 2px; background: var(--line-strong); transition: background .3s ease; }
   .ser-bars i.on { background: #fff; }
   [data-series] button.flyer { touch-action: pan-y pinch-zoom; }
   [data-series] button.flyer picture img { will-change: transform, translate; }
@@ -302,6 +302,7 @@
   .about-punch { grid-column: 1 / 13; justify-self: center; margin: 44px 0 0; max-width: 13.5em; text-align: center; font-family: var(--display); font-stretch: 62%;
     font-weight: 900; font-style: italic; text-transform: uppercase; font-size: clamp(44px, 6.6vw, 104px); line-height: .94; letter-spacing: -.01em; color: var(--text); text-wrap: balance; }
   .about-punch em { font-style: italic; color: var(--dusk); }
+  .about-punch { word-spacing: .12em; }
   /* About: Foto + Text */
   .about-a { grid-column: 1 / 13; display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 0 var(--gap); align-items: center; }
   .about-photo { grid-column: 1 / 6; position: relative; margin: 0; aspect-ratio: 4 / 5; overflow: hidden; border-radius: 3px; background: #0d0b10; }
@@ -349,7 +350,7 @@
 
   /* ---------- Kontakt ---------- */
   .contact-head { margin-bottom: 64px; }
-  .contact-head .contact-title { grid-column: 1 / 13; font-weight: 900; font-style: italic; font-size: clamp(60px, 9vw, 150px); line-height: .86; letter-spacing: -.01em; word-spacing: .05em; }
+  .contact-head .contact-title { grid-column: 1 / 13; font-weight: 900; font-style: italic; font-size: clamp(60px, 9vw, 150px); line-height: .86; letter-spacing: -.01em; word-spacing: .12em; }
   .contact-title em { display: block; font-style: italic; color: var(--accent);
     background: linear-gradient(95deg, var(--accent) 0%, var(--violet) 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
   .contact-body { row-gap: 40px; }
@@ -375,6 +376,7 @@
   .brief-q:last-child { margin-bottom: 0; }
   .brief-q legend { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 14px; padding: 0; margin-bottom: 18px; }
   .q-t { font-family: var(--display); font-weight: 800; font-stretch: 62%; text-transform: uppercase; font-size: 24px; line-height: 1; letter-spacing: .01em; color: var(--text); }
+  .q-mouse { display: none; } @media (hover: hover) and (pointer: fine) { .q-mouse { display: inline; } .q-touch { display: none; } }
   .q-hint { font-size: 10.5px; letter-spacing: .14em; text-transform: uppercase; color: var(--accent); }
   /* Beim ersten Sichtbarwerden leuchten die Optionen einmal nacheinander auf: zeigt, dass man sie antippen kann */
   @media (prefers-reduced-motion: no-preference) {
@@ -437,7 +439,7 @@
   .pk-list:empty { display: none; }
   .pk-chip { display: inline-flex; align-items: center; gap: 8px; min-height: 40px; padding-left: 6px; border: 1px solid var(--line-strong); font-size: 14px; color: var(--text); }
   .pk-chip i { width: 26px; height: 26px; flex: none; box-shadow: inset 0 0 0 1px rgba(241,237,240,.2); }
-  .pk-x { width: 36px; height: 38px; padding: 0; display: inline-flex; align-items: center; justify-content: center; border: 0; background: transparent; color: var(--muted); cursor: pointer; }
+  .pk-x { width: 44px; height: 44px; padding: 0; display: inline-flex; align-items: center; justify-content: center; border: 0; background: transparent; color: var(--muted); cursor: pointer; }
   .pk-x svg { width: 12px; height: 12px; }
   /* Das Briefing als Poster: entsteht live aus der Auswahl, Titel & Daten tippt man direkt aufs Plakat */
   .poster-wrap { position: relative; padding: 14px; }
@@ -465,7 +467,7 @@
   .ps-rows .sw { display: inline-flex; align-items: center; gap: 6px; margin-right: 12px; white-space: nowrap; }
   .ps-rows .sw i { width: 10px; height: 10px; flex: none; box-shadow: inset 0 0 0 1px rgba(241,237,240,.25); }
   .brief-fields { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px 24px; }
-  .brief-fields legend { float: left; width: 100%; }
+  .brief-fields legend { grid-column: 1 / -1; width: 100%; }
   .brief-fields label { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
   .brief-fields input { width: 100%; min-height: 46px; padding: 8px 0; border: 0; border-bottom: 1px solid var(--line-strong); border-radius: 0; background: transparent;
     color: var(--text); font-family: var(--sans); font-size: 17px; }
@@ -766,7 +768,7 @@
   @media (max-width: 640px) {
     .cat-bar { margin-bottom: 48px; }
     .cat-tabs { gap: 6px 20px; }
-    .cat-tab { font-size: 20px; padding: 8px 0 12px; }
+    .cat-tab { font-size: 20px; padding: 10px 0 14px; }
     .cat-long { display: none; }
     .cat-arrow { display: none; }
     .cat-soon { min-height: 280px; padding: 40px 0; }
@@ -825,7 +827,7 @@
   .v-bars i.on { background: var(--text); }
   /* Unterzeile unter Flyer: Richtungen (erscheint erst ab zwei Richtungen) */
   .sector-bar { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px 22px; margin: 0 0 40px; font-family: var(--mono); font-size: 11px; letter-spacing: .14em; text-transform: uppercase; }
-  .sector-bar button { padding: 8px 0; border: 0; background: none; color: var(--faint); font: inherit; letter-spacing: inherit; text-transform: inherit; cursor: pointer;
+  .sector-bar button { min-height: 44px; min-width: 44px; padding: 8px 0; border: 0; background: none; color: var(--faint); font: inherit; letter-spacing: inherit; text-transform: inherit; cursor: pointer;
     border-bottom: 1px solid transparent; transition: color .2s ease, border-color .2s ease; }
   .sector-bar button:hover { color: var(--text); }
   .sector-bar button[aria-pressed="true"] { color: var(--text); border-bottom-color: var(--accent); }
@@ -924,7 +926,7 @@
     <div class="pC-guides" aria-hidden="true"><i class="gx"></i><i class="gy"></i><span class="pC-read mono"></span></div>
     <dl class="pC-spec pC-left mono">
       <div><dt>Kunde</dt><dd>YE Munich</dd></div>
-      <div><dt>Location</dt><dd>München · Alpen</dd></div>
+      <div><dt>Location</dt><dd>Alpen · Winter 26/27</dd></div>
       <div><dt>Format</dt><dd>4:5 · Feed + Key Visual</dd></div>
     </dl>
     <dl class="pC-spec pC-right mono">
@@ -999,11 +1001,11 @@
         <div class="more-head"><h3>Mehr aus dem Archiv</h3><span class="mono">16 Arbeiten</span></div>
         <div class="more">
           <figure data-sector="Club &amp; Event"><button type="button" class="flyer sm" style="--ph:#484c4e" aria-haspopup="dialog"><picture><source srcset="img/t/ye-winter-tour.avif" type="image/avif"><img src="img/t/ye-winter-tour.webp" alt="Flyer Winter Tour, YE Munich" width="1080" height="1350" decoding="async" fetchpriority="low"></picture><span class="sr-only"> – groß ansehen</span></button><figcaption class="cap sm"><span class="t">Winter Tour</span><span class="meta mono">YE Munich</span></figcaption></figure>
-          <figure data-sector="Club &amp; Event"><button type="button" class="flyer sm" style="--ph:#31150b" aria-haspopup="dialog"><picture><source srcset="img/t/black-friday-gold.avif" type="image/avif"><img src="img/t/black-friday-gold.webp" alt="Flyer Black Friday, Savage" width="1080" height="1350" decoding="async" fetchpriority="low"></picture><span class="sr-only"> – groß ansehen</span></button><figcaption class="cap sm"><span class="t">Black Friday</span><span class="meta mono">Savage</span></figcaption></figure>
+          <figure data-sector="Club &amp; Event"><button type="button" class="flyer sm" style="--ph:#31150b" aria-haspopup="dialog"><picture><source srcset="img/t/black-friday-gold.avif" type="image/avif"><img src="img/t/black-friday-gold.webp" alt="Flyer Black Friday, Savage" width="1080" height="1350" decoding="async" fetchpriority="low"></picture><span class="sr-only"> – groß ansehen</span></button><figcaption class="cap sm"><span class="t">Black Friday Gold</span><span class="meta mono">Savage</span></figcaption></figure>
           <figure class="is-story" data-sector="Club &amp; Event"><button type="button" class="flyer sm" style="--ph:#59191e; --ar:1080 / 1920" aria-haspopup="dialog"><picture><source srcset="img/t/collective-flow.avif" type="image/avif"><img src="img/t/collective-flow.webp" alt="Flyer Collective Flow, Nude" width="1080" height="1920" decoding="async" fetchpriority="low"></picture><span class="sr-only"> – groß ansehen</span></button><figcaption class="cap sm"><span class="t">Collective Flow</span><span class="meta mono">Nude</span></figcaption></figure>
-          <figure data-sector="Club &amp; Event"><button type="button" class="flyer sm" style="--ph:#3a1715" aria-haspopup="dialog"><picture><source srcset="img/t/doubledown-sunset.avif" type="image/avif"><img src="img/t/doubledown-sunset.webp" alt="Flyer Doubledown × RnB Sunset, U3" width="1080" height="1350" decoding="async" fetchpriority="low"></picture><span class="sr-only"> – groß ansehen</span></button><figcaption class="cap sm"><span class="t">Doubledown × RnB Sunset</span><span class="meta mono">U3</span></figcaption></figure>
+          <figure data-sector="Club &amp; Event"><button type="button" class="flyer sm" style="--ph:#3a1715" aria-haspopup="dialog"><picture><source srcset="img/t/doubledown-sunset.avif" type="image/avif"><img src="img/t/doubledown-sunset.webp" alt="Flyer Doubledown × RnB Sunset, U3" width="1080" height="1350" decoding="async" fetchpriority="low"></picture><span class="sr-only"> – groß ansehen</span></button><figcaption class="cap sm"><span class="t">Doubledown × RnB Sunset</span><span class="meta mono">U3 Lounge</span></figcaption></figure>
           <figure data-sector="Club &amp; Event"><button type="button" class="flyer sm" style="--ph:#3e1f32" aria-haspopup="dialog"><picture><source srcset="img/t/sync.avif" type="image/avif"><img src="img/t/sync.webp" alt="Flyer SYNC Face 2 Face, 794 Studio" width="1080" height="1350" decoding="async" fetchpriority="low"></picture><span class="sr-only"> – groß ansehen</span></button><figcaption class="cap sm"><span class="t">SYNC Face 2 Face</span><span class="meta mono">794 Studio</span></figcaption></figure>
-          <figure data-sector="Gastro"><button type="button" class="flyer sm" style="--ph:#1f1615" aria-haspopup="dialog"><picture><source srcset="img/t/damenhof.avif" type="image/avif"><img src="img/t/damenhof.webp" alt="Flyer Damenhof, Damenhof" width="1080" height="1350" decoding="async" fetchpriority="low"></picture><span class="sr-only"> – groß ansehen</span></button><figcaption class="cap sm"><span class="t">Damenhof</span><span class="meta mono">Damenhof</span></figcaption></figure>
+          <figure data-sector="Gastro"><button type="button" class="flyer sm" style="--ph:#1f1615" aria-haspopup="dialog"><picture><source srcset="img/t/damenhof.avif" type="image/avif"><img src="img/t/damenhof.webp" alt="Flyer Damenhof Sommerbar" width="1080" height="1350" decoding="async" fetchpriority="low"></picture><span class="sr-only"> – groß ansehen</span></button><figcaption class="cap sm"><span class="t">Damenhof</span><span class="meta mono">Damenhof</span></figcaption></figure>
           <figure class="is-story" data-sector="Club &amp; Event"><button type="button" class="flyer sm" style="--ph:#560f12; --ar:1080 / 1920" aria-haspopup="dialog"><picture><source srcset="img/t/lost-on-friday.avif" type="image/avif"><img src="img/t/lost-on-friday.webp" alt="Flyer Lost on Friday, Voyage" width="1080" height="1920" decoding="async" fetchpriority="low"></picture><span class="sr-only"> – groß ansehen</span></button><figcaption class="cap sm"><span class="t">Lost on Friday</span><span class="meta mono">Voyage</span></figcaption></figure>
           <figure data-sector="Club &amp; Event"><button type="button" class="flyer sm" style="--ph:#2a0708" aria-haspopup="dialog"><picture><source srcset="img/t/fourty.avif" type="image/avif"><img src="img/t/fourty.webp" alt="Flyer Fourty, Filmcasino" width="1080" height="1350" decoding="async" fetchpriority="low"></picture><span class="sr-only"> – groß ansehen</span></button><figcaption class="cap sm"><span class="t">Fourty</span><span class="meta mono">Filmcasino</span></figcaption></figure>
           <figure data-sector="Gastro"><button type="button" class="flyer sm" style="--ph:#19100c" aria-haspopup="dialog"><picture><source srcset="img/t/peru-sunday.avif" type="image/avif"><img src="img/t/peru-sunday.webp" alt="Flyer Peru Sunday, Fusion Kitchen" width="1080" height="1350" decoding="async" fetchpriority="low"></picture><span class="sr-only"> – groß ansehen</span></button><figcaption class="cap sm"><span class="t">Peru Sunday</span><span class="meta mono">Fusion Kitchen</span></figcaption></figure>
@@ -1019,10 +1021,10 @@
       </div>
 
       <div class="cat-panel" id="p-motion" role="tabpanel" aria-labelledby="tab-motion" hidden>
-        <!-- Motion Design: Videos als <video class="clip" muted loop playsinline preload="metadata" poster=…> in .clip-box; spielen nur, wenn sichtbar. -->
+        <!-- Motion Design: Videos als <video class="clip" muted loop playsinline preload="none" poster=…> in .clip-box; spielen nur, wenn sichtbar. -->
         <div class="cat-grid motion-grid">
-          <figure><div class="clip-box story"><video class="clip" muted loop playsinline preload="metadata" poster="media/one-more-time-poster.webp" aria-label="Motion-Flyer One More Time, Destination Gaswerk"><source src="media/one-more-time.mp4" type="video/mp4"></video></div><figcaption class="cap"><span class="t">One More Time</span><span class="meta mono">Destination Gaswerk</span></figcaption></figure>
-          <figure><div class="clip-box story"><video class="clip" muted loop playsinline preload="metadata" poster="media/soy-latino-poster.webp" aria-label="Motion-Flyer Soy Latino, Savage"><source src="media/soy-latino.mp4" type="video/mp4"></video></div><figcaption class="cap"><span class="t">Soy Latino</span><span class="meta mono">Savage</span></figcaption></figure>
+          <figure><div class="clip-box story"><video class="clip" muted loop playsinline preload="none" poster="media/one-more-time-poster.webp" aria-label="Motion-Flyer One More Time, Destination Gaswerk"><source src="media/one-more-time.mp4" type="video/mp4"></video></div><figcaption class="cap"><span class="t">One More Time</span><span class="meta mono">Destination Gaswerk</span></figcaption></figure>
+          <figure><div class="clip-box story"><video class="clip" muted loop playsinline preload="none" poster="media/soy-latino-poster.webp" aria-label="Motion-Flyer Soy Latino, Savage"><source src="media/soy-latino.mp4" type="video/mp4"></video></div><figcaption class="cap"><span class="t">Soy Latino</span><span class="meta mono">Savage</span></figcaption></figure>
         </div>
       </div>
 
@@ -1080,13 +1082,13 @@
         <div class="brief reveal" id="brief">
           <div class="brief-opts">
             <fieldset class="brief-q">
-              <legend><span class="q-t">Was brauchst du?</span><span class="q-hint mono">Antippen · mehrere möglich</span></legend>
+              <legend><span class="q-t">Was brauchst du?</span><span class="q-hint mono"><span class="q-touch">Antippen</span><span class="q-mouse">Anklicken</span> · mehrere möglich</span></legend>
               <div class="chips" data-key="was">
                 <button type="button" class="chip tw" aria-pressed="false">Flyer</button><button type="button" class="chip tw" aria-pressed="false">Motion</button><button type="button" class="chip tw" aria-pressed="false" lang="en">DJ Graphics</button><button type="button" class="chip tw" aria-pressed="false">Branding</button>
               </div>
             </fieldset>
             <fieldset class="brief-q">
-              <legend><span class="q-t">Welcher Vibe?</span><span class="q-hint mono">Antippen · mehrere möglich</span></legend>
+              <legend><span class="q-t">Welcher Vibe?</span><span class="q-hint mono"><span class="q-touch">Antippen</span><span class="q-mouse">Anklicken</span> · mehrere möglich</span></legend>
               <div class="chips vibes" data-key="vibe">
                 <button type="button" class="chip vb vb-clean" aria-pressed="false">Clean</button><button type="button" class="chip vb vb-dark" aria-pressed="false">Dark</button><button type="button" class="chip vb vb-neon" aria-pressed="false">Neon</button><button type="button" class="chip vb vb-chrome" aria-pressed="false">Chrome</button><button type="button" class="chip vb vb-y2k" aria-pressed="false">Y2K</button><button type="button" class="chip vb vb-retro" aria-pressed="false">Retro</button><button type="button" class="chip vb vb-grunge" aria-pressed="false">Grunge</button><button type="button" class="chip vb vb-luxus" aria-pressed="false">Luxus</button><button type="button" class="chip vb vb-bunt" aria-pressed="false">Bunt</button><button type="button" class="chip vb vb-surprise" aria-pressed="false">Überrasch mich</button>
               </div>
@@ -1129,7 +1131,7 @@
               </div>
             </div>
             <a class="brief-send" href="https://ig.me/m/visualsbypreecie" target="_blank" rel="noopener"><svg class="ig" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".9" fill="currentColor"/></svg><span>Kopieren &amp; in die DM</span><span class="sr-only"> (öffnet Instagram in neuem Tab)</span></a>
-            <p class="brief-hint mono" id="brief-hint" aria-live="polite"></p>
+            <p class="brief-hint mono" id="brief-hint" aria-live="polite">Text wird kopiert – in Instagram einfach einfügen</p>
           </div>
         </div>
         <div class="contact-rows reveal">
@@ -1216,8 +1218,8 @@
     function figure(it, sm) {
       var f = el('figure');
       if (it.type === 'video') {
-        var box = el('div', 'clip-box'); var v = el('video', 'clip');
-        v.muted = true; v.loop = true; v.playsInline = true; v.setAttribute('playsinline', ''); v.preload = 'metadata';
+        var box = el('div', 'clip-box' + (it.story || it.format === 'story' || /story|9x16|9-16/i.test(str(it.src)) ? ' story' : '')); var v = el('video', 'clip');
+        v.muted = true; v.loop = true; v.playsInline = true; v.setAttribute('playsinline', ''); v.preload = 'none';
         if (okSrc(it.poster)) v.poster = it.poster; v.src = it.src; v.setAttribute('aria-label', str(it.title) || 'Motion-Arbeit');
         box.appendChild(v); f.appendChild(box);
       } else {
@@ -1246,15 +1248,15 @@
           ni.setAttribute('fetchpriority', 'high');
           if (pic) pic.replaceWith(ni); else if (old) old.replaceWith(ni);
           var cap = document.querySelector('.hero-cap'); if (cap) { cap.querySelector('.t').textContent = str(h.title); cap.querySelector('.meta').textContent = str(h.meta); }
-          var dd = document.querySelectorAll('.pC-left dd'); if (dd[0]) dd[0].textContent = str(h.title).toUpperCase(); if (dd[1]) dd[1].textContent = str(h.meta);
+          var dd = document.querySelectorAll('.pC-left dd'); if (dd[0]) dd[0].textContent = str(h.meta);
           var sw = document.querySelectorAll('.hC .swatch i');
           if (sw.length && window.__vbpPalette) ni.addEventListener('load', function () { var p = window.__vbpPalette(ni, sw.length); sw.forEach(function (s, k) { if (p[k]) s.style.background = p[k]; }); });
         }
         var feat = document.querySelector('#p-flyer .featured'), more = document.querySelector('#p-flyer .more'), mh = document.querySelector('#p-flyer .more-head');
-        if (feat) { feat.textContent = ''; fl.slice(1, 5).forEach(function (it) { feat.appendChild(figure(it)); }); }
-        var rest = fl.slice(5);
+        if (feat) { feat.textContent = ''; fl.slice(1, 7).forEach(function (it) { feat.appendChild(figure(it)); }); }
+        var rest = fl.slice(7);
         if (more) { more.textContent = ''; rest.forEach(function (it) { more.appendChild(figure(it, true)); }); more.hidden = !rest.length; }
-        if (mh) { mh.hidden = !rest.length; var s = mh.querySelector('span.mono'); if (s) { s.textContent = ''; var hint = el('span', 'more-hint', 'wischen'); s.appendChild(hint); } }
+        if (mh) { mh.hidden = !rest.length; var s = mh.querySelector('span.mono'); if (s) s.textContent = rest.length + (rest.length === 1 ? ' Arbeit' : ' Arbeiten'); }
       }
       [['motion', 'p-motion'], ['dj', 'p-dj'], ['branding', 'p-branding']].forEach(function (pair) {
         var items = pair[0] === 'motion' ? (Array.isArray(c.motion) ? c.motion.filter(function (x) { return x && okSrc(x.src); }).slice(0, 40) : []) : list(c[pair[0]]);
@@ -1363,7 +1365,8 @@
       var host = btn.parentNode; if (getComputedStyle(host).position === 'static') host.style.position = 'relative';
       var stack = document.createElement('span'); stack.className = 'series-stack'; stack.setAttribute('aria-hidden', 'true');
       pages.slice(0, 3).reverse().forEach(function (src, r, arr) {
-        var im = document.createElement('img'); im.src = src; im.alt = ''; im.loading = 'lazy'; im.decoding = 'async';
+        var im = document.createElement('img'); im.src = /^img\/(?!t\/)/.test(src) && !window.__vbpNoThumb ? src.replace(/^img\//, 'img/t/').replace(/\.webp$/, '.avif') : src; im.alt = ''; im.loading = 'lazy'; im.decoding = 'async';
+        im.onerror = function () { if (im.src.indexOf(src) < 0) im.src = src; };
         im.style.setProperty('--k', arr.length - r); stack.appendChild(im);
       });
       host.insertBefore(stack, btn);
@@ -1605,7 +1608,7 @@
         'Was: ' + picked('was').join(', '), 'Vibe: ' + picked('vibe').join(', '),
         'Farben: ' + chosen.map(function (c) { return c.name + ' ' + c.hex; }).join(', '),
         'Projekt: ' + val('event'), 'Datum & Location: ' + val('wann'), 'Bis wann: ' + val('deadline')]
-        .map(function (l) { return l.replace(/\s+$/, ''); }).join('\n');
+        .map(function (l) { return l.replace(/\s+$/, ''); }).filter(function (l) { return !/:$/.test(l); }).join('\n');
     }
     function update() { poster(); }
     b.querySelectorAll('.chips').forEach(function (g) { [].forEach.call(g.children, function (c, k) { c.style.setProperty('--i', k); }); });
@@ -1861,7 +1864,8 @@
     document.querySelectorAll('#werke figure').forEach(function (fig) {
       var btn = fig.querySelector('button.flyer'), img = btn && btn.querySelector('img'); if (!img) return;
       var pd = document.createElement('span'); pd.className = 'pd'; pd.setAttribute('aria-hidden', 'true');
-      pd.innerHTML = '<i class="c1"></i><i class="c2"></i><i class="c3"></i><i class="c4"></i><span class="pd-info"><span class="pd-sw"></span><span class="pd-meta"><span>4:5 · Feed</span>1080 × 1350</span></span>';
+      var story = fig.classList.contains('is-story');
+      pd.innerHTML = '<i class="c1"></i><i class="c2"></i><i class="c3"></i><i class="c4"></i><span class="pd-info"><span class="pd-sw"></span><span class="pd-meta"><span>' + (story ? '9:16 · Story' : '4:5 · Feed') + '</span>' + (story ? '1080 × 1920' : '1080 × 1350') + '</span></span>';
       btn.appendChild(pd);
       var done = false;
       fig.addEventListener('pointerenter', function () {
@@ -1958,7 +1962,7 @@ window.__vbpReady.then(function () {
     var bars = document.createElement('span'); bars.className = 'ser-bars'; bars.setAttribute('aria-hidden', 'true');
     for (var k = 0; k < n; k++) bars.appendChild(document.createElement('i'));
     var peek = document.createElement('img'); peek.className = 'ser-peek'; peek.alt = ''; peek.setAttribute('aria-hidden', 'true'); peek.hidden = true;
-    btn.appendChild(peek); btn.appendChild(bars);
+    btn.appendChild(peek); btn.parentNode.insertBefore(bars, btn.nextSibling);
     function mark() { [].forEach.call(bars.children, function (b, k) { b.classList.toggle('on', k === cur); }); }
     mark();
     /* AVIF nur nutzen, wenn der Browser es fürs erste Bild auch genommen hat */
