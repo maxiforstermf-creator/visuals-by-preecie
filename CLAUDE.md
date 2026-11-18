@@ -23,7 +23,7 @@ Statische Seite ohne Build-Schritt (HTML/CSS/JS). Hosting: GitHub Pages (dieser 
 - Überschriften "Portfolio" und "About me" auf Englisch, alle anderen Texte auf Deutsch, Anrede "du".
 - Kein Ablauf-Abschnitt, kein Zahlungssystem. Die Seite zeigt nur Referenzen und Kontaktwege.
 - Header-Button: Instagram-Verlauf "DM für Anfrage" → https://ig.me/m/visualsbypreecie
-- Kunden/Clubs als Logo-Wand (`.logo-wall`): weiße Logos in `img/logos/`. Kunden ohne Logo-Datei stehen als Schriftzug (`.wm`) drin. Am Desktop zeigt Hover eine Flyer-Vorschau.
+- Kunden/Clubs als Logo-Wand (`.logo-wall`): weiße Logos in `img/logos/`. Kunden ohne Logo-Datei stehen als Schriftzug (`.wm`) drin. Am Desktop zeigt Hover eine Flyer-Vorschau. Logos laden sofort mit der Seite (kein `loading="lazy"`, sonst erscheinen sie erst beim Hinscrollen).
 - Die Logos von Savage, Filmcasino, Barfly und Collective Flow sind aus den Flyern freigestellt. Sobald Originaldateien da sind (PNG/SVG weiß auf transparent), ersetzen. Für 333 Club, 794 Studio, Destination Gaswerk und Voyage fehlen die Logos noch.
 
 ## Technik, die bewusst so ist
