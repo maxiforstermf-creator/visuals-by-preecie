@@ -28,6 +28,7 @@ Statische Seite ohne Build-Schritt (HTML/CSS/JS). Hosting: GitHub Pages (dieser 
 
 ## Technik, die bewusst so ist
 - Anfrage-Bereich (`#brief`) ist ein Live-Briefing-Plakat: Auswahl als Schriftmuster (jeder Vibe in seinem Stil), Fragen als große Überschriften; statt Hinweistext trägt jede Option ein kleines rosa „+“ (gewählt dreht es zum „×“) und neben der Frage steht „N gewählt“; Optionen leuchten beim ersten Sichtbarwerden einmal nacheinander auf. Eckdaten als Felder darunter. Das Plakat zeigt live die fertige DM-Nachricht („Wagwan Preecie!“ + Datenblatt), gewählte Farben färben Glow und Farbbalken. Enter springt zum nächsten Feld, Tippen daneben schließt die Tastatur.
+- Zwischen Intro und Portfolio steht kein Laufband mehr (wirkte wie Baukasten), sondern ein ruhiger Druckrand (`.ink`): Schnittmarken, Passkreuz und ein Farbbalken mit je einer Schlüsselfarbe pro Flyer (nach Farbton sortiert). Neue Flyer: optional eine Farbe als `<i style="background:#…">` ergänzen und die Zahl im Label anpassen.
 - Ticket-CTA: Innenleben hat `pointer-events: none`, damit iOS Safari die ganze Fläche als Link trifft.
 - Frischer Seitenaufruf startet immer oben (Absicherung für Vorschau-Umgebungen). Zurück/Vor, #Anker und Text-Fragmente bleiben unberührt.
 - Großansicht der Flyer ist ein `<dialog>` mit `history.pushState`: Die Zurück-Geste schließt die Großansicht, Doppelklick ist abgesichert.
