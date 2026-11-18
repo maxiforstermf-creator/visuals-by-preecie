@@ -103,7 +103,7 @@
       var(--bg); }
   .space::before, .space::after { content: ""; position: absolute; inset: 0; }
   /* Sternenhimmel: zwei ruhige Ebenen (dicht/klein + weit/größer) und zwei Ebenen, die ganz langsam funkeln (nur opacity, Grafik-Thread) */
-  .space::before { opacity: .55; background-size: 600px 600px; background-image:
+  .space::before { opacity: .3; background-size: 600px 600px; background-image:
       radial-gradient(1.2px 1.2px at 331px 154px, #fff, transparent),
       radial-gradient(1px 1px at 74px 548px, rgba(255,255,255,.6), transparent),
       radial-gradient(1.4px 1.4px at 596px 59px, rgba(255,255,255,.85), transparent),
@@ -130,7 +130,7 @@
       radial-gradient(1.2px 1.2px at 508px 593px, #fff, transparent),
       radial-gradient(1.2px 1.2px at 95px 276px, #fff, transparent),
       radial-gradient(1.4px 1.4px at 62px 317px, rgba(255,225,235,.8), transparent); }
-  .space::after { opacity: .4; background-size: 900px 700px; background-position: 210px 140px; background-image:
+  .space::after { opacity: .22; background-size: 900px 700px; background-position: 210px 140px; background-image:
       radial-gradient(1.8px 1.8px at 291px 395px, rgba(255,255,255,.6), transparent),
       radial-gradient(1.6px 1.6px at 23px 472px, rgba(255,255,255,.85), transparent),
       radial-gradient(1.6px 1.6px at 625px 119px, #fff, transparent),
@@ -164,8 +164,8 @@
       radial-gradient(1.6px 1.6px at 708px 165px, #fff, transparent),
       radial-gradient(1.6px 1.6px at 540px 370px, #fff, transparent),
       radial-gradient(2.2px 2.2px at 776px 540px, #fff, transparent); animation: twinkle 9s ease-in-out -4s infinite; }
-  @keyframes twinkle { 0%, 100% { opacity: .15; } 50% { opacity: .85; } }
-  @media (prefers-reduced-motion: reduce) { .space i { animation: none; opacity: .5; } }
+  @keyframes twinkle { 0%, 100% { opacity: .08; } 50% { opacity: .45; } }
+  @media (prefers-reduced-motion: reduce) { .space i { animation: none; opacity: .25; } }
   .grain { position: fixed; inset: 0; z-index: 40; pointer-events: none; opacity: .055;
     background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 1 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
 
