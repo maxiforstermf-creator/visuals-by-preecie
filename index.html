@@ -824,8 +824,11 @@
   [data-series] > button.flyer, [data-series] .pC-sheet > button.flyer { z-index: 1; }
   .series-tag { display: inline-flex; align-items: center; gap: 8px; color: var(--muted); }
   /* Story-Hinweis unter Storys: erklärt den Handy-Rahmen (Format fürs Handy-Vollbild) */
-  .story-tag { display: inline-flex; align-items: center; gap: 8px; color: var(--muted); grid-column: 1 / -1; }
-  .story-tag::before { content: ""; flex: none; width: 7px; height: 12px; border: 1px solid currentColor; border-radius: 2px; }
+  .cap-tags { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: 6px 18px; }
+  .cap-tags .series-tag { order: 2; }
+  .fmt-tag { display: inline-flex; align-items: center; gap: 8px; color: var(--muted); }
+  .fmt-tag::before { content: ""; flex: none; width: 10px; height: 12.5px; border: 1px solid currentColor; border-radius: 1px; }
+  .fmt-tag.is-9x16::before { width: 7px; height: 12.5px; border-radius: 2px; }
   .series-tag::before { content: ""; width: 12px; height: 9px; border: 1px solid currentColor; border-radius: 1px; box-shadow: 3px -3px 0 -1px var(--bg), 3px -3px 0 0 currentColor; }
   @media (hover: hover) {
     [data-series]:hover .series-stack img { transform: translate(calc(var(--k) * 26px), calc(var(--k) * -12px)) rotate(calc(var(--k) * 4.5deg)); filter: brightness(.8) saturate(1); }
@@ -1372,10 +1375,6 @@
 
   /* Serien-Stapel + Richtungen-Filter (läuft vor der Großansicht, nach dem Laden von content.json) */
   window.__vbpReady = window.__vbpReady.then(function () {
-    document.querySelectorAll('figure.is-story').forEach(function (fig) {
-      var cap = fig.querySelector('.cap'); if (!cap || cap.querySelector('.story-tag')) return;
-      var t = document.createElement('span'); t.className = 'story-tag mono'; t.textContent = 'Story · 9:16 · Handy-Vollbild'; cap.appendChild(t);
-    });
     var calm = matchMedia('(prefers-reduced-motion: reduce)').matches;
     document.querySelectorAll('[data-series]').forEach(function (fig) {
       var btn = fig.querySelector('button.flyer'); if (!btn) return;
@@ -1445,6 +1444,20 @@
       bar.appendChild(b);
     });
     panel.insertBefore(bar, panel.firstChild);
+  });
+
+  /* Format-Hinweis unter jedem Flyer (Feed 4:5 / Story 9:16), Serien-Hinweis kommt mit in dieselbe Zeile */
+  window.__vbpReady = window.__vbpReady.then(function () {
+    document.querySelectorAll('#werke figure').forEach(function (fig) {
+      var cap = fig.querySelector('.cap'), btn = fig.querySelector('button.flyer'); if (!cap || !btn || cap.querySelector('.cap-tags')) return;
+      var story = fig.classList.contains('is-story');
+      var row = document.createElement('span'); row.className = 'cap-tags';
+      var t = document.createElement('span'); t.className = 'fmt-tag mono' + (story ? ' is-9x16' : '');
+      t.textContent = story ? 'Story · 9:16 · Handy-Vollbild' : 'Feed · 4:5 · Instagram-Post';
+      row.appendChild(t);
+      var ser = cap.querySelector('.series-tag'); if (ser) row.appendChild(ser);
+      cap.appendChild(row);
+    });
   });
 
   /* Großansicht */
