@@ -1,5 +1,11 @@
 # Visuals by Preecie – Portfolio-Website
 
+> **Branch `experiment` = Konzept „Vireal – Visuals & Web“** (Fabian + Max gemeinsam, noch NICHT auf `main` übernehmen, nur auf Zuruf „übernehmen“).
+> Unterschiede zu `main`: Wortmarke „Vireal“ (Text, kein Logo-Bild), Hero = Latest Visual (Flyer-Druckbogen) + Latest Web (Browser + Handy, `.web-src`), am Handy/Tablet hoch wischbar (`.hero-rail`, Balken `.hero-dots`);
+> Portfolio mit Bereichen Visuals / Web (`.chapters`, `#ch-visuals`, `#ch-web`); Web-Projekte als `.case` (Screenshots ganze Seite in `img/web/`: Desktop 1200 px, Handy 540 px, .webp + .avif; im Rahmen scroll-gekoppelt);
+> Großansicht Web `#webview` (Desktop + Handy synchron, am Handy Umschalter); About us mit zwei Personen (`.crew`, Foto Max fehlt: `.ph-photo`); Logo-Wand als Flex (letzte Reihe mittig), Beautybar mit Tag „Web“;
+> Anfrage: Option „Website“ blendet Frage „Was soll die Website können?“ + „Aktuelle Website“ ein und die Format-Frage aus (nur wenn ausschließlich Website gewählt).
+
 Portfolio von Fabian Pinkawa ("Preecie"): Grafikdesigner, arbeitet deutschlandweit (Kunden bisher v. a. Augsburg/München; auf der Seite bewusst "deutschlandweit", keine Städte). Er macht Club-Flyer, Motion Design, DJ Graphics und Branding. Logos bietet er NICHT mehr an.
 Statische Seite ohne Build-Schritt (HTML/CSS/JS). Hosting: GitHub Pages (dieser Ordner ist das Repo-Root, Branch `main`). Domain bei Hostinger, DNS zeigt auf GitHub.
 
