@@ -255,6 +255,7 @@
   .ser-bars i.on { background: #fff; }
   [data-series] button.flyer { touch-action: pan-y pinch-zoom; }
   [data-series] button.flyer picture img { will-change: transform, translate; }
+  .ser-peek { position: absolute; inset: 0; z-index: 1; width: 100%; height: 100%; object-fit: cover; transform: scale(1.015); pointer-events: none; will-change: translate; }
   .more-track { display: flex; gap: 22px; width: max-content; will-change: transform; backface-visibility: hidden; }
   .more figure { flex: 0 0 auto; width: calc(var(--rh) * .8); margin: 0; min-width: 0; }
   .more figure.is-story { width: calc(var(--rh) * .5625); }
@@ -1942,8 +1943,9 @@
 </script>
 
 <script>
-/* Serien auf der Seite: mit Finger/Maus seitlich wischen blättert durch die Motive (ohne Pfeile).
-   Kurzes Tippen öffnet die Großansicht direkt beim gerade sichtbaren Motiv. */
+/* Serien auf der Seite: seitlich wischen blättert durch die Motive wie ein Karussell (Nachbarbild schiebt sich mit rein), ohne Pfeile.
+   Am Handy über Touch-Events: sobald die Geste klar seitlich ist, wird das Scrollen der Seite blockiert (kein gleichzeitiges Runterscrollen).
+   Kurzes Tippen öffnet die Großansicht beim gerade sichtbaren Motiv. */
 window.__vbpReady.then(function () {
   var calm = matchMedia('(prefers-reduced-motion: reduce)').matches;
   document.querySelectorAll('figure[data-series]').forEach(function (fig) {
@@ -1951,67 +1953,79 @@ window.__vbpReady.then(function () {
     if (!btn || !img || !btn._pages || !btn._pages.length) return;
     var first = { avif: srcEl ? srcEl.getAttribute('srcset') : '', webp: img.getAttribute('src') };
     var list = [first].concat(btn._pages.map(function (p) { return { avif: p.replace(/\.(webp|jpe?g|png)$/i, '.avif'), webp: p }; }));
-    var n = list.length, cur = 0, warm = false, busy = false;
+    var n = list.length, cur = 0, warm = false, busy = false, avif = !!srcEl;
     btn._cur = 0;
     var bars = document.createElement('span'); bars.className = 'ser-bars'; bars.setAttribute('aria-hidden', 'true');
     for (var k = 0; k < n; k++) bars.appendChild(document.createElement('i'));
-    btn.appendChild(bars);
+    var peek = document.createElement('img'); peek.className = 'ser-peek'; peek.alt = ''; peek.setAttribute('aria-hidden', 'true'); peek.hidden = true;
+    btn.appendChild(peek); btn.appendChild(bars);
     function mark() { [].forEach.call(bars.children, function (b, k) { b.classList.toggle('on', k === cur); }); }
     mark();
-    function preload() { if (warm) return; warm = true; list.forEach(function (l) { var im = new Image(); im.src = l.avif || l.webp; }); }
-    function setSrc(k) {
-      var thumb = /(^|\/)img\/t\//.test(img.getAttribute('src') || '');
-      var a = list[k].avif, w = list[k].webp;
-      if (k === 0 && thumb) { a = a && a.replace(/^img\/(?!t\/)/, 'img/t/'); w = w.replace(/^img\/(?!t\/)/, 'img/t/'); }
-      if (srcEl && a) srcEl.setAttribute('srcset', a); img.setAttribute('src', w);
+    /* AVIF nur nutzen, wenn der Browser es fürs erste Bild auch genommen hat */
+    function url(k) { var l = list[k]; avif = /\.avif(\?|$)/.test(img.currentSrc || '') || (avif && !img.currentSrc); var u = avif && l.avif ? l.avif : l.webp; return /(^|\/)img\/t\//.test(img.getAttribute('src') || '') && k === 0 ? u.replace(/^img\/(?!t\/)/, 'img/t/') : u; }
+    function preload() { if (warm) return; warm = true; for (var k = 1; k < n; k++) { var im = new Image(); im.decoding = 'async'; im.src = url(k); } }
+    function setMain(k) { if (srcEl && list[k].avif) srcEl.setAttribute('srcset', list[k].avif); img.setAttribute('src', list[k].webp); }
+    var W = 0, dx = 0, side = 0, raf = 0;
+    function paint() {
+      raf = 0;
+      var edge = (cur === 0 && dx > 0) || (cur === n - 1 && dx < 0), x = edge ? dx * .22 : dx;
+      img.style.translate = x + 'px 0';
+      var want = edge || !dx ? 0 : (dx < 0 ? 1 : -1);
+      if (want !== side) { side = want; if (side) { peek.src = url(cur + side); peek.hidden = false; } else peek.hidden = true; }
+      if (side) peek.style.translate = (x + side * W) + 'px 0';
     }
-    function go(k, dir) {
-      k = Math.max(0, Math.min(n - 1, k)); if (k === cur || busy) { snap(); return; }
-      busy = true; var w = btn.offsetWidth;
-      var out = calm ? null : img.animate([{ translate: img.style.translate || '0px 0', opacity: 1 }, { translate: ((-dir * w * .5)) + 'px 0', opacity: 0 }], { duration: 160, easing: 'ease-in', fill: 'forwards' });
-      var swap = function () {
-        cur = k; btn._cur = k; mark(); setSrc(k);
-        var done = function () {
-          img.style.translate = ''; if (out) out.cancel();
-          if (!calm) img.animate([{ translate: ((dir * w * .35)) + 'px 0', opacity: 0 }, { translate: '0px 0', opacity: 1 }], { duration: 260, easing: 'cubic-bezier(.2,.7,.2,1)' });
-          busy = false;
-        };
-        if (img.complete && img.naturalWidth) done(); else { img.addEventListener('load', done, { once: true }); img.addEventListener('error', done, { once: true }); }
+    function move(v) { dx = v; if (!raf) raf = requestAnimationFrame(paint); }
+    function finish(commit) {
+      cancelAnimationFrame(raf); raf = 0; paint();
+      var dir = side, x = parseFloat(img.style.translate) || 0;
+      if (!dir) commit = false;
+      var to = commit ? -dir * W : 0, dist = Math.abs(to - x), dur = calm ? 0 : Math.max(160, Math.min(380, dist / W * 420));
+      busy = true;
+      var ease = 'cubic-bezier(.22,.8,.3,1)', opts = { duration: dur, easing: ease, fill: 'forwards' };
+      var a1 = img.animate([{ translate: x + 'px 0' }, { translate: to + 'px 0' }], opts);
+      var a2 = dir ? peek.animate([{ translate: (x + dir * W) + 'px 0' }, { translate: (to + dir * W) + 'px 0' }], opts) : null;
+      a1.onfinish = function () {
+        if (commit) {
+          cur += dir; btn._cur = cur; mark(); setMain(cur);
+          var show = function () { img.style.translate = ''; a1.cancel(); peek.hidden = true; if (a2) a2.cancel(); peek.style.translate = ''; side = 0; busy = false; };
+          /* Hauptbild erst tauschen, wenn es dekodiert ist – sonst blitzt es kurz */
+          (img.decode ? img.decode() : Promise.resolve()).then(show, show);
+        } else { img.style.translate = ''; a1.cancel(); if (a2) a2.cancel(); peek.hidden = true; peek.style.translate = ''; side = 0; busy = false; }
       };
-      if (out) out.onfinish = swap; else swap();
     }
-    function snap() { if (calm || !img.style.translate) { img.style.translate = ''; return; } var t = img.style.translate; img.style.translate = ''; img.animate([{ translate: t }, { translate: '0px 0' }], { duration: 220, easing: 'cubic-bezier(.2,.7,.2,1)' }); }
-    var d = null;
-    btn.addEventListener('pointerenter', preload, { once: true });
-    btn.addEventListener('pointerdown', function (e) {
-      if (e.button !== 0 || btn.closest('.more')) return; preload();
-      d = { x: e.clientX, y: e.clientY, id: e.pointerId, on: false, t: e.timeStamp };
-    });
-    btn.addEventListener('pointermove', function (e) {
-      if (!d || e.pointerId !== d.id || busy) return;
-      var dx = e.clientX - d.x, dy = e.clientY - d.y;
-      if (!d.on) { if (Math.abs(dx) < 8 || Math.abs(dx) < Math.abs(dy) * 1.2) { if (Math.abs(dy) > 12) d = null; return; } d.on = true; try { btn.setPointerCapture(e.pointerId); } catch (err) {} }
-      var edge = (cur === 0 && dx > 0) || (cur === n - 1 && dx < 0);
-      img.style.translate = ((edge ? dx * .25 : dx)) + 'px 0';
-    });
-    function up(e) {
-      if (!d || e.pointerId !== d.id) return;
-      var on = d.on, dx = e.clientX - d.x, fast = Math.abs(dx) / Math.max(1, e.timeStamp - d.t) > .5; d = null;
-      if (!on) return;
-      btn._swiped = true; setTimeout(function () { btn._swiped = false; }, 400);
-      if (Math.abs(dx) > btn.offsetWidth * .18 || (fast && Math.abs(dx) > 24)) go(cur + (dx < 0 ? 1 : -1), dx < 0 ? 1 : -1); else snap();
+    function step(dir) { if (busy) return; if (cur + dir < 0 || cur + dir >= n) return; preload(); W = btn.offsetWidth; dx = -dir * 1; paint(); finish(true); }
+    var g = null;
+    function start(x, y, t) { if (busy || btn.closest('.more')) return; preload(); W = btn.offsetWidth; g = { x: x, y: y, t: t, lock: 0, lx: x, lt: t, v: 0 }; }
+    function track(x, y, t) {
+      if (!g) return false;
+      var ddx = x - g.x, ddy = y - g.y;
+      if (!g.lock) { if (Math.abs(ddx) < 7 && Math.abs(ddy) < 7) return Math.abs(ddx) >= Math.abs(ddy); g.lock = Math.abs(ddx) > Math.abs(ddy) ? 1 : 2; if (g.lock === 2) { g = null; return false; } g.x = x; ddx = 0; }
+      g.v = (x - g.lx) / Math.max(1, t - g.lt); g.lx = x; g.lt = t;
+      move(ddx); return true;
     }
-    btn.addEventListener('pointerup', up); btn.addEventListener('pointercancel', function (e) { if (d && e.pointerId === d.id) { d = null; snap(); } });
+    function end() {
+      if (!g) return; var was = g.lock === 1, v = g.v; g = null; if (!was) return;
+      btn._swiped = true; setTimeout(function () { btn._swiped = false; }, 450);
+      finish(Math.abs(dx) > W * .2 || (Math.abs(v) > .35 && Math.abs(dx) > 20 && (v < 0) === (dx < 0)));
+    }
+    /* Touch: eigene Geste, damit iOS nicht gleichzeitig scrollt */
+    btn.addEventListener('touchstart', function (e) { if (e.touches.length !== 1) { g = null; return; } var p = e.touches[0]; start(p.clientX, p.clientY, e.timeStamp); }, { passive: true });
+    btn.addEventListener('touchmove', function (e) { if (!g) return; var p = e.touches[0]; if (track(p.clientX, p.clientY, e.timeStamp) && e.cancelable) e.preventDefault(); }, { passive: false });
+    btn.addEventListener('touchend', end); btn.addEventListener('touchcancel', function () { if (g && g.lock === 1) { g = null; finish(false); } else g = null; });
+    /* Maus */
+    var mouse = false;
+    btn.addEventListener('pointerdown', function (e) { if (e.pointerType !== 'mouse' || e.button !== 0) return; mouse = true; start(e.clientX, e.clientY, e.timeStamp); });
+    window.addEventListener('pointermove', function (e) { if (mouse && e.pointerType === 'mouse') track(e.clientX, e.clientY, e.timeStamp); });
+    window.addEventListener('pointerup', function (e) { if (mouse && e.pointerType === 'mouse') { mouse = false; end(); } });
+    btn.addEventListener('pointerenter', function (e) { if (e.pointerType === 'mouse') preload(); });
     btn.addEventListener('dragstart', function (e) { e.preventDefault(); });
-    /* Trackpad seitwärts */
+    /* Trackpad seitwärts: ein Wisch = ein Motiv */
     var wl = 0;
     btn.addEventListener('wheel', function (e) {
       if (btn.closest('.more') || Math.abs(e.deltaX) <= Math.abs(e.deltaY)) return; e.preventDefault();
-      var now = performance.now(); if (now - wl < 450 || Math.abs(e.deltaX) < 12) return; wl = now; preload();
-      go(cur + (e.deltaX > 0 ? 1 : -1), e.deltaX > 0 ? 1 : -1);
+      var now = performance.now(); if (now - wl < 500 || Math.abs(e.deltaX) < 14) return; wl = now; step(e.deltaX > 0 ? 1 : -1);
     }, { passive: false });
-    /* Tastatur: Pfeiltasten auf dem fokussierten Flyer */
-    btn.addEventListener('keydown', function (e) { if (e.key === 'ArrowRight') { e.preventDefault(); preload(); go(cur + 1, 1); } else if (e.key === 'ArrowLeft') { e.preventDefault(); preload(); go(cur - 1, -1); } });
+    btn.addEventListener('keydown', function (e) { if (e.key === 'ArrowRight') { e.preventDefault(); step(1); } else if (e.key === 'ArrowLeft') { e.preventDefault(); step(-1); } });
   });
 });
 </script>
