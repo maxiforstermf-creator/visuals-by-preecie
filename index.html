@@ -239,6 +239,7 @@
   .cap .meta { text-align: right; }
 
   .works .container { padding-block: 40px 40px; }
+  .works { margin-top: clamp(56px, 8vw, 128px); }
   .featured { row-gap: 128px; }
   .featured figure { margin: 0; min-width: 0; }
   .featured figure:nth-child(odd) { grid-column: 1 / 7; }
@@ -865,21 +866,6 @@
   @media (max-width: 640px) { .ticket { width: 100%; height: 80px; } .ticket .tk-main { flex: 1; } .ticket .tk-main b { font-size: 28px; } }
 
   /* ===== LED-Laufschrift ===== */
-  /* Druckrand: wie der Rand eines Druckbogens – Schnittmarken, Passkreuz, Farbbalken aus den echten Arbeiten. Ruhig, keine Bewegung. */
-  .ink { margin: var(--sec) 0 0; }
-  .ink-row { display: flex; align-items: center; gap: 18px; padding-block: 6px; }
-  .ink-cm { flex: none; width: 18px; height: 18px; border-left: 1px solid var(--line-strong); border-top: 1px solid var(--line-strong); }
-  .ink-cm.r { border-left: 0; border-right: 1px solid var(--line-strong); margin-left: auto; }
-  .ink-reg { flex: none; width: 18px; height: 18px; fill: none; stroke: var(--faint); stroke-width: 1; }
-  .ink-bar { display: flex; gap: 2px; flex: 1 1 auto; min-width: 0; max-width: 760px; }
-  .ink-bar i { flex: 1 1 0; height: 14px; min-width: 0; box-shadow: inset 0 0 0 1px rgba(255,255,255,.06); }
-  .ink-lbl { flex: none; font-size: 10.5px; letter-spacing: .16em; text-transform: uppercase; color: var(--faint); white-space: nowrap; }
-  @media (max-width: 640px) {
-    .ink-row { flex-wrap: wrap; gap: 10px 12px; }
-    .ink-bar { order: 5; flex: 1 1 100%; }
-    .ink-bar i { flex: 1 1 0; height: 12px; min-width: 0; }
-    .ink-cm { width: 14px; height: 14px; }
-  }
 
   /* ===== Druck-Details beim Überfahren (nur Desktop) ===== */
   .pd { display: none; }
@@ -982,14 +968,6 @@
   </section>
 
   <!-- LED-Laufschrift -->
-  <!-- Druckrand statt Laufband: Farbbalken mit je einer Schlüsselfarbe pro Flyer aus dem Portfolio (nach Farbton sortiert), Passkreuz und Schnittmarken. Bei neuen Flyern optional eine Farbe ergänzen. -->
-  <div class="ink wrap" aria-hidden="true"><div class="container ink-row">
-    <span class="ink-cm"></span>
-    <svg class="ink-reg" viewBox="0 0 22 22"><circle cx="11" cy="11" r="6"/><path d="M11 0v22M0 11h22"/></svg>
-    <span class="ink-bar"><i style="background:#540c33"></i><i style="background:#de0f1e"></i><i style="background:#c81a26"></i><i style="background:#a90003"></i><i style="background:#b00304"></i><i style="background:#f70001"></i><i style="background:#db0707"></i><i style="background:#7a231e"></i><i style="background:#4d312d"></i><i style="background:#b82f17"></i><i style="background:#d33b15"></i><i style="background:#762f10"></i><i style="background:#785342"></i><i style="background:#6d4632"></i><i style="background:#866551"></i><i style="background:#553920"></i><i style="background:#fedc08"></i><i style="background:#f4e904"></i><i style="background:#6c8a9b"></i><i style="background:#516d87"></i><i style="background:#06367b"></i><i style="background:#3a2a61"></i></span>
-    <span class="ink-lbl mono">Farbbalken · 22 Arbeiten</span>
-    <span class="ink-cm r"></span>
-  </div></div>
 
   <section id="werke" class="works wrap" aria-labelledby="h-werke">
     <div class="container">
