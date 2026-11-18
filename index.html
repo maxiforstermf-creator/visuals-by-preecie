@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Vireal – Visuals &amp; Web</title>
-<meta name="description" content="Flyer, Motion Design und Websites aus einer Hand – für Clubs, Events, Gastro und Marken in ganz Deutschland. Anfrage per Instagram-DM.">
+<meta name="description" content="Flyer, Motion Design und Websites aus einer Hand – für Läden, Studios, Gastro, Events und Marken in ganz Deutschland. Anfrage per Instagram-DM.">
 <link rel="canonical" href="https://www.vireal.media/">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="de_DE">
@@ -26,7 +26,7 @@
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"ProfessionalService","name":"Vireal",
  "url":"https://www.vireal.media/","image":"https://www.vireal.media/img/og.jpg",
- "description":"Flyer, Motion Design und Websites für Clubs, Events, Gastro und Marken.",
+ "description":"Flyer, Motion Design und Websites für Läden, Studios, Gastro, Events und Marken.",
  "areaServed":{"@type":"Country","name":"Deutschland"},
  "sameAs":["https://www.instagram.com/vireal.media/"],
  "founder":{"@type":"Person","name":"Fabian Pinkawa","alternateName":"Preecie","jobTitle":"Grafikdesigner"}}
@@ -467,6 +467,10 @@
   .fm[aria-pressed="true"] .fi { background: var(--accent); border-color: var(--accent); }
   .vb { font-size: clamp(22px, 2vw, 28px); }
   .vb-clean { font-weight: 400; font-stretch: 75%; letter-spacing: .16em; }
+  .vb-modern { font-weight: 700; font-stretch: 75%; letter-spacing: -.01em; text-transform: none; color: #dfe8f3; }
+  .vb-natur { font-weight: 400; font-stretch: 75%; letter-spacing: .06em; text-transform: none; color: #c9d4ae; }
+  .vb-warm { font-style: italic; font-weight: 700; color: #eba57c; }
+  .vb-bold { font-style: italic; font-weight: 900; color: #fff; letter-spacing: .01em; text-shadow: 3px 3px 0 rgba(233,163,182,.55); }
   .vb-dark { color: #9b919a; text-shadow: 0 3px 0 #000, 0 0 24px #000; }
   .vb-neon { color: #ffe3f4; text-shadow: 0 0 4px #ff5cc8, 0 0 14px #ff3dbb, 0 0 34px rgba(255,61,187,.6); }
   .vb-chrome, .vb-y2k, .vb-luxus, .vb-bunt, .vb-grunge { -webkit-background-clip: text; background-clip: text; color: transparent; }
@@ -1326,6 +1330,11 @@
     .mode { padding-right: 12px; }
     .ic-v { width: 14px; height: 18px; } .ic-w { width: 22px; height: 16px; } .ic-w b { top: 3px; }
   }
+
+  /* Bereiche Visuals / Web: Inhalt mittig in jeder Hälfte */
+  .ch, .ch + .ch { grid-template-columns: minmax(0, 1fr); justify-items: center; text-align: center; padding: 32px 24px 30px; }
+  .ch::after, .ch + .ch::after { left: 24px; right: 24px; }
+  @media (max-width: 640px) { .ch, .ch + .ch { padding: 22px 10px 20px; } .ch::after, .ch + .ch::after { left: 10px; right: 10px; } }
 </style>
 </head>
 <body>
@@ -1401,10 +1410,10 @@
     <div class="container grid12">
       <h1 class="reveal"><span class="h1-word"><i>Vi</i>real</span><span class="h1-sub">Visuals <em>&amp;</em> Web</span></h1>
       <div class="statement-side reveal">
-        <p class="intro-sub">Flyer, Motion Design und die passende Website – aus einer Hand und im selben Look. Für Clubs, Events, Gastro und Marken in ganz Deutschland.</p>
+        <p class="intro-sub">Flyer, Motion Design und die passende Website – aus einer Hand und im selben Look. Für Läden, Studios, Gastro, Events und Marken in ganz Deutschland.</p>
         <div class="intro-actions">
           <a class="ticket" href="#kontakt">
-            <span class="tk-main"><small class="mono">Admit one · Anfrage</small><b>Projekt anfragen</b></span>
+            <span class="tk-main"><small class="mono">Anfrage · Visual &amp; Web</small><b>Projekt anfragen</b></span>
             <span class="tk-stub" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12h13M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
           </a>
         </div>
@@ -1419,8 +1428,8 @@
       <header class="sec-head grid12 works-head"><h2 id="h-werke">Portfolio</h2>
       </header>
       <div class="chapters" role="tablist" aria-label="Bereiche" hidden>
-        <button type="button" class="ch" role="tab" id="ch-t-visuals" aria-controls="ch-visuals" aria-selected="true"><span class="ch-t" lang="en">Visuals</span><span class="ch-s mono">Flyer · Motion<span class="ch-long"> Design</span></span><svg class="arr" aria-hidden="true"><use href="#i-arr"/></svg></button>
-        <button type="button" class="ch" role="tab" id="ch-t-web" aria-controls="ch-web" aria-selected="false" tabindex="-1"><span class="ch-t" lang="en">Web</span><span class="ch-s mono">Websites · Shops</span><svg class="arr" aria-hidden="true"><use href="#i-arr"/></svg></button>
+        <button type="button" class="ch" role="tab" id="ch-t-visuals" aria-controls="ch-visuals" aria-selected="true"><span class="ch-t" lang="en">Visuals</span><span class="ch-s mono">Flyer · Motion<span class="ch-long"> Design</span></span></button>
+        <button type="button" class="ch" role="tab" id="ch-t-web" aria-controls="ch-web" aria-selected="false" tabindex="-1"><span class="ch-t" lang="en">Web</span><span class="ch-s mono">Websites · Shops</span></button>
       </div>
 
       <div class="chapter" id="ch-visuals" role="tabpanel" aria-labelledby="ch-t-visuals">
@@ -1519,7 +1528,7 @@
           <article class="member">
             <figure class="about-photo" aria-roledescription="Slideshow" aria-label="Fotos von Fabian"><img src="img/fabian-5.webp" alt="Fabian alias Preecie" width="284" height="355" decoding="async" fetchpriority="low" class="on"><img src="img/fabian-4.webp" alt="" width="526" height="658" decoding="async" loading="lazy"><img src="img/fabian-7.webp" alt="" width="533" height="666" decoding="async" loading="lazy"><span class="ap-bars" aria-hidden="true"><i></i><i></i><i></i></span><button type="button" class="ap-nav prev" aria-label="Vorheriges Foto"></button><button type="button" class="ap-nav next" aria-label="Nächstes Foto"></button><figcaption>Fabian · Preecie</figcaption></figure>
             <div class="member-t"><span class="member-role" lang="en">Visuals</span></div>
-            <p class="member-text">Flyer und Motion Design für Clubs, Events, Gastro und Marken – vom einzelnen Post bis zur ganzen Serie.</p>
+            <p class="member-text">Flyer und Motion Design für Läden, Studios, Gastro, Events und Marken – vom einzelnen Post bis zur ganzen Serie.</p>
           </article>
           <article class="member">
             <!-- Foto von Max fehlt noch: <figure class="about-photo"> mit <img> wie bei Fabian einsetzen und .ph-photo entfernen -->
@@ -1534,7 +1543,7 @@
           <!-- Logos: weiß auf transparent in img/logos/ (aktuell aus den Flyern freigestellt – durch Originaldateien ersetzen).
                Kunde ohne Logo-Datei = Name als Schriftzug (.wm). Logo nachreichen: <span class="wm"> durch <img class="lg" …> ersetzen. -->
           <ul class="logo-wall"><li data-flyer="img/ye-winter-opening.webp"><span class="wm">YE Munich</span></li><li data-flyer="img/jersey-night.webp"><span class="wm">333 Club</span></li><li data-flyer="img/soy-latino.webp"><img class="lg" src="img/logos/savage.webp" alt="Savage" width="364" height="240" style="--h:1.15" decoding="async" fetchpriority="low"></li><li data-flyer="img/sync.webp"><span class="wm">794 Studio</span></li><li data-flyer="img/mami-chula.webp"><span class="wm">Voyage</span></li><li data-flyer="img/fourty.webp"><img class="lg" src="img/logos/filmcasino.webp" alt="Filmcasino" width="640" height="169" style="--h:0.8" decoding="async" fetchpriority="low"></li><li data-flyer="img/doubledown.webp"><img class="lg" src="img/logos/barfly.webp" alt="Barfly" width="437" height="240" style="--h:1.05" decoding="async" fetchpriority="low"></li><li data-flyer="img/the-boiler.webp"><img class="lg" src="img/logos/collectiveflow.webp" alt="Collective Flow" width="403" height="177" style="--h:0.95" decoding="async" fetchpriority="low"></li><li data-flyer="img/one-more-time.webp"><span class="wm">Destination Gaswerk</span></li><li data-flyer="img/timeless-rnb.webp"><span class="wm">U3</span></li><li data-flyer="img/who-needs-love.webp"><span class="wm">Luma</span></li><li data-flyer="img/damenhof.webp"><span class="wm">Damenhof</span></li><li class="is-web"><span class="wm">Beautybar</span><span class="wm-tag mono">Web</span></li></ul>
-          <span class="clients-foot mono" aria-hidden="true">Clubs · Events · Gastro · Beauty · Marken</span>
+          <span class="clients-foot mono" aria-hidden="true">Gastro · Beauty · Events · Clubs · Marken</span>
         </div>
       </div>
     </div>
@@ -1573,13 +1582,13 @@
             <fieldset class="brief-q">
               <legend><span class="q-t">Welcher Vibe?</span><span class="q-count mono" aria-live="polite"></span></legend>
               <div class="chips vibes" data-key="vibe">
-                <button type="button" class="chip vb vb-clean" aria-pressed="false">Clean</button><button type="button" class="chip vb vb-dark" aria-pressed="false">Dark</button><button type="button" class="chip vb vb-neon" aria-pressed="false">Neon</button><button type="button" class="chip vb vb-chrome" aria-pressed="false">Chrome</button><button type="button" class="chip vb vb-y2k" aria-pressed="false">Y2K</button><button type="button" class="chip vb vb-retro" aria-pressed="false">Retro</button><button type="button" class="chip vb vb-grunge" aria-pressed="false">Grunge</button><button type="button" class="chip vb vb-luxus" aria-pressed="false">Luxus</button><button type="button" class="chip vb vb-bunt" aria-pressed="false">Bunt</button><button type="button" class="chip vb vb-surprise" aria-pressed="false">Überrasch mich</button>
+                <button type="button" class="chip vb vb-clean" aria-pressed="false">Clean</button><button type="button" class="chip vb vb-luxus" aria-pressed="false">Edel</button><button type="button" class="chip vb vb-modern" aria-pressed="false">Modern</button><button type="button" class="chip vb vb-natur" aria-pressed="false">Natürlich</button><button type="button" class="chip vb vb-warm" aria-pressed="false">Warm</button><button type="button" class="chip vb vb-bold" aria-pressed="false">Bold</button><button type="button" class="chip vb vb-retro" aria-pressed="false">Retro</button><button type="button" class="chip vb vb-dark" aria-pressed="false">Dark</button><button type="button" class="chip vb vb-bunt" aria-pressed="false">Bunt</button><button type="button" class="chip vb vb-surprise" aria-pressed="false">Überrasch mich</button>
               </div>
             </fieldset>
             <fieldset class="brief-q brief-insp">
               <legend><span class="q-t">Inspirationen</span></legend>
               <p class="pk-tip">Schick gern rein, was dir gefällt: Links, Accounts oder ein paar Worte. Bilder und Screenshots einfach in der DM hinterher.</p>
-              <label><span class="sr-only">Inspirationen</span><input type="text" data-key="insp" maxlength="200" enterkeyhint="next" autocomplete="off" placeholder="z. B. @account, Link oder „wie der YE-Flyer, nur in Rot“" data-pv="z. B. @account, Link oder „wie der YE-Flyer, nur in Rot“" data-pw="z. B. Websites oder Accounts, die dir gefallen"></label>
+              <label><span class="sr-only">Inspirationen</span><input type="text" data-key="insp" maxlength="200" enterkeyhint="next" autocomplete="off" placeholder="z. B. @account, Link oder „wie der Damenhof-Flyer, nur in Blau“" data-pv="z. B. @account, Link oder „wie der Damenhof-Flyer, nur in Blau“" data-pw="z. B. Websites oder Accounts, die dir gefallen"></label>
             </fieldset>
             </div>
             <div class="mode-set" data-set="web" hidden>
@@ -1647,8 +1656,8 @@
             </fieldset>
             <fieldset class="brief-q brief-fields">
               <legend><span class="q-t">Eckdaten</span></legend>
-              <label><span class="mono" data-v="Projekt" data-w="Firma / Projekt">Projekt</span><input type="text" data-key="event" maxlength="60" enterkeyhint="next" autocomplete="off" placeholder="z. B. Party, Neueröffnung" data-pv="z. B. Party, Neueröffnung" data-pw="z. B. Studio Lea"></label>
-              <label><span class="mono" data-v="Datum &amp; Ort" data-w="Branche &amp; Ort">Datum &amp; Ort</span><input type="text" data-key="wann" maxlength="60" enterkeyhint="next" autocomplete="off" placeholder="21.11., 794 Studio" data-pv="21.11., 794 Studio" data-pw="Kosmetik, Augsburg"></label>
+              <label><span class="mono" data-v="Projekt" data-w="Firma / Projekt">Projekt</span><input type="text" data-key="event" maxlength="60" enterkeyhint="next" autocomplete="off" placeholder="z. B. Neueröffnung, Aktion, Event" data-pv="z. B. Neueröffnung, Aktion, Event" data-pw="z. B. Studio Lea"></label>
+              <label><span class="mono" data-v="Datum &amp; Ort" data-w="Branche &amp; Ort">Datum &amp; Ort</span><input type="text" data-key="wann" maxlength="60" enterkeyhint="next" autocomplete="off" placeholder="21.11., Augsburg" data-pv="21.11., Augsburg" data-pw="Kosmetik, Augsburg"></label>
               <label><span class="mono" data-v="Bis wann" data-w="Online bis">Bis wann</span><input type="text" data-key="deadline" maxlength="40" enterkeyhint="done" autocomplete="off" placeholder="nächsten Freitag" data-pv="nächsten Freitag" data-pw="Ende Januar"></label>
             </fieldset>
             </div>
