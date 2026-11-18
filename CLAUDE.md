@@ -46,7 +46,7 @@ Ohne JS ist nur Flyer sichtbar.
 - Bilder 1080 px breit als `.webp` + `.avif`. Feed 4:5 ist Standard. Story 9:16: im `style` der `button.flyer` `--ar:1080 / 1920` setzen und `class="is-story"` an die `<figure>`.
 - Serie (Hauptflyer + Infoseiten): `<figure data-series="img/a-2.webp, img/a-3.webp">`. Das Skript legt die Seiten als Stapel dahinter, schreibt „Serie · N Motive“ und die Großansicht blättert durch alle Seiten (Balken oben).
 - Richtung: `data-sector="Club &amp; Event"` / `"Gastro"`. Ab zwei Richtungen erscheint unter „Flyer“ die Filterleiste.
-- „Mehr aus dem Archiv“ ist eine Slideshow: Skript packt die Figures in `.more-track` und bewegt sie per `transform` (kein scrollLeft, sonst ruckelt es). Stoppt bei Maus/Fokus, ziehbar mit Maus/Finger/Trackpad. Bilder dort `loading="lazy"`.
+- „Mehr aus dem Archiv“ ist eine Slideshow: Skript packt die Figures in `.more-track` und bewegt sie per `transform` (kein scrollLeft, sonst ruckelt es). Stoppt bei Maus/Fokus, ziehbar mit Maus/Finger/Trackpad. Bilder dort sind 720-px-Vorschauen aus `img/t/` (eager, niedrige Priorität); die Großansicht lädt immer das volle Bild aus `img/`. Neuer Archiv-Flyer: Vorschau in `img/t/` mit anlegen (720 px breit, .avif + .webp).
 - Richtungsfilter: Bei „Gastro“ o. Ä. rücken die ersten 5 Treffer groß nach oben (`.featured`), der Rest in die Slideshow; „Alle“ stellt die Originalreihenfolge wieder her. Die Großansicht blättert nur durch sichtbare Flyer in Seitenreihenfolge.
 - Großansicht: Pfeile sind fest an der Bühne verankert (nicht am Bild), bleiben bei Story-Formaten an derselben Stelle.
 - Motion: Videos in `media/` (720 px breit, H.264, ohne Ton, ~3 MB) + Poster `.webp`; spielen nur, wenn sichtbar.
