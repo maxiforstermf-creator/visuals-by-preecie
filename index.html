@@ -487,6 +487,10 @@
     color: var(--text); font-family: var(--sans); font-size: 17px; }
   .brief-fields input::placeholder { color: var(--faint); opacity: .75; }
   .brief-fields input:focus { outline: none; border-bottom-color: var(--accent); }
+  .brief-insp input { width: 100%; min-height: 46px; padding: 8px 0; border: 0; border-bottom: 1px solid var(--line-strong); border-radius: 0; background: transparent;
+    color: var(--text); font-family: var(--sans); font-size: 17px; }
+  .brief-insp input::placeholder { color: var(--faint); opacity: .75; }
+  .brief-insp input:focus { outline: none; border-bottom-color: var(--accent); }
   .ps-bar { display: flex; height: 10px; margin-top: auto; padding-top: 16px; box-sizing: content-box; gap: 2px; }
   .ps-bar i { flex: 1; }
   .ps-bar i.empty { border: 1px dashed rgba(241,237,240,.25); }
@@ -1109,9 +1113,14 @@
             </fieldset>
             <fieldset class="brief-q">
               <legend><span class="q-t">Welcher Vibe?</span><span class="q-count mono" aria-live="polite"></span></legend>
-              <div class="chips vibes" data-key="vibe">
-                <button type="button" class="chip vb vb-clean" aria-pressed="false">Clean</button><button type="button" class="chip vb vb-dark" aria-pressed="false">Dark</button><button type="button" class="chip vb vb-neon" aria-pressed="false">Neon</button><button type="button" class="chip vb vb-chrome" aria-pressed="false">Chrome</button><button type="button" class="chip vb vb-y2k" aria-pressed="false">Y2K</button><button type="button" class="chip vb vb-retro" aria-pressed="false">Retro</button><button type="button" class="chip vb vb-grunge" aria-pressed="false">Grunge</button><button type="button" class="chip vb vb-luxus" aria-pressed="false">Luxus</button><button type="button" class="chip vb vb-bunt" aria-pressed="false">Bunt</button><button type="button" class="chip vb vb-surprise" aria-pressed="false">Überrasch mich</button>
+              <div class="chips" data-key="vibe">
+                <button type="button" class="chip tw" aria-pressed="false">Clean</button><button type="button" class="chip tw" aria-pressed="false">Dark</button><button type="button" class="chip tw" aria-pressed="false">Neon</button><button type="button" class="chip tw" aria-pressed="false">Chrome</button><button type="button" class="chip tw" aria-pressed="false">Y2K</button><button type="button" class="chip tw" aria-pressed="false">Retro</button><button type="button" class="chip tw" aria-pressed="false">Grunge</button><button type="button" class="chip tw" aria-pressed="false">Luxus</button><button type="button" class="chip tw" aria-pressed="false">Bunt</button><button type="button" class="chip tw" aria-pressed="false">Überrasch mich</button>
               </div>
+            </fieldset>
+            <fieldset class="brief-q brief-insp">
+              <legend><span class="q-t">Inspirationen</span></legend>
+              <p class="pk-tip">Schick gern rein, was dir gefällt: Links, Accounts oder ein paar Worte. Bilder und Screenshots einfach in der DM hinterher.</p>
+              <label><span class="sr-only">Inspirationen</span><input type="text" data-key="insp" maxlength="200" enterkeyhint="next" autocomplete="off" placeholder="z. B. @account, Link oder „wie der YE-Flyer, nur in Rot“"></label>
             </fieldset>
             <fieldset class="brief-q">
               <legend><span class="q-t">Welche Farben?</span></legend>
@@ -1622,10 +1631,10 @@
       var was = picked('was'); fmtEl.textContent = was.length ? was.join(' + ') : 'Format offen';
       /* Nachricht als Datenblatt: Vibes in ihrem Stil, Farben mit Farbfeld */
       rowsEl.innerHTML = '';
-      [['Was', was.join(', ')], ['Format', picked('format').join(', ')], ['Vibe', 'vibe'], ['Farben', 'farben'], ['Projekt', val('event')], ['Datum & Location', val('wann')], ['Bis wann', val('deadline')]].forEach(function (r) {
+      [['Was', was.join(', ')], ['Format', picked('format').join(', ')], ['Vibe', 'vibe'], ['Inspiration', val('insp')], ['Farben', 'farben'], ['Projekt', val('event')], ['Datum & Location', val('wann')], ['Bis wann', val('deadline')]].forEach(function (r) {
         var dt = document.createElement('dt'), dd = document.createElement('dd'); dt.textContent = r[0];
         if (r[1] === 'vibe') {
-          b.querySelectorAll('.vibes .chip[aria-pressed="true"]').forEach(function (c) { var s = document.createElement('span'); s.className = c.className.replace('chip', '').trim(); s.textContent = c.textContent; dd.appendChild(s); });
+          dd.textContent = picked('vibe').join(', ');
         } else if (r[1] === 'farben') {
           chosen.forEach(function (c) { var s = document.createElement('span'), i = document.createElement('i'); s.className = 'sw'; i.style.background = c.hex; s.appendChild(i); s.appendChild(document.createTextNode(c.name + ' ' + c.hex)); dd.appendChild(s); });
         } else dd.textContent = r[1];
@@ -1639,7 +1648,7 @@
     }
     function text() {
       return ['Wagwan Preecie! Ich hab ein Projekt und brauch die passenden Visuals.',
-        'Was: ' + picked('was').join(', '), 'Format: ' + picked('format').join(', '), 'Vibe: ' + picked('vibe').join(', '),
+        'Was: ' + picked('was').join(', '), 'Format: ' + picked('format').join(', '), 'Vibe: ' + picked('vibe').join(', '), 'Inspiration: ' + val('insp'),
         'Farben: ' + chosen.map(function (c) { return c.name + ' ' + c.hex; }).join(', '),
         'Projekt: ' + val('event'), 'Datum & Location: ' + val('wann'), 'Bis wann: ' + val('deadline')]
         .map(function (l) { return l.replace(/\s+$/, ''); }).filter(function (l) { return !/:$/.test(l); }).join('\n');
@@ -1727,7 +1736,7 @@
     render();
     b.querySelectorAll('input[data-key]').forEach(function (i) { i.addEventListener('input', update); });
     /* Tastatur: Enter = weiter zum nächsten Feld, im letzten Feld Tastatur zu. Tippen neben die Felder schließt sie ebenfalls (iOS hat bei Textfeldern sonst keinen Ausweg). */
-    var fields = [].slice.call(b.querySelectorAll('.brief-fields input'));
+    var fields = [].slice.call(b.querySelectorAll('.brief-insp input, .brief-fields input'));
     fields.forEach(function (f, k) {
       f.addEventListener('keydown', function (e) {
         if (e.key !== 'Enter' || e.isComposing) return; e.preventDefault();
