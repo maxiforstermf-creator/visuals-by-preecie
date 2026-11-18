@@ -563,7 +563,7 @@
     .footer-line a:hover { color: var(--text); }
   }
   @media (hover: none) {
-    button.flyer::after { content: ""; position: absolute; right: 10px; bottom: 10px; width: 30px; height: 30px; border-radius: 50%; opacity: .9;
+    button.flyer::after, .clip-btn::after { content: ""; position: absolute; right: 10px; bottom: 10px; width: 30px; height: 30px; border-radius: 50%; opacity: .9;
       background: rgba(7,6,10,.6) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23f1edf0' stroke-width='1.6' stroke-linecap='round'%3E%3Cpath d='M15 4h5v5M9 20H4v-5M20 4l-6 6M4 20l6-6'/%3E%3C/svg%3E") center / 14px no-repeat; }
     .contact-row:active, .link-cta:active { opacity: .75; }
   }
@@ -630,6 +630,8 @@
     box-shadow: 0 60px 120px -40px rgba(0,0,0,.9); will-change: transform; }
   @media (prefers-reduced-motion: no-preference) { .viewer-stage img { transition: opacity .25s ease, transform .3s var(--ease); } }
   .viewer-stage img.is-swapping { opacity: 0; }
+  .viewer-stage video { max-width: min(calc(100% - 144px), 680px); max-height: 100%; width: auto; height: auto; object-fit: contain; background: #000; box-shadow: 0 40px 100px -30px rgba(0,0,0,.9); }
+  @media (max-width: 640px) { .viewer-stage video { max-width: 100%; } }
   /* Pfeile fest an der Bühne verankert (nicht am Bild): bei schmalen Story-Formaten bleiben sie an derselben Stelle */
   .viewer-stage .nav-btn { position: absolute; top: calc(50% - 24px); z-index: 2; }
   #v-prev { left: max(var(--gutter-l), calc(50% - 340px - 72px)); }
@@ -911,6 +913,11 @@
   .cat-grid figure { margin: 0; min-width: 0; }
   .clip-box.story { aspect-ratio: 9 / 16; }
   .motion-grid { grid-template-columns: repeat(2, minmax(0, 360px)); justify-content: center; }
+  /* Motion: ganze Kachel ist ein Knopf, öffnet das Video groß in der Großansicht */
+  .clip-btn { position: relative; display: block; width: 100%; padding: 0; border: 0; background: none; color: inherit; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+  .clip-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+  .clip-btn .clip-box { display: block; transition: transform .6s var(--ease); }
+  @media (hover: hover) { .clip-btn:hover .clip-box { transform: scale(1.015); } }
   .clip-box { position: relative; aspect-ratio: 4 / 5; overflow: hidden; background: #150b12; box-shadow: 0 30px 60px -30px rgba(0,0,0,.9); }
   .clip { display: block; width: 100%; height: 100%; object-fit: cover; }
   @media (max-width: 960px) { .cat-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 48px var(--gap); } }
@@ -1041,8 +1048,8 @@
       <div class="cat-panel" id="p-motion" role="tabpanel" aria-labelledby="tab-motion" hidden>
         <!-- Motion Design: Videos als <video class="clip" muted loop playsinline preload="none" poster=…> in .clip-box; spielen nur, wenn sichtbar. -->
         <div class="cat-grid motion-grid">
-          <figure><div class="clip-box story"><video class="clip" muted loop playsinline preload="none" poster="media/one-more-time-poster.webp" aria-label="Motion-Flyer One More Time, Destination Gaswerk"><source src="media/one-more-time.mp4" type="video/mp4"></video></div><figcaption class="cap"><span class="t">One More Time</span><span class="meta mono">Destination Gaswerk</span></figcaption></figure>
-          <figure><div class="clip-box story"><video class="clip" muted loop playsinline preload="none" poster="media/soy-latino-poster.webp" aria-label="Motion-Flyer Soy Latino, Savage"><source src="media/soy-latino.mp4" type="video/mp4"></video></div><figcaption class="cap"><span class="t">Soy Latino</span><span class="meta mono">Savage</span></figcaption></figure>
+          <figure><button type="button" class="clip-btn" aria-haspopup="dialog"><span class="clip-box story"><video class="clip" muted loop playsinline preload="none" poster="media/one-more-time-poster.webp" aria-label="Motion-Flyer One More Time, Destination Gaswerk"><source src="media/one-more-time.mp4" type="video/mp4"></video></span><span class="sr-only"> – groß ansehen</span></button><figcaption class="cap"><span class="t">One More Time</span><span class="meta mono">Destination Gaswerk</span></figcaption></figure>
+          <figure><button type="button" class="clip-btn" aria-haspopup="dialog"><span class="clip-box story"><video class="clip" muted loop playsinline preload="none" poster="media/soy-latino-poster.webp" aria-label="Motion-Flyer Soy Latino, Savage"><source src="media/soy-latino.mp4" type="video/mp4"></video></span><span class="sr-only"> – groß ansehen</span></button><figcaption class="cap"><span class="t">Soy Latino</span><span class="meta mono">Savage</span></figcaption></figure>
         </div>
       </div>
 
@@ -1206,7 +1213,7 @@
     <button type="button" class="icon-btn nav-btn" id="v-prev" aria-label="Vorheriger Flyer">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>
     </button>
-    <img id="v-img" alt="" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
+    <img id="v-img" alt="" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="><video id="v-vid" muted loop playsinline hidden></video>
     <button type="button" class="icon-btn nav-btn" id="v-next" aria-label="Nächster Flyer">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg>
     </button>
@@ -1247,10 +1254,10 @@
     function figure(it, sm) {
       var f = el('figure');
       if (it.type === 'video') {
-        var box = el('div', 'clip-box' + (it.story || it.format === 'story' || /story|9x16|9-16/i.test(str(it.src)) ? ' story' : '')); var v = el('video', 'clip');
+        var box = el('span', 'clip-box' + (it.story || it.format === 'story' || /story|9x16|9-16/i.test(str(it.src)) ? ' story' : '')); var v = el('video', 'clip');
         v.muted = true; v.loop = true; v.playsInline = true; v.setAttribute('playsinline', ''); v.preload = 'none';
         if (okSrc(it.poster)) v.poster = it.poster; v.src = it.src; v.setAttribute('aria-label', str(it.title) || 'Motion-Arbeit');
-        box.appendChild(v); f.appendChild(box);
+        box.appendChild(v); var cb = el('button', 'clip-btn'); cb.type = 'button'; cb.setAttribute('aria-haspopup', 'dialog'); cb.appendChild(box); cb.appendChild(el('span', 'sr-only', ' – groß ansehen')); f.appendChild(cb);
       } else {
         var b = el('button', 'flyer' + (sm ? ' sm' : '')); b.type = 'button'; b.setAttribute('aria-haspopup', 'dialog');
         b.appendChild(img(it)); b.appendChild(el('span', 'sr-only', ' – groß ansehen')); f.appendChild(b);
@@ -1458,11 +1465,11 @@
   /* Format-Hinweis unter jedem Flyer (Feed 4:5 / Story 9:16), Serien-Hinweis kommt mit in dieselbe Zeile */
   window.__vbpReady = window.__vbpReady.then(function () {
     document.querySelectorAll('#werke figure').forEach(function (fig) {
-      var cap = fig.querySelector('.cap'), btn = fig.querySelector('button.flyer'); if (!cap || !btn || cap.querySelector('.cap-tags')) return;
-      var story = fig.classList.contains('is-story');
+      var cap = fig.querySelector('.cap'), btn = fig.querySelector('button.flyer, button.clip-btn'); if (!cap || !btn || cap.querySelector('.cap-tags')) return;
+      var vid = btn.classList.contains('clip-btn'), story = fig.classList.contains('is-story') || !!fig.querySelector('.clip-box.story');
       var row = document.createElement('span'); row.className = 'cap-tags';
       var t = document.createElement('span'); t.className = 'fmt-tag mono' + (story ? ' is-9x16' : '');
-      t.textContent = story ? 'Story · 9:16 · Handy-Vollbild' : 'Feed · 4:5 · Instagram-Post';
+      t.textContent = vid ? (story ? 'Video · 9:16 · Story' : 'Video · 4:5 · Feed') : (story ? 'Story · 9:16 · Handy-Vollbild' : 'Feed · 4:5 · Instagram-Post');
       row.appendChild(t);
       var ser = cap.querySelector('.series-tag'); if (ser) row.appendChild(ser);
       cap.appendChild(row);
@@ -1476,7 +1483,7 @@
     if (history.state && history.state.viewer) { try { history.back(); } catch (e) {} }
     /* Reihenfolge der Großansicht = Galerie. Der Hero-Flyer öffnet dasselbe Bild in der Galerie (keine Doppelung). */
     var heroBtn = document.querySelector('.intro button.flyer');
-    var buttons = Array.prototype.slice.call(document.querySelectorAll('button.flyer')).filter(function (b) { return b !== heroBtn; });
+    var buttons = Array.prototype.slice.call(document.querySelectorAll('button.flyer, button.clip-btn')).filter(function (b) { return b !== heroBtn; });
     var srcKey = function (b) { var im = b.querySelector('img'); return im ? im.getAttribute('src') : ''; };
     if (heroBtn && !buttons.some(function (b) { return srcKey(b) === srcKey(heroBtn); })) buttons.unshift(heroBtn);
     if (!dlg || !buttons.length) return;
@@ -1488,6 +1495,12 @@
     buttons.forEach(function (b) {
       var fig = b.closest('figure'), img = b.querySelector('img');
       var t = fig.querySelector('.t'), m = fig.querySelector('.meta');
+      var vid = b.querySelector('video');
+      if (vid) {
+        var vs = vid.getAttribute('src') || (vid.querySelector('source') && vid.querySelector('source').getAttribute('src'));
+        items.push({ video: vs, poster: vid.getAttribute('poster') || '', alt: vid.getAttribute('aria-label') || '', title: t ? t.textContent : '', meta: m ? m.textContent : '' }); expanded.push(b);
+        return;
+      }
       var base = { img: img, alt: img.alt, title: t ? t.textContent : '', meta: m ? m.textContent : '' };
       var pages = b._pages || [];
       items.push(pages.length ? Object.assign({ page: 0, pages: pages.length + 1 }, base) : base); expanded.push(b);
@@ -1498,7 +1511,7 @@
     });
     buttons = expanded;
     /* Galerie zeigt kleine Vorschaubilder (img/t/), die Großansicht immer das volle Bild */
-    var srcOf = function (it) { return it.src || (it.img.currentSrc || it.img.getAttribute('src')).replace(/(^|\/)img\/t\//, '$1img/'); };
+    var srcOf = function (it) { if (it.video) return it.poster; return it.src || (it.img.currentSrc || it.img.getAttribute('src')).replace(/(^|\/)img\/t\//, '$1img/'); };
     /* Blättern nur innerhalb der eigenen Kategorie (Flyer, DJ Graphics, Branding) */
     var flyerPanel = document.getElementById('p-flyer');
     var panelOf = function (b) { return (b && b.closest('.cat-panel')) || flyerPanel; };
@@ -1519,9 +1532,21 @@
     }
     var i = 0, opener = null, token = 0;
 
+    var vVid = document.getElementById('v-vid');
     function show(n, dir) {
       i = (n + items.length) % items.length;
-      var it = items[i], my = ++token, pre = new Image(), src = srcOf(it);
+      var it = items[i];
+      /* Video (Motion Design): eigenes Element, Bild ausblenden */
+      if (it.video) {
+        ++token; vImg.hidden = true; vVid.hidden = false;
+        if (vVid.getAttribute('src') !== it.video) { vVid.poster = it.poster; vVid.src = it.video; }
+        vVid.setAttribute('aria-label', it.alt); var pp = vVid.play(); if (pp && pp.catch) pp.catch(function () {});
+        vTitle.textContent = it.title; vMeta.textContent = it.meta; vCount.textContent = '';
+        setTimeout(function () { vLive.textContent = 'Video ' + (i + 1) + ' von ' + items.length + ': ' + it.title + ', ' + it.meta; }, 80);
+        return;
+      }
+      if (!vVid.hidden) { vVid.pause(); vVid.hidden = true; } vImg.hidden = false;
+      var my = ++token, pre = new Image(), src = srcOf(it);
       vImg.classList.add('is-swapping');
       if (!reduce) vImg.style.transform = dir ? 'translateX(' + (-dir * 40) + 'px)' : '';
       pre.onload = pre.onerror = function () {
@@ -1567,6 +1592,7 @@
     window.addEventListener('popstate', function () { if (dlg.open) close(true); });
     dlg.addEventListener('cancel', function (e) { e.preventDefault(); close(); });
     dlg.addEventListener('close', function () {
+      if (vVid && !vVid.hidden) vVid.pause();
       closing = false; clearTimeout(tClose); dlg.classList.remove('closing');
       document.documentElement.style.overflow = '';
       dlg.style.backgroundColor = '';

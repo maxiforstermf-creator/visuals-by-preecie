@@ -50,7 +50,7 @@ Ohne JS ist nur Flyer sichtbar.
 - „Mehr aus dem Archiv“ ist eine Slideshow: Skript packt die Figures in `.more-track` und bewegt sie per Web Animation (`track.animate`, läuft auf dem Grafik-Thread; kein scrollLeft und keine JS-Schleife, sonst zittert es am iPhone). Läuft ab dem Laden der Seite, auch wenn sie noch nicht sichtbar ist (beim Runterscrollen schon in Bewegung). Stoppt bei Maus/Fokus, ziehbar mit Maus/Finger/Trackpad. Bilder dort sind 720-px-Vorschauen aus `img/t/` (eager, niedrige Priorität); die Großansicht lädt immer das volle Bild aus `img/`. Neuer Archiv-Flyer: Vorschau in `img/t/` mit anlegen (720 px breit, .avif + .webp).
 - Richtungsfilter: Bei „Gastro“ o. Ä. rücken die ersten 5 Treffer groß nach oben (`.featured`), der Rest in die Slideshow; „Alle“ stellt die Originalreihenfolge wieder her. Die Großansicht blättert nur durch sichtbare Flyer in Seitenreihenfolge.
 - Großansicht: Pfeile sind fest an der Bühne verankert (nicht am Bild), bleiben bei Story-Formaten an derselben Stelle.
-- Motion: Videos in `media/` (720 px breit, H.264, ohne Ton, ~3 MB) + Poster `.webp`; spielen nur, wenn sichtbar.
+- Motion: Videos in `media/` (720 px breit, H.264, ohne Ton, ~3 MB) + Poster `.webp`; spielen nur, wenn sichtbar. Jede Kachel ist ein `button.clip-btn` (darin `span.clip-box` + `video.clip`) und öffnet das Video groß in derselben Großansicht (`#v-vid`), blättern zwischen den Videos möglich. Bildunterschrift bekommt „Video · 9:16 · Story“.
 - Rohdateien kommen aus Fabians Drive-Ordner „Grafiken Olo“ (Normal / Motion).
 
 ## Neuen Flyer hinzufügen
