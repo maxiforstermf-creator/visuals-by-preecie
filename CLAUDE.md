@@ -27,7 +27,7 @@ Statische Seite ohne Build-Schritt (HTML/CSS/JS). Hosting: GitHub Pages (dieser 
 - Die Logos von Savage, Filmcasino, Barfly und Collective Flow sind aus den Flyern freigestellt. Sobald Originaldateien da sind (PNG/SVG weiß auf transparent), ersetzen. Für 333 Club, 794 Studio, Destination Gaswerk und Voyage fehlen die Logos noch.
 
 ## Technik, die bewusst so ist
-- Anfrage-Bereich (`#brief`) ist ein Live-Briefing-Plakat: Auswahl als Schriftmuster (jeder Vibe in seinem Stil), Eckdaten als Felder darunter. Das Plakat zeigt live die fertige DM-Nachricht („Wagwan Preecie!“ + Datenblatt), gewählte Farben färben Glow und Farbbalken. Enter springt zum nächsten Feld, Tippen daneben schließt die Tastatur.
+- Anfrage-Bereich (`#brief`) ist ein Live-Briefing-Plakat: Auswahl als Schriftmuster (jeder Vibe in seinem Stil), Fragen als große Überschriften mit rosa Hinweis „Antippen · mehrere möglich“, Optionen leuchten beim ersten Sichtbarwerden einmal nacheinander auf. Eckdaten als Felder darunter. Das Plakat zeigt live die fertige DM-Nachricht („Wagwan Preecie!“ + Datenblatt), gewählte Farben färben Glow und Farbbalken. Enter springt zum nächsten Feld, Tippen daneben schließt die Tastatur.
 - Ticket-CTA: Innenleben hat `pointer-events: none`, damit iOS Safari die ganze Fläche als Link trifft.
 - Frischer Seitenaufruf startet immer oben (Absicherung für Vorschau-Umgebungen). Zurück/Vor, #Anker und Text-Fragmente bleiben unberührt.
 - Großansicht der Flyer ist ein `<dialog>` mit `history.pushState`: Die Zurück-Geste schließt die Großansicht, Doppelklick ist abgesichert.
@@ -44,7 +44,7 @@ Ohne JS ist nur Flyer sichtbar.
 
 ## Formate, Serien, Richtungen
 - Bilder 1080 px breit als `.webp` + `.avif`. Feed 4:5 ist Standard. Story 9:16: im `style` der `button.flyer` `--ar:1080 / 1920` setzen und `class="is-story"` an die `<figure>`.
-- Serie (Hauptflyer + Infoseiten): `<figure data-series="img/a-2.webp, img/a-3.webp">`. Das Skript legt die Seiten als Stapel dahinter, schreibt „Serie · N Motive“ und die Großansicht blättert durch alle Seiten (Balken oben).
+- Serie (Hauptflyer + Infoseiten): `<figure data-series="img/a-2.webp, img/a-3.webp">`. Das Skript legt die Seiten als Stapel dahinter, schreibt „Serie · N Motive“ und die Großansicht blättert durch alle Seiten (Balken oben). Auf der Seite selbst kann man die Serie seitlich durchwischen (Finger/Maus/Trackpad, ohne Pfeile; Balken oben im Bild, verschoben wird per CSS `translate`, nicht `transform`, weil das Hover-Zoom auf `transform` liegt). Antippen öffnet die Großansicht beim gerade sichtbaren Motiv.
 - Richtung: `data-sector="Club &amp; Event"` / `"Gastro"`. Ab zwei Richtungen erscheint unter „Flyer“ die Filterleiste.
 - „Mehr aus dem Archiv“ ist eine Slideshow: Skript packt die Figures in `.more-track` und bewegt sie per Web Animation (`track.animate`, läuft auf dem Grafik-Thread; kein scrollLeft und keine JS-Schleife, sonst zittert es am iPhone). Stoppt bei Maus/Fokus, ziehbar mit Maus/Finger/Trackpad. Bilder dort sind 720-px-Vorschauen aus `img/t/` (eager, niedrige Priorität); die Großansicht lädt immer das volle Bild aus `img/`. Neuer Archiv-Flyer: Vorschau in `img/t/` mit anlegen (720 px breit, .avif + .webp).
 - Richtungsfilter: Bei „Gastro“ o. Ä. rücken die ersten 5 Treffer groß nach oben (`.featured`), der Rest in die Slideshow; „Alle“ stellt die Originalreihenfolge wieder her. Die Großansicht blättert nur durch sichtbare Flyer in Seitenreihenfolge.
