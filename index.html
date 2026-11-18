@@ -263,7 +263,7 @@
   .ser-peek { position: absolute; inset: 0; z-index: 1; width: 100%; height: 100%; object-fit: cover; transform: scale(1.015); pointer-events: none; will-change: translate; }
   .more-track { display: flex; gap: 22px; width: max-content; will-change: transform; backface-visibility: hidden; }
   .more figure { flex: 0 0 auto; width: calc(var(--rh) * .8); margin: 0; min-width: 0; }
-  .more figure.is-story { width: calc(var(--rh) * .5625); }
+  .more figure.is-story { width: calc(var(--rh) / 1.7404); }
   .more-head .mono .more-state { margin-left: 10px; color: var(--faint); }
 
   /* ---------- Portfolio-Kategorien ---------- */
@@ -825,6 +825,14 @@
   }
   @media (prefers-reduced-motion: reduce) { .series-stack img { transition: none; } }
   .featured figure.is-story .flyer, .featured figure.is-story .cap { width: 74%; }
+  /* Storys (9:16) im schlichten Handy-Rahmen: Gehäuse = <picture>, Maße relativ zur Button-Breite (cqw). Keine Logos, keine Fake-Likes. */
+  .is-story > button.flyer { container-type: inline-size; aspect-ratio: 100 / 174.04; overflow: visible; background: none; box-shadow: none; }
+  .is-story > button.flyer picture { position: relative; display: block; height: 100%; padding: 2.4cqw; border-radius: 13cqw;
+    background: linear-gradient(160deg, #24222a, #0b0a0d 45%, #141217); box-shadow: inset 0 0 0 1px rgba(255,255,255,.1), inset 0 0 0 .7cqw #050407, 0 50px 90px -40px rgba(0,0,0,.95); }
+  .is-story > button.flyer picture img { display: block; width: 100%; height: 100%; border-radius: 10.8cqw; transform: none; background: var(--ph, #150b12); }
+  .is-story > button.flyer picture::after { content: ""; position: absolute; top: 4.6cqw; left: 50%; width: 27cqw; height: 7.6cqw; transform: translateX(-50%); border-radius: 999px; background: #000; }
+  .is-story > button.flyer::after { right: 8cqw; bottom: 8cqw; }
+  .is-story > button.flyer .pd { border-radius: 13cqw; }
   .hero-cap .series-tag { display: none; }
   @media (max-width: 640px) {
     .featured figure.is-story .flyer, .featured figure.is-story .cap { width: 82%; margin-inline: auto; }
