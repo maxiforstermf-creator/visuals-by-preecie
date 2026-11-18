@@ -19,7 +19,7 @@ Statische Seite ohne Build-Schritt (HTML/CSS/JS). Hosting: GitHub Pages (dieser 
 - Dunkel, clean, elegant, "Künstler-Look". Nicht verspielt und kein Baukasten-Look.
 - Maximal 3 Schriften: Archivo (Display, kursiv/condensed), Inter Tight (Text), Geist Mono (Labels).
 - Keine Nummerierungen wie 01/02/03.
-- Hero zeigt zuerst das Werk: aktuellster Flyer (YE Winter Opening, Serie mit 4 Motiven) mit dem Label "Latest Work". Der Hintergrund bewegt sich nur dezent ("Atmen"), kein Mond und kein Planet.
+- Hero zeigt zuerst das Werk: aktuellster Flyer (YE Tour 26/27, ohne Serie; die Winter-Opening-Serie steht im Portfolio) mit dem Label "Latest Work". Der Hintergrund bewegt sich nur dezent ("Atmen"), kein Mond und kein Planet.
 - Überschriften "Portfolio" und "About me" auf Englisch, alle anderen Texte auf Deutsch, Anrede "du".
 - Kein Ablauf-Abschnitt, kein Zahlungssystem. Die Seite zeigt nur Referenzen und Kontaktwege.
 - Header-Button: Instagram-Verlauf "DM für Anfrage" → https://ig.me/m/visualsbypreecie
@@ -27,6 +27,8 @@ Statische Seite ohne Build-Schritt (HTML/CSS/JS). Hosting: GitHub Pages (dieser 
 - Die Logos von Savage, Filmcasino, Barfly und Collective Flow sind aus den Flyern freigestellt. Sobald Originaldateien da sind (PNG/SVG weiß auf transparent), ersetzen. Für 333 Club, 794 Studio, Destination Gaswerk und Voyage fehlen die Logos noch.
 
 ## Technik, die bewusst so ist
+- Anfrage-Bereich (`#brief`) ist ein Live-Briefing-Plakat: Auswahl als Schriftmuster (jeder Vibe in seinem Stil), Titel/Datum/Deadline tippt man direkt aufs Plakat, gewählte Farben färben den Plakat-Glow und den Farbbalken. Die DM-Nachricht steckt unter „Nachricht ansehen“.
+- Ticket-CTA: Innenleben hat `pointer-events: none`, damit iOS Safari die ganze Fläche als Link trifft.
 - Frischer Seitenaufruf startet immer oben (Absicherung für Vorschau-Umgebungen). Zurück/Vor, #Anker und Text-Fragmente bleiben unberührt.
 - Großansicht der Flyer ist ein `<dialog>` mit `history.pushState`: Die Zurück-Geste schließt die Großansicht, Doppelklick ist abgesichert.
 - Bilder laden eager mit niedriger Priorität, ohne Einblend-Animation (Ladetempo war ein Kundenwunsch).
@@ -44,7 +46,9 @@ Ohne JS ist nur Flyer sichtbar.
 - Bilder 1080 px breit als `.webp` + `.avif`. Feed 4:5 ist Standard. Story 9:16: im `style` der `button.flyer` `--ar:1080 / 1920` setzen und `class="is-story"` an die `<figure>`.
 - Serie (Hauptflyer + Infoseiten): `<figure data-series="img/a-2.webp, img/a-3.webp">`. Das Skript legt die Seiten als Stapel dahinter, schreibt „Serie · N Motive“ und die Großansicht blättert durch alle Seiten (Balken oben).
 - Richtung: `data-sector="Club &amp; Event"` / `"Gastro"`. Ab zwei Richtungen erscheint unter „Flyer“ die Filterleiste.
-- „Mehr aus dem Archiv“ ist ein Spalten-Layout (3 Spalten Desktop, 2 Handy), Bilder dort `loading="lazy"`.
+- „Mehr aus dem Archiv“ ist eine Slideshow: Skript packt die Figures in `.more-track` und bewegt sie per `transform` (kein scrollLeft, sonst ruckelt es). Stoppt bei Maus/Fokus, ziehbar mit Maus/Finger/Trackpad. Bilder dort `loading="lazy"`.
+- Richtungsfilter: Bei „Gastro“ o. Ä. rücken die ersten 5 Treffer groß nach oben (`.featured`), der Rest in die Slideshow; „Alle“ stellt die Originalreihenfolge wieder her. Die Großansicht blättert nur durch sichtbare Flyer in Seitenreihenfolge.
+- Großansicht: Pfeile sind fest an der Bühne verankert (nicht am Bild), bleiben bei Story-Formaten an derselben Stelle.
 - Motion: Videos in `media/` (720 px breit, H.264, ohne Ton, ~3 MB) + Poster `.webp`; spielen nur, wenn sichtbar.
 - Rohdateien kommen aus Fabians Drive-Ordner „Grafiken Olo“ (Normal / Motion).
 

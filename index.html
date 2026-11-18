@@ -243,11 +243,13 @@
   .more-head h3 { margin: 0; font-family: var(--display); font-weight: 800; font-stretch: 62%; text-transform: uppercase; font-size: 34px; line-height: 1;
     word-spacing: .1em; color: var(--text); }
   /* Archiv als Laufband-Slideshow: läuft langsam hin und her, steht bei Maus/Finger/Fokus still. Formate behalten ihr Seitenverhältnis. */
-  .more { --rh: 440px; display: flex; gap: 22px; overflow-x: auto; overscroll-behavior-x: contain; scrollbar-width: none; padding-bottom: 4px;
+  .more { --rh: 440px; position: relative; overflow: hidden; touch-action: pan-y; cursor: grab;
     margin-inline: calc(-1 * var(--gutter-l)) calc(-1 * var(--gutter-r)); padding-inline: var(--gutter-l) var(--gutter-r);
     -webkit-mask: linear-gradient(90deg, transparent, #000 var(--gutter-l), #000 calc(100% - var(--gutter-r)), transparent);
             mask: linear-gradient(90deg, transparent, #000 var(--gutter-l), #000 calc(100% - var(--gutter-r)), transparent); }
-  .more::-webkit-scrollbar { display: none; }
+  .more.dragging { cursor: grabbing; }
+  .more.dragging button.flyer { pointer-events: none; }
+  .more-track { display: flex; gap: 22px; width: max-content; will-change: transform; backface-visibility: hidden; }
   .more figure { flex: 0 0 auto; width: calc(var(--rh) * .8); margin: 0; min-width: 0; }
   .more figure.is-story { width: calc(var(--rh) * .5625); }
   .more-head .mono .more-state { margin-left: 10px; color: var(--faint); }
@@ -362,13 +364,38 @@
   /* ---------- Anfrage-Baukasten ---------- */
   .brief { grid-column: 1 / 13; display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 4fr); gap: 48px 72px; align-items: start;
     padding-top: 36px; border-top: 1px solid var(--line); }
-  .brief-q { margin: 0 0 40px; padding: 0; border: 0; min-width: 0; }
+  .brief-q { margin: 0 0 56px; padding: 0; border: 0; min-width: 0; }
   .brief-q:last-child { margin-bottom: 0; }
-  .brief-q legend { padding: 0; margin-bottom: 14px; }
-  .chips { display: flex; flex-wrap: wrap; gap: 8px; }
-  .chip { min-height: 42px; padding: 0 16px; border: 1px solid var(--line-strong); border-radius: 0; background: transparent; color: var(--body); cursor: pointer;
-    font-family: var(--sans); font-size: 15px; letter-spacing: -.005em; transition: background .2s, color .2s, border-color .2s; }
-  .chip[aria-pressed="true"] { background: var(--text); border-color: var(--text); color: var(--bg); }
+  .brief-q legend { padding: 0; margin-bottom: 16px; }
+  /* Auswahl als Schriftmuster: jedes Wort ist ein Knopf, gewählt = voll, sonst gedimmt */
+  .chips { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 26px; }
+  .chip { position: relative; padding: 4px 0 10px; border: 0; background: none; cursor: pointer; color: var(--text);
+    font-family: var(--display); font-weight: 800; font-stretch: 62%; text-transform: uppercase; font-size: clamp(34px, 4.2vw, 56px); line-height: .95; letter-spacing: .005em;
+    opacity: .32; transition: opacity .35s ease, transform .45s var(--ease); -webkit-tap-highlight-color: transparent; }
+  .chip::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 2px; background: linear-gradient(95deg, var(--accent), var(--violet));
+    transform: scaleX(0); transform-origin: left; transition: transform .45s var(--ease); }
+  .chip[aria-pressed="true"] { opacity: 1; }
+  .chip[aria-pressed="true"]::after { transform: scaleX(1); }
+  .chip:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+  .chip:active { transform: scale(.97); }
+  .tw[aria-pressed="false"] { color: transparent; -webkit-text-stroke: 1px rgba(241,237,240,.9); opacity: .55; }
+  /* Jeder Vibe sieht aus wie er heißt */
+  .vibes { gap: 6px 24px; }
+  .vb { font-size: clamp(30px, 3.6vw, 46px); }
+  .vb-clean { font-weight: 400; font-stretch: 75%; letter-spacing: .16em; }
+  .vb-dark { color: #9b919a; text-shadow: 0 3px 0 #000, 0 0 24px #000; }
+  .vb-neon { color: #ffe3f4; text-shadow: 0 0 4px #ff5cc8, 0 0 14px #ff3dbb, 0 0 34px rgba(255,61,187,.6); }
+  .vb-chrome, .vb-y2k, .vb-luxus, .vb-bunt, .vb-grunge { -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .vb-chrome { background-image: linear-gradient(180deg, #fff 0%, #c3cad2 44%, #39404a 50%, #8d98a4 64%, #eef2f6 100%); }
+  .vb-y2k { font-style: italic; font-weight: 900; background-image: linear-gradient(100deg, #a8e4ff, #e6c8ff 55%, #9fd0ff); }
+  .vb-retro { font-style: italic; font-weight: 900; color: #f4b867; text-shadow: 3px 3px 0 #b5412c; }
+  .vb-grunge { transform: rotate(-2deg); background-color: #d9cfbf;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3CfeColorMatrix values='0 0 0 0 .03 0 0 0 0 .02 0 0 0 0 .04 0 0 0 2.4 -1.3'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E"); }
+  .vb-grunge:active { transform: rotate(-2deg) scale(.97); }
+  .vb-luxus { font-weight: 400; font-stretch: 75%; letter-spacing: .3em; background-image: linear-gradient(180deg, #f6e6b4, #c69a4a 60%, #f0d48e); }
+  .vb-bunt { font-style: italic; font-weight: 900; background-image: linear-gradient(95deg, #ff5f6d, #ffc371 25%, #6be6a2 50%, #5fb4ff 75%, #c58cff); }
+  .vb-surprise { font-style: italic; font-weight: 900; -webkit-background-clip: text; background-clip: text; color: transparent;
+    background-image: linear-gradient(95deg, var(--accent), var(--violet)); }
   /* Farbfeld */
   .pk-tip { margin: -4px 0 14px; font-size: 14px; color: var(--muted); }
   .picker { max-width: 560px; }
@@ -391,24 +418,55 @@
   .pk-add svg { width: 14px; height: 14px; }
   .pk-add:disabled { background: transparent; color: var(--muted); border-color: var(--line-strong); cursor: default; }
   .pk-add:disabled svg { display: none; }
+  .pk-add { background: var(--text); color: var(--bg); }
   .pk-list { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
   .pk-list:empty { display: none; }
   .pk-chip { display: inline-flex; align-items: center; gap: 8px; min-height: 40px; padding-left: 6px; border: 1px solid var(--line-strong); font-size: 14px; color: var(--text); }
   .pk-chip i { width: 26px; height: 26px; flex: none; box-shadow: inset 0 0 0 1px rgba(241,237,240,.2); }
   .pk-x { width: 36px; height: 38px; padding: 0; display: inline-flex; align-items: center; justify-content: center; border: 0; background: transparent; color: var(--muted); cursor: pointer; }
   .pk-x svg { width: 12px; height: 12px; }
-  .brief-fields { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px 24px; }
-  .brief-fields legend { float: left; width: 100%; grid-column: 1 / -1; }
-  .brief-fields label { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
-  .brief-fields input { width: 100%; min-height: 44px; padding: 8px 0; border: 0; border-bottom: 1px solid var(--line-strong); border-radius: 0; background: transparent;
-    color: var(--text); font-family: var(--sans); font-size: 16px; transition: border-color .2s; }
-  .brief-fields input::placeholder { color: var(--faint); opacity: .7; }
-  .brief-fields input:focus { outline: none; border-bottom-color: var(--accent); }
+  /* Das Briefing als Poster: entsteht live aus der Auswahl, Titel & Daten tippt man direkt aufs Plakat */
+  .poster-wrap { position: relative; padding: 14px; }
+  .poster-wrap .cm { position: absolute; width: 14px; height: 14px; border: 0 solid var(--faint); opacity: .7; }
+  .cm.tl { left: 0; top: 0; border-width: 1px 0 0 1px; } .cm.tr { right: 0; top: 0; border-width: 1px 1px 0 0; }
+  .cm.bl { left: 0; bottom: 0; border-width: 0 0 1px 1px; } .cm.br { right: 0; bottom: 0; border-width: 0 1px 1px 0; }
+  .poster { position: relative; display: flex; flex-direction: column; aspect-ratio: 4 / 5; max-width: 100%; padding: 22px 22px 18px; overflow: hidden; isolation: isolate;
+    background: #0d0a10; box-shadow: 0 40px 80px -40px rgba(0,0,0,.95), inset 0 0 0 1px rgba(241,237,240,.08); }
+  .ps-glow { position: absolute; inset: -20%; z-index: -1; transition: background .8s ease; filter: blur(8px);
+    background: radial-gradient(60% 50% at 18% 12%, rgba(233,163,182,.38), transparent 70%), radial-gradient(55% 50% at 88% 86%, rgba(185,138,214,.34), transparent 70%); }
+  .poster::after { content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none; background: linear-gradient(180deg, transparent 40%, rgba(7,6,10,.55));
+    }
+  .ps-top { display: flex; justify-content: space-between; gap: 12px; font-size: 10px; letter-spacing: .18em; text-transform: uppercase; color: rgba(241,237,240,.75); }
+  .ps-fmt { text-align: right; overflow-wrap: anywhere; }
+  .ps-title { display: block; margin-top: auto; }
+  .ps-title textarea { display: block; width: 100%; height: 2.02em; padding: 0; border: 0; background: none; resize: none; overflow: hidden; color: var(--text);
+    font-family: var(--display); font-style: italic; font-weight: 900; font-stretch: 62%; text-transform: uppercase; font-size: clamp(40px, 4.4vw, 54px); line-height: 1.01; letter-spacing: .005em; }
+  .ps-title textarea::placeholder { color: transparent; -webkit-text-stroke: 1px rgba(241,237,240,.75); opacity: 1; }
+  .ps-title textarea:focus { outline: none; }
+  .poster:focus-within { box-shadow: 0 40px 80px -40px rgba(0,0,0,.95), inset 0 0 0 1px rgba(233,163,182,.45); }
+  .ps-stamps { display: flex; flex-wrap: wrap; gap: 6px 14px; min-height: 22px; margin: 10px 0 14px; }
+  .ps-stamps .vb { display: inline-block; opacity: 1; padding: 0; font-family: var(--display); font-weight: 800; font-stretch: 62%; text-transform: uppercase; line-height: 1.1; font-size: 22px; cursor: default; pointer-events: none; }
+  .ps-stamps .vb::after { display: none; }
+  .ps-meta { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 0 14px; border-top: 1px solid rgba(241,237,240,.22); }
+  .ps-meta label { display: flex; flex-direction: column; gap: 2px; min-width: 0; padding-top: 9px; }
+  .ps-meta .mono { font-size: 9.5px; letter-spacing: .16em; text-transform: uppercase; color: rgba(241,237,240,.6); }
+  .ps-meta input { width: 100%; min-width: 0; min-height: 36px; padding: 4px 0 6px; border: 0; border-bottom: 1px solid transparent; border-radius: 0; background: none; color: var(--text);
+    font-family: var(--sans); font-size: 16px; font-weight: 500; }
+  .ps-meta input::placeholder { color: rgba(241,237,240,.42); }
+  .ps-meta input:focus { outline: none; border-bottom-color: var(--accent); }
+  .ps-bar { display: flex; height: 10px; margin-top: 14px; gap: 2px; }
+  .ps-bar i { flex: 1; }
+  .ps-bar i.empty { border: 1px dashed rgba(241,237,240,.25); }
+  .ps-foot { display: flex; justify-content: space-between; margin-top: 8px; font-size: 9.5px; letter-spacing: .16em; text-transform: uppercase; color: rgba(241,237,240,.55); }
+  .brief-msg { margin-top: 14px; }
+  .brief-msg summary { display: inline-flex; align-items: center; gap: 8px; min-height: 40px; cursor: pointer; list-style: none; font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+  .brief-msg summary::-webkit-details-marker { display: none; }
+  .brief-msg summary::before { content: "+"; font-size: 14px; transition: transform .3s var(--ease); }
+  .brief-msg[open] summary::before { transform: rotate(45deg); }
   .brief-out { position: sticky; top: calc(var(--hh, 72px) + 24px); }
-  .brief-out h3 { margin: 0; }
-  .brief-out pre { margin: 12px 0 18px; padding: 16px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); min-height: 12em;
+  .brief-out pre { margin: 4px 0 0; padding: 16px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); 
     font-family: var(--mono); font-size: 12px; line-height: 1.75; color: var(--body); white-space: pre-wrap; overflow-wrap: anywhere; }
-  .brief-send { display: flex; align-items: center; justify-content: center; gap: 10px; min-height: 52px; padding: 0 20px; border-radius: 999px;
+  .brief-send { margin-top: 22px; display: flex; align-items: center; justify-content: center; gap: 10px; min-height: 52px; padding: 0 20px; border-radius: 999px;
     font-size: 15px; font-weight: 600; letter-spacing: -.005em; color: #140b12;
     background: linear-gradient(95deg, #efb3c4 0%, #c49ae0 100%); box-shadow: 0 10px 26px -12px rgba(214,140,190,.5), inset 0 1px 0 rgba(255,255,255,.35);
     transition: transform .3s var(--ease), box-shadow .3s ease, filter .3s ease; }
@@ -417,23 +475,28 @@
   .brief-hint { margin: 12px 0 0; min-height: 1.6em; text-align: center; transition: color .3s; }
   .brief-hint.done { color: var(--accent); }
   @media (hover: hover) {
-    .chip:hover { border-color: var(--text); color: var(--text); }
-    .chip[aria-pressed="true"]:hover { color: var(--bg); }
+    .chip[aria-pressed="false"]:hover { opacity: .7; }
     .pk-x:hover { color: var(--text); }
     .pk-add:not(:disabled):hover { opacity: .88; }
     .brief-send:hover { transform: translateY(-1px); filter: brightness(1.04); box-shadow: 0 14px 30px -12px rgba(214,140,190,.65), inset 0 1px 0 rgba(255,255,255,.4); }
   }
   @media (max-width: 960px) {
     .brief { grid-template-columns: minmax(0, 1fr); }
-    .brief-out { position: static; }
+    .brief-out { position: static; max-width: 460px; width: 100%; justify-self: center; }
   }
   @media (max-width: 640px) {
     .brief { padding-top: 28px; gap: 36px; }
     .brief-q { margin-bottom: 32px; }
-    .chip { padding: 0 14px; font-size: 14px; }
+    .brief-q { margin-bottom: 44px; }
+    .chips { gap: 2px 18px; }
+    .chip { font-size: 34px; }
+    .vb { font-size: 29px; }
+    .vibes { gap: 4px 18px; }
     .pk-area { height: 170px; }
     .pk-gray { width: 30px; }
-    .brief-fields { grid-template-columns: minmax(0, 1fr); gap: 14px; }
+    .poster-wrap { padding: 10px; }
+    .poster { padding: 18px 18px 14px; }
+    .ps-title textarea { font-size: 40px; }
   }
 
   html:has(dialog[open]) { overscroll-behavior: none; }
@@ -533,6 +596,10 @@
     box-shadow: 0 60px 120px -40px rgba(0,0,0,.9); will-change: transform; }
   @media (prefers-reduced-motion: no-preference) { .viewer-stage img { transition: opacity .25s ease, transform .3s var(--ease); } }
   .viewer-stage img.is-swapping { opacity: 0; }
+  /* Pfeile fest an der Bühne verankert (nicht am Bild): bei schmalen Story-Formaten bleiben sie an derselben Stelle */
+  .viewer-stage .nav-btn { position: absolute; top: calc(50% - 24px); z-index: 2; }
+  #v-prev { left: max(var(--gutter-l), calc(50% - 340px - 72px)); }
+  #v-next { right: max(var(--gutter-r), calc(50% - 340px - 72px)); }
   .viewer-cap { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: baseline; gap: 6px 16px; width: 100%; max-width: 680px; margin: 0 auto;
     padding: 18px var(--gutter-r) max(22px, env(safe-area-inset-bottom, 0px)) var(--gutter-l); }
   .viewer-cap .t { font-family: var(--display); font-weight: 800; font-stretch: 62%; text-transform: uppercase; font-size: 28px; line-height: 1; word-spacing: .1em; }
@@ -581,7 +648,8 @@
     .featured { display: flex; flex-direction: column; gap: 88px; }
     .featured figure:nth-child(even) { margin-top: 0; }
     .more-head { flex-direction: column; align-items: flex-start; }
-    .more { --rh: 360px; gap: 14px; }
+    .more { --rh: 360px; }
+    .more-track { gap: 14px; }
     .clients { margin-top: 88px; }
     .clients-head { margin-bottom: 24px; }
     .logo-wall { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -597,8 +665,8 @@
     .footer-line nav a.ig { display: none; }
     .viewer-stage { padding-bottom: 76px; }
     .viewer-stage img { max-width: 100%; }
-    .viewer-stage .nav-btn { position: absolute; bottom: 12px; width: 48px; height: 48px; }
-    #v-prev { right: calc(var(--gutter-r) + 58px); } #v-next { right: var(--gutter-r); }
+    .viewer-stage .nav-btn { position: absolute; top: auto; bottom: 12px; width: 48px; height: 48px; }
+    #v-prev { left: auto; right: calc(var(--gutter-r) + 58px); } #v-next { right: var(--gutter-r); }
     .viewer-cap { padding-top: 6px; }
     .viewer-cap .t { font-size: 24px; }
     #v-count { font-size: 13px; }
@@ -612,7 +680,8 @@
     .viewer-cap .t { font-size: 18px; }
     .viewer-cta { display: none; }
     .viewer-stage { padding-block: 8px; }
-    .viewer-stage .nav-btn { position: static; }
+    .viewer-stage .nav-btn { top: calc(50% - 24px); bottom: auto; }
+    #v-prev { left: var(--gutter-l); right: auto; } #v-next { right: var(--gutter-r); }
     .viewer-stage img { max-width: min(calc(100% - 144px), 680px); max-height: calc(100dvh - 16px); }
   }
   @media (prefers-reduced-motion: reduce) {
@@ -712,6 +781,9 @@
     background: radial-gradient(circle, rgba(20,11,18,.38) 1.4px, transparent 1.9px) 0 0 / 4px 8px; background-repeat: no-repeat space; transition: opacity .2s ease; }
   /* Ganze Karte + etwas Rand ist Tippfläche */
   .ticket::after { content: ""; position: absolute; inset: -10px; z-index: 2; }
+  /* iOS Safari trifft maskierte/geclippte Flächen nicht zuverlässig: Innenleben ignoriert Taps, der Link selbst (inkl. ::after) fängt sie überall */
+  .ticket { cursor: pointer; touch-action: manipulation; -webkit-tap-highlight-color: transparent; }
+  .ticket .tk-main, .ticket .tk-stub, .ticket .tk-main * { pointer-events: none; }
   /* Serien (z. B. Hauptflyer + Infoseiten): Die weiteren Seiten liegen als Stapel hinter dem Flyer.
      Markup: <figure data-series="img/a-2.webp, img/a-3.webp"> – Stapel, Etikett und Großansicht baut das Skript. */
   .series-stack { position: absolute; z-index: 0; pointer-events: none; }
@@ -856,7 +928,7 @@
           <svg class="reg" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="6.5"/><path d="M12 1v22M1 12h22"/></svg>
           <!-- Farbpalette = die Hauptfarben des Hero-Flyers (bei neuem Flyer neu bestimmen) -->
           <span class="swatch" aria-hidden="true"><i style="background:#ebeced"></i><i style="background:#ccd4dc"></i><i style="background:#a2b7c8"></i><i style="background:#88a2b6"></i><i style="background:#485f6f"></i></span>
-          <button type="button" class="flyer" style="--ph:#4b5156" aria-haspopup="dialog"><picture><source srcset="img/ye-tour.avif" type="image/avif"><img src="img/ye-tour.webp" alt="Flyer YE Tour 26/27, YE Munich" width="1080" height="1350" fetchpriority="high" decoding="async"></picture><span class="sr-only"> – groß ansehen</span></button>
+          <button type="button" class="flyer" data-sector="Club &amp; Event" style="--ph:#4b5156" aria-haspopup="dialog"><picture><source srcset="img/ye-tour.avif" type="image/avif"><img src="img/ye-tour.webp" alt="Flyer YE Tour 26/27, YE Munich" width="1080" height="1350" fetchpriority="high" decoding="async"></picture><span class="sr-only"> – groß ansehen</span></button>
         </div>
         <figcaption class="hero-cap mono">
           <span class="latest"><i class="latest-dot" aria-hidden="true"></i><span lang="en">Latest Work</span></span>
@@ -996,13 +1068,13 @@
             <fieldset class="brief-q">
               <legend class="mono">Was brauchst du?</legend>
               <div class="chips" data-key="was">
-                <button type="button" class="chip" aria-pressed="false">Flyer</button><button type="button" class="chip" aria-pressed="false">Motion Design</button><button type="button" class="chip" aria-pressed="false" lang="en">DJ Graphics</button><button type="button" class="chip" aria-pressed="false">Branding</button>
+                <button type="button" class="chip tw" aria-pressed="false">Flyer</button><button type="button" class="chip tw" aria-pressed="false">Motion</button><button type="button" class="chip tw" aria-pressed="false" lang="en">DJ Graphics</button><button type="button" class="chip tw" aria-pressed="false">Branding</button>
               </div>
             </fieldset>
             <fieldset class="brief-q">
               <legend class="mono">Welcher Vibe?</legend>
-              <div class="chips" data-key="vibe">
-                <button type="button" class="chip" aria-pressed="false">Clean</button><button type="button" class="chip" aria-pressed="false">Dark</button><button type="button" class="chip" aria-pressed="false">Neon</button><button type="button" class="chip" aria-pressed="false">Chrome</button><button type="button" class="chip" aria-pressed="false">Y2K</button><button type="button" class="chip" aria-pressed="false">Retro</button><button type="button" class="chip" aria-pressed="false">Grunge</button><button type="button" class="chip" aria-pressed="false">Luxus</button><button type="button" class="chip" aria-pressed="false">Bunt</button><button type="button" class="chip" aria-pressed="false">Überrasch mich</button>
+              <div class="chips vibes" data-key="vibe">
+                <button type="button" class="chip vb vb-clean" aria-pressed="false">Clean</button><button type="button" class="chip vb vb-dark" aria-pressed="false">Dark</button><button type="button" class="chip vb vb-neon" aria-pressed="false">Neon</button><button type="button" class="chip vb vb-chrome" aria-pressed="false">Chrome</button><button type="button" class="chip vb vb-y2k" aria-pressed="false">Y2K</button><button type="button" class="chip vb vb-retro" aria-pressed="false">Retro</button><button type="button" class="chip vb vb-grunge" aria-pressed="false">Grunge</button><button type="button" class="chip vb vb-luxus" aria-pressed="false">Luxus</button><button type="button" class="chip vb vb-bunt" aria-pressed="false">Bunt</button><button type="button" class="chip vb vb-surprise" aria-pressed="false">Überrasch mich</button>
               </div>
             </fieldset>
             <fieldset class="brief-q">
@@ -1020,24 +1092,28 @@
                 <div class="pk-list" aria-live="polite"></div>
               </div>
             </fieldset>
-            <fieldset class="brief-q brief-fields">
-              <legend class="mono">Eckdaten</legend>
-              <label><span class="mono">Projekt</span><input type="text" data-key="event" maxlength="80" autocomplete="off" placeholder="z. B. Party, Neueröffnung, Menükarte"></label>
-              <label><span class="mono">Datum &amp; Location</span><input type="text" data-key="wann" maxlength="80" autocomplete="off" placeholder="21.11., 794 Studio"></label>
-              <label><span class="mono">Bis wann</span><input type="text" data-key="deadline" maxlength="60" autocomplete="off" placeholder="z. B. nächsten Freitag"></label>
-            </fieldset>
           </div>
           <div class="brief-out">
-            <h3 class="mono">Deine Nachricht</h3>
-<pre id="dm-vorlage">Wagwan Preecie! Ich hab ein Projekt und brauch die passenden Visuals.
-Was:
-Vibe:
-Farben:
-Projekt:
-Datum &amp; Location:
-Bis wann:</pre>
+            <div class="poster-wrap">
+              <span class="cm tl" aria-hidden="true"></span><span class="cm tr" aria-hidden="true"></span><span class="cm bl" aria-hidden="true"></span><span class="cm br" aria-hidden="true"></span>
+              <div class="poster" role="group" aria-label="Dein Briefing als Plakat – Titel und Daten direkt hier eintippen">
+                <span class="ps-glow" aria-hidden="true"></span>
+                <div class="ps-top mono" aria-hidden="true"><span>Briefing</span><span class="ps-fmt">Format offen</span></div>
+                <label class="ps-title"><span class="sr-only">Projekt</span><textarea data-key="event" rows="2" maxlength="44" autocomplete="off" spellcheck="false" placeholder="Dein Projekt"></textarea></label>
+                <div class="ps-stamps" aria-hidden="true"></div>
+                <div class="ps-meta">
+                  <label><span class="mono">Datum &amp; Location</span><input type="text" data-key="wann" maxlength="60" autocomplete="off" placeholder="21.11., 794 Studio"></label>
+                  <label><span class="mono">Bis wann</span><input type="text" data-key="deadline" maxlength="40" autocomplete="off" placeholder="nächsten Freitag"></label>
+                </div>
+                <div class="ps-bar" aria-hidden="true"></div>
+                <div class="ps-foot mono" aria-hidden="true"><span>Visuals by Preecie</span><span>4:5</span></div>
+              </div>
+            </div>
             <a class="brief-send" href="https://ig.me/m/visualsbypreecie" target="_blank" rel="noopener"><svg class="ig" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".9" fill="currentColor"/></svg><span>Kopieren &amp; in die DM</span><span class="sr-only"> (öffnet Instagram in neuem Tab)</span></a>
             <p class="brief-hint mono" id="brief-hint" aria-live="polite"></p>
+            <details class="brief-msg"><summary class="mono">Nachricht ansehen</summary>
+<pre id="dm-vorlage">Wagwan Preecie! Ich hab ein Projekt und brauch die passenden Visuals.</pre>
+            </details>
           </div>
         </div>
         <div class="contact-rows reveal">
@@ -1289,15 +1365,33 @@ Bis wann:</pre>
     var figs = [].slice.call(panel.querySelectorAll('figure[data-sector]')), names = [];
     figs.forEach(function (f) { var n = f.getAttribute('data-sector').trim(); if (n && names.indexOf(n) < 0) names.push(n); });
     if (names.length < 2) return;
+    /* Gefilterte Richtung: die ersten 5 Treffer groß untereinander, der Rest in "Mehr aus dem Archiv". "Alle" stellt die Originalreihenfolge wieder her. */
+    var feat = panel.querySelector('.featured'), more = panel.querySelector('.more'), head = panel.querySelector('.more-head');
+    var countEl = head && head.querySelector('.mono'), countTxt = countEl ? countEl.textContent : '';
+    var order = figs.map(function (f) { return { f: f, big: !!f.closest('.featured') }; });
+    function setBig(f, big) { var bt = f.querySelector('button.flyer'), cp = f.querySelector('.cap'); if (bt) bt.classList.toggle('sm', !big); if (cp) cp.classList.toggle('sm', !big); }
+    function sortTo(n) {
+      var track = (more && more.querySelector('.more-track')) || more, left = 0, big = 0;
+      order.forEach(function (o) {
+        var hit = !n || (o.f.getAttribute('data-sector') || '').trim() === n, toBig = n ? hit && big < 5 : o.big;
+        if (n && hit && big < 5) big++;
+        if (hit && !toBig) left++;
+        o.f.classList.toggle('sector-off', !hit);
+        setBig(o.f, toBig);
+        (toBig ? feat : track).appendChild(o.f);
+      });
+      if (countEl) countEl.textContent = n ? left + (left === 1 ? ' Arbeit' : ' Arbeiten') : countTxt;
+      if (head) head.hidden = !left; if (more) more.hidden = !left;
+      dispatchEvent(new Event('vbp:sector'));
+      window.dispatchEvent(new Event('resize'));
+    }
     var bar = document.createElement('div'); bar.className = 'sector-bar'; bar.setAttribute('role', 'group'); bar.setAttribute('aria-label', 'Richtung filtern');
     ['Alle'].concat(names).forEach(function (n, k) {
       var b = document.createElement('button'); b.type = 'button'; b.textContent = n; b.setAttribute('aria-pressed', k === 0 ? 'true' : 'false');
       b.addEventListener('click', function () {
+        if (b.getAttribute('aria-pressed') === 'true') return;
         bar.querySelectorAll('button').forEach(function (x) { x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); });
-        panel.querySelectorAll('figure').forEach(function (f) {
-          var sec = (f.getAttribute('data-sector') || '').trim();
-          f.classList.toggle('sector-off', k > 0 && sec !== n && !!f.querySelector('button.flyer'));
-        });
+        sortTo(k === 0 ? '' : n);
       });
       bar.appendChild(b);
     });
@@ -1339,7 +1433,15 @@ Bis wann:</pre>
     var all = items, allButtons = buttons;
     function useGroup(btn) {
       var p = panelOf(btn), idx = [];
-      allButtons.forEach(function (b, k) { if (panelOf(b) === p) idx.push(k); });
+      var on = flyerPanel && flyerPanel.querySelector('.sector-bar button[aria-pressed="true"]'), sec = on && on !== on.parentNode.firstElementChild ? on.textContent : '';
+      allButtons.forEach(function (b, k) {
+        if (panelOf(b) !== p || b.closest('.sector-off')) return;
+        /* Hero-Flyer nur, wenn er zur gewählten Richtung passt */
+        if (b === heroBtn && b !== btn && sec && (b.getAttribute('data-sector') || '') !== sec) return;
+        idx.push(k);
+      });
+      /* Reihenfolge wie auf der Seite (Filter sortiert Flyer um); Serienseiten bleiben zusammen */
+      idx.sort(function (a, c) { var A = allButtons[a], C = allButtons[c]; if (A === C) return a - c; return A.compareDocumentPosition(C) & 4 ? -1 : 1; });
       buttons = idx.map(function (k) { return allButtons[k]; }); items = idx.map(function (k) { return all[k]; });
       return buttons.indexOf(btn);
     }
@@ -1450,7 +1552,17 @@ Bis wann:</pre>
     var tHint = 0, chosen = [], MAX = 5;
     var map = function (sel, fn) { return Array.prototype.map.call(b.querySelectorAll(sel), fn); };
     var picked = function (key) { return map('.chips[data-key="' + key + '"] .chip[aria-pressed="true"]', function (x) { return x.textContent.trim(); }); };
-    var val = function (key) { var el = b.querySelector('input[data-key="' + key + '"]'); return el ? el.value.trim() : ''; };
+    var val = function (key) { var el = b.querySelector('[data-key="' + key + '"]:not(.chips)'); return el ? el.value.replace(/\s+/g, ' ').trim() : ''; };
+    var fmtEl = b.querySelector('.ps-fmt'), stampsEl = b.querySelector('.ps-stamps'), barEl = b.querySelector('.ps-bar'), glowEl = b.querySelector('.ps-glow');
+    function poster() {
+      var was = picked('was'); fmtEl.textContent = was.length ? was.join(' + ') : 'Format offen';
+      stampsEl.innerHTML = '';
+      b.querySelectorAll('.vibes .chip[aria-pressed="true"]').forEach(function (c) { var s = document.createElement('span'); s.className = c.className.replace('chip', '').trim(); s.textContent = c.textContent; stampsEl.appendChild(s); });
+      barEl.innerHTML = '';
+      for (var k = 0; k < Math.max(chosen.length, 5); k++) { var i = document.createElement('i'); if (chosen[k]) i.style.background = chosen[k].hex; else i.className = 'empty'; if (!chosen[k] && chosen.length) break; barEl.appendChild(i); }
+      var at = ['18% 12%', '88% 86%', '84% 18%', '14% 88%', '50% 50%'];
+      glowEl.style.background = chosen.length ? chosen.map(function (c, k) { return 'radial-gradient(58% 48% at ' + at[k] + ', ' + c.hex + '8c, transparent 70%)'; }).join(', ') : '';
+    }
     function text() {
       return ['Wagwan Preecie! Ich hab ein Projekt und brauch die passenden Visuals.',
         'Was: ' + picked('was').join(', '), 'Vibe: ' + picked('vibe').join(', '),
@@ -1458,7 +1570,7 @@ Bis wann:</pre>
         'Projekt: ' + val('event'), 'Datum & Location: ' + val('wann'), 'Bis wann: ' + val('deadline')]
         .map(function (l) { return l.replace(/\s+$/, ''); }).join('\n');
     }
-    function update() { pre.textContent = text(); }
+    function update() { pre.textContent = text(); poster(); }
     b.querySelectorAll('.chip').forEach(function (c) {
       c.addEventListener('click', function () { c.setAttribute('aria-pressed', c.getAttribute('aria-pressed') === 'true' ? 'false' : 'true'); update(); });
     });
@@ -1531,13 +1643,16 @@ Bis wann:</pre>
     addBtn.addEventListener('click', addColor);
     window.addEventListener('resize', render, { passive: true });
     render();
-    b.querySelectorAll('input[data-key]').forEach(function (i) { i.addEventListener('input', update); });
+    b.querySelectorAll('input[data-key], textarea[data-key]').forEach(function (i) { i.addEventListener('input', update); });
+    /* Plakat-Titel: Enter springt weiter statt Zeilenumbruch */
+    var ta = b.querySelector('textarea[data-key]');
+    ta.addEventListener('keydown', function (e) { if (e.key === 'Enter') { e.preventDefault(); b.querySelector('.ps-meta input').focus(); } });
     send.addEventListener('click', function () {
       var msg = text();
       var ok = function () { hint.textContent = 'Kopiert'; hint.classList.add('done');
         clearTimeout(tHint); tHint = setTimeout(function () { hint.textContent = hintText; hint.classList.remove('done'); }, 3000); };
-      var fail = function () { var r = document.createRange(); r.selectNodeContents(pre); var s = getSelection(); s.removeAllRanges(); s.addRange(r);
-        hint.textContent = 'Text oben markiert – bitte kopieren'; hint.classList.add('done'); };
+      var fail = function () { b.querySelector('.brief-msg').open = true; var r = document.createRange(); r.selectNodeContents(pre); var s = getSelection(); s.removeAllRanges(); s.addRange(r);
+        hint.textContent = 'Text unten markiert – bitte kopieren'; hint.classList.add('done'); };
       if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(msg).then(ok, fail); else fail();
     });
     update();
@@ -1777,36 +1892,80 @@ Bis wann:</pre>
 </script>
 
 <script>
-/* Archiv-Slideshow: fährt langsam nach rechts bis zum Ende, dann zurück. Pause bei Maus, Berührung, Fokus oder eigenem Scrollen. */
-(function () {
-  var m = document.querySelector('#p-flyer .more'); if (!m) return;
-  if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  var SPEED = 38, dir = 1, pos = m.scrollLeft, last = 0, hold = false, vis = false, idleUntil = 0, raf = 0, self = false;
+/* Archiv-Slideshow: gleitet per GPU (transform statt Scroll-Position, dadurch ohne Ruckeln) langsam hin und her.
+   Sanftes Abbremsen an den Enden und bei Maus/Finger. Ziehen mit Maus oder Finger, Trackpad-Wischen und Tab-Fokus funktionieren. */
+window.__vbpReady.then(function () {
+  var m = document.querySelector('#p-flyer .more'); if (!m || m.querySelector('.more-track')) return;
+  var track = document.createElement('div'); track.className = 'more-track';
+  while (m.firstChild) track.appendChild(m.firstChild);
+  m.appendChild(track);
+  var calm = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var SPEED = 34, ACC = 60, pos = 0, vel = 0, dir = 1, hover = false, vis = false, raf = 0, last = 0, wait = 0;
+  var drag = null, moved = false, fling = 0;
+  function max() { return Math.max(0, track.scrollWidth - m.clientWidth + parseFloat(getComputedStyle(m).paddingLeft) + parseFloat(getComputedStyle(m).paddingRight)); }
+  function apply() { track.style.transform = 'translate3d(' + (-pos).toFixed(2) + 'px,0,0)'; }
+  function clamp() { var mx = max(); if (pos > mx) pos = mx; if (pos < 0) pos = 0; }
   function tick(t) {
-    raf = 0; if (!vis || document.hidden) return;
+    raf = 0; if (!vis || document.hidden || !m.offsetParent) { last = 0; return; }
     var dt = last ? Math.min(.05, (t - last) / 1000) : 0; last = t;
-    var max = m.scrollWidth - m.clientWidth;
-    if (!hold && Date.now() > idleUntil && max > 0 && m.offsetParent) {
-      pos += dir * SPEED * dt;
-      if (pos >= max) { pos = max; dir = -1; idleUntil = Date.now() + 1200; }
-      if (pos <= 0) { pos = 0; dir = 1; idleUntil = Date.now() + 1200; }
-      self = true; m.scrollLeft = pos;
-    } else pos = m.scrollLeft;
+    var mx = max();
+    if (drag) { /* Position kommt aus dem Ziehen */ }
+    else if (fling) { pos += fling * dt; fling *= Math.pow(.04, dt); if (Math.abs(fling) < 8) { fling = 0; wait = t + 1800; } vel = 0; }
+    else if (!calm) {
+      var target = (hover || t < wait) ? 0 : dir * SPEED;
+      vel += Math.max(-ACC * dt, Math.min(ACC * dt, target - vel));
+      /* kurz vor dem Ende weich abbremsen, dann umkehren */
+      var room = dir > 0 ? mx - pos : pos;
+      if (room < 60 && !hover) vel = dir * Math.max(6, SPEED * room / 60);
+      pos += vel * dt;
+      if (dir > 0 && pos >= mx) { pos = mx; dir = -1; vel = 0; wait = t + 1400; }
+      else if (dir < 0 && pos <= 0) { pos = 0; dir = 1; vel = 0; wait = t + 1400; }
+    }
+    clamp(); apply();
     raf = requestAnimationFrame(tick);
   }
   function go() { if (!raf) { last = 0; raf = requestAnimationFrame(tick); } }
-  function pause() { hold = true; }
-  function resume() { hold = false; idleUntil = Date.now() + 600; pos = m.scrollLeft; }
-  m.addEventListener('mouseenter', pause); m.addEventListener('mouseleave', resume);
-  m.addEventListener('focusin', pause); m.addEventListener('focusout', resume);
-  m.addEventListener('touchstart', function () { hold = true; }, { passive: true });
-  m.addEventListener('touchend', function () { hold = false; idleUntil = Date.now() + 2500; pos = m.scrollLeft; }, { passive: true });
-  m.addEventListener('wheel', function () { idleUntil = Date.now() + 2500; pos = m.scrollLeft; }, { passive: true });
-  m.addEventListener('scroll', function () { if (self) { self = false; return; } pos = m.scrollLeft; }, { passive: true });
-  new IntersectionObserver(function (e) { vis = e[0].isIntersecting; if (vis) go(); }, { threshold: .15 }).observe(m);
+  m.addEventListener('pointerenter', function (e) { if (e.pointerType === 'mouse') hover = true; });
+  m.addEventListener('pointerleave', function (e) { if (e.pointerType === 'mouse') hover = false; });
+  /* Ziehen (Maus + Finger); kurzer Klick öffnet weiterhin die Großansicht */
+  m.addEventListener('pointerdown', function (e) {
+    if (e.button !== 0) return;
+    drag = { x: e.clientX, y: e.clientY, p: pos, t: e.timeStamp, lx: e.clientX, lt: e.timeStamp, v: 0, id: e.pointerId, on: false }; moved = false; fling = 0;
+  });
+  window.addEventListener('pointermove', function (e) {
+    if (!drag || e.pointerId !== drag.id) return;
+    var dx = e.clientX - drag.x, dy = e.clientY - drag.y;
+    if (!drag.on) { if (Math.abs(dx) < 6 || Math.abs(dx) < Math.abs(dy)) { if (Math.abs(dy) > 10) drag = null; return; } drag.on = true; moved = true; m.classList.add('dragging'); try { m.setPointerCapture(e.pointerId); } catch (err) {} }
+    pos = drag.p - dx; clamp(); apply();
+    var dtt = Math.max(1, e.timeStamp - drag.lt); drag.v = -(e.clientX - drag.lx) / dtt * 1000; drag.lx = e.clientX; drag.lt = e.timeStamp;
+  }, { passive: true });
+  function end(e) {
+    if (!drag || (e && e.pointerId !== drag.id)) return;
+    if (drag.on) { fling = Math.max(-2400, Math.min(2400, drag.v)); dir = fling >= 0 ? 1 : -1; }
+    drag = null; m.classList.remove('dragging'); go();
+  }
+  window.addEventListener('pointerup', end); window.addEventListener('pointercancel', end);
+  m.addEventListener('click', function (e) { if (moved) { e.preventDefault(); e.stopPropagation(); moved = false; } }, true);
+  /* Trackpad / Shift+Mausrad seitwärts */
+  m.addEventListener('wheel', function (e) {
+    var d = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : (e.shiftKey ? e.deltaY : 0); if (!d) return;
+    e.preventDefault(); pos += d; clamp(); apply(); fling = 0; wait = performance.now() + 2200; dir = d > 0 ? 1 : -1;
+  }, { passive: false });
+  /* Tastatur: fokussierter Flyer wird ins Bild geholt */
+  m.addEventListener('focusin', function (e) {
+    var f = e.target.closest('figure'); if (!f) return; hover = true;
+    var l = f.offsetLeft, w = f.offsetWidth, vw = m.clientWidth - parseFloat(getComputedStyle(m).paddingLeft) - parseFloat(getComputedStyle(m).paddingRight);
+    if (l < pos) pos = l; else if (l + w > pos + vw) pos = l + w - vw; clamp(); apply();
+  });
+  m.addEventListener('focusout', function () { hover = false; });
+  new IntersectionObserver(function (en) { vis = en[0].isIntersecting; if (vis) go(); }, { threshold: .1 }).observe(m);
   document.addEventListener('visibilitychange', function () { if (!document.hidden) go(); });
-  document.querySelectorAll('.cat-tab, .cat-bar button').forEach(function (b) { b.addEventListener('click', function () { setTimeout(go, 50); }); });
-})();
+  addEventListener('resize', function () { clamp(); apply(); });
+  document.querySelectorAll('.cat-tab, .cat-bar button').forEach(function (b) { b.addEventListener('click', function () { setTimeout(function () { clamp(); apply(); go(); }, 60); }); });
+  /* Richtungsfilter sortiert die Flyer neu: Slideshow von vorn */
+  addEventListener('vbp:sector', function () { pos = 0; vel = 0; dir = 1; fling = 0; wait = performance.now() + 900; apply(); go(); });
+  apply(); go();
+});
 </script>
 </body>
 </html>
