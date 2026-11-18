@@ -66,13 +66,15 @@ Wechselt der Hero auf einen neuen Flyer: in `.intro` Bild, Texte, Farbbalken (`.
 - Erlaubte Pfade in der JSON: nur `auto/…`, `img/…`, `media/…`. Texte werden immer als Text eingesetzt, nie als HTML.
 
 ## Vor dem Livegang offen
-- [x] Domain `https://www.visualsbypreecie.de` eingetragen (index.html, robots.txt, sitemap.xml, `CNAME`-Datei für GitHub Pages)
+- [x] Domain `https://www.visualsbypreecie.de` eingetragen (index.html, robots.txt, sitemap.xml)
+- [ ] `CNAME`-Datei (Inhalt: `www.visualsbypreecie.de`) erst anlegen, wenn die Domain gekauft ist und auf GitHub zeigt – sonst leitet github.io auf eine tote Domain um
 - [ ] Impressum: Name, Adresse, Telefon, E-Mail, ggf. USt-IdNr./W-IdNr. Die Platzhalter sind rosa markiert (`class="ph"`).
 - [ ] Datenschutz: Anschrift/E-Mail eintragen (Name Fabian Pinkawa und BayLDA sind fertig).
 - [ ] Optional WhatsApp/E-Mail als Kontaktweg. Die Zeilen in `index.html` sind auskommentiert, der WhatsApp-Abschnitt in `datenschutz.html` ebenfalls (Nummern dann anpassen).
-- [ ] GitHub: Repo anlegen, Settings → Pages → Branch `main` / root. Custom domain `www.visualsbypreecie.de` eintragen, danach "Enforce HTTPS".
-- [ ] Hostinger-DNS: nur die 4 A-Records 185.199.108.153 / .109 / .110 / .111.153 auf `@` + CNAME `www` → `<github-name>.github.io`. ALLE anderen A/AAAA-Records löschen (sonst kein SSL, siehe BeautyBar).
-- [ ] `lastmod` in `sitemap.xml` aktualisieren.
+- [x] GitHub: Repo `maxiforstermf-creator/visuals-by-preecie`, Pages aus Branch `main` / root (Vorschau: https://maxiforstermf-creator.github.io/visuals-by-preecie/).
+- [ ] Nach Domainkauf: Settings → Pages → Custom domain `www.visualsbypreecie.de` eintragen, danach "Enforce HTTPS".
+- [ ] Hostinger-DNS: nur die 4 A-Records 185.199.108.153 / 185.199.109.153 / 185.199.110.153 / 185.199.111.153 auf `@` + CNAME `www` → `maxiforstermf-creator.github.io`. ALLE anderen A/AAAA-Records löschen (sonst kein SSL, siehe BeautyBar).
+- [ ] `lastmod` in `sitemap.xml` am Livegang-Tag aktualisieren (zuletzt 2026-11-18).
 - [ ] Nach dem Upload prüfen: 404-Seite, HTTPS-Weiterleitung, Ladezeit
 - [ ] About-Foto `img/fabian.webp` ist aus einem Instagram-Screenshot ausgeschnitten: durch Originaldatei ersetzen (800 × 1000, 4:5). Fotograf klären bzw. Credit in die figcaption.
 - [ ] Bildrechte: Drake-Flyer ersetzen oder Rechte klären. Für Flyer mit Fotos von Artists/Fotografen Einverständnis der Kunden einholen.
