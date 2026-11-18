@@ -2013,7 +2013,20 @@ window.__vbpReady.then(function () {
     mark();
     /* AVIF nur nutzen, wenn der Browser es fürs erste Bild auch genommen hat */
     function url(k) { var l = list[k]; avif = /\.avif(\?|$)/.test(img.currentSrc || '') || (avif && !img.currentSrc); var u = avif && l.avif ? l.avif : l.webp; return /(^|\/)img\/t\//.test(img.getAttribute('src') || '') && k === 0 ? u.replace(/^img\/(?!t\/)/, 'img/t/') : u; }
-    function preload() { if (warm) return; warm = true; for (var k = 1; k < n; k++) { var im = new Image(); im.decoding = 'async'; im.src = url(k); } }
+    /* Vollbilder der Serie vorladen; bis eins fertig ist, zeigt das mitschiebende Bild die kleine Vorschau (img/t/, vom Stapel schon geladen) – nie grau */
+    var ready = [true];
+    function thumb(k) { return list[k].webp.replace(/^img\/(?!t\/)/, 'img/t/').replace(/\.webp$/, avif ? '.avif' : '.webp'); }
+    function peekUrl(k) { return ready[k] ? url(k) : thumb(k); }
+    function preload() {
+      if (warm) return; warm = true;
+      for (var k = 1; k < n; k++) (function (k) {
+        var im = new Image(); im.decoding = 'async';
+        im.onload = function () { ready[k] = true; if (side && cur + side === k && !peek.hidden) peek.src = url(k); };
+        im.src = url(k);
+      })(k);
+    }
+    /* früh vorladen: sobald die Serie in die Nähe des Bildschirms kommt */
+    if ('IntersectionObserver' in window) { var pio = new IntersectionObserver(function (es) { if (es[0].isIntersecting) { preload(); pio.disconnect(); } }, { rootMargin: '900px 0px' }); pio.observe(fig); } else preload();
     function setMain(k) { if (srcEl && list[k].avif) srcEl.setAttribute('srcset', list[k].avif); img.setAttribute('src', list[k].webp); }
     var W = 0, dx = 0, side = 0, raf = 0;
     function paint() {
@@ -2021,7 +2034,7 @@ window.__vbpReady.then(function () {
       var edge = (cur === 0 && dx > 0) || (cur === n - 1 && dx < 0), x = edge ? dx * .22 : dx;
       img.style.translate = x + 'px 0';
       var want = edge || !dx ? 0 : (dx < 0 ? 1 : -1);
-      if (want !== side) { side = want; if (side) { peek.src = url(cur + side); peek.hidden = false; } else peek.hidden = true; }
+      if (want !== side) { side = want; if (side) { peek.src = peekUrl(cur + side); peek.hidden = false; } else peek.hidden = true; }
       if (side) peek.style.translate = (x + side * W) + 'px 0';
     }
     function move(v) { dx = v; if (!raf) raf = requestAnimationFrame(paint); }
