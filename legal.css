@@ -35,8 +35,10 @@ a:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; border-
 .bar { position: sticky; top: 0; z-index: 10; margin-inline: calc(-1 * var(--gl)) calc(-1 * var(--gr)); padding-inline: var(--gl) var(--gr);
   background: rgba(7,6,10,.92); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
 .bar-in { max-width: 760px; margin: 0 auto; padding-block: max(14px, env(safe-area-inset-top, 0px)) 14px; display: flex; justify-content: space-between; align-items: center; gap: 16px; }
-.brand { display: inline-flex; align-items: center; min-height: 44px; }
+.brand { display: inline-flex; align-items: center; min-height: 44px; text-decoration: none; }
 .brand img { width: 50px; height: auto; display: block; }
+.wordmark { font-family: var(--display); font-weight: 900; font-style: italic; font-stretch: 62%; text-transform: uppercase; font-size: 25px; line-height: 1; letter-spacing: .02em; color: #f1edf0; }
+.wordmark i { background: linear-gradient(95deg, #efb3c4, #c49ae0); -webkit-background-clip: text; background-clip: text; color: transparent; }
 .back { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; font-family: var(--mono); font-size: 12px; letter-spacing: .1em; text-transform: uppercase;
   color: var(--muted); text-decoration: none; }
 .back:hover { color: var(--text); }
