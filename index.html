@@ -380,7 +380,7 @@
   .brief-q { margin: 0 0 56px; padding: 0; border: 0; min-width: 0; }
   .brief-q:last-child { margin-bottom: 0; }
   .brief-q legend { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 14px; padding: 0; margin-bottom: 18px; }
-  .q-t { font-family: var(--display); font-weight: 800; font-stretch: 62%; text-transform: uppercase; font-size: clamp(28px, 2.6vw, 36px); line-height: 1; letter-spacing: .01em; color: var(--text); }
+  .q-t { font-family: var(--sans); font-weight: 600; font-size: clamp(22px, 2vw, 26px); line-height: 1.2; letter-spacing: -.015em; color: var(--text); }
   /* Kein Hinweistext: jedes Wort trägt ein kleines „+“ (antippbar, mehrfach), gewählt dreht es sich zum „×“ (wieder abwählen). Zähler neben der Frage. */
   .chip::before { content: "+"; position: absolute; top: .02em; right: -12px; font: 400 12px/1 var(--mono); color: var(--accent); -webkit-text-fill-color: var(--accent);
     -webkit-text-stroke: 0; text-shadow: none; background: none; letter-spacing: 0; transform-origin: 50% 50%; transition: transform .45s var(--ease), opacity .3s ease; }
@@ -1113,8 +1113,8 @@
             </fieldset>
             <fieldset class="brief-q">
               <legend><span class="q-t">Welcher Vibe?</span><span class="q-count mono" aria-live="polite"></span></legend>
-              <div class="chips" data-key="vibe">
-                <button type="button" class="chip tw" aria-pressed="false">Clean</button><button type="button" class="chip tw" aria-pressed="false">Dark</button><button type="button" class="chip tw" aria-pressed="false">Neon</button><button type="button" class="chip tw" aria-pressed="false">Chrome</button><button type="button" class="chip tw" aria-pressed="false">Y2K</button><button type="button" class="chip tw" aria-pressed="false">Retro</button><button type="button" class="chip tw" aria-pressed="false">Grunge</button><button type="button" class="chip tw" aria-pressed="false">Luxus</button><button type="button" class="chip tw" aria-pressed="false">Bunt</button><button type="button" class="chip tw" aria-pressed="false">Überrasch mich</button>
+              <div class="chips vibes" data-key="vibe">
+                <button type="button" class="chip vb vb-clean" aria-pressed="false">Clean</button><button type="button" class="chip vb vb-dark" aria-pressed="false">Dark</button><button type="button" class="chip vb vb-neon" aria-pressed="false">Neon</button><button type="button" class="chip vb vb-chrome" aria-pressed="false">Chrome</button><button type="button" class="chip vb vb-y2k" aria-pressed="false">Y2K</button><button type="button" class="chip vb vb-retro" aria-pressed="false">Retro</button><button type="button" class="chip vb vb-grunge" aria-pressed="false">Grunge</button><button type="button" class="chip vb vb-luxus" aria-pressed="false">Luxus</button><button type="button" class="chip vb vb-bunt" aria-pressed="false">Bunt</button><button type="button" class="chip vb vb-surprise" aria-pressed="false">Überrasch mich</button>
               </div>
             </fieldset>
             <fieldset class="brief-q brief-insp">
@@ -1634,7 +1634,7 @@
       [['Was', was.join(', ')], ['Format', picked('format').join(', ')], ['Vibe', 'vibe'], ['Inspiration', val('insp')], ['Farben', 'farben'], ['Projekt', val('event')], ['Datum & Location', val('wann')], ['Bis wann', val('deadline')]].forEach(function (r) {
         var dt = document.createElement('dt'), dd = document.createElement('dd'); dt.textContent = r[0];
         if (r[1] === 'vibe') {
-          dd.textContent = picked('vibe').join(', ');
+          b.querySelectorAll('.vibes .chip[aria-pressed="true"]').forEach(function (c) { var s = document.createElement('span'); s.className = c.className.replace('chip', '').trim(); s.textContent = c.textContent; dd.appendChild(s); });
         } else if (r[1] === 'farben') {
           chosen.forEach(function (c) { var s = document.createElement('span'), i = document.createElement('i'); s.className = 'sw'; i.style.background = c.hex; s.appendChild(i); s.appendChild(document.createTextNode(c.name + ' ' + c.hex)); dd.appendChild(s); });
         } else dd.textContent = r[1];
