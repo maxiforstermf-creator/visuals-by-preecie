@@ -4,13 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Vireal – Visuals &amp; Web</title>
-<meta name="description" content="Flyer, Motion Design, Branding und Websites aus einer Hand – für Clubs, Events, Gastro und Marken in ganz Deutschland. Anfrage per Instagram-DM.">
+<meta name="description" content="Flyer, Motion Design und Websites aus einer Hand – für Clubs, Events, Gastro und Marken in ganz Deutschland. Anfrage per Instagram-DM.">
 <link rel="canonical" href="https://www.vireal.media/">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="de_DE">
 <meta property="og:site_name" content="Vireal">
 <meta property="og:title" content="Vireal – Visuals &amp; Web">
-<meta property="og:description" content="Flyer, Motion Design, Branding &amp; Websites aus einer Hand. Schreib uns einfach auf Instagram.">
+<meta property="og:description" content="Flyer, Motion Design &amp; Websites aus einer Hand. Schreib uns einfach auf Instagram.">
 <meta property="og:url" content="https://www.vireal.media/">
 <meta property="og:image" content="https://www.vireal.media/img/og.jpg">
 <meta property="og:image:width" content="1200">
@@ -26,7 +26,7 @@
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"ProfessionalService","name":"Vireal",
  "url":"https://www.vireal.media/","image":"https://www.vireal.media/img/og.jpg",
- "description":"Flyer, Motion Design, Branding und Websites für Clubs, Events, Gastro und Marken.",
+ "description":"Flyer, Motion Design und Websites für Clubs, Events, Gastro und Marken.",
  "areaServed":{"@type":"Country","name":"Deutschland"},
  "sameAs":["https://www.instagram.com/vireal.media/"],
  "founder":{"@type":"Person","name":"Fabian Pinkawa","alternateName":"Preecie","jobTitle":"Grafikdesigner"}}
@@ -321,7 +321,7 @@
   .more-head .mono .more-state { margin-left: 10px; color: var(--faint); }
 
   /* ---------- Portfolio-Kategorien ---------- */
-  #werke .sec-head { margin-bottom: 40px; }
+  #werke .sec-head { margin-bottom: 56px; }
   #werke .sec-head h2 { text-align: center; }
   .cat-bar { display: flex; align-items: center; justify-content: center; gap: 28px; margin: 0 0 88px; }
   .cat-tabs { position: relative; display: flex; gap: 6px 34px; min-width: 0; max-width: 100%; overflow-x: auto; scrollbar-width: none; -webkit-overflow-scrolling: touch; overscroll-behavior-x: contain; }
@@ -678,22 +678,40 @@
   .statement h1 .h1-sub { display: block; margin-top: .14em; font-size: .4em; line-height: 1; color: var(--muted); letter-spacing: .01em; }
   .statement h1 .h1-sub em { color: var(--dusk); }
 
-  /* ---------- Portfolio: Bereiche Visuals / Web ---------- */
-  .works-head { row-gap: 36px; }
-  .chapters { grid-column: 1 / 13; justify-self: center; display: flex; align-items: flex-end; gap: 6px clamp(36px, 4vw, 64px); }
+  /* ---------- Portfolio: Bereiche Visuals / Web ----------
+     Drei Ebenen, drei Schriften: Portfolio (Archivo, riesig) → Bereich (Inter Tight, geteilte Leiste) → Kategorie (Archivo-Tabs) → Filter (Mono) */
+  .chapters { position: relative; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); margin: 0 0 clamp(72px, 7vw, 112px);
+    border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .chapters::before { content: ""; position: absolute; left: 50%; top: 18px; bottom: 18px; width: 1px; background: var(--line); }
   .chapters[hidden], .chapter[hidden] { display: none !important; }
-  .ch { position: relative; display: grid; justify-items: start; gap: 8px; padding: 4px 0 12px; border: 0; background: none; cursor: pointer; text-align: left; color: var(--faint); transition: color .25s; }
-  .ch > span { font-family: var(--display); font-weight: 900; font-style: italic; font-stretch: 62%; text-transform: uppercase; font-size: clamp(40px, 4.2vw, 64px); line-height: .86; letter-spacing: .005em; }
-  .ch small { font-size: 10px; letter-spacing: .14em; color: inherit; opacity: .8; }
-  .ch::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 2px; border-radius: 2px; background: linear-gradient(90deg, var(--accent), var(--violet));
-    transform: scaleX(0); transform-origin: left; transition: transform .45s var(--ease); }
-  .ch[aria-selected="true"] { color: var(--text); }
+  .ch { position: relative; display: grid; grid-template-columns: minmax(0, 1fr) auto; row-gap: 10px; column-gap: 16px; align-items: center;
+    padding: 30px 32px 28px 0; border: 0; background: none; color: var(--faint); text-align: left; cursor: pointer; font: inherit; -webkit-tap-highlight-color: transparent; }
+  .ch + .ch { padding: 30px 0 28px 32px; }
+  .ch-t { font-family: var(--sans); font-weight: 600; font-size: clamp(28px, 2.7vw, 40px); line-height: 1; letter-spacing: -.025em; color: var(--muted); transition: color .3s; }
+  .ch-s { grid-column: 1; font-size: 11px; letter-spacing: .14em; color: var(--faint); transition: color .3s; }
+  .ch .arr { grid-column: 2; grid-row: 1 / span 2; width: 22px; height: 22px; color: var(--faint); transition: transform .45s var(--ease), color .3s; }
+  .ch::after { content: ""; position: absolute; left: 0; right: 32px; bottom: -1px; height: 2px; border-radius: 2px; background: linear-gradient(90deg, var(--accent), var(--violet));
+    transform: scaleX(0); transform-origin: left; transition: transform .5s var(--ease); }
+  .ch + .ch::after { left: 32px; right: 0; }
+  .ch[aria-selected="true"] .ch-t { color: var(--text); }
+  .ch[aria-selected="true"] .ch-s { color: var(--muted); }
+  .ch[aria-selected="true"] .arr { transform: rotate(90deg); color: var(--accent); }
   .ch[aria-selected="true"]::after { transform: scaleX(1); }
-  .ch:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; border-radius: 2px; }
-  @media (hover: hover) { .ch:hover { color: var(--muted); } .ch[aria-selected="true"]:hover { color: var(--text); } }
+  .ch:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; border-radius: 2px; }
+  @media (hover: hover) { .ch:hover .ch-t { color: var(--text); } .ch:hover .arr { color: var(--muted); } }
   .chapter.enter { animation: catIn .38s var(--ease) both; }
-  .ch { justify-items: center; text-align: center; }
-  @media (max-width: 640px) { .works-head { row-gap: 26px; } .ch > span { font-size: 44px; } .ch small { font-size: 9.5px; } .chapters { gap: 6px 40px; } }
+  /* nur noch zwei Kategorien: Pfeile weg, Tabs mittig */
+  .cat-bar { justify-content: center; }
+  @media (max-width: 640px) {
+    .chapters { margin-bottom: 56px; }
+    .chapters::before { top: 14px; bottom: 14px; }
+    .ch { padding: 22px 14px 20px 0; row-gap: 8px; column-gap: 8px; }
+    .ch + .ch { padding: 22px 0 20px 16px; }
+    .ch::after { right: 14px; } .ch + .ch::after { left: 16px; }
+    .ch-t { font-size: 26px; }
+    .ch-s { font-size: 9px; letter-spacing: .1em; }
+    .ch .arr { width: 16px; height: 16px; }
+  }
 
   /* ---------- Web: Browser- + Handyrahmen ---------- */
   .case { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--gap); row-gap: 56px; align-items: center; }
@@ -1204,6 +1222,110 @@
   }
   .ps-wait { margin: 28px 0 0; padding-top: 16px; border-top: 1px dashed rgba(241,237,240,.16); font-size: 10px; letter-spacing: .12em; line-height: 1.7; color: rgba(241,237,240,.5); }
   .ps-wait[hidden] { display: none; }
+
+  /* ---------- Anfrage Web: Bedienelemente wie auf einer Website (Checkboxen, Schalter, Look-Vorschauen) –
+     bewusst anders als die Schriftmuster bei Visual ---------- */
+  .mode::before { content: none; }
+  .mode-ic { position: absolute; top: 18px; right: 18px; display: block; border: 1.5px solid currentColor; color: var(--faint); transition: color .3s, border-color .3s; }
+  .ic-v { width: 18px; height: 22px; border-radius: 2px; }
+  .ic-w { width: 30px; height: 21px; border-radius: 4px; }
+  .ic-w b { position: absolute; left: 0; right: 0; top: 4px; height: 1.5px; background: currentColor; }
+  .mode[aria-checked="true"] .mode-ic { color: var(--accent); }
+  .chip.uc, .chip.ut, .chip.lk { font-family: var(--sans); text-transform: none; letter-spacing: -.005em; opacity: 1; -webkit-text-stroke: 0; }
+  .chip.uc::before, .chip.ut::before, .chip.lk::before, .chip.uc::after, .chip.ut::after, .chip.lk::after { content: none; }
+  .chips.ucs { gap: 10px; align-items: stretch; }
+  .chip.uc { display: inline-flex; align-items: center; gap: 10px; min-height: 46px; padding: 0 16px 0 14px; border: 1px solid var(--line-strong); border-radius: 12px;
+    background: rgba(241,237,240,.025); font-size: 15px; font-weight: 500; line-height: 1.2; color: var(--muted); transition: border-color .25s, background .25s, color .25s, transform .3s var(--ease); }
+  .chip.uc.sm { min-height: 40px; padding: 0 13px 0 11px; border-radius: 10px; font-size: 14px; }
+  .ck { position: relative; flex: none; width: 16px; height: 16px; border-radius: 5px; border: 1.5px solid rgba(241,237,240,.38); transition: background .25s, border-color .25s; }
+  .ck::after { content: ""; position: absolute; left: 4.5px; top: 1.5px; width: 4px; height: 8px; border: solid #140b12; border-width: 0 2px 2px 0; transform: rotate(45deg) scale(0); transition: transform .25s var(--ease); }
+  .chip.uc[aria-pressed="true"] { border-color: rgba(233,163,182,.6); background: rgba(233,163,182,.08); color: var(--text); }
+  .chip.uc[aria-pressed="true"] .ck { border-color: transparent; background: linear-gradient(135deg, #efb3c4, #c49ae0); }
+  .chip.uc[aria-pressed="true"] .ck::after { transform: rotate(45deg) scale(1); }
+  [data-single] .ck { border-radius: 50%; }
+  [data-single] .ck::after { left: 3.5px; top: 3.5px; width: 6px; height: 6px; border: 0; border-radius: 50%; background: #140b12; transform: scale(0); }
+  [data-single] .chip.uc[aria-pressed="true"] .ck::after { transform: scale(1); }
+  @media (hover: hover) { .chip.uc:hover, .chip.lk:hover { border-color: rgba(241,237,240,.3); color: var(--text); } }
+  /* Umfang: gestapelte Seiten */
+  .pgs .chip.uc { flex-direction: column; align-items: flex-start; justify-content: space-between; gap: 18px; min-width: 128px; padding: 16px 18px 14px; }
+  .pg { position: relative; display: block; width: 40px; height: 32px; }
+  .pg b { position: absolute; left: 0; bottom: 0; width: 22px; height: 28px; border-radius: 3px; border: 1.5px solid rgba(241,237,240,.5); background: #100d13; transition: border-color .25s; }
+  .pg b:nth-child(2) { left: 6px; bottom: 2px; } .pg b:nth-child(3) { left: 12px; bottom: 4px; } .pg b:nth-child(4) { left: 18px; bottom: 6px; }
+  .pg b:first-child { z-index: 4; } .pg b:nth-child(2) { z-index: 3; } .pg b:nth-child(3) { z-index: 2; } .pg b:nth-child(4) { z-index: 1; }
+  .pg b:first-child::before { content: ""; position: absolute; left: 4px; right: 4px; top: 5px; height: 2px; background: rgba(241,237,240,.4); box-shadow: 0 5px 0 rgba(241,237,240,.25), 0 10px 0 rgba(241,237,240,.25); }
+  .pgs .chip.uc[aria-pressed="true"] .pg b { border-color: var(--accent); }
+  /* Funktionen: Schalter */
+  .chips.tgs { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 32px; border-top: 1px solid var(--line); }
+  .chip.ut { display: flex; justify-content: space-between; align-items: center; gap: 14px; width: 100%; min-height: 54px; padding: 0; border-bottom: 1px solid var(--line);
+    font-size: 15px; font-weight: 500; line-height: 1.25; color: var(--muted); text-align: left; transition: color .25s; }
+  .tg { position: relative; flex: none; width: 40px; height: 24px; border-radius: 99px; background: rgba(241,237,240,.13); transition: background .3s; }
+  .tg::after { content: ""; position: absolute; top: 3px; left: 3px; width: 18px; height: 18px; border-radius: 50%; background: #f1edf0; box-shadow: 0 2px 6px rgba(0,0,0,.4); transition: transform .35s var(--ease); }
+  .chip.ut[aria-pressed="true"] { color: var(--text); }
+  .chip.ut[aria-pressed="true"] .tg { background: linear-gradient(90deg, #efb3c4, #c49ae0); }
+  .chip.ut[aria-pressed="true"] .tg::after { transform: translateX(16px); }
+  @media (hover: hover) { .chip.ut:hover { color: var(--text); } }
+  /* Look: kleine Website-Vorschau je Stil */
+  .chips.lks { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; align-items: stretch; }
+  .chip.lk { display: grid; align-content: start; gap: 6px; padding: 9px 9px 13px; border: 1px solid var(--line); border-radius: 12px; background: rgba(241,237,240,.02);
+    color: var(--muted); text-align: left; transition: border-color .25s, background .25s; }
+  .chip.lk[aria-pressed="true"] { border-color: rgba(233,163,182,.65); background: rgba(233,163,182,.07); }
+  .lk-ui { position: relative; display: block; aspect-ratio: 16 / 10; margin-bottom: 6px; border-radius: 7px; overflow: hidden; }
+  .lk-ui i { position: absolute; display: block; }
+  .lk-n { padding: 0 4px; font-size: 15px; font-weight: 600; line-height: 1.1; color: var(--text); }
+  .lk-d { padding: 0 4px; font-family: var(--mono); font-size: 9.5px; letter-spacing: .1em; text-transform: uppercase; line-height: 1.5; color: var(--faint); }
+  .lk-min .lk-ui { background: #f4f2ee; }
+  .lk-min i:nth-child(1) { left: 8%; top: 12%; width: 16%; height: 3px; background: #222; }
+  .lk-min i:nth-child(2) { left: 8%; top: 38%; width: 42%; height: 7px; background: #1b1b1b; }
+  .lk-min i:nth-child(3) { left: 8%; top: 56%; width: 30%; height: 3px; background: #b5b2ad; box-shadow: 0 6px 0 #ccc9c4; }
+  .lk-min i:nth-child(4) { right: 8%; top: 30%; width: 30%; height: 46%; background: #dedbd5; }
+  .lk-edel .lk-ui { background: #0f0d0b; }
+  .lk-edel i:nth-child(1) { left: 0; right: 0; top: 14%; height: 1px; background: rgba(216,195,154,.35); }
+  .lk-edel i:nth-child(2) { left: 50%; top: 40%; width: 44%; height: 5px; transform: translateX(-50%); background: #d8c39a; }
+  .lk-edel i:nth-child(3) { left: 50%; top: 56%; width: 28%; height: 2px; transform: translateX(-50%); background: #6d6457; }
+  .lk-edel i:nth-child(4) { left: 50%; bottom: 14%; width: 22%; height: 10%; transform: translateX(-50%); border: 1px solid #d8c39a; }
+  .lk-bold .lk-ui { background: #efeae0; }
+  .lk-bold i:nth-child(1) { left: 7%; top: 16%; width: 70%; height: 22%; background: #121212; }
+  .lk-bold i:nth-child(2) { left: 7%; top: 42%; width: 52%; height: 22%; background: #121212; }
+  .lk-bold i:nth-child(3) { left: 7%; bottom: 13%; width: 26%; height: 12%; border-radius: 99px; background: #ff4d2e; }
+  .lk-bold i:nth-child(4) { right: 7%; bottom: 13%; width: 14%; height: 12%; background: #121212; }
+  .lk-warm .lk-ui { background: #f5ebe1; }
+  .lk-warm i:nth-child(1) { right: 8%; top: 16%; width: 38%; height: 68%; border-radius: 48% 48% 10px 10px; background: #dfbea4; }
+  .lk-warm i:nth-child(2) { left: 8%; top: 32%; width: 36%; height: 6px; border-radius: 3px; background: #6b4b3a; }
+  .lk-warm i:nth-child(3) { left: 8%; top: 48%; width: 28%; height: 3px; border-radius: 2px; background: #b99a85; }
+  .lk-warm i:nth-child(4) { left: 8%; bottom: 18%; width: 24%; height: 12%; border-radius: 99px; background: #c98b6b; }
+  .lk-tech .lk-ui { background: radial-gradient(60% 80% at 80% 20%, rgba(124,108,255,.65), transparent 60%), radial-gradient(50% 70% at 20% 100%, rgba(0,200,220,.4), transparent 60%), #0b0d14; }
+  .lk-tech i:nth-child(1) { inset: 0; background: linear-gradient(rgba(255,255,255,.06) 1px, transparent 1px) 0 0 / 100% 20%, linear-gradient(90deg, rgba(255,255,255,.06) 1px, transparent 1px) 0 0 / 14% 100%; }
+  .lk-tech i:nth-child(2) { left: 8%; top: 36%; width: 46%; height: 6px; border-radius: 2px; background: #fff; }
+  .lk-tech i:nth-child(3) { left: 8%; top: 52%; width: 32%; height: 3px; background: rgba(255,255,255,.45); }
+  .lk-tech i:nth-child(4) { left: 8%; bottom: 16%; width: 22%; height: 12%; border-radius: 4px; background: #7c6cff; }
+  .lk-bunt .lk-ui { background: #fff5d6; }
+  .lk-bunt i:nth-child(1) { right: 10%; top: 14%; width: 26%; aspect-ratio: 1; border-radius: 50%; background: #ff6b9a; }
+  .lk-bunt i:nth-child(2) { right: 30%; bottom: 12%; width: 16%; aspect-ratio: 1; transform: rotate(18deg); background: #3ec6dc; }
+  .lk-bunt i:nth-child(3) { left: 8%; top: 32%; width: 40%; height: 7px; border-radius: 4px; background: #222; }
+  .lk-bunt i:nth-child(4) { left: 8%; bottom: 18%; width: 24%; height: 12%; border-radius: 99px; background: #ffc928; }
+  /* Rahmen: Budget + Betreuung kompakt */
+  .rahmen { display: grid; grid-template-columns: 76px minmax(0, 1fr); gap: 14px 18px; align-items: center; }
+  .r-l { color: var(--faint); }
+  /* Plakat im Web-Modus: Browserfenster */
+  .ps-chrome { display: none; }
+  .poster.is-web .ps-chrome { display: flex; align-items: center; gap: 6px; margin: -22px -22px 18px; padding: 10px 14px; border-bottom: 1px solid rgba(241,237,240,.08); background: rgba(241,237,240,.04); }
+  .ps-chrome i { width: 7px; height: 7px; border-radius: 50%; background: rgba(241,237,240,.22); }
+  .ps-url { flex: 1; margin-left: 10px; padding: 4px 10px; border-radius: 99px; background: rgba(241,237,240,.06); text-align: center; text-transform: none; letter-spacing: .04em; font-size: 10px; color: rgba(241,237,240,.7); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  @media (max-width: 640px) {
+    .chips.tgs { grid-template-columns: minmax(0, 1fr); }
+    .chips.lks { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+    .pgs .chip.uc { min-width: 0; flex: 1 1 calc(50% - 5px); }
+    .rahmen { grid-template-columns: minmax(0, 1fr); gap: 10px; }
+    .rahmen .r-l + .chips { margin-bottom: 8px; }
+    .poster.is-web .ps-chrome { margin: -18px -18px 16px; }
+    .mode-ic { top: 14px; right: 14px; }
+  }
+  @media (max-width: 640px) {
+    .ch-long { display: none; }
+    .mode-t { font-size: 34px; }
+    .mode { padding-right: 12px; }
+    .ic-v { width: 14px; height: 18px; } .ic-w { width: 22px; height: 16px; } .ic-w b { top: 3px; }
+  }
 </style>
 </head>
 <body>
@@ -1279,7 +1401,7 @@
     <div class="container grid12">
       <h1 class="reveal"><span class="h1-word"><i>Vi</i>real</span><span class="h1-sub">Visuals <em>&amp;</em> Web</span></h1>
       <div class="statement-side reveal">
-        <p class="intro-sub">Flyer, Motion Design, Branding und die passende Website – aus einer Hand und im selben Look. Für Clubs, Events, Gastro und Marken in ganz Deutschland.</p>
+        <p class="intro-sub">Flyer, Motion Design und die passende Website – aus einer Hand und im selben Look. Für Clubs, Events, Gastro und Marken in ganz Deutschland.</p>
         <div class="intro-actions">
           <a class="ticket" href="#kontakt">
             <span class="tk-main"><small class="mono">Admit one · Anfrage</small><b>Projekt anfragen</b></span>
@@ -1295,22 +1417,18 @@
   <section id="werke" class="works wrap" aria-labelledby="h-werke">
     <div class="container">
       <header class="sec-head grid12 works-head"><h2 id="h-werke">Portfolio</h2>
-        <div class="chapters" role="tablist" aria-label="Bereiche" hidden>
-          <button type="button" class="ch" role="tab" id="ch-t-visuals" aria-controls="ch-visuals" aria-selected="true"><span lang="en">Visuals</span><small class="mono">Flyer · Motion · Branding</small></button>
-          <button type="button" class="ch" role="tab" id="ch-t-web" aria-controls="ch-web" aria-selected="false" tabindex="-1"><span lang="en">Web</span><small class="mono">Websites</small></button>
-        </div>
       </header>
+      <div class="chapters" role="tablist" aria-label="Bereiche" hidden>
+        <button type="button" class="ch" role="tab" id="ch-t-visuals" aria-controls="ch-visuals" aria-selected="true"><span class="ch-t" lang="en">Visuals</span><span class="ch-s mono">Flyer · Motion<span class="ch-long"> Design</span></span><svg class="arr" aria-hidden="true"><use href="#i-arr"/></svg></button>
+        <button type="button" class="ch" role="tab" id="ch-t-web" aria-controls="ch-web" aria-selected="false" tabindex="-1"><span class="ch-t" lang="en">Web</span><span class="ch-s mono">Websites · Shops</span><svg class="arr" aria-hidden="true"><use href="#i-arr"/></svg></button>
+      </div>
 
       <div class="chapter" id="ch-visuals" role="tabpanel" aria-labelledby="ch-t-visuals">
       <div class="cat-bar" hidden>
-        <button type="button" class="icon-btn cat-arrow" data-step="-1" aria-label="Vorherige Kategorie"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
         <div class="cat-tabs" role="tablist" aria-label="Portfolio-Kategorien">
           <button type="button" class="cat-tab" role="tab" id="tab-flyer" aria-controls="p-flyer" aria-selected="true">Flyer</button>
           <button type="button" class="cat-tab" role="tab" id="tab-motion" aria-controls="p-motion" aria-selected="false" tabindex="-1" lang="en">Motion<span class="cat-long"> Design</span></button>
-          <button type="button" class="cat-tab" role="tab" id="tab-dj" aria-controls="p-dj" aria-selected="false" tabindex="-1" lang="en">DJ Graphics</button>
-          <button type="button" class="cat-tab" role="tab" id="tab-branding" aria-controls="p-branding" aria-selected="false" tabindex="-1">Branding</button>
         </div>
-        <button type="button" class="icon-btn cat-arrow" data-step="1" aria-label="Nächste Kategorie"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
       </div>
 
       <div class="cat-panel" id="p-flyer" role="tabpanel" aria-labelledby="tab-flyer">
@@ -1350,24 +1468,6 @@
         <div class="cat-grid motion-grid">
           <figure><button type="button" class="clip-btn" aria-haspopup="dialog"><span class="clip-box story"><video class="clip" muted loop playsinline preload="none" poster="media/one-more-time-poster.webp" aria-label="Motion-Flyer One More Time, Destination Gaswerk"><source src="media/one-more-time.mp4" type="video/mp4"></video></span><span class="sr-only"> – groß ansehen</span></button><figcaption class="cap"><span class="t">One More Time</span><span class="meta mono">Destination Gaswerk</span></figcaption></figure>
           <figure><button type="button" class="clip-btn" aria-haspopup="dialog"><span class="clip-box story"><video class="clip" muted loop playsinline preload="none" poster="media/soy-latino-poster.webp" aria-label="Motion-Flyer Soy Latino, Savage"><source src="media/soy-latino.mp4" type="video/mp4"></video></span><span class="sr-only"> – groß ansehen</span></button><figcaption class="cap"><span class="t">Soy Latino</span><span class="meta mono">Savage</span></figcaption></figure>
-        </div>
-      </div>
-
-      <div class="cat-panel" id="p-dj" role="tabpanel" aria-labelledby="tab-dj" hidden>
-        <!-- DJ Graphics: Arbeiten hier einfügen (Bilder wie bei Flyer als <figure> mit button.flyer; Videos als <video muted loop playsinline>) und den Platzhalter .cat-soon löschen -->
-        <div class="cat-soon">
-          <span class="mono">In Arbeit</span>
-          <p>DJ Graphics wie Mix-Cover, Line-up-Grafiken und Social Assets kommen hier bald dazu. Bis dahin findest du Beispiele auf Instagram.</p>
-          <a class="link-cta" href="https://www.instagram.com/vireal.media/" target="_blank" rel="noopener"><span>Auf Instagram ansehen</span><svg class="arr ne" aria-hidden="true"><use href="#i-arr"/></svg><span class="sr-only"> (öffnet neuen Tab)</span></a>
-        </div>
-      </div>
-
-      <div class="cat-panel" id="p-branding" role="tabpanel" aria-labelledby="tab-branding" hidden>
-        <!-- Branding: Arbeiten hier einfügen (Bilder wie bei Flyer als <figure> mit button.flyer; Videos als <video muted loop playsinline>) und den Platzhalter .cat-soon löschen -->
-        <div class="cat-soon">
-          <span class="mono">In Arbeit</span>
-          <p>Branding-Projekte für Events und Artists kommen hier bald dazu. Bis dahin findest du Beispiele auf Instagram.</p>
-          <a class="link-cta" href="https://www.instagram.com/vireal.media/" target="_blank" rel="noopener"><span>Auf Instagram ansehen</span><svg class="arr ne" aria-hidden="true"><use href="#i-arr"/></svg><span class="sr-only"> (öffnet neuen Tab)</span></a>
         </div>
       </div>
       </div>
@@ -1419,7 +1519,7 @@
           <article class="member">
             <figure class="about-photo" aria-roledescription="Slideshow" aria-label="Fotos von Fabian"><img src="img/fabian-5.webp" alt="Fabian alias Preecie" width="284" height="355" decoding="async" fetchpriority="low" class="on"><img src="img/fabian-4.webp" alt="" width="526" height="658" decoding="async" loading="lazy"><img src="img/fabian-7.webp" alt="" width="533" height="666" decoding="async" loading="lazy"><span class="ap-bars" aria-hidden="true"><i></i><i></i><i></i></span><button type="button" class="ap-nav prev" aria-label="Vorheriges Foto"></button><button type="button" class="ap-nav next" aria-label="Nächstes Foto"></button><figcaption>Fabian · Preecie</figcaption></figure>
             <div class="member-t"><span class="member-role" lang="en">Visuals</span></div>
-            <p class="member-text">Flyer, Motion Design, DJ Graphics und Branding für Clubs, Events, Gastro und Marken.</p>
+            <p class="member-text">Flyer und Motion Design für Clubs, Events, Gastro und Marken – vom einzelnen Post bis zur ganzen Serie.</p>
           </article>
           <article class="member">
             <!-- Foto von Max fehlt noch: <figure class="about-photo"> mit <img> wie bei Fabian einsetzen und .ph-photo entfernen -->
@@ -1453,15 +1553,15 @@
             <fieldset class="brief-q brief-mode">
               <legend><span class="q-t">Visual oder Web?</span></legend>
               <div class="modes" role="radiogroup" aria-label="Art der Anfrage">
-                <button type="button" class="mode" role="radio" aria-checked="false" data-mode="visual"><span class="mode-t" lang="en">Visual</span><span class="mode-s mono">Flyer · Motion · DJ Graphics · Branding</span></button>
-                <button type="button" class="mode" role="radio" aria-checked="false" data-mode="web"><span class="mode-t" lang="en">Web</span><span class="mode-s mono">Website · Shop · Online-Termine</span></button>
+                <button type="button" class="mode" role="radio" aria-checked="false" data-mode="visual"><i class="mode-ic ic-v" aria-hidden="true"></i><span class="mode-t" lang="en">Visual</span><span class="mode-s mono">Flyer · Motion Design</span></button>
+                <button type="button" class="mode" role="radio" aria-checked="false" data-mode="web"><i class="mode-ic ic-w" aria-hidden="true"><b></b></i><span class="mode-t" lang="en">Web</span><span class="mode-s mono">Website · Shop · Online-Termine</span></button>
               </div>
             </fieldset>
             <div class="mode-set" data-set="visual" hidden>
             <fieldset class="brief-q">
               <legend><span class="q-t">Was brauchst du?</span><span class="q-count mono" aria-live="polite"></span></legend>
               <div class="chips" data-key="was">
-                <button type="button" class="chip tw" aria-pressed="false">Flyer</button><button type="button" class="chip tw" aria-pressed="false">Motion</button><button type="button" class="chip tw" aria-pressed="false" lang="en">DJ Graphics</button><button type="button" class="chip tw" aria-pressed="false">Branding</button>
+                <button type="button" class="chip tw" aria-pressed="false">Flyer</button><button type="button" class="chip tw" aria-pressed="false">Motion</button><button type="button" class="chip tw" aria-pressed="false">Flyer-Serie</button>
               </div>
             </fieldset>
             <fieldset class="brief-q q-visual">
@@ -1470,29 +1570,6 @@
                 <button type="button" class="chip tw fm" aria-pressed="false"><i class="fi" style="--w:4;--h:5" aria-hidden="true"></i>Feed 4:5</button><button type="button" class="chip tw fm" aria-pressed="false"><i class="fi" style="--w:9;--h:16" aria-hidden="true"></i>Story 9:16</button><button type="button" class="chip tw fm" aria-pressed="false"><i class="fi" style="--w:16;--h:9" aria-hidden="true"></i>Screen 16:9</button><button type="button" class="chip tw fm" aria-pressed="false"><i class="fi" style="--w:1;--h:1.414" aria-hidden="true"></i>Druck</button>
               </div>
             </fieldset>
-            </div>
-            <div class="mode-set" data-set="web" hidden>
-            <fieldset class="brief-q">
-              <legend><span class="q-t">Was für ein Projekt?</span><span class="q-count mono" aria-live="polite"></span></legend>
-              <div class="chips" data-key="art">
-                <button type="button" class="chip tw" aria-pressed="false">Neue Website</button><button type="button" class="chip tw" aria-pressed="false">Relaunch</button><button type="button" class="chip tw" aria-pressed="false">Landingpage</button><button type="button" class="chip tw" aria-pressed="false">Event-Seite</button><button type="button" class="chip tw" aria-pressed="false">Online-Shop</button>
-              </div>
-            </fieldset>
-            <fieldset class="brief-q">
-              <legend><span class="q-t">Was soll die Seite können?</span><span class="q-count mono" aria-live="polite"></span></legend>
-              <div class="chips" data-key="web">
-                <button type="button" class="chip tw" aria-pressed="false">Online-Termine</button><button type="button" class="chip tw" aria-pressed="false">Shop</button><button type="button" class="chip tw" aria-pressed="false">Tickets &amp; Events</button><button type="button" class="chip tw" aria-pressed="false">Galerie</button><button type="button" class="chip tw" aria-pressed="false">Speisekarte</button><button type="button" class="chip tw" aria-pressed="false">Anfrage-Formular</button><button type="button" class="chip tw" aria-pressed="false">Mehrsprachig</button>
-              </div>
-            </fieldset>
-            <fieldset class="brief-q">
-              <legend><span class="q-t">Was hast du schon?</span><span class="q-count mono" aria-live="polite"></span></legend>
-              <div class="chips" data-key="assets">
-                <button type="button" class="chip tw" aria-pressed="false">Logo</button><button type="button" class="chip tw" aria-pressed="false">Fotos</button><button type="button" class="chip tw" aria-pressed="false">Texte</button><button type="button" class="chip tw" aria-pressed="false">Domain</button><button type="button" class="chip tw" aria-pressed="false">Noch nichts</button>
-              </div>
-              <label class="web-site"><span class="mono">Aktuelle Website</span><input type="text" data-key="site" maxlength="80" enterkeyhint="next" autocomplete="off" inputmode="url" placeholder="Link oder „noch keine“"></label>
-            </fieldset>
-            </div>
-            <div class="mode-set" data-set="any" hidden>
             <fieldset class="brief-q">
               <legend><span class="q-t">Welcher Vibe?</span><span class="q-count mono" aria-live="polite"></span></legend>
               <div class="chips vibes" data-key="vibe">
@@ -1504,9 +1581,58 @@
               <p class="pk-tip">Schick gern rein, was dir gefällt: Links, Accounts oder ein paar Worte. Bilder und Screenshots einfach in der DM hinterher.</p>
               <label><span class="sr-only">Inspirationen</span><input type="text" data-key="insp" maxlength="200" enterkeyhint="next" autocomplete="off" placeholder="z. B. @account, Link oder „wie der YE-Flyer, nur in Rot“" data-pv="z. B. @account, Link oder „wie der YE-Flyer, nur in Rot“" data-pw="z. B. Websites oder Accounts, die dir gefallen"></label>
             </fieldset>
+            </div>
+            <div class="mode-set" data-set="web" hidden>
             <fieldset class="brief-q">
-              <legend><span class="q-t">Welche Farben?</span></legend>
-              <p class="pk-tip">Mit Finger oder Maus übers Feld ziehen, dann übernehmen.</p>
+              <legend><span class="q-t">Was soll die Seite bringen?</span><span class="q-count mono" aria-live="polite"></span></legend>
+              <div class="chips ucs" data-key="ziel">
+                <button type="button" class="chip uc" aria-pressed="false"><i class="ck" aria-hidden="true"></i>Mehr Anfragen</button><button type="button" class="chip uc" aria-pressed="false"><i class="ck" aria-hidden="true"></i>Online-Buchungen</button><button type="button" class="chip uc" aria-pressed="false"><i class="ck" aria-hidden="true"></i>Online verkaufen</button><button type="button" class="chip uc" aria-pressed="false"><i class="ck" aria-hidden="true"></i>Tickets verkaufen</button><button type="button" class="chip uc" aria-pressed="false"><i class="ck" aria-hidden="true"></i>Seriös auftreten</button><button type="button" class="chip uc" aria-pressed="false"><i class="ck" aria-hidden="true"></i>Alle Infos an einem Ort</button>
+              </div>
+            </fieldset>
+            <fieldset class="brief-q">
+              <legend><span class="q-t">Wie groß?</span><span class="q-count mono" aria-live="polite"></span></legend>
+              <div class="chips ucs pgs" data-key="umfang" data-single>
+                <button type="button" class="chip uc pgc" aria-pressed="false" data-label="One-Pager"><i class="pg" aria-hidden="true"><b></b></i><span>One-Pager</span></button><button type="button" class="chip uc pgc" aria-pressed="false" data-label="Bis 5 Seiten"><i class="pg" aria-hidden="true"><b></b><b></b></i><span>Bis 5 Seiten</span></button><button type="button" class="chip uc pgc" aria-pressed="false" data-label="5–15 Seiten"><i class="pg" aria-hidden="true"><b></b><b></b><b></b></i><span>5–15 Seiten</span></button><button type="button" class="chip uc pgc" aria-pressed="false" data-label="Mehr als 15"><i class="pg" aria-hidden="true"><b></b><b></b><b></b><b></b></i><span>Mehr als 15</span></button>
+              </div>
+            </fieldset>
+            <fieldset class="brief-q">
+              <legend><span class="q-t">Was muss sie können?</span><span class="q-count mono" aria-live="polite"></span></legend>
+              <div class="chips tgs" data-key="funktionen">
+                <button type="button" class="chip ut" aria-pressed="false"><span>Online-Termine</span><i class="tg" aria-hidden="true"></i></button><button type="button" class="chip ut" aria-pressed="false"><span>Online-Shop</span><i class="tg" aria-hidden="true"></i></button><button type="button" class="chip ut" aria-pressed="false"><span>Tickets &amp; Events</span><i class="tg" aria-hidden="true"></i></button><button type="button" class="chip ut" aria-pressed="false"><span>Galerie</span><i class="tg" aria-hidden="true"></i></button><button type="button" class="chip ut" aria-pressed="false"><span>Speisekarte</span><i class="tg" aria-hidden="true"></i></button><button type="button" class="chip ut" aria-pressed="false"><span>Anfrage-Formular</span><i class="tg" aria-hidden="true"></i></button><button type="button" class="chip ut" aria-pressed="false"><span>Google-Bewertungen</span><i class="tg" aria-hidden="true"></i></button><button type="button" class="chip ut" aria-pressed="false"><span>Instagram-Feed</span><i class="tg" aria-hidden="true"></i></button><button type="button" class="chip ut" aria-pressed="false"><span>Mehrsprachig</span><i class="tg" aria-hidden="true"></i></button><button type="button" class="chip ut" aria-pressed="false"><span>News / Blog</span><i class="tg" aria-hidden="true"></i></button>
+              </div>
+            </fieldset>
+            <fieldset class="brief-q">
+              <legend><span class="q-t">Welcher Look?</span><span class="q-count mono" aria-live="polite"></span></legend>
+              <div class="chips lks" data-key="look">
+                <button type="button" class="chip lk lk-min" aria-pressed="false" data-label="Minimal"><span class="lk-ui" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span class="lk-n">Minimal</span><span class="lk-d">ruhig, viel Weißraum</span></button><button type="button" class="chip lk lk-edel" aria-pressed="false" data-label="Edel"><span class="lk-ui" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span class="lk-n">Edel</span><span class="lk-d">dunkel, fein, hochwertig</span></button><button type="button" class="chip lk lk-bold" aria-pressed="false" data-label="Bold"><span class="lk-ui" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span class="lk-n">Bold</span><span class="lk-d">große Schrift, laut</span></button><button type="button" class="chip lk lk-warm" aria-pressed="false" data-label="Warm"><span class="lk-ui" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span class="lk-n">Warm</span><span class="lk-d">hell, weich, persönlich</span></button><button type="button" class="chip lk lk-tech" aria-pressed="false" data-label="Modern"><span class="lk-ui" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span class="lk-n">Modern</span><span class="lk-d">klar, technisch, Verläufe</span></button><button type="button" class="chip lk lk-bunt" aria-pressed="false" data-label="Verspielt"><span class="lk-ui" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span class="lk-n">Verspielt</span><span class="lk-d">bunt, Formen, Bewegung</span></button>
+              </div>
+            </fieldset>
+            <fieldset class="brief-q">
+              <legend><span class="q-t">Was hast du schon?</span><span class="q-count mono" aria-live="polite"></span></legend>
+              <div class="chips ucs" data-key="material">
+                <button type="button" class="chip uc" aria-pressed="false"><i class="ck" aria-hidden="true"></i>Logo</button><button type="button" class="chip uc" aria-pressed="false"><i class="ck" aria-hidden="true"></i>Fotos</button><button type="button" class="chip uc" aria-pressed="false"><i class="ck" aria-hidden="true"></i>Texte</button><button type="button" class="chip uc" aria-pressed="false"><i class="ck" aria-hidden="true"></i>Domain</button><button type="button" class="chip uc" aria-pressed="false" data-none><i class="ck" aria-hidden="true"></i>Noch nichts</button>
+              </div>
+              <label class="web-site"><span class="mono">Aktuelle Website</span><input type="text" data-key="site" maxlength="80" enterkeyhint="next" autocomplete="off" inputmode="url" placeholder="Link oder „noch keine“"></label>
+            </fieldset>
+            <fieldset class="brief-q brief-insp">
+              <legend><span class="q-t">Vorbilder</span></legend>
+              <p class="pk-tip">Websites, die dir gefallen – gern auch von der Konkurrenz. Wir schauen, was dort gut funktioniert.</p>
+              <label><span class="sr-only">Vorbilder</span><input type="text" data-key="refs" maxlength="200" enterkeyhint="next" autocomplete="off" placeholder="z. B. Links zu zwei, drei Seiten"></label>
+            </fieldset>
+            <fieldset class="brief-q">
+              <legend><span class="q-t">Rahmen</span></legend>
+              <div class="rahmen">
+                <span class="mono r-l">Budget</span>
+                <div class="chips ucs" data-key="budget" data-single><button type="button" class="chip uc sm" aria-pressed="false"><i class="ck" aria-hidden="true"></i>bis 1.000 €</button><button type="button" class="chip uc sm" aria-pressed="false"><i class="ck" aria-hidden="true"></i>1.000–2.500 €</button><button type="button" class="chip uc sm" aria-pressed="false"><i class="ck" aria-hidden="true"></i>2.500–5.000 €</button><button type="button" class="chip uc sm" aria-pressed="false"><i class="ck" aria-hidden="true"></i>über 5.000 €</button><button type="button" class="chip uc sm" aria-pressed="false"><i class="ck" aria-hidden="true"></i>Noch offen</button></div>
+                <span class="mono r-l">Danach</span>
+                <div class="chips ucs" data-key="pflege" data-single><button type="button" class="chip uc sm" aria-pressed="false"><i class="ck" aria-hidden="true"></i>Ihr betreut die Seite</button><button type="button" class="chip uc sm" aria-pressed="false"><i class="ck" aria-hidden="true"></i>Ich pflege selbst</button><button type="button" class="chip uc sm" aria-pressed="false"><i class="ck" aria-hidden="true"></i>Noch offen</button></div>
+              </div>
+            </fieldset>
+            </div>
+            <div class="mode-set" data-set="any" hidden>
+            <fieldset class="brief-q">
+              <legend><span class="q-t" data-v="Welche Farben?" data-w="Markenfarben">Welche Farben?</span></legend>
+              <p class="pk-tip" data-v="Mit Finger oder Maus übers Feld ziehen, dann übernehmen." data-w="Hast du ein Logo, nehmen wir die Farben daraus. Sonst hier wählen: übers Feld ziehen, dann übernehmen.">Mit Finger oder Maus übers Feld ziehen, dann übernehmen.</p>
               <div class="picker">
                 <div class="pk-area" id="pk-area" tabindex="0" role="slider" aria-label="Farbfeld – mit den Pfeiltasten Farbe wählen, Enter übernimmt" aria-valuetext="">
                   <span class="pk-hue" aria-hidden="true"></span><span class="pk-gray" aria-hidden="true"></span>
@@ -1532,6 +1658,7 @@
               <span class="cm tl" aria-hidden="true"></span><span class="cm tr" aria-hidden="true"></span><span class="cm bl" aria-hidden="true"></span><span class="cm br" aria-hidden="true"></span>
               <div class="poster" role="group" aria-label="Vorschau deiner Nachricht">
                 <span class="ps-glow" aria-hidden="true"></span>
+                <div class="ps-chrome" aria-hidden="true"><i></i><i></i><i></i><span class="ps-url mono">deine-seite.de</span></div>
                 <div class="ps-top mono" aria-hidden="true"><span>Briefing</span><span class="ps-fmt">Format offen</span></div>
                 <p class="ps-hello" aria-hidden="true">Wagwan Vireal!</p>
                 <div class="ps-msg" id="dm-vorlage">
@@ -2043,18 +2170,20 @@
     var pre = document.getElementById('dm-vorlage'), send = b.querySelector('.brief-send'), hint = document.getElementById('brief-hint'), hintText = hint.textContent;
     var tHint = 0, chosen = [], MAX = 5;
     var map = function (sel, fn) { return Array.prototype.map.call(b.querySelectorAll(sel), fn); };
-    var picked = function (key) { return map('.chips[data-key="' + key + '"] .chip[aria-pressed="true"]', function (x) { return x.textContent.trim(); }); };
+    var picked = function (key) { return map('.chips[data-key="' + key + '"] .chip[aria-pressed="true"]', function (x) { return (x.getAttribute('data-label') || x.textContent).replace(/\s+/g, ' ').trim(); }); };
     var val = function (key) { var el = b.querySelector('[data-key="' + key + '"]:not(.chips)'); return el ? el.value.replace(/\s+/g, ' ').trim() : ''; };
     var fmtEl = b.querySelector('.ps-fmt'), rowsEl = b.querySelector('.ps-rows'), barEl = b.querySelector('.ps-bar'), glowEl = b.querySelector('.ps-glow');
     /* Erst Visual oder Web wählen, dann die passenden Fragen. Vibe, Inspiration, Farben und Eckdaten gelten für beide. */
-    var mode = '', footEl = b.querySelector('.ps-foot span:last-child');
+    var mode = '', footEl = b.querySelector('.ps-foot span:last-child'), posterEl = b.querySelector('.poster'), urlEl = b.querySelector('.ps-url');
     function L(k) { var el = b.querySelector('[data-key="' + k + '"]'); var sp = el && el.closest('label') && el.closest('label').querySelector('[data-v]'); return sp ? sp.textContent : k; }
     function rows() {
       var r = [];
       if (mode === 'visual') r = [['Was', picked('was').join(', ')], ['Format', picked('format').join(', ')]];
-      if (mode === 'web') r = [['Projekt-Art', picked('art').join(', ')], ['Funktionen', picked('web').join(', ')], ['Schon da', picked('assets').join(', ')], ['Aktuelle Seite', val('site')]];
       if (!mode) return r;
-      return r.concat([['Vibe', 'vibe'], ['Inspiration', val('insp')], ['Farben', 'farben'], [L('event'), val('event')], [L('wann'), val('wann')], [L('deadline'), val('deadline')]]);
+      var ends = [[L('event'), val('event')], [L('wann'), val('wann')], [L('deadline'), val('deadline')]];
+      if (mode === 'web') return [['Ziel', picked('ziel').join(', ')], ['Umfang', picked('umfang').join(', ')], ['Funktionen', picked('funktionen').join(', ')], ['Look', picked('look').join(', ')],
+        ['Schon da', picked('material').join(', ')], ['Aktuelle Seite', val('site')], ['Vorbilder', val('refs')], ['Markenfarben', 'farben']].concat(ends, [['Budget', picked('budget').join(', ')], ['Danach', picked('pflege').join(', ')]]);
+      return r.concat([['Vibe', 'vibe'], ['Inspiration', val('insp')], ['Farben', 'farben']], ends);
     }
     function intro() {
       if (mode === 'web') return 'Wagwan Vireal! Ich brauch eine Website.';
@@ -2062,8 +2191,11 @@
       return 'Wagwan Vireal! Ich hab ein Projekt für euch.';
     }
     function poster() {
-      var top = mode === 'web' ? picked('art').join(' + ') || 'Web' : mode === 'visual' ? picked('was').join(' + ') || 'Visual' : 'Visual oder Web';
+      var top = mode === 'web' ? picked('umfang').join('') || 'Website' : mode === 'visual' ? picked('was').join(' + ') || 'Visual' : 'Visual oder Web';
       fmtEl.textContent = top; if (footEl) footEl.textContent = mode === 'web' ? '1440 px' : '4:5';
+      posterEl.classList.toggle('is-web', mode === 'web');
+      var slug = val('event').toLowerCase().replace(/ä/g, 'ae').replace(/ö/g, 'oe').replace(/ü/g, 'ue').replace(/ß/g, 'ss').replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '').slice(0, 28);
+      if (urlEl) urlEl.textContent = (slug || 'deine-seite') + '.de';
       var sub = b.querySelector('.ps-sub'); if (sub) sub.textContent = intro().replace(/^Wagwan Vireal! /, '');
       var wait = b.querySelector('.ps-wait'); if (wait) wait.hidden = !!mode;
       /* Nachricht als Datenblatt: Vibes in ihrem Stil, Farben mit Farbfeld */
@@ -2114,7 +2246,12 @@
       b.querySelectorAll('.chips').forEach(function (g) { wv.observe(g); });
     }
     b.querySelectorAll('.chip').forEach(function (c) {
-      c.addEventListener('click', function () { c.setAttribute('aria-pressed', c.getAttribute('aria-pressed') === 'true' ? 'false' : 'true'); update(); });
+      c.addEventListener('click', function () {
+        var on = c.getAttribute('aria-pressed') !== 'true', g = c.parentNode;
+        /* Einzelauswahl (Umfang, Budget, Danach) und „Noch nichts“ schließt die anderen aus */
+        if (on && (g.hasAttribute('data-single') || c.hasAttribute('data-none'))) [].forEach.call(g.children, function (x) { x.setAttribute('aria-pressed', 'false'); });
+        if (on && !g.hasAttribute('data-single') && !c.hasAttribute('data-none')) [].forEach.call(g.querySelectorAll('[data-none]'), function (x) { x.setAttribute('aria-pressed', 'false'); });
+        c.setAttribute('aria-pressed', on ? 'true' : 'false'); update(); });
     });
 
     /* Farbfeld: links das Spektrum (Farbton waagrecht, hell → dunkel senkrecht), rechts Weiß → Schwarz */
@@ -2191,7 +2328,7 @@
     fields.forEach(function (f, k) {
       f.addEventListener('keydown', function (e) {
         if (e.key !== 'Enter' || e.isComposing) return; e.preventDefault();
-        if (fields[k + 1]) fields[k + 1].focus(); else f.blur();
+        var nx = fields.slice(k + 1).filter(function (x) { return x.offsetParent; })[0]; if (nx) nx.focus(); else f.blur();
       });
     });
     document.addEventListener('pointerdown', function (e) {
