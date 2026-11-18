@@ -1924,79 +1924,112 @@
 </script>
 
 <script>
-/* Archiv-Slideshow: gleitet per GPU (transform statt Scroll-Position, dadurch ohne Ruckeln) langsam hin und her.
-   Sanftes Abbremsen an den Enden und bei Maus/Finger. Ziehen mit Maus oder Finger, Trackpad-Wischen und Tab-Fokus funktionieren. */
+/* Archiv-Slideshow: läuft als Web Animation auf dem Grafik-Thread (nicht per JS-Schleife) – dadurch ohne Zittern, auch am iPhone.
+   Pendelt hin und her mit weichem Abbremsen an den Enden. Maus drauf = sanft anhalten. Ziehen mit Maus/Finger, Trackpad und Tab-Fokus funktionieren. */
 window.__vbpReady.then(function () {
   var m = document.querySelector('#p-flyer .more'); if (!m || m.querySelector('.more-track')) return;
   var track = document.createElement('div'); track.className = 'more-track';
   while (m.firstChild) track.appendChild(m.firstChild);
   m.appendChild(track);
   var calm = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var SPEED = 70, ACC = 140, pos = 0, vel = 0, dir = 1, hover = false, vis = false, raf = 0, last = 0, wait = 0;
-  var drag = null, moved = false, fling = 0;
-  function max() { return Math.max(0, track.scrollWidth - m.clientWidth + parseFloat(getComputedStyle(m).paddingLeft) + parseFloat(getComputedStyle(m).paddingRight)); }
-  function apply() { track.style.transform = 'translate3d(' + (-pos).toFixed(2) + 'px,0,0)'; }
-  function clamp() { var mx = max(); if (pos > mx) pos = mx; if (pos < 0) pos = 0; }
-  function tick(t) {
-    raf = 0; if (!vis || document.hidden || !m.offsetParent) { last = 0; return; }
-    var dt = last ? Math.min(.05, (t - last) / 1000) : 0; last = t;
-    var mx = max();
-    if (drag) { /* Position kommt aus dem Ziehen */ }
-    else if (fling) { pos += fling * dt; fling *= Math.pow(.04, dt); if (Math.abs(fling) < 8) { fling = 0; wait = t + 1800; } vel = 0; }
-    else if (!calm) {
-      var target = (hover || t < wait) ? 0 : dir * SPEED;
-      vel += Math.max(-ACC * dt, Math.min(ACC * dt, target - vel));
-      /* kurz vor dem Ende weich abbremsen, dann umkehren */
-      var room = dir > 0 ? mx - pos : pos;
-      if (room < 110 && !hover) vel = dir * Math.max(10, SPEED * room / 110);
-      pos += vel * dt;
-      if (dir > 0 && pos >= mx) { pos = mx; dir = -1; vel = 0; wait = t + 1000; }
-      else if (dir < 0 && pos <= 0) { pos = 0; dir = 1; vel = 0; wait = t + 1000; }
-    }
-    clamp(); apply();
-    raf = requestAnimationFrame(tick);
+  var SPEED = 70, HOLD = 900, ACC = 100, EIN = [.42, 0, 1, 1], EOUT = [0, 0, .58, 1];
+  var A = 0, tA = 0, tL = 0;
+  var anim = null, mx = 0, D = 0, T = 0, vis = false, hover = false, rate = 1, rateRaf = 0, tResume = 0;
+  var drag = null, moved = false, fling = 0, flingRaf = 0, last = 0;
+  function pad() { var cs = getComputedStyle(m); return parseFloat(cs.paddingLeft) + parseFloat(cs.paddingRight); }
+  function maxPos() { return Math.max(0, track.scrollWidth - m.clientWidth + pad()); }
+  function curPos() { var t = getComputedStyle(track).transform; return t && t !== 'none' ? -new DOMMatrix(t).m41 : 0; }
+  function setPos(x) { track.style.transform = 'translate3d(' + (-x) + 'px,0,0)'; }
+  function clamp(x) { return Math.max(0, Math.min(mx, x)); }
+  /* Umkehrung der Easing-Kurve: Position → Zeitpunkt in der Animation */
+  function bz(t, p1, p2) { var u = 1 - t; return 3 * u * u * t * p1 + 3 * u * t * t * p2 + t * t * t; }
+  function inv(y, c) { var lo = 0, hi = 1; for (var k = 0; k < 30; k++) { var mid = (lo + hi) / 2; if (bz(mid, c[1], c[3]) < y) lo = mid; else hi = mid; } return bz((lo + hi) / 2, c[0], c[2]); }
+  function cb(c) { return 'cubic-bezier(' + c.join(',') + ')'; }
+  /* Zeit innerhalb einer Fahrt (anfahren – gleichmäßig – abbremsen) für eine zurückgelegte Strecke q */
+  function tOf(q) {
+    if (q <= 0) return 0; if (q >= mx) return 2 * tA + tL;
+    if (q < A) return inv(q / A, EIN) * tA;
+    if (q <= mx - A) return tA + (q - A) / Math.max(1, mx - 2 * A) * tL;
+    return tA + tL + inv((q - (mx - A)) / A, EOUT) * tA;
   }
-  function go() { if (!raf) { last = 0; raf = requestAnimationFrame(tick); } }
-  m.addEventListener('pointerenter', function (e) { if (e.pointerType === 'mouse') hover = true; });
-  m.addEventListener('pointerleave', function (e) { if (e.pointerType === 'mouse') hover = false; });
-  /* Ziehen (Maus + Finger); kurzer Klick öffnet weiterhin die Großansicht */
+  function X(x) { return { transform: 'translate3d(' + (-x) + 'px,0,0)' }; }
+  function build(pos, dir) {
+    if (anim) { anim.cancel(); anim = null; }
+    mx = maxPos(); pos = clamp(pos || 0); setPos(pos);
+    if (calm || mx < 8 || !track.animate) return;
+    /* Anfahren/Abbremsen nur auf den ersten/letzten ACC Pixeln, dazwischen exakt gleichmäßig */
+    A = Math.min(ACC, mx / 3); tA = 2 * A / SPEED * 1000; tL = (mx - 2 * A) / SPEED * 1000; D = 2 * tA + tL; T = 2 * (HOLD + D);
+    var o = function (ms) { return ms / T; }, H2 = 2 * HOLD + D;
+    var k = [];
+    var add = function (x, ms, e) { var f = X(x); f.offset = Math.min(1, o(ms)); if (e) f.easing = e; k.push(f); };
+    add(0, 0); add(0, HOLD, cb(EIN)); add(A, HOLD + tA, 'linear'); add(mx - A, HOLD + tA + tL, cb(EOUT)); add(mx, HOLD + D);
+    add(mx, H2, cb(EIN)); add(mx - A, H2 + tA, 'linear'); add(A, H2 + tA + tL, cb(EOUT)); add(0, T);
+    anim = track.animate(k, { duration: T, iterations: Infinity });
+    anim.currentTime = dir < 0 ? (pos <= 0 ? 0 : H2 + tOf(mx - pos)) : (pos >= mx ? HOLD + D : (pos <= 0 ? 0 : HOLD + tOf(pos)));
+    anim.playbackRate = rate;
+    if (!vis) anim.pause();
+  }
+  /* sanftes Anhalten / Anfahren über die Abspielgeschwindigkeit */
+  function rampTo(target) {
+    cancelAnimationFrame(rateRaf);
+    var from = rate, t0 = performance.now(), dur = 420;
+    (function step(now) {
+      var k = Math.min(1, (now - t0) / dur), e = k * (2 - k);
+      rate = from + (target - from) * e; if (anim) anim.playbackRate = Math.max(0, rate);
+      if (k < 1) rateRaf = requestAnimationFrame(step);
+    })(t0);
+  }
+  /* manuell bewegt (Ziehen, Wischen, Fokus): Animation weg, Position per Hand, später weich weiter */
+  function takeOver() { var x = curPos(); if (anim) { anim.cancel(); anim = null; } mx = maxPos(); setPos(clamp(x)); return clamp(x); }
+  function resumeLater(ms, dir) { clearTimeout(tResume); tResume = setTimeout(function () { if (drag || hover) return; rate = 0; build(curPos(), dir); rampTo(1); }, ms); }
+  m.addEventListener('pointerenter', function (e) { if (e.pointerType === 'mouse') { hover = true; rampTo(0); } });
+  m.addEventListener('pointerleave', function (e) { if (e.pointerType === 'mouse') { hover = false; if (anim) rampTo(1); else resumeLater(300, 1); } });
+  var pos0 = 0, dirLast = 1;
   m.addEventListener('pointerdown', function (e) {
-    if (e.button !== 0) return;
-    drag = { x: e.clientX, y: e.clientY, p: pos, t: e.timeStamp, lx: e.clientX, lt: e.timeStamp, v: 0, id: e.pointerId, on: false }; moved = false; fling = 0;
+    if (e.button !== 0) return; cancelAnimationFrame(flingRaf); fling = 0;
+    drag = { x: e.clientX, y: e.clientY, lx: e.clientX, lt: e.timeStamp, v: 0, id: e.pointerId, on: false }; moved = false;
   });
   window.addEventListener('pointermove', function (e) {
     if (!drag || e.pointerId !== drag.id) return;
     var dx = e.clientX - drag.x, dy = e.clientY - drag.y;
-    if (!drag.on) { if (Math.abs(dx) < 6 || Math.abs(dx) < Math.abs(dy)) { if (Math.abs(dy) > 10) drag = null; return; } drag.on = true; moved = true; m.classList.add('dragging'); try { m.setPointerCapture(e.pointerId); } catch (err) {} }
-    pos = drag.p - dx; clamp(); apply();
-    var dtt = Math.max(1, e.timeStamp - drag.lt); drag.v = -(e.clientX - drag.lx) / dtt * 1000; drag.lx = e.clientX; drag.lt = e.timeStamp;
+    if (!drag.on) {
+      if (Math.abs(dx) < 6 || Math.abs(dx) < Math.abs(dy)) { if (Math.abs(dy) > 10) drag = null; return; }
+      drag.on = true; moved = true; m.classList.add('dragging'); clearTimeout(tResume); pos0 = takeOver() + dx;
+      try { m.setPointerCapture(e.pointerId); } catch (err) {}
+    }
+    setPos(clamp(pos0 - dx));
+    var dt = Math.max(1, e.timeStamp - drag.lt); drag.v = -(e.clientX - drag.lx) / dt * 1000; drag.lx = e.clientX; drag.lt = e.timeStamp;
   }, { passive: true });
   function end(e) {
     if (!drag || (e && e.pointerId !== drag.id)) return;
-    if (drag.on) { fling = Math.max(-2400, Math.min(2400, drag.v)); dir = fling >= 0 ? 1 : -1; }
-    drag = null; m.classList.remove('dragging'); go();
+    var was = drag.on, v = drag.v; drag = null; m.classList.remove('dragging');
+    if (!was) return;
+    fling = Math.max(-2400, Math.min(2400, v)); dirLast = fling >= 0 ? 1 : -1; last = 0;
+    (function glide(now) {
+      var dt = last ? Math.min(.05, (now - last) / 1000) : 0; last = now;
+      var x = clamp(curPos() + fling * dt); setPos(x); fling *= Math.pow(.04, dt);
+      if (Math.abs(fling) > 8 && x > 0 && x < mx) flingRaf = requestAnimationFrame(glide); else resumeLater(1600, dirLast);
+    })(performance.now());
   }
   window.addEventListener('pointerup', end); window.addEventListener('pointercancel', end);
   m.addEventListener('click', function (e) { if (moved) { e.preventDefault(); e.stopPropagation(); moved = false; } }, true);
-  /* Trackpad / Shift+Mausrad seitwärts */
   m.addEventListener('wheel', function (e) {
     var d = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : (e.shiftKey ? e.deltaY : 0); if (!d) return;
-    e.preventDefault(); pos += d; clamp(); apply(); fling = 0; wait = performance.now() + 2200; dir = d > 0 ? 1 : -1;
+    e.preventDefault(); var x = anim ? takeOver() : curPos(); setPos(clamp(x + d)); dirLast = d > 0 ? 1 : -1; resumeLater(1800, dirLast);
   }, { passive: false });
-  /* Tastatur: fokussierter Flyer wird ins Bild geholt */
   m.addEventListener('focusin', function (e) {
-    var f = e.target.closest('figure'); if (!f) return; hover = true;
-    var l = f.offsetLeft, w = f.offsetWidth, vw = m.clientWidth - parseFloat(getComputedStyle(m).paddingLeft) - parseFloat(getComputedStyle(m).paddingRight);
-    if (l < pos) pos = l; else if (l + w > pos + vw) pos = l + w - vw; clamp(); apply();
+    var f = e.target.closest('figure'); if (!f) return;
+    var x = takeOver(), l = f.offsetLeft, w = f.offsetWidth, vw = m.clientWidth - pad();
+    if (l < x) x = l; else if (l + w > x + vw) x = l + w - vw; setPos(clamp(x)); clearTimeout(tResume);
   });
-  m.addEventListener('focusout', function () { hover = false; });
-  new IntersectionObserver(function (en) { vis = en[0].isIntersecting; if (vis) go(); }, { threshold: .1 }).observe(m);
-  document.addEventListener('visibilitychange', function () { if (!document.hidden) go(); });
-  addEventListener('resize', function () { clamp(); apply(); });
-  document.querySelectorAll('.cat-tab, .cat-bar button').forEach(function (b) { b.addEventListener('click', function () { setTimeout(function () { clamp(); apply(); go(); }, 60); }); });
-  /* Richtungsfilter sortiert die Flyer neu: Slideshow von vorn */
-  addEventListener('vbp:sector', function () { pos = 0; vel = 0; dir = 1; fling = 0; wait = performance.now() + 900; apply(); go(); });
-  apply(); go();
+  m.addEventListener('focusout', function () { resumeLater(1500, 1); });
+  new IntersectionObserver(function (en) { vis = en[0].isIntersecting; if (anim) { if (vis) anim.play(); else anim.pause(); } }, { threshold: .05 }).observe(m);
+  var tRs = 0;
+  addEventListener('resize', function () { clearTimeout(tRs); tRs = setTimeout(function () { if (anim && !drag) build(curPos(), 1); else { mx = maxPos(); setPos(clamp(curPos())); } }, 150); });
+  document.querySelectorAll('.cat-tab, .cat-bar button').forEach(function (b) { b.addEventListener('click', function () { setTimeout(function () { if (!drag) build(curPos(), 1); }, 80); }); });
+  /* Richtungsfilter sortiert neu: von vorn */
+  addEventListener('vbp:sector', function () { clearTimeout(tResume); setTimeout(function () { rate = hover ? 0 : 1; build(0, 1); }, 30); });
+  build(0, 1);
 });
 </script>
 </body>
