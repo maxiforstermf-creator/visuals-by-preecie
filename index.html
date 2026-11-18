@@ -407,6 +407,10 @@
   .tw[aria-pressed="false"] { color: transparent; -webkit-text-stroke: 1px rgba(241,237,240,.95); opacity: .8; }
   /* Jeder Vibe sieht aus wie er heißt */
   .vibes { gap: 6px 32px; }
+  /* Format-Auswahl: kleines Rechteck im echten Seitenverhältnis vor jedem Format */
+  .fm .fi { display: inline-block; height: .56em; aspect-ratio: var(--w) / var(--h); margin-right: .22em; vertical-align: .02em;
+    border: 1.5px solid rgba(241,237,240,.95); border-radius: 2px; transition: background .3s ease, border-color .3s ease; }
+  .fm[aria-pressed="true"] .fi { background: var(--accent); border-color: var(--accent); }
   .vb { font-size: clamp(30px, 3.6vw, 46px); }
   .vb-clean { font-weight: 400; font-stretch: 75%; letter-spacing: .16em; }
   .vb-dark { color: #9b919a; text-shadow: 0 3px 0 #000, 0 0 24px #000; }
@@ -1095,6 +1099,12 @@
               </div>
             </fieldset>
             <fieldset class="brief-q">
+              <legend><span class="q-t">Welches Format?</span><span class="q-count mono" aria-live="polite"></span></legend>
+              <div class="chips fmts" data-key="format">
+                <button type="button" class="chip tw fm" aria-pressed="false"><i class="fi" style="--w:4;--h:5" aria-hidden="true"></i>Feed 4:5</button><button type="button" class="chip tw fm" aria-pressed="false"><i class="fi" style="--w:9;--h:16" aria-hidden="true"></i>Story 9:16</button><button type="button" class="chip tw fm" aria-pressed="false"><i class="fi" style="--w:16;--h:9" aria-hidden="true"></i>Screen 16:9</button><button type="button" class="chip tw fm" aria-pressed="false"><i class="fi" style="--w:1;--h:1.414" aria-hidden="true"></i>Druck</button>
+              </div>
+            </fieldset>
+            <fieldset class="brief-q">
               <legend><span class="q-t">Welcher Vibe?</span><span class="q-count mono" aria-live="polite"></span></legend>
               <div class="chips vibes" data-key="vibe">
                 <button type="button" class="chip vb vb-clean" aria-pressed="false">Clean</button><button type="button" class="chip vb vb-dark" aria-pressed="false">Dark</button><button type="button" class="chip vb vb-neon" aria-pressed="false">Neon</button><button type="button" class="chip vb vb-chrome" aria-pressed="false">Chrome</button><button type="button" class="chip vb vb-y2k" aria-pressed="false">Y2K</button><button type="button" class="chip vb vb-retro" aria-pressed="false">Retro</button><button type="button" class="chip vb vb-grunge" aria-pressed="false">Grunge</button><button type="button" class="chip vb vb-luxus" aria-pressed="false">Luxus</button><button type="button" class="chip vb vb-bunt" aria-pressed="false">Bunt</button><button type="button" class="chip vb vb-surprise" aria-pressed="false">Überrasch mich</button>
@@ -1599,7 +1609,7 @@
       var was = picked('was'); fmtEl.textContent = was.length ? was.join(' + ') : 'Format offen';
       /* Nachricht als Datenblatt: Vibes in ihrem Stil, Farben mit Farbfeld */
       rowsEl.innerHTML = '';
-      [['Was', was.join(', ')], ['Vibe', 'vibe'], ['Farben', 'farben'], ['Projekt', val('event')], ['Datum & Location', val('wann')], ['Bis wann', val('deadline')]].forEach(function (r) {
+      [['Was', was.join(', ')], ['Format', picked('format').join(', ')], ['Vibe', 'vibe'], ['Farben', 'farben'], ['Projekt', val('event')], ['Datum & Location', val('wann')], ['Bis wann', val('deadline')]].forEach(function (r) {
         var dt = document.createElement('dt'), dd = document.createElement('dd'); dt.textContent = r[0];
         if (r[1] === 'vibe') {
           b.querySelectorAll('.vibes .chip[aria-pressed="true"]').forEach(function (c) { var s = document.createElement('span'); s.className = c.className.replace('chip', '').trim(); s.textContent = c.textContent; dd.appendChild(s); });
@@ -1616,7 +1626,7 @@
     }
     function text() {
       return ['Wagwan Preecie! Ich hab ein Projekt und brauch die passenden Visuals.',
-        'Was: ' + picked('was').join(', '), 'Vibe: ' + picked('vibe').join(', '),
+        'Was: ' + picked('was').join(', '), 'Format: ' + picked('format').join(', '), 'Vibe: ' + picked('vibe').join(', '),
         'Farben: ' + chosen.map(function (c) { return c.name + ' ' + c.hex; }).join(', '),
         'Projekt: ' + val('event'), 'Datum & Location: ' + val('wann'), 'Bis wann: ' + val('deadline')]
         .map(function (l) { return l.replace(/\s+$/, ''); }).filter(function (l) { return !/:$/.test(l); }).join('\n');
