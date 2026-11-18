@@ -2123,7 +2123,6 @@ window.__vbpReady.then(function () {
     anim = track.animate(k, { duration: T, iterations: Infinity });
     anim.currentTime = dir < 0 ? (pos <= 0 ? 0 : H2 + tOf(mx - pos)) : (pos >= mx ? HOLD + D : (pos <= 0 ? 0 : HOLD + tOf(pos)));
     anim.playbackRate = rate;
-    if (!vis) anim.pause();
   }
   /* sanftes Anhalten / Anfahren über die Abspielgeschwindigkeit */
   function rampTo(target) {
@@ -2179,7 +2178,7 @@ window.__vbpReady.then(function () {
     if (l < x) x = l; else if (l + w > x + vw) x = l + w - vw; setPos(clamp(x)); clearTimeout(tResume);
   });
   m.addEventListener('focusout', function () { resumeLater(1500, 1); });
-  new IntersectionObserver(function (en) { vis = en[0].isIntersecting; if (anim) { if (vis) anim.play(); else anim.pause(); } }, { threshold: .05 }).observe(m);
+  /* läuft schon ab dem Laden der Seite (auch außerhalb des Bildes), damit sie beim Runterscrollen bereits in Bewegung ist. Kostet nichts: Grafik-Thread, Browser pausiert selbst bei verstecktem Tab. */
   var tRs = 0;
   addEventListener('resize', function () { clearTimeout(tRs); tRs = setTimeout(function () { if (anim && !drag) build(curPos(), 1); else { mx = maxPos(); setPos(clamp(curPos())); } }, 150); });
   document.querySelectorAll('.cat-tab, .cat-bar button').forEach(function (b) { b.addEventListener('click', function () { setTimeout(function () { if (!drag) build(curPos(), 1); }, 80); }); });
