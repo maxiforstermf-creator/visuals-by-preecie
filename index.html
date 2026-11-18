@@ -1099,11 +1099,11 @@
               <div class="poster" role="group" aria-label="Dein Briefing als Plakat – Titel und Daten direkt hier eintippen">
                 <span class="ps-glow" aria-hidden="true"></span>
                 <div class="ps-top mono" aria-hidden="true"><span>Briefing</span><span class="ps-fmt">Format offen</span></div>
-                <label class="ps-title"><span class="sr-only">Projekt</span><textarea data-key="event" rows="2" maxlength="44" autocomplete="off" spellcheck="false" placeholder="Dein Projekt"></textarea></label>
+                <label class="ps-title"><span class="sr-only">Projekt</span><textarea data-key="event" rows="2" enterkeyhint="next" maxlength="44" autocomplete="off" spellcheck="false" placeholder="Dein Projekt"></textarea></label>
                 <div class="ps-stamps" aria-hidden="true"></div>
                 <div class="ps-meta">
-                  <label><span class="mono">Datum &amp; Location</span><input type="text" data-key="wann" maxlength="60" autocomplete="off" placeholder="21.11., 794 Studio"></label>
-                  <label><span class="mono">Bis wann</span><input type="text" data-key="deadline" maxlength="40" autocomplete="off" placeholder="nächsten Freitag"></label>
+                  <label><span class="mono">Datum &amp; Location</span><input type="text" data-key="wann" maxlength="60" enterkeyhint="next" autocomplete="off" placeholder="21.11., 794 Studio"></label>
+                  <label><span class="mono">Bis wann</span><input type="text" data-key="deadline" maxlength="40" enterkeyhint="done" autocomplete="off" placeholder="nächsten Freitag"></label>
                 </div>
                 <div class="ps-bar" aria-hidden="true"></div>
                 <div class="ps-foot mono" aria-hidden="true"><span>Visuals by Preecie</span><span>4:5</span></div>
@@ -1646,7 +1646,18 @@
     b.querySelectorAll('input[data-key], textarea[data-key]').forEach(function (i) { i.addEventListener('input', update); });
     /* Plakat-Titel: Enter springt weiter statt Zeilenumbruch */
     var ta = b.querySelector('textarea[data-key]');
-    ta.addEventListener('keydown', function (e) { if (e.key === 'Enter') { e.preventDefault(); b.querySelector('.ps-meta input').focus(); } });
+    /* Tastatur: Enter = weiter zum nächsten Feld, im letzten Feld Tastatur zu. Tippen neben die Felder schließt sie ebenfalls (iOS hat bei Textfeldern sonst keinen Ausweg). */
+    var fields = [ta].concat([].slice.call(b.querySelectorAll('.ps-meta input')));
+    fields.forEach(function (f, k) {
+      f.addEventListener('keydown', function (e) {
+        if (e.key !== 'Enter' || e.isComposing) return; e.preventDefault();
+        if (fields[k + 1]) fields[k + 1].focus(); else f.blur();
+      });
+    });
+    document.addEventListener('pointerdown', function (e) {
+      var a = document.activeElement;
+      if (a && fields.indexOf(a) > -1 && fields.indexOf(e.target) < 0 && !(e.target.closest && e.target.closest('label'))) a.blur();
+    }, true);
     send.addEventListener('click', function () {
       var msg = text();
       var ok = function () { hint.textContent = 'Kopiert'; hint.classList.add('done');
