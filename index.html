@@ -456,11 +456,12 @@
   .pk-x { width: 44px; height: 44px; padding: 0; display: inline-flex; align-items: center; justify-content: center; border: 0; background: transparent; color: var(--muted); cursor: pointer; }
   .pk-x svg { width: 12px; height: 12px; }
   /* Das Briefing als Poster: entsteht live aus der Auswahl, Titel & Daten tippt man direkt aufs Plakat */
-  .poster-wrap { position: relative; padding: 14px; }
+  /* Plakat mindestens 4:5, wächst aber mit dem Inhalt (kein aspect-ratio: iOS Safari hält das sonst fest und schneidet unten ab) */
+  .poster-wrap { position: relative; padding: 14px; container-type: inline-size; }
   .poster-wrap .cm { position: absolute; width: 14px; height: 14px; border: 0 solid var(--faint); opacity: .7; }
   .cm.tl { left: 0; top: 0; border-width: 1px 0 0 1px; } .cm.tr { right: 0; top: 0; border-width: 1px 1px 0 0; }
   .cm.bl { left: 0; bottom: 0; border-width: 0 0 1px 1px; } .cm.br { right: 0; bottom: 0; border-width: 0 1px 1px 0; }
-  .poster { position: relative; display: flex; flex-direction: column; aspect-ratio: 4 / 5; max-width: 100%; padding: 22px 22px 18px; clip-path: inset(0); isolation: isolate;
+  .poster { position: relative; display: flex; flex-direction: column; min-height: calc((100cqw - 28px) * 1.25); max-width: 100%; padding: 22px 22px 18px; clip-path: inset(0); isolation: isolate;
     background: #0d0a10; box-shadow: 0 40px 80px -40px rgba(0,0,0,.95), inset 0 0 0 1px rgba(241,237,240,.08); }
   .ps-glow { position: absolute; inset: -20%; z-index: -1; transition: background .8s ease; filter: blur(8px);
     background: radial-gradient(60% 50% at 18% 12%, rgba(233,163,182,.38), transparent 70%), radial-gradient(55% 50% at 88% 86%, rgba(185,138,214,.34), transparent 70%); }
@@ -528,7 +529,7 @@
     .pk-area { height: 170px; }
     .pk-gray { width: 30px; }
     .poster-wrap { padding: 10px; }
-    .poster { padding: 18px 18px 14px; }
+    .poster { padding: 18px 18px 14px; min-height: calc((100cqw - 20px) * 1.25); }
     .ps-hello { font-size: 36px; }
     .brief-fields { grid-template-columns: minmax(0, 1fr); gap: 10px; }
   }
