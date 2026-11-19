@@ -667,7 +667,7 @@
     .cursor-tag.on { opacity: 1; }
     .cursor-tag.on .vf { transform: none; }
     .cursor-tag.on .lb { opacity: 1; }
-    .has-tag button.flyer { cursor: none; }
+    .has-tag button.flyer, .has-tag .hero-web, .has-tag .case-stage { cursor: none; }
   }
   @media (prefers-reduced-motion: reduce) { .peek, .cursor-tag { transition: opacity .15s linear; } }
 
@@ -2821,7 +2821,8 @@
         peek.classList.add('on'); });
       li.addEventListener('pointerleave', function () { cur = null; peek.classList.remove('on'); });
     });
-    document.querySelectorAll('button.flyer').forEach(function (b) {
+    /* gleiches Sucher-Symbol auf Flyern und Websites (Hero + Web-Projekte) */
+    document.querySelectorAll('button.flyer, .hero-web, .case-stage').forEach(function (b) {
       b.addEventListener('pointerenter', function () { tag.classList.add('on'); });
       b.addEventListener('pointerleave', function () { tag.classList.remove('on'); });
       b.addEventListener('click', function () { tag.classList.remove('on'); });
