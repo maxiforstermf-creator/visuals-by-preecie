@@ -1401,6 +1401,27 @@
     .hero-claim { margin-bottom: 14px; }
     .intro .hero-rail .intro-flyer { width: min(76vw, 600px, calc((100svh - var(--hh, 72px) - 276px) * .806)); }
   }
+
+  /* Web-Projekt: Infos ruhig in Inter Tight statt Mono-Tabelle */
+  .case-meta { margin: 14px 0 0; font-size: 15px; color: var(--muted); }
+  .case-line { margin-top: 22px; font-size: 17px; color: var(--body); }
+  .case-facts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px 28px; margin: 32px 0 0; padding-top: 24px; border-top: 1px solid var(--line); }
+  .case-facts > div { min-width: 0; }
+  .case-facts .cf-wide { grid-column: 1 / -1; }
+  .case-facts dt { font-size: 13px; font-weight: 500; color: var(--faint); }
+  .case-facts dd { margin: 6px 0 0; font-size: 16px; line-height: 1.45; color: var(--text); }
+  .case-facts .case-sw { display: flex; align-items: center; gap: 6px; }
+  .case-facts .case-sw i { width: 18px; height: 18px; border-radius: 50%; box-shadow: 0 0 0 1px rgba(241,237,240,.2); }
+  .case-facts .case-sw span { margin-left: 8px; font-size: 14px; color: var(--muted); }
+  .case-actions { align-items: center; gap: 14px 24px; margin-top: 34px; }
+  .case-btn { min-height: 50px; padding: 0 22px; border: 0; border-radius: 999px; background: var(--text); color: #0a080c; font: 600 15px/1 var(--sans); letter-spacing: -.01em; cursor: pointer; transition: background .25s, transform .3s var(--ease); }
+  @media (hover: hover) { .case-btn:hover { background: #fff; } .case-live:hover { color: var(--text); border-color: var(--text); } }
+  .case-btn:active { transform: scale(.98); }
+  .case-live { display: inline-flex; align-items: center; gap: 6px; min-height: 44px; font: 500 15px/1 var(--sans); color: var(--muted); text-decoration: none; }
+  .case-live svg { width: 16px; height: 16px; }
+  .case-btn:focus-visible, .case-live:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+  @media (max-width: 640px) { .case-line { font-size: 16px; } .case-btn { flex: 1 1 100%; } .case-facts { gap: 18px 20px; } }
+  .web-next { font-size: 15px; color: var(--faint); letter-spacing: 0; }
 </style>
 </head>
 <body>
@@ -1562,22 +1583,20 @@
           </button>
           <div class="case-info">
             <h3 class="case-t">Beautybar</h3>
-            <p class="case-line">Kosmetikstudio mit Online-Terminen, Shop und eigener Academy – alles unter einer Adresse, am Handy genauso sauber wie am Desktop.</p>
-            <dl class="case-spec mono">
-              <div><dt>Kunde</dt><dd>Beautybar Vanessa Forster</dd></div>
-              <div><dt>Branche</dt><dd>Kosmetikstudio · Gersthofen</dd></div>
-              <div><dt>Umfang</dt><dd>25 Seiten · Desktop + Handy</dd></div>
-              <div><dt>Funktionen</dt><dd>Online-Termine · Shop · Academy</dd></div>
-              <div><dt>Farben</dt><dd class="case-sw"><i style="background:#0a0a0a"></i><i style="background:#70000e"></i><i style="background:#f7eae7"></i><i style="background:#fdfaf7"></i><span>Aus der Marke</span></dd></div>
-              <div><dt>Web</dt><dd>Max</dd></div>
+            <p class="case-meta">Kosmetikstudio in Gersthofen</p>
+            <p class="case-line">Online-Termine, Shop und eigene Academy – alles unter einer Adresse, am Handy genauso sauber wie am Desktop.</p>
+            <dl class="case-facts">
+              <div><dt>Umfang</dt><dd>25 Seiten</dd></div>
+              <div><dt>Funktionen</dt><dd>Online-Termine, Shop, Academy</dd></div>
+              <div class="cf-wide"><dt>Farben</dt><dd class="case-sw"><i style="background:#0a0a0a"></i><i style="background:#70000e"></i><i style="background:#f7eae7"></i><i style="background:#fdfaf7"></i><span>aus der Marke übernommen</span></dd></div>
             </dl>
             <div class="case-actions">
-              <button type="button" class="case-open link-cta" aria-haspopup="dialog"><span>Desktop + Handy ansehen</span><svg class="arr" aria-hidden="true"><use href="#i-arr"/></svg></button>
-              <a class="link-cta quiet" href="https://www.beautybar-vanessaforster.de/" target="_blank" rel="noopener"><span>Live</span><svg class="arr ne" aria-hidden="true"><use href="#i-arr"/></svg><span class="sr-only"> – Website öffnen (neuer Tab)</span></a>
+              <button type="button" class="case-open case-btn" aria-haspopup="dialog">Desktop + Handy ansehen</button>
+              <a class="case-live" href="https://www.beautybar-vanessaforster.de/" target="_blank" rel="noopener">Live ansehen<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="sr-only"> (neuer Tab)</span></a>
             </div>
           </div>
         </article>
-        <p class="web-next mono">Weitere Projekte gehen gerade online</p>
+        <p class="web-next">Weitere Projekte gehen gerade online.</p>
       </div>
     </div>
   </section>
