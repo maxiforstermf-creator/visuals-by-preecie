@@ -1487,6 +1487,43 @@
   .statement h1 .h1-sub { margin-top: .32em; font-family: var(--mono); font-style: normal; font-weight: 400; font-stretch: 100%; font-size: .13em; letter-spacing: .34em; color: var(--muted); padding-left: .4em; }
   .statement h1 .h1-sub em { font-style: normal; color: var(--accent); }
   @media (max-width: 640px) { .statement h1 .h1-sub { font-size: .15em; letter-spacing: .28em; padding-left: .3em; } }
+
+  /* ---------- Vertrauen: Zusagen, Direkt-Links, FAQ, Erstgespräch ---------- */
+  .ph { padding: 0 .25em; border-radius: 3px; background: rgba(233,163,182,.18); color: var(--accent); }
+  .direct-links { margin: 18px 0 0 9px; font-size: 14px; color: var(--faint); display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; }
+  .direct-links a { color: var(--muted); text-decoration: none; border-bottom: 1px solid rgba(241,237,240,.25); padding-bottom: 1px; transition: color .25s, border-color .25s; }
+  @media (hover: hover) { .direct-links a:hover { color: var(--text); border-color: var(--accent); } }
+  .promise { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px 0; margin: -28px auto 72px; padding: 0; list-style: none; max-width: 760px; }
+  .promise li { flex: 1 1 200px; display: grid; justify-items: center; gap: 6px; padding: 0 20px; text-align: center; }
+  .promise li + li { border-left: 1px solid var(--line); }
+  .promise b { font-size: 13px; font-weight: 500; color: var(--faint); }
+  .promise li > span { font-size: 16px; color: var(--text); }
+  .diy, .faq { margin-top: 120px; padding-top: 48px; border-top: 1px solid var(--line); row-gap: 24px; }
+  .diy-t, .faq-t { grid-column: 1 / 6; margin: 0; font-family: var(--sans); font-weight: 600; font-size: clamp(26px, 2.6vw, 36px); line-height: 1.12; letter-spacing: -.02em; color: var(--text); text-wrap: balance; }
+  .diy-b, .faq-list { grid-column: 7 / 13; min-width: 0; }
+  .diy-b p { margin: 0 0 24px; font-size: 17px; line-height: 1.6; color: var(--body); }
+  .as-link { display: inline-flex; align-items: center; text-decoration: none; }
+  .faq-list details { border-bottom: 1px solid var(--line); }
+  .faq-list details:first-child { border-top: 1px solid var(--line); }
+  .faq-list summary { position: relative; display: block; padding: 20px 40px 20px 0; font-size: 17px; font-weight: 500; color: var(--text); cursor: pointer; list-style: none; }
+  .faq-list summary::-webkit-details-marker { display: none; }
+  .faq-list summary::after { content: "+"; position: absolute; right: 4px; top: 50%; transform: translateY(-50%); font: 400 22px/1 var(--sans); color: var(--accent); transition: transform .35s var(--ease); }
+  .faq-list details[open] summary::after { transform: translateY(-50%) rotate(45deg); }
+  .faq-list summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 2px; }
+  .faq-list details p { margin: 0 0 22px; max-width: 36em; font-size: 16px; line-height: 1.6; color: var(--muted); }
+  .talk { margin: 80px 0 0; text-align: center; font-size: 16px; color: var(--muted); }
+  .talk a { display: inline-flex; align-items: center; gap: 6px; color: var(--text); text-decoration: none; border-bottom: 1px solid var(--accent); padding-bottom: 2px; }
+  .talk a svg { width: 15px; height: 15px; }
+  .about-direct { grid-column: 1 / 13; justify-self: center; margin: 26px 0 0; max-width: 34em; text-align: center; font-size: 16px; color: var(--muted); }
+  @media (max-width: 960px) { .diy-t, .faq-t, .diy-b, .faq-list { grid-column: 1 / 13; } }
+  @media (max-width: 640px) {
+    .promise { margin: -12px auto 56px; gap: 18px 0; }
+    .promise li { flex: 1 1 33%; padding: 0 8px; }
+    .promise b { font-size: 12px; } .promise li > span { font-size: 14px; }
+    .diy, .faq { margin-top: 88px; padding-top: 36px; }
+    .diy-b .case-btn { width: 100%; justify-content: center; }
+    .talk { margin-top: 64px; display: grid; gap: 8px; justify-items: center; }
+  }
 </style>
 </head>
 <body>
@@ -1572,6 +1609,7 @@
             <span class="cs-in"><small class="mono">Anfrage · Visual &amp; Web</small><b>Projekt anfragen</b></span>
             <span class="cs-arr" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12h13M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
           </a>
+          <p class="direct-links">Direkt zu: <a href="#kontakt" data-pick="visual">Flyer &amp; Motion</a><span aria-hidden="true">·</span><a href="#kontakt" data-pick="web">Website</a></p>
         </div>
       </div>
     </div>
@@ -1597,6 +1635,12 @@
       </div>
 
       <div class="cat-panel" id="p-flyer" role="tabpanel" aria-labelledby="tab-flyer">
+        <!-- Zusagen für Flyer: Zahlen mit Fabi abstimmen (class="ph" = noch offen) -->
+        <ul class="promise" aria-label="So arbeiten wir bei Flyern">
+          <li><b>Erster Entwurf</b><span>in <span class="ph">3</span> Werktagen</span></li>
+          <li><b>Korrekturen</b><span><span class="ph">2</span> Runden inklusive</span></li>
+          <li><b>Du bekommst</b><span>Feed, Story &amp; Druckdatei</span></li>
+        </ul>
         <div class="featured grid12">
           <figure data-sector="Club &amp; Event"><button type="button" class="flyer" style="--ph:#484c4e" aria-haspopup="dialog"><picture><source srcset="img/ye-winter-tour.avif" type="image/avif"><img src="img/ye-winter-tour.webp" alt="Flyer Winter Tour, YE Munich" width="1080" height="1350" decoding="async" fetchpriority="low"></picture><span class="sr-only"> – groß ansehen</span></button><figcaption class="cap"><span class="t">Winter Tour</span><span class="meta mono">YE Munich</span></figcaption></figure>
           <figure data-sector="Club &amp; Event" data-series="img/ye-winter-opening-2.webp, img/ye-winter-opening-3.webp, img/ye-winter-opening-4.webp"><button type="button" class="flyer" style="--ph:#3f454b" aria-haspopup="dialog"><picture><source srcset="img/ye-winter-opening.avif" type="image/avif"><img src="img/ye-winter-opening.webp" alt="Flyer Winter Opening, YE Munich" width="1080" height="1350" fetchpriority="low" decoding="async"></picture><span class="sr-only"> – groß ansehen</span></button><figcaption class="cap"><span class="t">Winter Opening</span><span class="meta mono">YE Munich</span></figcaption></figure>
@@ -1668,6 +1712,29 @@
           </div>
         </article>
         <p class="web-next">Weitere Projekte gehen gerade online.</p>
+
+        <!-- Für alle, die es schon selbst versucht haben -->
+        <div class="diy grid12">
+          <h3 class="diy-t">Selbst mit Baukasten gebaut – und nicht happy?</h3>
+          <div class="diy-b">
+            <p>Passiert den meisten. Schick uns den Link: Wir übernehmen deine Inhalte, machen daraus eine Seite, die nach dir aussieht, schnell lädt und am Handy funktioniert – und kümmern uns um Domain, Hosting und E-Mail.</p>
+            <a class="case-btn as-link" href="#kontakt" data-pick="web">Website anfragen</a>
+          </div>
+        </div>
+
+        <!-- FAQ Web: Antworten mit Max abstimmen (class="ph" = Zahl noch offen) -->
+        <div class="faq grid12">
+          <h3 class="faq-t">Häufige Fragen</h3>
+          <div class="faq-list">
+            <details><summary>Was kostet eine Website?</summary><p>Kommt auf Umfang und Funktionen an – ein One-Pager ist etwas ganz anderes als ein Shop. Nach deiner Anfrage bekommst du ein klares Angebot mit festem Preis, ohne versteckte Kosten.</p></details>
+            <details><summary>Wie lange dauert das?</summary><p>Den ersten Entwurf siehst du nach etwa <span class="ph">2</span> Wochen. Wie schnell die Seite online geht, hängt vor allem davon ab, wann Texte und Fotos da sind – dabei helfen wir dir.</p></details>
+            <details><summary>Ich habe keine Texte und Fotos – geht das trotzdem?</summary><p>Ja. Das ist sogar der Normalfall. Texte schreiben wir auf Wunsch mit dir zusammen, Fotos und Videos kann Fabi machen.</p></details>
+            <details><summary>Wer kümmert sich um Domain, Hosting und E-Mail?</summary><p>Wir. Domain, Hosting, sichere Verbindung (https) und deine E-Mail-Adresse richten wir ein – du musst dich um nichts Technisches kümmern.</p></details>
+            <details><summary>Und wenn später was geändert werden muss?</summary><p>Schreib uns kurz, wir passen es an – ohne Ticketsystem und Warteschleife. Auf Wunsch gibt es ein monatliches Pflege-Paket, dann ist alles abgedeckt.</p></details>
+          </div>
+        </div>
+
+        <p class="talk"><span>Lieber erst kurz reden?</span> <a href="https://ig.me/m/vireal.media" target="_blank" rel="noopener">15 Minuten Erstgespräch, kostenlos<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="sr-only"> (Instagram, neuer Tab)</span></a></p>
       </div>
     </div>
   </section>
@@ -1678,6 +1745,7 @@
       <header class="sec-head grid12"><h2 id="h-ueber" lang="en">About us</h2></header>
       <div class="grid12">
         <p class="about-lead reveal"><strong>Wir sind Vireal.</strong> Fabian gestaltet Flyer und Motion Design, Max baut Websites. Jeder macht seins – und wenn du beides brauchst, kommt alles aus einer Hand und passt zusammen.</p>
+        <p class="about-direct reveal">Kein Account-Manager, keine Agentur-Schleifen: Du redest direkt mit dem, der dein Projekt macht.</p>
         <div class="crew reveal">
           <article class="member">
             <figure class="about-photo" aria-roledescription="Slideshow" aria-label="Fotos von Fabian"><img src="img/fabian-5.webp" alt="Fabian alias Preecie" width="284" height="355" decoding="async" fetchpriority="low" class="on"><img src="img/fabian-4.webp" alt="" width="526" height="658" decoding="async" loading="lazy"><img src="img/fabian-7.webp" alt="" width="533" height="666" decoding="async" loading="lazy"><span class="ap-bars" aria-hidden="true"><i></i><i></i><i></i></span><button type="button" class="ap-nav prev" aria-label="Vorheriges Foto"></button><button type="button" class="ap-nav next" aria-label="Nächstes Foto"></button><figcaption>Fabian · Preecie</figcaption></figure>
@@ -1706,7 +1774,7 @@
     <div class="container">
       <header class="sec-head grid12 contact-head"><h2 id="h-kontakt" class="contact-title">Nächstes Projekt? <em>Wir sind dabei.</em></h2></header>
       <div class="grid12 contact-body">
-        <p class="contact-note reveal"><strong>Schnelle Antwort.</strong> Wähl Visual oder Web und klick dir zusammen, was du brauchst. Daraus wird eine fertige Nachricht, und wir wissen sofort, was Sache ist. Logos, Fotos oder Line-up schickst du einfach in der DM hinterher.</p>
+        <p class="contact-note reveal"><strong>Schnelle Antwort, keine Funkstille.</strong> Du redest direkt mit dem, der dein Projekt macht, und bekommst Zwischenstände. Je genauer du unten klickst, desto besser sitzt der erste Entwurf. Logos, Fotos oder Line-up schickst du einfach in der DM hinterher.</p>
 
         <!-- Anfrage-Baukasten: alles bleibt im Browser, nichts wird gesendet oder gespeichert. Ergebnis = Text für die Instagram-DM. -->
         <div class="brief reveal" id="brief">
@@ -2401,6 +2469,7 @@
         return v ? r[0] + ': ' + v : '';
       })).filter(Boolean).join('\n');
     }
+    window.__vbpMode = function (m) { setMode(m); };
     function setMode(m) {
       mode = m;
       b.querySelectorAll('.mode').forEach(function (x) { x.setAttribute('aria-checked', x.getAttribute('data-mode') === m ? 'true' : 'false'); x.tabIndex = x.getAttribute('data-mode') === m || !m ? 0 : -1; });
@@ -2587,6 +2656,13 @@
       setTimeout(function () { c.classList.remove('go'); }, 1200); } }, { threshold: .9 });
     io.observe(c);
   })();
+</script>
+<script>
+  /* „Direkt zu: Flyer / Website“: wählt in der Anfrage Visual oder Web vor und springt hin */
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest && e.target.closest('[data-pick]'); if (!a) return;
+    if (window.__vbpMode) window.__vbpMode(a.getAttribute('data-pick'));
+  });
 </script>
 <script>
   /* Hero am Handy: Visual / Web wischbar, Balken zeigen die Position */
