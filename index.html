@@ -1422,6 +1422,48 @@
   .case-btn:focus-visible, .case-live:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
   @media (max-width: 640px) { .case-line { font-size: 16px; } .case-btn { flex: 1 1 100%; } .case-facts { gap: 18px 20px; } }
   .web-next { font-size: 15px; color: var(--faint); letter-spacing: 0; }
+
+  /* ---------- Anfrage-Button als Druckbogen ---------- */
+  .cta-sheet { --o: 9px; position: relative; display: inline-flex; align-items: stretch; height: 80px; margin: var(--o); color: #120c12; text-decoration: none;
+    background: #f3eff1; border-radius: 3px; box-shadow: 0 18px 40px -18px rgba(214,140,190,.45); transition: transform .45s var(--ease), box-shadow .45s var(--ease);
+    -webkit-tap-highlight-color: transparent; touch-action: manipulation; }
+  .cta-sheet > * { pointer-events: none; }
+  .cs-in { display: grid; align-content: center; gap: 6px; padding: 0 26px 0 24px; }
+  .cs-in small { font-size: 9.5px; letter-spacing: .16em; color: rgba(18,12,18,.5); }
+  .cs-in b { font-family: var(--display); font-weight: 900; font-style: italic; font-stretch: 62%; text-transform: uppercase; font-size: 30px; line-height: .9; letter-spacing: .005em; }
+  .cs-arr { display: grid; place-items: center; width: 64px; border-left: 1px solid rgba(18,12,18,.14); }
+  .cs-arr svg { width: 22px; height: 22px; transition: transform .45s var(--ease); }
+  /* Schnittmarken: liegen außerhalb der Ecken und rücken beim Überfahren nach außen */
+  .cs-c { position: absolute; width: 12px; height: 12px; border: 0 solid rgba(241,237,240,.55); transition: transform .45s var(--ease), border-color .3s; }
+  .cs-c.tl { left: calc(-1 * var(--o)); top: calc(-1 * var(--o)); border-left-width: 1px; border-top-width: 1px; }
+  .cs-c.tr { right: calc(-1 * var(--o)); top: calc(-1 * var(--o)); border-right-width: 1px; border-top-width: 1px; }
+  .cs-c.bl { left: calc(-1 * var(--o)); bottom: calc(-1 * var(--o)); border-left-width: 1px; border-bottom-width: 1px; }
+  .cs-c.br { right: calc(-1 * var(--o)); bottom: calc(-1 * var(--o)); border-right-width: 1px; border-bottom-width: 1px; }
+  @media (hover: hover) {
+    .cta-sheet:hover { transform: translateY(-2px); box-shadow: 0 24px 50px -18px rgba(214,140,190,.6); }
+    .cta-sheet:hover .cs-arr svg { transform: translateX(4px); }
+    .cta-sheet:hover .cs-c { border-color: var(--accent); }
+    .cta-sheet:hover .cs-c.tl { transform: translate(-4px, -4px); } .cta-sheet:hover .cs-c.tr { transform: translate(4px, -4px); }
+    .cta-sheet:hover .cs-c.bl { transform: translate(-4px, 4px); } .cta-sheet:hover .cs-c.br { transform: translate(4px, 4px); }
+  }
+  .cta-sheet:active { transform: scale(.985); }
+  .cta-sheet:focus-visible { outline: 2px solid var(--accent); outline-offset: 14px; }
+  @media (prefers-reduced-motion: reduce) { .cta-sheet, .cs-c, .cs-arr svg { transition: none; } }
+  @media (max-width: 640px) {
+    .intro-actions { width: 100%; }
+    .cta-sheet { display: flex; width: calc(100% - 2 * var(--o)); height: 78px; }
+    .cs-in { flex: 1; padding: 0 18px; } .cs-in b { font-size: 28px; }
+    .cs-arr { width: 60px; }
+  }
+
+  /* Schnittmarken rasten einmal ein, sobald der Button sichtbar wird (auch am Handy) */
+  @keyframes csIn { from { opacity: 0; transform: translate(var(--dx), var(--dy)); } to { opacity: 1; transform: none; } }
+  .cs-c.tl { --dx: -10px; --dy: -10px; } .cs-c.tr { --dx: 10px; --dy: -10px; } .cs-c.bl { --dx: -10px; --dy: 10px; } .cs-c.br { --dx: 10px; --dy: 10px; }
+  @media (prefers-reduced-motion: no-preference) {
+    .cta-sheet.pre .cs-c { opacity: 0; }
+    .cta-sheet.go .cs-c { animation: csIn .7s var(--ease) both; }
+    .cta-sheet.go .cs-c.tr { animation-delay: .06s; } .cta-sheet.go .cs-c.br { animation-delay: .12s; } .cta-sheet.go .cs-c.bl { animation-delay: .18s; }
+  }
 </style>
 </head>
 <body>
@@ -1500,7 +1542,12 @@
       <div class="statement-side reveal">
         <p class="intro-sub">Flyer, Motion Design und die passende Website – aus einer Hand und im selben Look. Für Läden, Studios, Gastro, Events und Marken in ganz Deutschland.</p>
         <div class="intro-actions">
-          <a class="cta-main" href="#kontakt"><span>Projekt anfragen</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          <!-- Anfrage-Button als Druckbogen: Schnittmarken wie beim Hero-Flyer, gehen beim Überfahren auseinander -->
+          <a class="cta-sheet" href="#kontakt">
+            <i class="cs-c tl" aria-hidden="true"></i><i class="cs-c tr" aria-hidden="true"></i><i class="cs-c bl" aria-hidden="true"></i><i class="cs-c br" aria-hidden="true"></i>
+            <span class="cs-in"><small class="mono">Anfrage · Visual &amp; Web</small><b>Projekt anfragen</b></span>
+            <span class="cs-arr" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12h13M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </a>
         </div>
       </div>
     </div>
@@ -2506,6 +2553,15 @@
     });
     bar.querySelectorAll('[data-step]').forEach(function (b) { b.addEventListener('click', function () { select(cur + (+b.getAttribute('data-step'))); }); });
     tabs.forEach(function (t, k) { panel(k).addEventListener('animationend', function () { this.classList.remove('enter'); }); });
+  })();
+</script>
+<script>
+  (function () {
+    var c = document.querySelector('.cta-sheet'); if (!c || !('IntersectionObserver' in window) || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    c.classList.add('pre');
+    var io = new IntersectionObserver(function (es) { if (es[0].isIntersecting) { io.disconnect(); c.classList.remove('pre'); c.classList.add('go');
+      setTimeout(function () { c.classList.remove('go'); }, 1200); } }, { threshold: .9 });
+    io.observe(c);
   })();
 </script>
 <script>
