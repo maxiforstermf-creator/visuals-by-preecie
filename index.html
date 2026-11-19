@@ -1524,6 +1524,11 @@
     .diy-b .case-btn { width: 100%; justify-content: center; }
     .talk { margin-top: 64px; display: grid; gap: 8px; justify-items: center; }
   }
+
+  .brief-idea textarea { display: block; width: 100%; min-height: 96px; padding: 12px 0; border: 0; border-bottom: 1px solid var(--line-strong); border-radius: 0; background: transparent;
+    color: var(--text); font: 400 17px/1.55 var(--sans); resize: none; overflow: hidden; }
+  .brief-idea textarea::placeholder { color: var(--faint); opacity: .75; }
+  .brief-idea textarea:focus { outline: none; border-bottom-color: var(--accent); }
 </style>
 </head>
 <body>
@@ -1790,7 +1795,7 @@
             <fieldset class="brief-q">
               <legend><span class="q-t">Was brauchst du?</span><span class="q-count mono" aria-live="polite"></span></legend>
               <div class="chips" data-key="was">
-                <button type="button" class="chip tw" aria-pressed="false">Flyer</button><button type="button" class="chip tw" aria-pressed="false">Motion</button><button type="button" class="chip tw" aria-pressed="false">Flyer-Serie</button>
+                <button type="button" class="chip tw" aria-pressed="false">Flyer</button><button type="button" class="chip tw" aria-pressed="false">Motion</button><button type="button" class="chip tw" aria-pressed="false">Flyer-Serie</button><button type="button" class="chip tw" aria-pressed="false">Was anderes</button>
               </div>
             </fieldset>
             <fieldset class="brief-q q-visual">
@@ -1835,7 +1840,7 @@
             <fieldset class="brief-q">
               <legend><span class="q-t">Was muss sie können?</span><span class="q-count mono" aria-live="polite"></span></legend>
               <div class="chips tgs" data-key="funktionen">
-                <button type="button" class="chip ut" aria-pressed="false"><span>Online-Termine</span><i class="tg" aria-hidden="true"></i></button><button type="button" class="chip ut" aria-pressed="false"><span>Online-Shop</span><i class="tg" aria-hidden="true"></i></button><button type="button" class="chip ut" aria-pressed="false"><span>Tickets &amp; Events</span><i class="tg" aria-hidden="true"></i></button><button type="button" class="chip ut" aria-pressed="false"><span>Galerie / Portfolio</span><i class="tg" aria-hidden="true"></i></button><button type="button" class="chip ut" aria-pressed="false"><span>Speisekarte / Preise</span><i class="tg" aria-hidden="true"></i></button><button type="button" class="chip ut" aria-pressed="false"><span>Anfrage-Formular</span><i class="tg" aria-hidden="true"></i></button><button type="button" class="chip ut" aria-pressed="false"><span>WhatsApp-Button</span><i class="tg" aria-hidden="true"></i></button><button type="button" class="chip ut" aria-pressed="false"><span>Google-Bewertungen</span><i class="tg" aria-hidden="true"></i></button><button type="button" class="chip ut" aria-pressed="false"><span>Instagram-Feed</span><i class="tg" aria-hidden="true"></i></button><button type="button" class="chip ut" aria-pressed="false"><span>Newsletter</span><i class="tg" aria-hidden="true"></i></button><button type="button" class="chip ut" aria-pressed="false"><span>Mehrsprachig</span><i class="tg" aria-hidden="true"></i></button><button type="button" class="chip ut" aria-pressed="false"><span>News / Blog</span><i class="tg" aria-hidden="true"></i></button>
+                <button type="button" class="chip ut" aria-pressed="false"><span>Online-Termine</span><i class="tg" aria-hidden="true"></i></button><button type="button" class="chip ut" aria-pressed="false"><span>Online-Shop</span><i class="tg" aria-hidden="true"></i></button><button type="button" class="chip ut" aria-pressed="false"><span>Tickets &amp; Events</span><i class="tg" aria-hidden="true"></i></button><button type="button" class="chip ut" aria-pressed="false"><span>Galerie / Portfolio</span><i class="tg" aria-hidden="true"></i></button><button type="button" class="chip ut" aria-pressed="false"><span>Speisekarte / Preise</span><i class="tg" aria-hidden="true"></i></button><button type="button" class="chip ut" aria-pressed="false"><span>Anfrage-Formular</span><i class="tg" aria-hidden="true"></i></button><button type="button" class="chip ut" aria-pressed="false"><span>WhatsApp-Button</span><i class="tg" aria-hidden="true"></i></button><button type="button" class="chip ut" aria-pressed="false"><span>Google-Bewertungen</span><i class="tg" aria-hidden="true"></i></button><button type="button" class="chip ut" aria-pressed="false"><span>Instagram-Feed</span><i class="tg" aria-hidden="true"></i></button><button type="button" class="chip ut" aria-pressed="false"><span>Newsletter</span><i class="tg" aria-hidden="true"></i></button><button type="button" class="chip ut" aria-pressed="false"><span>Mehrsprachig</span><i class="tg" aria-hidden="true"></i></button><button type="button" class="chip ut" aria-pressed="false"><span>News / Blog</span><i class="tg" aria-hidden="true"></i></button><button type="button" class="chip ut" aria-pressed="false"><span>Etwas anderes</span><i class="tg" aria-hidden="true"></i></button>
               </div>
             </fieldset>
             <fieldset class="brief-q">
@@ -1873,6 +1878,12 @@
             </fieldset>
             </div>
             <div class="mode-set" data-set="any" hidden>
+            <!-- Freitext für alles, was oben nicht zur Auswahl steht -->
+            <fieldset class="brief-q brief-idea">
+              <legend><span class="q-t" data-v="Deine Idee" data-w="Was sollen wir noch wissen?">Deine Idee</span></legend>
+              <p class="pk-tip" data-v="Was dir vorschwebt – auch wenn's oben nicht dabei war. Ein, zwei Sätze reichen." data-w="Wünsche, Ideen oder Funktionen, die oben fehlen. Ein paar Worte reichen.">Was dir vorschwebt – auch wenn's oben nicht dabei war. Ein, zwei Sätze reichen.</p>
+              <label><span class="sr-only">Deine Idee in eigenen Worten</span><textarea data-key="idee" rows="3" maxlength="600" autocomplete="off" placeholder="z. B. Plakat für unsere Neueröffnung, eher ruhig, mit unserem Ladenhund drauf" data-pv="z. B. Plakat für unsere Neueröffnung, eher ruhig, mit unserem Ladenhund drauf" data-pw="z. B. Kunden sollen Gutscheine online kaufen können"></textarea></label>
+            </fieldset>
             <fieldset class="brief-q">
               <legend><span class="q-t" data-v="Welche Farben?" data-w="Markenfarben">Welche Farben?</span></legend>
               <p class="pk-tip" data-v="Mit Finger oder Maus übers Feld ziehen, dann übernehmen." data-w="Hast du ein Logo, nehmen wir die Farben daraus. Sonst hier wählen: übers Feld ziehen, dann übernehmen.">Mit Finger oder Maus übers Feld ziehen, dann übernehmen.</p>
@@ -2428,8 +2439,8 @@
       var ends = [[L('event'), val('event')], [L('wann'), val('wann')], [L('deadline'), val('deadline')]];
       if (mode === 'web') return [['Ziel', picked('ziel').join(', ')], ['Zielgruppe', picked('zielgruppe').join(', ')], ['Besonders', val('usp')], ['Umfang', picked('umfang').join(', ')],
         ['Funktionen', picked('funktionen').join(', ')], ['Look', picked('look').join(', ')], ['Schon da', picked('material').join(', ')], ['Von euch', picked('service').join(', ')],
-        ['Aktuelle Seite', val('site')], ['Vorbilder', val('refs')], ['Konkurrenz', val('konk')], ['Markenfarben', 'farben']].concat(ends, [['Budget', picked('budget').join(', ')], ['Danach', picked('pflege').join(', ')]]);
-      return r.concat([['Vibe', 'vibe'], ['Inspiration', val('insp')], ['Farben', 'farben']], ends);
+        ['Aktuelle Seite', val('site')], ['Vorbilder', val('refs')], ['Konkurrenz', val('konk')], ['Wünsche', val('idee')], ['Markenfarben', 'farben']].concat(ends, [['Budget', picked('budget').join(', ')], ['Danach', picked('pflege').join(', ')]]);
+      return r.concat([['Vibe', 'vibe'], ['Inspiration', val('insp')], ['Idee', val('idee')], ['Farben', 'farben']], ends);
     }
     function intro() {
       if (mode === 'web') return 'Hey Vireal! Ich brauch eine Website.';
@@ -2571,7 +2582,10 @@
     addBtn.addEventListener('click', addColor);
     window.addEventListener('resize', render, { passive: true });
     render();
-    b.querySelectorAll('input[data-key]').forEach(function (i) { i.addEventListener('input', update); });
+    b.querySelectorAll('input[data-key], textarea[data-key]').forEach(function (i) { i.addEventListener('input', update); });
+    /* Freitext wächst mit */
+    var idea = b.querySelector('textarea[data-key="idee"]');
+    if (idea) idea.addEventListener('input', function () { idea.style.height = 'auto'; idea.style.height = idea.scrollHeight + 2 + 'px'; });
     /* Tastatur: Enter = weiter zum nächsten Feld, im letzten Feld Tastatur zu. Tippen neben die Felder schließt sie ebenfalls (iOS hat bei Textfeldern sonst keinen Ausweg). */
     var fields = [].slice.call(b.querySelectorAll('.web-site input, .brief-insp input, .brief-fields input'));
     fields.forEach(function (f, k) {
@@ -2582,7 +2596,8 @@
     });
     document.addEventListener('pointerdown', function (e) {
       var a = document.activeElement;
-      if (a && fields.indexOf(a) > -1 && fields.indexOf(e.target) < 0 && !(e.target.closest && e.target.closest('label'))) a.blur();
+      var all = idea ? fields.concat([idea]) : fields;
+      if (a && all.indexOf(a) > -1 && all.indexOf(e.target) < 0 && !(e.target.closest && e.target.closest('label'))) a.blur();
     }, true);
     send.addEventListener('click', function () {
       var msg = text();
