@@ -564,12 +564,32 @@
     transition: transform .3s var(--ease), box-shadow .3s ease, filter .3s ease; }
   .brief-send .ig { width: 17px; height: 17px; flex: none; }
   .brief-send:active { transform: scale(.98); }
+  /* Direkt senden (nur wenn data-endpoint gesetzt): Verlauf-Button = senden, DM wird ruhiger Zweitweg */
+  .brief-go, .brief-legal { display: none; }
+  .hp { position: absolute !important; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+  .brief-fields .f-reach { grid-column: span 2; }
+  .has-direct .brief-go { margin-top: 22px; width: 100%; display: flex; align-items: center; justify-content: center; gap: 10px; min-height: 52px; padding: 0 20px; border: 0; border-radius: 999px; cursor: pointer;
+    font: 600 15px/1 var(--sans); letter-spacing: -.005em; color: #140b12;
+    background: linear-gradient(95deg, #efb3c4 0%, #c49ae0 100%); box-shadow: 0 10px 26px -12px rgba(214,140,190,.5), inset 0 1px 0 rgba(255,255,255,.35);
+    transition: transform .3s var(--ease), box-shadow .3s ease, filter .3s ease, opacity .3s; }
+  .brief-go svg { width: 17px; height: 17px; flex: none; transition: transform .3s var(--ease); }
+  .brief-go[aria-busy="true"] { opacity: .6; cursor: progress; }
+  .brief-go.sent { background: var(--text); box-shadow: none; }
+  .has-direct .brief-hint { margin-top: 10px; min-height: 0; }
+  .has-direct .brief-hint:empty { display: none; }
+  .has-direct .brief-send { margin-top: 6px; min-height: 44px; background: none; box-shadow: none; color: var(--muted); font-weight: 500; font-size: 14px; }
+  .has-direct .brief-send:hover { color: var(--text); filter: none; box-shadow: none; }
+  .has-direct .brief-legal { display: block; margin: 6px auto 0; max-width: 40ch; text-align: center; font-size: 12px; line-height: 1.5; color: var(--faint); }
+  .brief-legal a { color: inherit; text-decoration: underline; text-underline-offset: 2px; }
+  .f-reach.need input { border-bottom-color: var(--accent); }
   .brief-hint { margin: 12px 0 0; min-height: 1.6em; text-align: center; transition: color .3s; }
   .brief-hint.done { color: var(--accent); }
   @media (hover: hover) {
     .chip[aria-pressed="false"]:hover { opacity: .7; }
     .pk-x:hover { color: var(--text); }
     .pk-add:not(:disabled):hover { opacity: .88; }
+    .has-direct .brief-go:not([aria-busy="true"]):not(.sent):hover { transform: translateY(-1px); filter: brightness(1.04); box-shadow: 0 14px 30px -12px rgba(214,140,190,.65), inset 0 1px 0 rgba(255,255,255,.4); }
+    .brief-go:hover svg { transform: translateX(3px); }
     .brief-send:hover { transform: translateY(-1px); filter: brightness(1.04); box-shadow: 0 14px 30px -12px rgba(214,140,190,.65), inset 0 1px 0 rgba(255,255,255,.4); }
   }
   @media (max-width: 960px) {
@@ -590,6 +610,7 @@
     .poster { padding: 18px 18px 14px; min-height: calc((100cqw - 20px) * 1.25); }
     .ps-hello { font-size: 36px; }
     .brief-fields { grid-template-columns: minmax(0, 1fr); gap: 10px; }
+    .brief-fields .f-reach { grid-column: auto; }
   }
 
   html:has(dialog[open]) { overscroll-behavior: none; }
@@ -1786,7 +1807,7 @@
         <p class="contact-note reveal"><strong>Schnelle Antwort, keine Funkstille.</strong> Du redest direkt mit dem, der dein Projekt macht, und bekommst Zwischenstände. Je genauer du unten klickst, desto besser sitzt der erste Entwurf. Logos, Fotos oder Line-up schickst du einfach in der DM hinterher.</p>
 
         <!-- Anfrage-Baukasten: alles bleibt im Browser, nichts wird gesendet oder gespeichert. Ergebnis = Text für die Instagram-DM. -->
-        <div class="brief reveal" id="brief">
+        <div class="brief reveal" id="brief" data-endpoint="https://n8n.m2f-solutions.de/webhook/vireal-briefing">
           <div class="brief-opts">
             <fieldset class="brief-q brief-mode">
               <legend><span class="q-t">Visual oder Web?</span></legend>
@@ -1907,7 +1928,10 @@
               <legend><span class="q-t">Eckdaten</span></legend>
               <label><span class="mono" data-v="Projekt" data-w="Firma / Projekt">Projekt</span><input type="text" data-key="event" maxlength="60" enterkeyhint="next" autocomplete="off" placeholder="z. B. Neueröffnung, Aktion, Event" data-pv="z. B. Neueröffnung, Aktion, Event" data-pw="z. B. Studio Lea"></label>
               <label><span class="mono" data-v="Datum &amp; Ort" data-w="Branche &amp; Ort">Datum &amp; Ort</span><input type="text" data-key="wann" maxlength="60" enterkeyhint="next" autocomplete="off" placeholder="21.11., Augsburg" data-pv="21.11., Augsburg" data-pw="Kosmetik, Augsburg"></label>
-              <label><span class="mono" data-v="Bis wann" data-w="Online bis">Bis wann</span><input type="text" data-key="deadline" maxlength="40" enterkeyhint="done" autocomplete="off" placeholder="nächsten Freitag" data-pv="nächsten Freitag" data-pw="Ende Januar"></label>
+              <label><span class="mono" data-v="Bis wann" data-w="Online bis">Bis wann</span><input type="text" data-key="deadline" maxlength="40" enterkeyhint="next" autocomplete="off" placeholder="nächsten Freitag" data-pv="nächsten Freitag" data-pw="Ende Januar"></label>
+              <label class="f-who"><span class="mono">Dein Name</span><input type="text" data-key="name" maxlength="60" enterkeyhint="next" autocomplete="name" placeholder="Vor- und Nachname"></label>
+              <label class="f-reach"><span class="mono">E-Mail oder Handy</span><input type="text" data-key="kontakt" maxlength="80" enterkeyhint="done" autocomplete="email" inputmode="email" placeholder="Damit wir dir antworten können"></label>
+              <label class="hp" aria-hidden="true">Website <input type="text" name="website" tabindex="-1" autocomplete="off"></label>
             </fieldset>
             </div>
           </div>
@@ -1928,8 +1952,10 @@
                 <div class="ps-foot mono" aria-hidden="true"><span>Vireal</span><span>4:5</span></div>
               </div>
             </div>
+            <button type="button" class="brief-go"><span class="go-l">Anfrage senden</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
             <a class="brief-send" href="https://ig.me/m/vireal.media" target="_blank" rel="noopener"><svg class="ig" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".9" fill="currentColor"/></svg><span>Kopieren &amp; in die DM</span><span class="sr-only"> (öffnet Instagram in neuem Tab)</span></a>
             <p class="brief-hint mono" id="brief-hint" aria-live="polite">Text wird kopiert – in Instagram einfach einfügen</p>
+            <p class="brief-legal">Mit „Anfrage senden“ gehen deine Angaben an uns, damit wir dir antworten können. Mehr im <a href="datenschutz.html#h-anfrage">Datenschutz</a>.</p>
           </div>
         </div>
         <div class="contact-rows reveal">
@@ -2591,7 +2617,7 @@
     var idea = b.querySelector('textarea[data-key="idee"]');
     if (idea) idea.addEventListener('input', function () { idea.style.height = 'auto'; idea.style.height = idea.scrollHeight + 2 + 'px'; });
     /* Tastatur: Enter = weiter zum nächsten Feld, im letzten Feld Tastatur zu. Tippen neben die Felder schließt sie ebenfalls (iOS hat bei Textfeldern sonst keinen Ausweg). */
-    var fields = [].slice.call(b.querySelectorAll('.web-site input, .brief-insp input, .brief-fields input'));
+    var fields = [].slice.call(b.querySelectorAll('.web-site input, .brief-insp input, .brief-fields input:not([name="website"])'));
     fields.forEach(function (f, k) {
       f.addEventListener('keydown', function (e) {
         if (e.key !== 'Enter' || e.isComposing) return; e.preventDefault();
@@ -2611,6 +2637,40 @@
         hint.textContent = 'Text auf dem Plakat markiert – bitte kopieren'; hint.classList.add('done'); };
       if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(msg).then(ok, fail); else fail();
     });
+    /* Direkt senden an unseren Server (n8n). Gesendet wird nur beim Klick, nichts wird im Browser gespeichert.
+       Ohne data-endpoint bleibt nur der DM-Weg. Schlägt das Senden fehl, springt der DM-Weg ein. */
+    var EP = b.getAttribute('data-endpoint'), go = b.querySelector('.brief-go'), t0 = Date.now();
+    if (EP && go && window.fetch) {
+      b.classList.add('has-direct');
+      send.querySelector('span').textContent = 'Oder per Instagram-DM'; hint.textContent = hintText = '';
+      go.parentNode.insertBefore(hint, send);
+      var goL = go.querySelector('.go-l'), reach = b.querySelector('[data-key="kontakt"]'), hp = b.querySelector('input[name="website"]');
+      var say = function (m) { hint.textContent = m; hint.classList.add('done'); clearTimeout(tHint); };
+      /* Woher kam die Anfrage? Nur aus Adresse/Referrer berechnet, ohne Speicherung (§ 25 TDDDG) */
+      var quelle = function () { try { var q = new URLSearchParams(location.search), u = q.get('utm_source'); if (u) return u + (q.get('utm_campaign') ? ' / ' + q.get('utm_campaign') : '');
+        var r = document.referrer && new URL(document.referrer).hostname; return r && r !== location.hostname ? r : 'direkt'; } catch (e) { return 'direkt'; } };
+      reach.addEventListener('input', function () { reach.closest('label').classList.remove('need'); });
+      go.addEventListener('click', function () {
+        if (go.getAttribute('aria-busy') === 'true' || go.classList.contains('sent')) return;
+        if (!mode) { say('Erst oben wählen: Visual oder Web'); b.querySelector('.mode').focus(); return; }
+        var k = val('kontakt');
+        if (!/@.+\./.test(k) && k.replace(/\D/g, '').length < 6) { reach.closest('label').classList.add('need'); say('Wie erreichen wir dich? E-Mail oder Handynummer'); reach.focus(); return; }
+        var felder = {};
+        ['was', 'format', 'vibe', 'ziel', 'zielgruppe', 'umfang', 'funktionen', 'look', 'material', 'service', 'budget', 'pflege'].forEach(function (key) { var v = picked(key); if (v.length) felder[key] = v; });
+        ['usp', 'site', 'refs', 'konk', 'insp', 'idee', 'event', 'wann', 'deadline'].forEach(function (key) { var v = val(key); if (v) felder[key] = v; });
+        if (chosen.length) felder.farben = chosen.map(function (c) { return c.name + ' ' + c.hex; });
+        var body = { kunde: 'vireal', art: mode, name: val('name'), kontakt: k, felder: felder, nachricht: text(), quelle: quelle(), seite: location.href.split('#')[0],
+          website: hp ? hp.value : '', dauer: Date.now() - t0 };
+        go.setAttribute('aria-busy', 'true'); goL.textContent = 'Wird gesendet …';
+        var ctl = window.AbortController ? new AbortController() : null, tm = setTimeout(function () { if (ctl) ctl.abort(); }, 15000);
+        fetch(EP, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body), signal: ctl ? ctl.signal : undefined })
+          .then(function (r) { if (!r.ok) throw new Error(r.status); })
+          .then(function () { clearTimeout(tm); go.removeAttribute('aria-busy'); go.classList.add('sent'); goL.textContent = 'Angekommen – danke!'; go.querySelector('path').setAttribute('d', 'M5 12.5l4.5 4.5L19 7.5');
+            say(/@/.test(k) ? 'Bestätigung kommt per Mail. Antwort innerhalb von 24 Stunden.' : 'Wir melden uns innerhalb von 24 Stunden.'); })
+          .catch(function () { clearTimeout(tm); go.removeAttribute('aria-busy'); goL.textContent = 'Nochmal senden';
+            say('Hat nicht geklappt – schick es uns einfach per Instagram-DM'); });
+      });
+    }
     update();
   })();
 
