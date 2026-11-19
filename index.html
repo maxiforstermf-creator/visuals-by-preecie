@@ -1464,6 +1464,9 @@
     .cta-sheet.go .cs-c { animation: csIn .7s var(--ease) both; }
     .cta-sheet.go .cs-c.tr { animation-delay: .06s; } .cta-sheet.go .cs-c.br { animation-delay: .12s; } .cta-sheet.go .cs-c.bl { animation-delay: .18s; }
   }
+
+  /* Im wischbaren Hero (Handy/Tablet hoch) übernehmen die Balken die Rolle von „Scroll“ – sonst überlagern sie sich bei kurzen Bildschirmen */
+  @media (max-width: 760px), (max-width: 1100px) and (orientation: portrait) { .intro .scroll-cue { display: none; } }
 </style>
 </head>
 <body>
