@@ -959,10 +959,10 @@
   /* Fadenkreuz wie im Layoutprogramm */
   .hC .pC-guides { position: absolute; inset: 0; z-index: 3; pointer-events: none; opacity: 0; transition: opacity .3s ease; }
   .hC.guides-on .pC-guides { opacity: 1; }
-  .hC .pC-guides i { position: absolute; background: rgba(233,163,182,.32); }
+  .hC .pC-guides i { position: absolute; background: rgba(241,237,240,.2); }
   .hC .gx { left: 0; right: 0; top: 0; height: 1px; transform: translateY(var(--gy, 0px)); }
   .hC .gy { top: 0; bottom: 0; left: 0; width: 1px; transform: translateX(var(--gx, 0px)); }
-  .hC .pC-read { position: absolute; left: 0; top: 0; color: var(--accent); font-size: 10px; letter-spacing: .14em; white-space: nowrap;
+  .hC .pC-read { position: absolute; left: 0; top: 0; color: rgba(241,237,240,.72); font-size: 10px; letter-spacing: .14em; white-space: nowrap;
     text-shadow: 0 1px 8px rgba(0,0,0,.85); transform: translate(calc(var(--gx, 0px) + 22px), calc(var(--gy, 0px) - 24px)); }
   @media (prefers-reduced-motion: no-preference) {
     @keyframes pc-draw { from { opacity: 0; } to { opacity: 1; } }
@@ -1123,9 +1123,10 @@
 
   /* ---------- Hero Vireal: Latest Visual + Latest Web nebeneinander (Handy: wischbar) ---------- */
   .intro .hero-stage { flex-direction: column; align-items: stretch; }
-  .hero-rail { display: flex; align-items: flex-end; justify-content: center; gap: clamp(56px, 7vw, 120px); }
-  .intro .hero-rail .intro-flyer { flex: none; width: min(430px, 32vw, calc((100svh - var(--hh, 72px) - 226px) * .806)); }
-  .intro-web { flex: none; margin: 0; width: min(660px, 44vw, calc((100svh - var(--hh, 72px) - 226px) * 1.3)); }
+  .hero-rail { display: flex; align-items: flex-end; justify-content: center; gap: clamp(140px, 11vw, 168px); padding-inline: 44px 84px; }
+  .intro-web .dim-h { right: -76px; }
+  .intro .hero-rail .intro-flyer { flex: none; width: min(430px, 29vw, calc((100svh - var(--hh, 72px) - 226px) * .806)); }
+  .intro-web { flex: none; margin: 0; width: min(660px, 41vw, calc((100svh - var(--hh, 72px) - 226px) * 1.3)); }
   .web-sheet { position: relative; }
   .hero-web { position: relative; display: block; width: 100%; padding: 0; margin: 0; border: 0; background: none; color: inherit; font: inherit; text-align: left; cursor: zoom-in; }
   .hero-web .bw { box-shadow: 0 0 0 1px rgba(241,237,240,.09), 0 60px 120px -40px rgba(0,0,0,.95); }
@@ -1139,7 +1140,7 @@
   @media (prefers-reduced-motion: no-preference) { .intro-web { animation: rise 1.2s var(--ease) .12s both; } }
   .hero-dots { display: none; }
   @media (max-width: 760px), (max-width: 1100px) and (orientation: portrait) {
-    .hC .reg { display: none; }
+    .hC .reg, .hC .dim-h { display: none; }
     .hero-rail { justify-content: flex-start; gap: 22px; overflow-x: auto; overflow-y: hidden; scroll-snap-type: x mandatory; scrollbar-width: none;
       overscroll-behavior-x: contain; -webkit-overflow-scrolling: touch; margin-inline: calc(-1 * var(--gutter-l)) calc(-1 * var(--gutter-r));
       padding: 46px var(--gutter-r) 8px var(--gutter-l); scroll-padding-inline: var(--gutter-l); }
@@ -1378,8 +1379,6 @@
   .hero-claim { display: flex; align-items: center; justify-content: center; gap: 12px; margin: 0 0 clamp(18px, 2.4vh, 30px); font-size: 11px; letter-spacing: .16em; color: var(--muted); text-align: center; }
   .hc-b { color: var(--text); }
   .hc-s { width: 22px; height: 1px; background: rgba(241,237,240,.3); }
-  .intro .hero-rail .intro-flyer { width: min(430px, 32vw, calc((100svh - var(--hh, 72px) - 262px) * .806)); }
-  .intro-web { width: min(660px, 44vw, calc((100svh - var(--hh, 72px) - 262px) * 1.3)); }
   @media (max-width: 760px), (max-width: 1100px) and (orientation: portrait) {
     .hero-claim { margin-bottom: 0; font-size: 10px; letter-spacing: .12em; gap: 10px; }
     .intro .hero-rail .intro-flyer { width: min(76vw, 600px, calc((100svh - var(--hh, 72px) - 262px) * .806)); }
@@ -1388,8 +1387,9 @@
   @media (max-width: 640px) { .cta-main { width: 100%; justify-content: space-between; min-height: 60px; } }
 
   .hero-claim { margin-bottom: 64px; }
-  .intro .hero-rail .intro-flyer { width: min(430px, 32vw, calc((100svh - var(--hh, 72px) - 300px) * .806)); }
-  .intro-web { width: min(660px, 44vw, calc((100svh - var(--hh, 72px) - 300px) * 1.3)); }
+  /* Breiten so, dass Flyer + Website inkl. Maße, Passer und Farbbalken (auf beiden gleich) ohne Überschneidung passen */
+  .intro .hero-rail .intro-flyer { width: min(430px, 29vw, calc((100svh - var(--hh, 72px) - 300px) * .806)); }
+  .intro-web { width: min(660px, 41vw, calc((100svh - var(--hh, 72px) - 300px) * 1.3)); }
   @media (max-width: 760px), (max-width: 1100px) and (orientation: portrait) {
     .hero-claim { margin-bottom: 0; }
     .hc-l { display: none; }
@@ -1582,6 +1582,10 @@
           <span class="crop tl" aria-hidden="true"></span><span class="crop tr" aria-hidden="true"></span>
           <span class="crop bl" aria-hidden="true"></span><span class="crop br" aria-hidden="true"></span>
           <span class="dim dim-w mono" aria-hidden="true"><b>1440 px</b></span>
+          <span class="dim dim-h mono" aria-hidden="true"><b>900 px</b></span>
+          <svg class="reg" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="6.5"/><path d="M12 1v22M1 12h22"/></svg>
+          <!-- Farbpalette = Hauptfarben der gezeigten Website (bei neuem Web-Projekt neu bestimmen) -->
+          <span class="swatch" aria-hidden="true"><i style="background:#f9f1ef"></i><i style="background:#dedcda"></i><i style="background:#8e8278"></i><i style="background:#3c3129"></i><i style="background:#241915"></i></span>
           <button type="button" class="hero-web web-src" aria-haspopup="dialog" data-title="Beautybar" data-meta="Kosmetikstudio · Gersthofen" data-url="https://www.beautybar-vanessaforster.de/" data-host="beautybar-vanessaforster.de" data-desk="img/web/beautybar-desktop" data-mob="img/web/beautybar-mobile">
             <span class="bw">
               <span class="bw-bar" aria-hidden="true"><span class="bw-url mono"><svg viewBox="0 0 12 12" aria-hidden="true"><rect x="2.5" y="5.5" width="7" height="5" rx="1"/><path d="M4 5.5V4a2 2 0 0 1 4 0v1.5"/></svg>beautybar-vanessaforster.de</span></span>
